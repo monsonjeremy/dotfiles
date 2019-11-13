@@ -14,8 +14,8 @@
 
 <details>
   <summary>Click to see unsupported install script instructions</summary>
-  
-  
+
+
 Clone Jarvis into your directory of choice and run the install script. This script will install [Homebrew](https://brew.sh/) (if it needs to) and then install all of Jarvis' dependencies.
 
 **Warning: This will move existing `zsh`, `tmux`, or `nvim` configurations to a backup folder inside of the installation repo.**
@@ -45,8 +45,6 @@ The following tools are the only ones that are (currently) required to be instal
   - [Prettier](https://github.com/neoclide/coc-prettier): `:CocInstall coc-prettier`
   - [CSS](https://github.com/neoclide/coc-css): `:CocInstall coc-css`
   - [json](https://github.com/neoclide/coc-json): `:CocInstall coc-json`
-
-5. (Optional) Install [Pecan](https://github.com/zzzeyez/Pecan) for customizable OSX header. Follow install instructions on page. For Oceanic theme, copy `jarvis/config/Pecan/style.css` into `~/Library/Application Support/Übersicht/widgets/Pecan/style.css` and refresh widget by using `Übersicht` -> `Refresh All Widgets` from native OSX menu bar.
 
 **Installed Tools**
 
@@ -84,7 +82,6 @@ Follow the [Windows install instructions](https://github.com/neovim/neovim/wiki/
 4. Open Neovim (`C:\tools\neovim\Neovim\bin\nvim-qt.exe`) and run `:PlugInstall` and `:UpdateRemotePlugins`. You might need to close and re-open Neovim.
 5. Install the vim linter [vint](https://github.com/Kuniwak/vint) with `pip install vim-vint`
 6. Install ripgrep for windows (may need to run as admin) `choco intall ripgrep`
-7. Copy custom vim airline theme: `config\nvim\space.vim\` to `~\AppData\Local\nvim\plugged\vim-airline-themes\autoload\airline\themes\space.vim`
 
 ## Additional Manual Configuration
 

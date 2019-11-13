@@ -32,6 +32,7 @@ echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing Python NeoVim client.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
+pip install neovim
 pip3 install neovim
 
 echo "---------------------------------------------------------"
@@ -91,6 +92,25 @@ echo "$(tput setaf 2)JARVIS: Installing pyenv.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
+pyenv install 2.7.15
+pyenv install 3.6.7
+
+pyenv virtualenv 2.7.11 neovim2
+pyenv virtualenv 3.4.4 neovim3
+
+pyenv activate neovim2
+pip install neovim
+
+pyenv activate neovim3
+pip install neovim
+
+# The following is optional, and the neovim3 env is still active
+# This allows flake8 to be available to linter plugins regardless
+# of what env is currently active.  Repeat this pattern for other
+# packages that provide cli programs that are used in Neovim.
+pip install flake8
+ln -s `pyenv which flake8` ~/bin/flake8
+
 echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing vtop.$(tput sgr 0)"
 echo "---------------------------------------------------------"
@@ -106,10 +126,10 @@ nvim +PlugInstall +qall
 nvim +UpdateRemotePlugins +qall
 
 echo "---------------------------------------------------------"
-echo "$(tput setaf 2)JARVIS: Installing Space vim-airline theme.$(tput sgr 0)"
+echo "$(tput setaf 2)JARVIS: Installing onedark vim-airline theme.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
-cp ~/.config/nvim/space.vim ~/.config/nvim/plugged/vim-airline-themes/autoload/airline/themes/space.vim
+cp ~/.config/nvim/onedark.vim ~/.config/nvim/plugged/vim-airline-themes/autoload/airline/themes/onedark.vim
 
 echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing tmux plugin manager.$(tput sgr 0)"

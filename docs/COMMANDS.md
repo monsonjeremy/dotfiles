@@ -21,24 +21,10 @@ file is carefully documented to make it easy to understand. Many default command
 | `<leader>f`  | normal          | NERDTree                        | Find current file in tree hiearchy       |
 | `<leader>n`  | normal          | NERDTree                        | Toggle NERDTree window                   |
 | `C`          | normal     *NT* | NERDTree                        | Switch NERDTree root to be directory under cursor |
-| `;`          | normal          | Denite                          | Browse currently open buffers            |
-| `<leader>t`  | normal          | Denite                          | Browse files in current directory        |
-| `<leader>g`  | normal          | Denite                          | Search current directory for occurences of term |
-| `<leader>j`  | normal          | Denite                          | Search current directory for word under cursor |
-| `<Esc>`      | insert/normal *DW* | Denite                       | Close Denite window                       |
-| `<c-o>`      | insert/normal *DW* | Denite                       | Switch between fuzzy-find insert mode and normal mode (useful inside *DW*) |
-| `d`          | normal     *DW* | Denite                          | Delete item (can delete open buffer inside *DW*) |
-| `<c-t>`      | insert/normal     *DW* | Denite                   | Open file in new tab (useful inside *DW*) |
-| `<c-v>`      | insert/normal     *DW* | Denite                   | Open file in a vertical split  (useful inside *DW*) |
-| `<c-h>`      | insert/normal     *DW* | Denite                   | Open file in a horizontal split  (useful inside *DW*) |
 | `<leader>y`  | normal          | vim-better-whitespace           | Remove trailing whitespace in file       |
-| `<leader>w`  | normal          | EasyMotion                      | Highlight first letter of file words for quick move |
 | `<leader>dj` | normal          | Coc.nvim                        | Jump to implementation(s) of symbol under cursor  |
 | `<leader>dr` | normal          | Coc.nvim                        | Show references of symbol under cursor.    |
 | `<leader>dd` | normal          | Coc.nvim                        | Look up definition of word under cursor |
-| `<c-k>`      | insert    *AWV* | NeoSnippet                      | Activates first valid snippet that matches |
-| `<c-k>`      | insert     *SP* | NeoSnippet                      | Move to next available field of snippet  |
-| `<c-k>`      | select     *SP* | NeoSnippet                      | Move to next available field of snippet  |
 
 <br />
 

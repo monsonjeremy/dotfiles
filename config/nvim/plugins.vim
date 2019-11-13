@@ -27,21 +27,17 @@ Plug 'ntpeters/vim-better-whitespace'
 " code commenting
 Plug 'tpope/vim-commentary'
 
+" Ctrl-p
+Plug 'kien/ctrlp.vim'
+
 " auto-close plugin
 Plug 'rstacruz/vim-closer'
-
-" Improved motion in Vim
-Plug 'easymotion/vim-easymotion'
 
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Denite - Fuzzy finding, buffer management
-Plug 'Shougo/denite.nvim'
-
-" Snippet support
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+" ctrlpvim - Fuzzy finding, buffer management
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Print function signatures in echo area
 Plug 'Shougo/echodoc.vim'
@@ -77,7 +73,7 @@ Plug 'othree/yajs.vim'
 Plug 'scrooloose/nerdtree'
 
 " Colorscheme
-Plug 'mhartington/oceanic-next'
+Plug 'joshdick/onedark.vim'
 
 " Customized vim status line
 Plug 'vim-airline/vim-airline'

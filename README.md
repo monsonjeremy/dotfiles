@@ -69,7 +69,7 @@ The following are features provided by Jarvis. They all have quick keybindings t
 
 6. **Keyword auto-complete** - *NeoVim* and *zsh*
 
-    Neovim - Automatic, asynchronous keyword completion available in the current buffer via [coc.nvim](https://github.com/neoclide/coc.nvim). It's powered by the same language server extensions as VSCode. It also supports the new "floating window" feature so you can finally have syntax highlighting in your completion windows! 
+    Neovim - Automatic, asynchronous keyword completion available in the current buffer via [coc.nvim](https://github.com/neoclide/coc.nvim). It's powered by the same language server extensions as VSCode. It also supports the new "floating window" feature so you can finally have syntax highlighting in your completion windows!
 
     <img src="https://i.imgur.com/AsXMuHA.gif" width="100%"/>
 
@@ -112,8 +112,6 @@ This is a collection of cool tools that you might want to use.
 [`vtop`](https://github.com/MrRio/vtop)\* - A nifty graphical activity monitor for the command line
 
 [`taskbook`](https://github.com/klauscfhq/taskbook) - Tasks, boards, & notes for command-line. Think Trello for the terminal.
-
-[`pecan`](https://github.com/zzzeyez/Pecan) - Configurable menu bar for OSX.
 
 [`vim-markdown-composer`](https://github.com/euclio/vim-markdown-composer) - Asynchronous markdown preview plugin for Vim/Neovim.
 
