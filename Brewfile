@@ -1,0 +1,38 @@
+tap 'homebrew/cask'
+tap 'homebrew/cask-fonts'
+
+brew 'bash'
+brew 'bash-completion'
+brew 'direnv'
+brew 'docker-compose'
+brew 'fd'
+brew 'git'
+brew 'git-lfs'
+brew 'htop'
+brew 'jq'
+brew 'neovim'
+brew 'python'
+brew 'python3'
+brew 'ripgrep'
+brew 'tmux'
+brew 'tree'
+brew 'z'
+brew 'node'
+brew 'zsh'
+brew 'ripgrep'
+brew 'fzf'
+brew 'exa'
+brew 'pyenv-virtualenv'
+
+cask 'docker'
+cask 'font-source-code-pro'
+cask 'font-hack-nerd-font'
+cask 'google-chrome'
+cask 'hammerspoon'
+cask 'karabiner-elements'
+cask 'scroll-reverser'
+cask 'slack'
+
+if (File.file?('Brewfile.local'))
+  instance_eval(File.read('Brewfile.local'))
+end
