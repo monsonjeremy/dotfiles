@@ -126,12 +126,6 @@ nvim +PlugInstall +qall
 nvim +UpdateRemotePlugins +qall
 
 echo "---------------------------------------------------------"
-echo "$(tput setaf 2)JARVIS: Installing onedark vim-airline theme.$(tput sgr 0)"
-echo "---------------------------------------------------------"
-
-cp ~/.config/nvim/onedark.vim ~/.config/nvim/plugged/vim-airline-themes/autoload/airline/themes/onedark.vim
-
-echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing tmux plugin manager.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 

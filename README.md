@@ -80,18 +80,6 @@ The following are features provided by Jarvis. They all have quick keybindings t
 	  - [CSS](https://github.com/neoclide/coc-css): `:CocInstall coc-css`
 	  - [json](https://github.com/neoclide/coc-json): `:CocInstall coc-json`
 
-7. **Code Snippets** - *NeoVim*
-
-    Commonly used code snippets made available with a few keystrokes to reduce time and effort via [neosnippet](https://github.com/Shougo/neosnippet.vim). Snippets available via auto-complete window removes need to memorize commands. Quickly hop to relevant pieces of snippet as needed.
-
-    <img src="https://i.imgur.com/bz7A7CM.gif" height="400px"/>
-
-8. **Improved Vim motion** - *NeoVim*
-
-	Using [vim-easymotion](https://github.com/easymotion/vim-easymotion), quickly jump to precise locations with minimal keystrokes.
-
-	<img src="https://i.imgur.com/sTRBOa4.gif" height="400px"/>
-
 ## Installation
 
 Neovim is supported across multiple platforms. Some tools used by Jarvis are not, however. For MacOSX, an installation script is included
