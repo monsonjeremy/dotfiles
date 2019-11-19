@@ -1,5 +1,6 @@
 [user]
 	name = monsonjeremy
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -14,7 +15,7 @@
 	s = status -s
 
     # Rebase
-    up = git fetch origin && git rebase -i origin/master
+    up = !"git fetch origin && git rebase -i origin/master"
 
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
