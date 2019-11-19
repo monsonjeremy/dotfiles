@@ -155,11 +155,6 @@ function tre() {
     tree -aC -I ".git|node_modules|bower_components" --dirsfirst "$@" | less -FRNX
 }
 
-# Enable autosuggestions automatically
-zle-line-init() {
-    zle autosuggest-start
-}
-
 ## FZF FUNCTIONS ##
 
 # fo [FUZZY PATTERN] - Open the selected file with the default editor

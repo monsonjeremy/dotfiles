@@ -34,14 +34,19 @@ prompt_context() {}
 # Set location of z installation
 . /usr/local/etc/profile.d/z.sh
 
-# pretty ls
-alias ls="exa -a --tree -L 1"
-
 # Enabled zsh-autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.functions
+# Enable autosuggestions automatically
+zle-line-init() {
+    zle autosuggest-start
+}
 
 source $ZSH/oh-my-zsh.sh
+
+alias ls="exa -a --tree -L 1"
+source ~/.functions
+
+
 
 # Set Spaceship as prompt
 autoload -U promptinit

@@ -48,8 +48,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Aliases
 
-# pretty ls
-alias ls="exa -a --tree -L 1"
 # Reload .zshrc
 alias reload='source ~/.zshrc && echo "Loaded ~/.zshrc"'
 
