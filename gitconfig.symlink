@@ -1,6 +1,5 @@
 [user]
 	name = monsonjeremy
-	email = monson.jeremy@gmail.com
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
