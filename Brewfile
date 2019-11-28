@@ -23,6 +23,7 @@ brew 'ripgrep'
 brew 'fzf'
 brew 'exa'
 brew 'pyenv-virtualenv'
+brew 'the_silver_searcher'
 
 cask 'docker'
 cask 'font-source-code-pro'
