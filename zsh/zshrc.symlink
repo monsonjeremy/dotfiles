@@ -6,8 +6,8 @@ export ZSH=~/.oh-my-zsh
 
 # Name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-ZSH_THEME="powerlevel10k/powerlevel10k"
-POWERLEVEL9K_MODE="nerdfont-complete"
+ZSH_THEME="spaceship"
+# POWERLEVEL9K_MODE="nerdfont-complete"
 
 # TMUX
 # Automatically start tmux
@@ -45,8 +45,6 @@ source $ZSH/oh-my-zsh.sh
 
 alias ls="exa -a --tree -L 1"
 source ~/.functions
-
-
 
 # Set Spaceship as prompt
 autoload -U promptinit

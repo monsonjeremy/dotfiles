@@ -11,6 +11,7 @@ insert_final_newline = true
 
 [*.js, *.json, *.ts]
 indent_size = 2
+indent_style = space
 
 [{Makefile, makefile, GNUmakefile}]
 indent_style = tab

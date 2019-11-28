@@ -1,9 +1,41 @@
 {
-    "suggest.echodocSupport": true,
-    "suggest.maxCompleteItemCount": 20,
-    "diagnostic.errorSign": "x",
-    "diagnostic.warningSign": "!",
-    "diagnostic.infoSign": "•",
-    "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "json", "javascriptreact", "typescript.tsx", "json"],
-    "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"]
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "diagnostic.errorSign": "x",
+  "diagnostic.warningSign": "!",
+  "diagnostic.infoSign": "•",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "Markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact",
+    "typescript.tsx"
+  ],
+  "eslint.autoFix": true,
+  "eslint.autoFixOnSave": true,
+  "coc.source.ultisnips.enable": true,
+  "coc.source.ultisnips.priority": 100,
+  "snippets.priority": 100,
+  "snippets.extends": {
+    "javascriptreact": [
+      "javascript"
+    ],
+    "typescript": [
+      "javascript"
+    ],
+    "typescriptreact": [
+      "javascript"
+    ]
+  },
+  "prettier.requireConfig": true,
+  "suggest.triggerAfterInsertEnter": true,
+  "suggest.noselect": true
 }
