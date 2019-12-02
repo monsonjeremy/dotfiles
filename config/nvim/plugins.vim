@@ -60,14 +60,15 @@ let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 nnoremap <silent> <C-p> :call FZFWithDevIcons()<CR>
 "nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <leader>p :Buffers<CR>
-nnoremap <silent> <leader>ff :Ag<CR>
+nnoremap <silent> <leader>ff :Rg<CR>
 nnoremap <silent> <leader>fc :History:<CR>
 nnoremap <silent> <leader>fh :History<CR>
-nnoremap <silent> <leader>fg :Ag <C-R><C-W><CR>
+nnoremap <silent> <leader>fg :Rg <C-R><C-W><CR>
 inoremap <silent> <c-space> <esc>:Snippets<CR>
 
 imap <c-f> <plug>(fzf-complete-path)
 imap <c-l> <plug>(fzf-complete-line)
+
 " }}}
 
 " Coc.nvim {{{
