@@ -20,8 +20,6 @@
   ],
   "eslint.autoFix": true,
   "eslint.autoFixOnSave": true,
-  "coc.source.ultisnips.enable": true,
-  "coc.source.ultisnips.priority": 100,
   "tsserver.enableJavascript": false,
   "snippets.priority": 100,
   "snippets.extends": {
