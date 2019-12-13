@@ -7,7 +7,6 @@ export SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_NODE_SHOW=true
 SPACESHIP_DOCKER_SHOW=false
 SPACESHIP_GIT_STATUS_STASHED=''
-export POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
 # Set EDITOR variable to nvim/vim
 if [ -f /usr/local/bin/nvim ]; then
@@ -41,7 +40,7 @@ export EDITOR='nvim'
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 # Setting rg as the default source for fzf
-export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
 # Apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -78,7 +77,7 @@ alias gcom='git checkout master'
 alias gd='git diff'
 alias gd.='git diff .'
 alias gf='git fetch --prune'
-alias gl='git --no-pager log --oneline '
+alias gl='git --no-pager log --oneline --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit $1 $2'
 alias gm='git merge'
 alias gpu='git push'
 alias gpuf='git push --force'

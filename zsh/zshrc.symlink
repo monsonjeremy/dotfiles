@@ -7,7 +7,6 @@ export ZSH=~/.oh-my-zsh
 # Name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="spaceship"
-# POWERLEVEL9K_MODE="nerdfont-complete"
 
 # TMUX
 # Automatically start tmux
