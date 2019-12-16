@@ -1,6 +1,8 @@
 
 " Keymap
 
+nnoremap <Space> <Nop>
+
 " Open Vimrc in split
 nnoremap <leader>ve :vsplit $MYVIMRC<CR>
 
@@ -42,7 +44,7 @@ nnoremap <leader>e :e<CR>
 nnoremap <leader><CR> :only<CR>
 
 " Use dark theme
-nnoremap <leader>td :colorscheme onedark<CR>
+nnoremap <leader>td :colorscheme gruvbox<CR>
 
 " Select last paste in visual mode
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'

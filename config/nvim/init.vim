@@ -1,6 +1,7 @@
 
 " Use space as Leader key (default).
-let g:mapleader="\<Space>"
+"let g:mapleader="\<Space>"
+let g:mapleader=" "
 let maplocalleader = "ﬁ"
 
 scriptencoding utf-8

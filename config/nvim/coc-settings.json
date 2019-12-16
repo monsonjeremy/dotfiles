@@ -1,9 +1,8 @@
 {
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "diagnostic.errorSign": "x",
-  "diagnostic.warningSign": "!",
-  "diagnostic.infoSign": "•",
+  "diagnostic.errorSign": "✖",
+  "diagnostic.warningSign": "⚠",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "Markdown",
@@ -21,8 +20,6 @@
   ],
   "eslint.autoFix": true,
   "eslint.autoFixOnSave": true,
-  "coc.source.ultisnips.enable": true,
-  "coc.source.ultisnips.priority": 100,
   "snippets.priority": 100,
   "snippets.extends": {
     "javascriptreact": [

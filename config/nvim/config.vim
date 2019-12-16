@@ -57,7 +57,7 @@ set background=dark
 syntax on
 set cursorline                                  " Disable Highlight current row
 set termguicolors                               " Enable true color support
-colorscheme onedark
+colorscheme gruvbox
 
 " }}}
 " Tabs (whitespace settings) {{{
