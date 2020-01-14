@@ -31,6 +31,7 @@ set autoread                                    " Automatically re-read file if 
 set fillchars+=vert:.                           " Change vertical split character to be a space (essentially hide it)
 set noshowmode                                  " Don't dispay mode in command line (airilne already shows it)
 set winbl=10                                    " Set floating window to be slightly transparent
+set updatetime=300                              " You will have bad experience for diagnostic messages when it's default 4000.
 
 " }}}
 " Backup {{{

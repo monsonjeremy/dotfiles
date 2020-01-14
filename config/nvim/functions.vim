@@ -377,7 +377,7 @@ endfunction
 function! RipgrepFzf(query, fullscreen)
   let command_fmt = 'rg --column --fixed-strings --hidden --line-number --no-heading --color=always -g "!*.lock" -g "!*lock.json" --smart-case %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
-  let spec = {'options': ['-e', '--query', a:query]}
+  let spec = {'options': ['--exact', '--query', a:query]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 

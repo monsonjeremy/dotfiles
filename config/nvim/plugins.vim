@@ -72,23 +72,11 @@ imap <c-l> <plug>(fzf-complete-line)
 " }}}
 
 " Coc.nvim {{{
-
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? coc#_select_confirm() :
-"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-
 let g:coc_snippet_next = '<tab>'
+
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-nnoremap <silent> <leader>dk :<C-U>call CocAction('doHover')<CR>                 " Use K for show documentation in preview window
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"           " Use enter to confirm complete
 nmap <silent> <leader>dp <Plug>(coc-diagnostic-prev)                    " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> <leader>dn <Plug>(coc-diagnostic-next)                    " Use `[c` and `]c` for navigate diagnostics
@@ -98,18 +86,23 @@ nmap <silent> <leader>dt <Plug>(coc-type-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
 
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif           " Close preview window when completion is done.
-command! -nargs=0 Format :call CocAction('format')                      " Use `:Format` to format current buffer
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}     " Add status line support, for integration with other plugin, checkout `:h coc-status`
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-neosnippet', 'coc-prettier', 'coc-html', 'coc-css', 'coc-eslint', 'coc-tslint', 'coc-tslint-plugin']
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if &filetype == 'vim'
+  if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
     call CocAction('doHover')
   endif
 endfunction
+
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif           " Close preview window when completion is done.
+command! -nargs=0 Format :call CocAction('format')                      " Use `:Format` to format current buffer
+command! -nargs=? Fold :call CocAction('fold', <f-args>)                " Use `:Fold` for fold current buffer
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}     " Add status line support, for integration with other plugin, checkout `:h coc-status`
+
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-neosnippet', 'coc-prettier', 'coc-html', 'coc-css', 'coc-eslint', 'coc-tslint', 'coc-tslint-plugin', 'coc-snippets']
 
 augroup coc
   autocmd!
@@ -126,12 +119,6 @@ augroup coc
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
-" Use `:Format` for format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` for fold current buffer
-command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " Using CocList
 nnoremap <silent> <leader>cd  :<C-u>CocList diagnostics<cr>  " Show all diagnostics

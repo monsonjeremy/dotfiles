@@ -5,6 +5,7 @@
   "diagnostic.warningSign": "⚠",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
+    "scss",
     "Markdown",
     "javascript",
     "javascriptreact",
@@ -34,5 +35,5 @@
   },
   "prettier.requireConfig": true,
   "suggest.triggerAfterInsertEnter": true,
-  "suggest.noselect": true
+  "suggest.noselect": false
 }
