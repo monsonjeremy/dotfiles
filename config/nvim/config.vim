@@ -144,6 +144,6 @@ hi! VertSplit gui=NONE guifg=#17252c guibg=#17252c
 hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=#17252c guifg=#17252c
 
 " Python 3 virtual env
-let g:python_host_prog = '/Users/jmonson/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/jmonson/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
 

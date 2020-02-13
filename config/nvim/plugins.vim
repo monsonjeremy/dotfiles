@@ -35,6 +35,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'luochen1990/rainbow'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'APZelos/blamer.nvim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -51,6 +52,11 @@ Plug 'HerringtonDarkholme/yats.vim', { 'for': ['ts', 'tsx'] }
 call plug#end()
 
 " Plugin settings
+
+" Blamer nvim {{{
+let g:blamer_enabled = 0
+let g:blamer_prefix = ' > '
+" }}}
 
 " FZF Fuzzyfinder {{{
 let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:15,bg:-1,hl:1,fg+:#ffffff,bg+:0,hl+:1 --color=info:0,prompt:0,pointer:12,marker:4,spinner:11,header:-1 --layout=reverse --margin=1,2'
