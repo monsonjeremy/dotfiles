@@ -42,6 +42,7 @@ Plug 'junegunn/fzf.vim'
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
 
 " === Syntax Highlighting === "
 Plug 'sheerun/vim-polyglot'
