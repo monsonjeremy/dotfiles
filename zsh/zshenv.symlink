@@ -40,7 +40,7 @@ export EDITOR='nvim'
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 # Setting rg as the default source for fzf
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --sort path --hidden -g "!.git"'
 
 # Apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

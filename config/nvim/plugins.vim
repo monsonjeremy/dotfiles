@@ -16,13 +16,14 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
+" Use release branch (Recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-commentary'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/echodoc.vim'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
@@ -36,8 +37,11 @@ Plug 'luochen1990/rainbow'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'APZelos/blamer.nvim'
+Plug 'Raimondi/delimitMate'
+Plug 'RRethy/vim-illuminate'
+Plug 'easymotion/vim-easymotion'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
 " Colorscheme
@@ -83,11 +87,12 @@ let g:coc_snippet_next = '<tab>'
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"           " Use enter to confirm complete
+
 nmap <silent> <leader>dp <Plug>(coc-diagnostic-prev)                    " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> <leader>dn <Plug>(coc-diagnostic-next)                    " Use `[c` and `]c` for navigate diagnostics
-nmap <silent> <leader>a <Plug>(coc-codeaction)                          "
+nmap <silent> <leader>ca <Plug>(coc-codeaction)                          "
+nmap <silent> <leader>qf <Plug>(coc-fix-current)                          "
 nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>dt <Plug>(coc-type-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
@@ -137,6 +142,12 @@ nnoremap <silent> <leader>cp  :<C-u>CocList outline<cr>      " Outline document
 hi! link CocErrorSign WarningMsg
 hi! link CocWarningSign Number
 hi! link CocInfoSign Type
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
 " }}}
 
 " NeoSnippet {{{
@@ -179,7 +190,7 @@ hi! NERDTreeCWD guifg=#99c794
 " Vim airline {{{
 " Wrap in try/catch to avoid errors on initial install before plugin is available
 try
-let g:airline_theme='gruvbox'
+let g:airline_theme='onedark'
 let g:airline_extensions = ['branch', 'hunks', 'coc']                                         " Enable extensions
 let g:airline_section_z = airline#section#create(['linenr'])                                  " Update section z to just have line number
 let g:airline_skip_empty_sections = 1                                                         " Do not draw separators for empty sections (only for the active window) >

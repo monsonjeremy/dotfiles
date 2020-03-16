@@ -375,10 +375,13 @@ function! Handle_Win_Enter()
 endfunction
 
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --fixed-strings --hidden --line-number --no-heading --color=always -g "!*.lock" -g "!*lock.json" --smart-case %s || true'
+  let command_fmt = 'rg --trim --fixed-strings --hidden --line-number --no-heading --color=always -g "!*.lock" -g "!*lock.json" --smart-case %s || true'
+
   let initial_command = printf(command_fmt, shellescape(a:query))
-  let spec = {'options': ['--exact', '--query', a:query]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--exact', '-d', ':', '--nth', '3..', '--query', a:query]}
+  call fzf#vim#grep(initial_command, 0, fzf#vim#with_preview(spec), a:fullscreen)
+
 endfunction
 
 command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
