@@ -1,20 +1,8 @@
- <div align="center">
-  <!-- PR's Welcome -->
-  <a href="http://makeapullrequest.com">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
-      alt="PR's Welcome" />
-  </a>
-  <img src="https://img.shields.io/badge/Shell-zsh-yellow.svg" />
-  <img src="https://img.shields.io/badge/Editor-neovim-brightgreen.svg" />
-</div>
-
- <h1 align="center">Jarvis</h1>
-
 <div align="center">
   <strong>(Neo)Vim of the Future</strong>
 </div>
 <div align="center">
-  A powerful, minimalist development environment with cutting-edge features
+  My personal dotfiles, which turn a ZSH shell into a full development environment
 </div>
 <br/>
 
@@ -43,31 +31,19 @@ The following are features provided by Jarvis. They all have quick keybindings t
 
     <img src="https://i.imgur.com/QgtsoRL.gif" height="400px"/>
 
-2. **Buffer management** - *NeoVim*
-
-    Manage buffers inside NeoVim and add/delete/search your open files.
-
-    <img src="https://i.imgur.com/iUlxM8x.gif" height="400px"/>
-
-3. **Project searching** - *NeoVim*
-
-    Quickly search for simple terms or complex regular expressions in your project.
-
-    <img src="https://i.imgur.com/1RPPM78.gif" height="400px"/>
-
-4. **Asynchronous linting** - *NeoVim*
+2. **Asynchronous linting** - *NeoVim*
 
 	For Typescript/Javascript development, code is linted asynchronously with [coc-eslint](https://github.com/neoclide/coc-eslint) and automatically formatted via [coc-prettier](https://github.com/neoclide/coc-prettier) on file save to conform to [prettier](https://prettier.io/) standards.
 
 	<img src="https://i.imgur.com/Tnh6e0z.gif" height="400px"/>
 
-5. **Session management** - *Tmux* and *zsh/fzf*
+3. **Session management** - *Tmux* and *zsh/fzf*
 
 	Create sessions for each project with a custom layout. Quickly browse, create, and delete sessions. Tmux even keeps sessions alive if the terminal is closed. Using `fzf` and `zsh`, you can create or switch to sessions easily, as well as delete session by name or fuzzy-search.
 
 	<img src="https://i.imgur.com/r9rXyeL.gif" height="400px"/>
 
-6. **Keyword auto-complete** - *NeoVim* and *zsh*
+4. **Keyword auto-complete** - *NeoVim* and *zsh*
 
     Neovim - Automatic, asynchronous keyword completion available in the current buffer via [coc.nvim](https://github.com/neoclide/coc.nvim). It's powered by the same language server extensions as VSCode. It also supports the new "floating window" feature so you can finally have syntax highlighting in your completion windows!
 
@@ -80,33 +56,20 @@ The following are features provided by Jarvis. They all have quick keybindings t
 	  - [CSS](https://github.com/neoclide/coc-css): `:CocInstall coc-css`
 	  - [json](https://github.com/neoclide/coc-json): `:CocInstall coc-json`
 
+5. **Fuzzy search through CWD with Ripgrep and FZF** - *NeoVim*
+
+    Quickly fuzzy find code or files in your current working directory using floating windows and FZF/Ripgrep. `CTRL-p` will open a floating window (with previews) to fuzzy find files in your current working directory.
+    `<Leader>ff` will open a floating window to fuzzy find within the files in your current working directory.
+
 ## Installation
 
-Neovim is supported across multiple platforms. Some tools used by Jarvis are not, however. For MacOSX, an installation script is included
-that will install several tools for you. For Windows, no installation script is available, but you can manually install everything
-needed for Neovim in a few short steps.
-
-See the [Installation Guide](docs/INSTALL.md) for detailed instructions.
+I've done my best to make the script install all the needed pieces to get up and running, however it's hard to be sure that it will work for all development environments.
+Run the `install.sh` script and upon completion, you can run `:checkhealth` from within `nvim` to ensure the installation is working properly.
 
 ## Commands
 
 See the [Commands Guide](docs/COMMANDS.md) for a list of mappings/shortcuts.
 
-## Optional Tools
-This is a collection of cool tools that you might want to use.
-
-[`z`](https://github.com/rupa/z)\* - Tracks most commonly used directories for optimized directory switching
-
-[`vtop`](https://github.com/MrRio/vtop)\* - A nifty graphical activity monitor for the command line
-
-[`taskbook`](https://github.com/klauscfhq/taskbook) - Tasks, boards, & notes for command-line. Think Trello for the terminal.
-
-[`vim-markdown-composer`](https://github.com/euclio/vim-markdown-composer) - Asynchronous markdown preview plugin for Vim/Neovim.
-
-[`shpotify`](https://github.com/hnarayanan/shpotify) - Control Spotify from the command line (OSX-only)
-
-> **\*** -  Tool is installed automatically if `install.sh` script is used
-
 ## Support
 
-If you find any problems or bugs, please open a new [issue](https://github.com/ctaylo21/jarvis/issues).
+If you find any problems or bugs, please open a new [issue](https://github.com/monsonjeremy/dotfiles/issues).

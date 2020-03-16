@@ -13,10 +13,10 @@ file is carefully documented to make it easy to understand. Many default command
 
 | Command      | Mode            | Tool                            | Description                              |
 | :----------- | :-------------- | :------------------------------ | :--------------------------------------- |
-| `<Space>`    | normal          | NeoVim                          | Page down                                |
+| `<Space>`    | all             | NeoVim                          | Leader key                               |
+| `,`          | normal          | NeoVim                          | Page down                                |
 | `-`          | normal          | NeoVim                          | Page up                                  |
-| `<c>hjkl`    | normal          | NeoVim                          | Switch windows and Tmux panes (left/down/up/right) |
-| `<leader>h`  | normal          | NeoVim                          | Find and replace                         |
+| `<CTRL-a> followed by hjkl`    | normal          | NeoVim                          | Switch windows and Tmux panes (left/down/up/right) |
 | `<leader>/`  | normal          | NeoVim                          | Clear highlighted search terms           |
 | `<leader>f`  | normal          | NERDTree                        | Find current file in tree hiearchy       |
 | `<leader>n`  | normal          | NERDTree                        | Toggle NERDTree window                   |
@@ -25,14 +25,13 @@ file is carefully documented to make it easy to understand. Many default command
 | `<leader>dj` | normal          | Coc.nvim                        | Jump to implementation(s) of symbol under cursor  |
 | `<leader>dr` | normal          | Coc.nvim                        | Show references of symbol under cursor.    |
 | `<leader>dd` | normal          | Coc.nvim                        | Look up definition of word under cursor |
+| `<leader>dt` | normal          | Coc.nvim                        | Look up the type definitions for the word under cursor |
+| `<leader>ff` | normal          | Coc.nvim                        | Fuzzy find within files in the CWD |
+| `<CTRL-p>` | normal          | Coc.nvim                          | Fuzzy find files within the CWD |
 
 <br />
 
-* *DW*  - Within Denite window
 * *NT*  - Within NERDTree window
-* *AWV* - With auto-complete window visible
-* *AW*  - Inside auto-complete window
-* *SP*  - Inside of snippet
 
 ### Tmux Commands
 Below are some custom key mappings as well as some default tmux commands. Not all tmux commands are included,
