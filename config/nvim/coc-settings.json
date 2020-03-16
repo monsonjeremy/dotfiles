@@ -35,5 +35,7 @@
   },
   "prettier.requireConfig": true,
   "suggest.triggerAfterInsertEnter": true,
-  "suggest.noselect": false
+  "suggest.noselect": false,
+  "javascript.suggestionActions.enabled": false,
+  "typescript.suggestionActions.enabled": false
 }
