@@ -12,13 +12,7 @@
     "typescript",
     "typescriptreact"
   ],
-  "eslint.filetypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "javascriptreact",
-    "typescript.tsx"
-  ],
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "eslint.autoFix": true,
   "eslint.autoFixOnSave": true,
   "snippets.priority": 100,
@@ -37,5 +31,6 @@
   "suggest.triggerAfterInsertEnter": true,
   "suggest.noselect": false,
   "javascript.suggestionActions.enabled": false,
-  "typescript.suggestionActions.enabled": false
+  "typescript.suggestionActions.enabled": false,
+  "javascript.validate.enable": false
 }

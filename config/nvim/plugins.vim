@@ -40,17 +40,18 @@ Plug 'APZelos/blamer.nvim'
 Plug 'Raimondi/delimitMate'
 Plug 'RRethy/vim-illuminate'
 Plug 'easymotion/vim-easymotion'
+Plug 'AndrewRadev/dsf.vim'
 
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
 " Colorscheme
-Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 
 " === Syntax Highlighting === "
 Plug 'sheerun/vim-polyglot'
 Plug 'pangloss/vim-javascript'
+Plug 'jparise/vim-graphql'
 Plug 'HerringtonDarkholme/yats.vim', { 'for': ['ts', 'tsx'] }
 
 " === Initialize plugin system === "
@@ -63,6 +64,9 @@ let g:blamer_enabled = 0
 let g:blamer_prefix = ' > '
 " }}}
 
+" Colorscheme {{{
+let g:onedark_terminal_italics = 1
+" }}}
 " FZF Fuzzyfinder {{{
 let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:15,bg:-1,hl:1,fg+:#ffffff,bg+:0,hl+:1 --color=info:0,prompt:0,pointer:12,marker:4,spinner:11,header:-1 --layout=reverse --margin=1,2'
 let g:fzf_history_dir = '~/.local/share/fzf-history'
@@ -114,11 +118,24 @@ command! -nargs=0 Format :call CocAction('format')                      " Use `:
 command! -nargs=? Fold :call CocAction('fold', <f-args>)                " Use `:Fold` for fold current buffer
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}     " Add status line support, for integration with other plugin, checkout `:h coc-status`
 
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-neosnippet', 'coc-prettier', 'coc-html', 'coc-css', 'coc-eslint', 'coc-tslint', 'coc-tslint-plugin', 'coc-snippets']
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-neosnippet', 'coc-prettier', 'coc-html', 'coc-css', 'coc-eslint', 'coc-snippets']
+
+function! ShowDocIfNoDiagnostic(timer_id)
+  if (coc#util#has_float() == 0)
+    silent call CocActionAsync('doHover')
+  endif
+endfunction
+
+function! s:show_hover_doc()
+  call timer_start(500, 'ShowDocIfNoDiagnostic')
+endfunction
+
+autocmd CursorHoldI * :call <SID>show_hover_doc()
+autocmd CursorHold * :call <SID>show_hover_doc()
 
 augroup coc
   autocmd!
-  autocmd CursorHold * silent call CocActionAsync('highlight')                                " Highlight symbol under cursor on CursorHold
+  " autocmd CursorHold * silent call CocActionAsync('highlight')                                " Highlight symbol under cursor on CursorHold
   autocmd FileType typescript,json,javascript setl formatexpr=CocAction('formatSelected')     " Setup formatexpr specified filetype(s).
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')                    " Update signature help on jump placeholder
 augroup end

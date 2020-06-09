@@ -1,0 +1,147 @@
+snippet     pd
+abbr        preventDefault()
+options     word
+    preventDefault()
+
+snippet     render
+abbr        render() {...}
+options     head
+    render() {
+      return (
+        ${1}
+      )
+    }
+
+snippet     pt
+abbr        static propTypes = {...}
+options     head
+    static propTypes = {
+      ${1}
+    }
+
+snippet     dp
+abbr        static defaultProps = {...}
+    static defaultProps = {
+      ${1}
+    }
+
+snippet     ptany
+abbr        PropTypes.ny
+options     word
+    PropTypes.any
+
+snippet     pta
+abbr        PropTypes.array
+options     word
+    PropTypes.array
+
+snippet     ptb
+abbr        PropTypes.bool
+options     word
+    PropTypes.bool
+
+snippet     ptf
+abbr        PropTypes.func
+options     word
+    PropTypes.func
+
+snippet     ptn
+abbr        PropTypes.number
+options     word
+    PropTypes.number
+
+snippet     pto
+abbr        PropTypes.object
+options     word
+    PropTypes.object
+
+snippet     pts
+abbr        PropTypes.string
+options     word
+    PropTypes.string
+
+snippet     ptsy
+abbr        PropTypes.symbol
+options     word
+    PropTypes.symbol
+
+snippet     ptno
+abbr        PropTypes.node
+options     word
+    PropTypes.node
+
+snippet     pte
+abbr        PropTypes.element
+options     word
+    PropTypes.element
+
+snippet     ptio
+abbr        PropTypes.instanceOf(Message)
+options     word
+    PropTypes.instanceOf(${1:Class})
+
+snippet     ptoo
+abbr        PropTypes.oneOf(['News', 'Photos'])
+options     word
+    PropTypes.oneOf([${1:'value'}])
+
+snippet     ptoot
+abbr        PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+options     word
+    PropTypes.oneOfType([${1:PropTypes.string}])
+
+snippet     ptao
+abbr        PropTypes.arrayOf(PropTypes.number)
+options     word
+    PropTypes.arrayOf(${1:PropTypes.number})
+
+snippet     ptobo
+abbr        PropTypes.objectOf(PropTypes.number)
+options     word
+    PropTypes.objectOf(${1:PropTypes.number})
+
+snippet     ptsh
+abbr        PropTypes.shape(PropTypes.number)
+options     word, indent
+    PropTypes.shape({
+      ${1}
+    })
+
+snippet     ptai
+abbr        PropTypes.array
+options     word
+    PropTypes.array.isRequired
+
+snippet     isr
+alias       isR
+abbr        isRequired
+options     word
+    isRequired
+
+snippet     ptcustom
+abbr        ${1:customProp}: (props, propName, componentName) => {...}
+options     indent
+    customProp: (props, propName, componentName) => {
+      if (!/${2:matchme}/.test(props.[propName])) {
+        return new Error('Invalid prop `' + propName + '` supplied to' + ' `' + componentName + '`. Validation failed.')
+      }
+    }
+
+snippet     maps
+abbr        const mapStateToProps = (state) => {...}
+options     head
+    const mapStateToProps = (${1:state: Object}) => ({
+      ${2}
+    })
+
+snippet     mapd
+abbr        const mapDispatchToProps = (dispatch) => {...}
+options     head
+    const mapDispatchToProps = (dispatch: Dispatch) => ({
+      ${1}
+    })
+
+snippet     conn
+abbr        export default connect(mapStateToProps, mapDispatchToProps)(Component)
+options     head
+    export default connect(mapStateToProps, mapDispatchToProps)(${1:Component})
