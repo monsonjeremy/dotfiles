@@ -107,6 +107,13 @@ options     word, indent
       ${1}
     })
 
+snippet     ptshr
+abbr        PropTypes.shape(PropTypes.number)
+options     word, indent
+    PropTypes.shape({
+      ${1}
+    }).isRequired
+
 snippet     ptai
 abbr        PropTypes.array
 options     word
