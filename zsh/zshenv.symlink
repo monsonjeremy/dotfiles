@@ -2,7 +2,7 @@ export ZSH=~/.oh-my-zsh
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$PATH:$HOME/miniconda3/bin"
-export NVM_DIR="$(realpath $HOME/.nvm)"
+export NVM_DIR="$HOME/.nvm"
 export SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_NODE_SHOW=true
 SPACESHIP_DOCKER_SHOW=false
@@ -26,11 +26,8 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
     source "${VIRTUAL_ENV}/bin/activate"
 fi
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
 if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
+    eval "$(pyenv init - --no-rehash)"
 fi
 
 # Set default editor to nvim
@@ -39,11 +36,26 @@ export EDITOR='nvim'
 # Enabled true color support for terminals
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-# Setting rg as the default source for fzf
-export FZF_DEFAULT_COMMAND='rg --files --sort path --hidden -g "!.git"'
+FD_OPTIONS="--type f --hidden --follow --exclude .git --exclude node_modules"
+export FZF_DEFAULT_OPTS="
+--border
+--margin=1,2
+--no-sort
+--layout=reverse
+--preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --theme='OneHalfDark' --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
+--bind='f2:toggle-preview'"
 
-# Apply the command to CTRL-T as well
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --header 'Press CTRL-Y to copy command into clipboard'"
+
+if command -v fd > /dev/null; then
+  export FZF_DEFAULT_COMMAND="fd $FD_OPTIONS"
+  export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+  export FZF_CTRL_T_COMMAND='fd --type f --type d --hidden --follow --exclude .git'
+fi
+
+command -v bat  > /dev/null && export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {} --theme='OneHalfDark''"
+command -v blsd > /dev/null && export FZF_ALT_C_COMMAND='blsd'
+command -v tree > /dev/null && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 
 # Aliases
@@ -61,7 +73,6 @@ alias sshnc='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 # Aliases
 alias top="vtop --theme=wizard"
 alias v='vim'
-alias rg='rg --smart-case'
 
 # Git aliases
 alias g='git'

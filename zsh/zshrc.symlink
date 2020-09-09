@@ -1,12 +1,14 @@
 # Path to oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
+export NVM_DIR=~/.nvm
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # Name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-ZSH_THEME="spaceship"
+eval "$(starship init zsh)"
+# ZSH_THEME="spaceship"
 
 # TMUX
 # Automatically start tmux
@@ -46,8 +48,6 @@ alias ls="exa -a --tree -L 1"
 source ~/.functions
 
 # Set Spaceship as prompt
-autoload -U promptinit
-promptinit
-prompt spaceship
-
-eval "$(pyenv init -)"
+# autoload -U promptinit
+# promptinit
+# prompt spaceship

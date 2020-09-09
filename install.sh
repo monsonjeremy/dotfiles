@@ -145,4 +145,6 @@ echo "---------------------------------------------------------"
 echo "$(tput setaf 2)System update complete. Currently running at 100% power. Enjoy.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
+cp .rgignore ~/.rgignore
+
 exit 0

@@ -33,16 +33,24 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'luochen1990/rainbow'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+Plug 'junegunn/rainbow_parentheses.vim'
+
 Plug 'APZelos/blamer.nvim'
 Plug 'Raimondi/delimitMate'
 Plug 'RRethy/vim-illuminate'
 Plug 'easymotion/vim-easymotion'
 Plug 'AndrewRadev/dsf.vim'
+Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
+Plug 'jesseleite/vim-agriculture'
+Plug 'rizzatti/dash.vim'
 
-Plug '/usr/local/opt/fzf'
+" Editor {{{
+Plug 'bkad/CamelCaseMotion'          " Motions for inside camel case
+Plug 'kkoomen/vim-doge'
+Plug 'matze/vim-move'
+" }}}
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Colorscheme
@@ -50,9 +58,6 @@ Plug 'joshdick/onedark.vim'
 
 " === Syntax Highlighting === "
 Plug 'sheerun/vim-polyglot'
-Plug 'pangloss/vim-javascript'
-Plug 'jparise/vim-graphql'
-Plug 'HerringtonDarkholme/yats.vim', { 'for': ['ts', 'tsx'] }
 
 " === Initialize plugin system === "
 call plug#end()
@@ -66,24 +71,6 @@ let g:blamer_prefix = ' > '
 
 " Colorscheme {{{
 let g:onedark_terminal_italics = 1
-" }}}
-" FZF Fuzzyfinder {{{
-let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:15,bg:-1,hl:1,fg+:#ffffff,bg+:0,hl+:1 --color=info:0,prompt:0,pointer:12,marker:4,spinner:11,header:-1 --layout=reverse --margin=1,2'
-let g:fzf_history_dir = '~/.local/share/fzf-history'
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
-nnoremap <silent> <C-p> :call FZFWithDevIcons()<CR>
-"nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <leader>p :Buffers<CR>
-nnoremap <silent> <leader>ff :Rg<CR>
-nnoremap <silent> <leader>fc :History:<CR>
-nnoremap <silent> <leader>fh :History<CR>
-nnoremap <silent> <leader>fg :Rg <C-R><C-W><CR>
-inoremap <silent> <c-space> <esc>:Snippets<CR>
-
-imap <c-f> <plug>(fzf-complete-path)
-imap <c-l> <plug>(fzf-complete-line)
-
 " }}}
 
 " Coc.nvim {{{
@@ -118,7 +105,7 @@ command! -nargs=0 Format :call CocAction('format')                      " Use `:
 command! -nargs=? Fold :call CocAction('fold', <f-args>)                " Use `:Fold` for fold current buffer
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}     " Add status line support, for integration with other plugin, checkout `:h coc-status`
 
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-neosnippet', 'coc-prettier', 'coc-html', 'coc-css', 'coc-eslint', 'coc-snippets']
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-prettier', 'coc-html', 'coc-css', 'coc-eslint', 'coc-snippets']
 
 function! ShowDocIfNoDiagnostic(timer_id)
   if (coc#util#has_float() == 0)
@@ -165,14 +152,6 @@ hi! link CocInfoSign Type
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" }}}
-
-" NeoSnippet {{{
-imap <C-k> <Plug>(neosnippet_expand_or_jump)                     " Map <C-k> as shortcut to activate snippet if available
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets'    " Load custom snippets from snippets folder
-let g:neosnippet#enable_conceal_markers = 0
 " }}}
 
 " vim-better-whitespace {{{
@@ -264,8 +243,28 @@ let g:closetag_regions = {
     \ 'typescript.tsx': 'jsxRegion,tsxRegion',
     \ 'javascript.jsx': 'jsxRegion',
     \ 'javascript': 'jsxRegion',
+    \ 'javascript.js': 'jsxRegion',
     \ }
 
 " Rainbox Parens {{{
 let g:rainbow_active = 1                "set to 0 if you want to enable it later via :RainbowToggle
+" }}}
+
+" CamelCaseMotions {{{
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
+" }}}
+
+" Vim Move {{{
+let g:move_map_keys = 0
+vmap ∆ <Plug>MoveBlockDown
+vmap ˚ <Plug>MoveBlockUp
+nmap ∆ <Plug>MoveLineDown
+nmap ˚ <Plug>MoveLineUp
 " }}}
