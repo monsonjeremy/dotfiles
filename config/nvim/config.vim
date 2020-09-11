@@ -54,11 +54,16 @@ set foldnestmax=2
 set foldtext=NeatFoldText()
 " }}}
 " Colors {{{
+let g:onedark_terminal_italics=1
+let g:dracula_colorterm=1
+let g:onedark_hide_endofbuffer=1
+let g:one_allow_italics=1
 set background=dark
 syntax on
 set cursorline                                  " Disable Highlight current row
 set termguicolors                               " Enable true color support
 colorscheme onedark
+
 
 " }}}
 " Tabs (whitespace settings) {{{
@@ -108,11 +113,13 @@ let g:netrw_bufsettings='noma nomod nu nowrap ro nobl'
 " Tags {{{
 set tags=./.tags,.tags;
 " }}}
+
 " Dim inactive buffer {{{
 " Background colors for active vs inactive windows
-highlight ActiveWindow ctermbg=None ctermfg=None guibg=#181a1f
-highlight InactiveWindow ctermbg=darkgray ctermfg=gray guibg=#282c34
-set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+" highlight ActiveWindow ctermbg=None ctermfg=None guibg=#282c34
+" highlight InactiveWindow ctermbg=darkgray ctermfg=gray guibg=#27292e
+" set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+" }}}
 
 " Reload icons after init source
 if exists('g:loaded_webdevicons')
