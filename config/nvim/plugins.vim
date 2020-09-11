@@ -55,6 +55,8 @@ Plug 'junegunn/fzf.vim'
 
 " Colorscheme
 Plug 'joshdick/onedark.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'rakr/vim-one'
 
 " === Syntax Highlighting === "
 Plug 'sheerun/vim-polyglot'
@@ -70,7 +72,6 @@ let g:blamer_prefix = ' > '
 " }}}
 
 " Colorscheme {{{
-let g:onedark_terminal_italics = 1
 " }}}
 
 " Coc.nvim {{{
