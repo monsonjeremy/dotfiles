@@ -3,6 +3,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$PATH:$HOME/miniconda3/bin"
 export NVM_DIR="$HOME/.nvm"
+export GPG_TTY="tty"
 export SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_NODE_SHOW=true
 SPACESHIP_DOCKER_SHOW=false
@@ -72,7 +73,7 @@ alias sshnc='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
 # Aliases
 alias top="vtop --theme=wizard"
-alias v='vim'
+alias v='nvim'
 
 # Git aliases
 alias g='git'

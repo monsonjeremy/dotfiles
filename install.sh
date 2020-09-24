@@ -92,11 +92,13 @@ echo "$(tput setaf 2)Installing pyenv.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
+eval "$(pyenv init - --no-rehash)"
+
 pyenv install 2.7.15
 pyenv install 3.6.7
 
-pyenv virtualenv 2.7.11 neovim2
-pyenv virtualenv 3.4.4 neovim3
+pyenv virtualenv 2.7.15 neovim2
+pyenv virtualenv 3.6.7 neovim3
 
 pyenv activate neovim2
 pip install neovim
@@ -110,6 +112,8 @@ pip install neovim
 # packages that provide cli programs that are used in Neovim.
 pip install flake8
 ln -s `pyenv which flake8` ~/bin/flake8
+
+sudo gem install neovim
 
 echo "---------------------------------------------------------"
 echo "$(tput setaf 2)Installing vtop.$(tput sgr 0)"
@@ -145,6 +149,10 @@ echo "---------------------------------------------------------"
 echo "$(tput setaf 2)System update complete. Currently running at 100% power. Enjoy.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
+defaults write -g KeyRepeat -int 2
+defaults write -g InitialKeyRepeat -int 10
 cp .rgignore ~/.rgignore
+tic -x tmux-256color.terminfo
+tic -x xterm-256color-italic.terminfo
 
 exit 0
