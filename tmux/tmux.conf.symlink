@@ -8,8 +8,10 @@ set -g @plugin 'tmux-plugins/tmux-cpu'
 ########################
 
 # Set tmux to display in 256 colors
-set -g default-terminal "screen-256color"
-set -ga terminal-overrides ",xterm-256color:Tc"
+# set -g default-terminal "screen-256color"
+# set -ga terminal-overrides ",xterm-256color:Tc"
+set -g default-terminal 'tmux-256color'
+set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
 
 # Set border colors
 set-option -g pane-border-style 'fg=#343D46,bg=colour0'

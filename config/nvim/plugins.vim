@@ -33,7 +33,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'frazrepo/vim-rainbow'
 
 Plug 'APZelos/blamer.nvim'
 Plug 'Raimondi/delimitMate'
@@ -56,7 +56,9 @@ Plug 'junegunn/fzf.vim'
 " Colorscheme
 Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'rakr/vim-one'
+Plug 'phanviet/vim-monokai-pro'
+Plug 'colepeters/spacemacs-theme.vim'
+Plug 'embark-theme/vim', { 'as': 'embark' }
 
 " === Syntax Highlighting === "
 Plug 'sheerun/vim-polyglot'

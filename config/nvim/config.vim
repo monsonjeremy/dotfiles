@@ -62,7 +62,7 @@ set background=dark
 syntax on
 set cursorline                                  " Disable Highlight current row
 set termguicolors                               " Enable true color support
-colorscheme onedark
+colorscheme onedark 
 
 
 " }}}
@@ -135,6 +135,8 @@ endif
   "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
   " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
 if (has("termguicolors"))
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
 
