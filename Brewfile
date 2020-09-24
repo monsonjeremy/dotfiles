@@ -23,6 +23,8 @@ brew 'fzf'
 brew 'exa'
 brew 'pyenv-virtualenv'
 brew 'starship'
+brew 'readline'
+brew 'xz'
 
 cask 'docker'
 cask 'font-source-code-pro'

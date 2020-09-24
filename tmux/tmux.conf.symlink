@@ -27,6 +27,9 @@ set -g mode-style "fg=colour3"
 # ***    GENERAL   *** #
 ########################
 
+# allow clipboard
+set -g default-command "reattach-to-user-namespace -l ${SHELL}"
+
 # Set Ctrl-a as the default prefix key combination
 # and unbind C-b to free it up
 set -g prefix C-a
@@ -122,3 +125,6 @@ set-hook -g 'after-split-window' 'run-shell -b "if [ \#{window_zoomed_flag} -gt 
 
 # Initialize TMUX plugin manager
 run '~/.tmux/plugins/tpm/tpm'
+
+bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
+bind -n WheelDownPane select-pane -t= \; send-keys -M
