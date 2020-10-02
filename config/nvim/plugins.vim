@@ -24,8 +24,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'Shougo/echodoc.vim'
-Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'scrooloose/nerdtree'
@@ -34,6 +33,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'frazrepo/vim-rainbow'
+Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'APZelos/blamer.nvim'
 Plug 'Raimondi/delimitMate'
@@ -67,6 +67,13 @@ Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " Plugin settings
+
+" Indent Guides {{{
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_color_change_percent = 2
+" }}}
 
 " Blamer nvim {{{
 let g:blamer_enabled = 0
@@ -212,26 +219,8 @@ catch
   echo 'Airline not installed. It should work after running :PlugInstall'
 endtry
 
-" echodoc {{{
-let g:echodoc#enable_at_startup = 1                   " Enable echodoc on startup
-" }}}
-
 " vim-javascript {{{
 let g:javascript_plugin_jsdoc = 1                     " Enable syntax highlighting for JSDoc
-" }}}
-
-" Signify {{{
-let g:signify_sign_delete = '-'
-
-" Make background color transparent for git changes
-hi! SignifySignAdd guibg=NONE
-hi! SignifySignDelete guibg=NONE
-hi! SignifySignChange guibg=NONE
-
-" Highlight git change signs
-hi! SignifySignAdd guifg=#99c794
-hi! SignifySignDelete guifg=#ec5f67
-hi! SignifySignChange guifg=#c594c5
 " }}}
 
 " Auto Close Tag {{{
