@@ -1,4 +1,4 @@
-" check whether vim-plug is installed and install it if necessary
+
 let plugpath = expand('<sfile>:p:h'). '/autoload/plug.vim'
 if !filereadable(plugpath)
     if executable('curl')
@@ -18,6 +18,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" === Syntax Highlighting === "
+Plug 'sheerun/vim-polyglot'
+Plug 'neoclide/jsonc.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-commentary'
 Plug 'jiangmiao/auto-pairs'
@@ -32,7 +36,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'frazrepo/vim-rainbow'
+Plug 'luochen1990/rainbow'
 Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'APZelos/blamer.nvim'
@@ -41,11 +45,8 @@ Plug 'RRethy/vim-illuminate'
 Plug 'easymotion/vim-easymotion'
 Plug 'AndrewRadev/dsf.vim'
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
-Plug 'jesseleite/vim-agriculture'
-Plug 'rizzatti/dash.vim'
 
 " Editor {{{
-Plug 'bkad/CamelCaseMotion'          " Motions for inside camel case
 Plug 'kkoomen/vim-doge'
 Plug 'matze/vim-move'
 " }}}
@@ -55,13 +56,6 @@ Plug 'junegunn/fzf.vim'
 
 " Colorscheme
 Plug 'joshdick/onedark.vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'phanviet/vim-monokai-pro'
-Plug 'colepeters/spacemacs-theme.vim'
-Plug 'embark-theme/vim', { 'as': 'embark' }
-
-" === Syntax Highlighting === "
-Plug 'sheerun/vim-polyglot'
 
 " === Initialize plugin system === "
 call plug#end()
@@ -78,9 +72,6 @@ let g:indent_guides_color_change_percent = 2
 " Blamer nvim {{{
 let g:blamer_enabled = 0
 let g:blamer_prefix = ' > '
-" }}}
-
-" Colorscheme {{{
 " }}}
 
 " Coc.nvim {{{
@@ -240,17 +231,6 @@ let g:closetag_regions = {
 
 " Rainbox Parens {{{
 let g:rainbow_active = 1                "set to 0 if you want to enable it later via :RainbowToggle
-" }}}
-
-" CamelCaseMotions {{{
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-map <silent> ge <Plug>CamelCaseMotion_ge
-sunmap w
-sunmap b
-sunmap e
-sunmap ge
 " }}}
 
 " Vim Move {{{

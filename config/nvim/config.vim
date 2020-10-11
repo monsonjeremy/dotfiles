@@ -55,11 +55,9 @@ set foldtext=NeatFoldText()
 " }}}
 " Colors {{{
 let g:onedark_terminal_italics=1
-let g:dracula_colorterm=1
 let g:onedark_hide_endofbuffer=1
-let g:one_allow_italics=1
-set background=dark
 syntax on
+set background=dark
 set cursorline                                  " Disable Highlight current row
 set termguicolors                               " Enable true color support
 colorscheme onedark 
@@ -156,3 +154,7 @@ hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=#17252c guifg=#17252c
 let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
 
+augroup jsonc_ft
+  au!
+  autocmd BufNewFile,BufRead *.json   set ft=json5
+augroup END
