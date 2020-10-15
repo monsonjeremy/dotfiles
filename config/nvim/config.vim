@@ -56,11 +56,13 @@ set foldtext=NeatFoldText()
 " Colors {{{
 let g:onedark_terminal_italics=1
 let g:onedark_hide_endofbuffer=1
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'palenight'
 syntax on
 set background=dark
 set cursorline                                  " Disable Highlight current row
 set termguicolors                               " Enable true color support
-colorscheme onedark 
+colorscheme material
 
 
 " }}}

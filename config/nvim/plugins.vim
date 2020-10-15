@@ -56,6 +56,7 @@ Plug 'junegunn/fzf.vim'
 
 " Colorscheme
 Plug 'joshdick/onedark.vim'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
 " === Initialize plugin system === "
 call plug#end()
@@ -187,7 +188,7 @@ hi! NERDTreeCWD guifg=#99c794
 " Vim airline {{{
 " Wrap in try/catch to avoid errors on initial install before plugin is available
 try
-let g:airline_theme='onedark'
+let g:airline_theme='material'
 let g:airline_extensions = ['branch', 'hunks', 'coc']                                         " Enable extensions
 let g:airline_section_z = airline#section#create(['linenr'])                                  " Update section z to just have line number
 let g:airline_skip_empty_sections = 1                                                         " Do not draw separators for empty sections (only for the active window) >
