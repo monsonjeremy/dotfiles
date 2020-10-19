@@ -81,7 +81,9 @@ endfunction
 command! -nargs=* -bang RG call RipgrepFzfReload(<q-args>, <bang>0)
 command! -nargs=* -bang RgRegex call RipgrepFzfRegex(<q-args>, <bang>0)
 
-let g:rg_derive_root='true'
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],

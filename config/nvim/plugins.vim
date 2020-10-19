@@ -63,6 +63,12 @@ call plug#end()
 
 " Plugin settings
 
+" Editing {{{
+nnoremap <leader>bs /<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>
+vnoremap X "_d                                                        " Delete line to black hole register
+vnoremap <leader>p "_dP
+"}}}
+
 " Indent Guides {{{
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
@@ -76,7 +82,34 @@ let g:blamer_prefix = ' > '
 " }}}
 
 " Coc.nvim {{{
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+function! ShowDocIfNoDiagnostic(timer_id)
+  if (coc#util#has_float() == 0)
+    silent call CocActionAsync('doHover')
+  endif
+endfunction
+
+function! s:show_hover_doc()
+  call timer_start(500, 'ShowDocIfNoDiagnostic')
+endfunction
+
+autocmd CursorHold * :call <SID>show_hover_doc()
+autocmd CursorHoldI * :call <SID>show_hover_doc()
+
+
 let g:coc_snippet_next = '<tab>'
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-prettier', 'coc-html', 'coc-css', 'coc-eslint', 'coc-snippets']
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -91,36 +124,10 @@ nmap <silent> <leader>dt <Plug>(coc-type-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
 
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif           " Close preview window when completion is done.
+set statusline^=%{coc#status()}                                         " Add status line support, for integration with other plugin, checkout `:h coc-status`
 command! -nargs=0 Format :call CocAction('format')                      " Use `:Format` to format current buffer
 command! -nargs=? Fold :call CocAction('fold', <f-args>)                " Use `:Fold` for fold current buffer
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}     " Add status line support, for integration with other plugin, checkout `:h coc-status`
-
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-prettier', 'coc-html', 'coc-css', 'coc-eslint', 'coc-snippets']
-
-function! ShowDocIfNoDiagnostic(timer_id)
-  if (coc#util#has_float() == 0)
-    silent call CocActionAsync('doHover')
-  endif
-endfunction
-
-function! s:show_hover_doc()
-  call timer_start(500, 'ShowDocIfNoDiagnostic')
-endfunction
-
-autocmd CursorHoldI * :call <SID>show_hover_doc()
-autocmd CursorHold * :call <SID>show_hover_doc()
 
 augroup coc
   autocmd!
@@ -143,25 +150,16 @@ nnoremap <silent> <leader>cd  :<C-u>CocList diagnostics<cr>  " Show all diagnost
 nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>     " Show commands
 nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>   " Search workspace symbols
 nnoremap <silent> <leader>cp  :<C-u>CocList outline<cr>      " Outline document
+nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " coc.nvim color changes
 hi! link CocErrorSign WarningMsg
 hi! link CocWarningSign Number
 hi! link CocInfoSign Type
-
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
 " }}}
 
 " vim-better-whitespace {{{
 nmap <leader>y :StripWhitespace<CR>                              "   <leader>y - Automatically remove trailing whitespace
-" }}}
-
-" vim-commentary {{{
-nmap g/ gc
 " }}}
 
 " vim-jsdoc shortcuts {{{
@@ -240,4 +238,12 @@ vmap ∆ <Plug>MoveBlockDown
 vmap ˚ <Plug>MoveBlockUp
 nmap ∆ <Plug>MoveLineDown
 nmap ˚ <Plug>MoveLineUp
+" }}}
+"
+
+" Git {{{
+nnoremap <leader>gc :GBranches<CR>
+nnoremap <leader>ga :Git fetch --all<CR>
+nnoremap <leader>grum :Git rebase upstream/master<CR>
+nnoremap <leader>grom :Git rebase origin/master<CR>
 " }}}
