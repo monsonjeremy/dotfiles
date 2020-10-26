@@ -56,7 +56,11 @@ Plug 'junegunn/fzf.vim'
 
 " Colorscheme
 Plug 'joshdick/onedark.vim'
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+
+Plug 'voldikss/vim-floaterm'
+Plug 'chaoren/vim-wordmotion'
 
 " === Initialize plugin system === "
 call plug#end()
@@ -82,6 +86,7 @@ let g:blamer_prefix = ' > '
 " }}}
 
 " Coc.nvim {{{
+
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -186,7 +191,7 @@ hi! NERDTreeCWD guifg=#99c794
 " Vim airline {{{
 " Wrap in try/catch to avoid errors on initial install before plugin is available
 try
-let g:airline_theme='material'
+let g:airline_theme='tokyonight'
 let g:airline_extensions = ['branch', 'hunks', 'coc']                                         " Enable extensions
 let g:airline_section_z = airline#section#create(['linenr'])                                  " Update section z to just have line number
 let g:airline_skip_empty_sections = 1                                                         " Do not draw separators for empty sections (only for the active window) >

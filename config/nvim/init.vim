@@ -11,9 +11,9 @@ if !exists('g:vscode')
 
   " Plugins
   source $HOME/.config/nvim/plugins.vim
+  source $HOME/.config/nvim/config.vim
   source $HOME/.config/nvim/fzf.vim
 
   source $HOME/.config/nvim/macros.vim
   source $HOME/.config/nvim/keymap.vim
-  source $HOME/.config/nvim/config.vim
 endif

@@ -35,8 +35,8 @@ set updatetime=100                              " You will have bad experience f
 set cmdheight=2                                 " Give more space for displaying messages.
 set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-
 " }}}
+
 " Backup {{{
 set backup                                      " Enable backup of files
 set writebackup
@@ -44,28 +44,32 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set noswapfile
-
 " }}}
+
 " Undo {{{
 set undofile                                    " Keep a persistent backup file.
 set undodir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " }}}
+
 " Folding {{{
 set foldmethod=indent
 set foldlevelstart=99
 set foldnestmax=2
 set foldtext=NeatFoldText()
 " }}}
+
 " Colors {{{
 let g:onedark_terminal_italics=1
 let g:onedark_hide_endofbuffer=1
 let g:material_terminal_italics = 1
 let g:material_theme_style = 'palenight'
+let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_enable_italic = 1
 syntax on
 set background=dark
 set cursorline                                  " Disable Highlight current row
 set termguicolors                               " Enable true color support
-colorscheme material
+colorscheme tokyonight
 
 
 " }}}
@@ -78,12 +82,14 @@ set nojoinspaces                                " Prevents inserting two spaces 
 set nrformats-=octal                            " Numbers that start with a zero will be considered to be octal
 set smartindent
 " }}}
+
 " Line numbers {{{
 set number                                      " Show line numbers
 set relativenumber
 set numberwidth=3                               " Gutter width for line numbers
 set signcolumn=yes
 "}}}
+
 " Search {{{
 set grepprg=ag\ --vimgrep
 set ignorecase                                  " Make searching case insensitive.
@@ -91,9 +97,11 @@ set smartcase                                   " Use case sensitive search when
 set gdefault                                    " Use 'g' flag by default with :s/foo/bar/.
 set omnifunc=syntaxcomplete#Complete
 "}}}
+
 " Substitute {{{
 set inccommand=nosplit                          " Shows the effects of a command incrementally, as you type.
 " }}}
+
 " Splits {{{
 set splitright                                  " Open vertical splits to the right
 set splitbelow                                  " Open horizontal splits below
@@ -101,6 +109,7 @@ set diffopt+=vertical                           " Open diff in vertical split
 set diffopt+=indent-heuristic
 set diffopt+=algorithm:patience
 "}}}
+
 " Netrw {{{
 let g:netrw_liststyle=4
 let g:netrw_preview=1
@@ -109,19 +118,14 @@ let g:netrw_winsize=50
 let g:netrw_keepdir=1
 let g:netrw_menu=0
 let g:netrw_banner=0
+
 " Allow netrw to remove non-empty local directories
 let g:netrw_localrmdir='rm -r'
 let g:netrw_bufsettings='noma nomod nu nowrap ro nobl'
 " }}}
+"
 " Tags {{{
 set tags=./.tags,.tags;
-" }}}
-
-" Dim inactive buffer {{{
-" Background colors for active vs inactive windows
-" highlight ActiveWindow ctermbg=None ctermfg=None guibg=#282c34
-" highlight InactiveWindow ctermbg=darkgray ctermfg=gray guibg=#27292e
-" set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 " }}}
 
 " Reload icons after init source
@@ -134,9 +138,10 @@ if (has("nvim"))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
 if (has("termguicolors"))
   let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"

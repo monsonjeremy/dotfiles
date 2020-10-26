@@ -1,0 +1,5 @@
+[directory]
+truncation_length = 2
+
+[git_status]
+disabled = true
