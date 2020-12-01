@@ -1,7 +1,7 @@
 export ZSH=~/.oh-my-zsh
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-export PATH="$PATH:$HOME/miniconda3/bin"
+export PATH="$PATH:$HOME/miniconda/bin"
 export NVM_DIR="$HOME/.nvm"
 export GPG_TTY="tty"
 export SPACESHIP_PACKAGE_SHOW=false
@@ -244,3 +244,4 @@ alias path='echo -e ${PATH//:/\\n}'
 if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
   source "${VIRTUAL_ENV}/bin/activate"
 fi
+source "$HOME/.cargo/env"
