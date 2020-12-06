@@ -32,7 +32,7 @@ brew 'gpg'
 brew 'gnupg'
 brew 'gnupg2'
 brew 'pinentry'
-brew 'nvm'
+brew 'fnm'
 
 cask 'docker'
 cask 'font-source-code-pro'

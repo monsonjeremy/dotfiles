@@ -21,6 +21,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " === Syntax Highlighting === "
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-eunuch'
 Plug 'neoclide/jsonc.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-commentary'
@@ -37,7 +38,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'luochen1990/rainbow'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 
 Plug 'APZelos/blamer.nvim'
 Plug 'Raimondi/delimitMate'
@@ -74,10 +75,7 @@ vnoremap <leader>p "_dP
 "}}}
 
 " Indent Guides {{{
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_color_change_percent = 2
+let g:indentLine_char = '┊'
 " }}}
 
 " Blamer nvim {{{
@@ -100,7 +98,7 @@ function! s:show_documentation()
 endfunction
 
 function! ShowDocIfNoDiagnostic(timer_id)
-  if (coc#util#has_float() == 0)
+  if (coc#float#has_float() == 0)
     silent call CocActionAsync('doHover')
   endif
 endfunction
