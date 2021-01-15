@@ -2,6 +2,7 @@
     "suggest.maxCompleteItemCount": 20,
     "diagnostic.errorSign": "✖",
     "diagnostic.warningSign": "⚠",
+    "signature.target": "echo",
     "coc.preferences.formatOnSaveFiletypes": [
         "css",
         "scss",
@@ -12,6 +13,7 @@
         "typescript",
         "typescriptreact"
     ],
+    "coc.preferences.colorSupport": false,
     "eslint.filetypes": [
         "javascript",
         "javascriptreact",

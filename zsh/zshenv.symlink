@@ -3,10 +3,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$PATH:$HOME/miniconda/bin"
 export GPG_TTY="tty"
-export SPACESHIP_PACKAGE_SHOW=false
-SPACESHIP_NODE_SHOW=true
-SPACESHIP_DOCKER_SHOW=false
-SPACESHIP_GIT_STATUS_STASHED=''
 
 # Set EDITOR variable to nvim/vim
 if [ -f /usr/local/bin/nvim ]; then
@@ -83,12 +79,10 @@ alias gc='git commit'
 alias gca='git commit --amend'
 alias gco='git checkout'
 alias gco.='git checkout .'
-alias gcob='git checkout -b'
-alias gcom='git checkout master'
 alias gd='git diff'
 alias gd.='git diff .'
 alias gf='git fetch --prune'
-alias gl='git --no-pager log --oneline --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit $1 $2'
+alias gl="git --no-pager log --oneline --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit $1 $2"
 alias gm='git merge'
 alias gpu='git push'
 alias gpuf='git push --force'
@@ -127,10 +121,9 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias p="cd ~/projects"
+alias sl="cd ~/Desktop/Surfline"
 alias g="git"
 
 # Always enable colored `grep` output

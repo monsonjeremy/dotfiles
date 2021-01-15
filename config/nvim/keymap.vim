@@ -29,10 +29,10 @@ nnoremap <leader>q ZZ<C-w><C-p>
 nnoremap <leader>ll ZZ<C-w><C-p>
 
 " Update current buffer and close it without saving (needed to close terminal buffers)
-nnoremap <silent> <leader>dd :update<bar>:bd!<CR>
+nnoremap <silent> <leader>dk :update<bar>:bd!<CR>
 
 " Update and close buffer, keep window open and switch to previous file
-nnoremap <silent> <leader>df :update<bar>:lclose<bar>b#<bar>bd! #<CR>
+nnoremap <silent> <leader>ds :update<bar>:lclose<bar>b#<bar>bd! #<CR>
 
 " Update current buffer and close all other buffer
 nnoremap <silent> <leader>d<CR> :wa<bar>%bd!<bar>e#<bar>bd#<CR>
@@ -43,8 +43,6 @@ nnoremap <leader>e :e<CR>
 " Close all other wndows
 nnoremap <leader><CR> :only<CR>
 
-" Use dark theme
-nnoremap <leader>td :colorscheme gruvbox<CR>
 
 " Select last paste in visual mode
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'

@@ -112,6 +112,7 @@ nnoremap <silent> <leader>ff :RG<CR>
 nnoremap <silent> <leader>fr :RgRegex<CR>
 nnoremap <silent> <leader>fc :History:<CR>
 nnoremap <silent> <leader>fh :History<CR>
+nnoremap <silent> <leader>fo :Format<CR>
 inoremap <silent> <c-space> <esc>:Snippets<CR>
 
 imap <c-f> <plug>(fzf-complete-path)

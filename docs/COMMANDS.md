@@ -22,7 +22,7 @@ file is carefully documented to make it easy to understand. Many default command
 | `<leader>n`  | normal          | NERDTree                        | Toggle NERDTree window                   |
 | `C`          | normal     *NT* | NERDTree                        | Switch NERDTree root to be directory under cursor |
 | `<leader>y`  | normal          | vim-better-whitespace           | Remove trailing whitespace in file       |
-| `<leader>dj` | normal          | Coc.nvim                        | Jump to implementation(s) of symbol under cursor  |
+| `<leader>df` | normal          | Coc.nvim                        | Jump to implementation(s) of symbol under cursor  |
 | `<leader>dr` | normal          | Coc.nvim                        | Show references of symbol under cursor.    |
 | `<leader>dd` | normal          | Coc.nvim                        | Look up definition of word under cursor |
 | `<leader>dt` | normal          | Coc.nvim                        | Look up the type definitions for the word under cursor |

@@ -1,5 +1,8 @@
 [directory]
 truncation_length = 2
 
+[aws]
+symbol = "🅰"
+
 [git_status]
 disabled = true

@@ -39,6 +39,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'luochen1990/rainbow'
 Plug 'Yggdroot/indentLine'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 Plug 'APZelos/blamer.nvim'
 Plug 'Raimondi/delimitMate'
@@ -75,12 +76,22 @@ vnoremap <leader>p "_dP
 "}}}
 
 " Indent Guides {{{
-let g:indentLine_char = '┊'
+" let g:indentLine_char = '┊'
+let g:indentLine_char = ''
+let g:indentLine_first_char = ''
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 0
+" }}
 " }}}
 
 " Blamer nvim {{{
 let g:blamer_enabled = 0
 let g:blamer_prefix = ' > '
+" }}}
+
+
+" Hexokinase {{{
+let g:Hexokinase_highlighters = [ 'virtual' ]
 " }}}
 
 " Coc.nvim {{{
@@ -125,7 +136,7 @@ nmap <silent> <leader>qf <Plug>(coc-fix-current)                          "
 nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>dt <Plug>(coc-type-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
-nmap <silent> <leader>dj <Plug>(coc-implementation)
+nmap <silent> <leader>df <Plug>(coc-implementation)
 
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif           " Close preview window when completion is done.
 set statusline^=%{coc#status()}                                         " Add status line support, for integration with other plugin, checkout `:h coc-status`
@@ -141,7 +152,7 @@ augroup end
 augroup coc
   autocmd!
   " Highlight symbol under cursor on CursorHold
-  autocmd CursorHold * silent call CocActionAsync('highlight')
+   autocmd CursorHold * silent call CocActionAsync('highlight')
   " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json,javascript setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
@@ -193,6 +204,7 @@ let g:airline_theme='tokyonight'
 let g:airline_extensions = ['branch', 'hunks', 'coc']                                         " Enable extensions
 let g:airline_section_z = airline#section#create(['linenr'])                                  " Update section z to just have line number
 let g:airline_skip_empty_sections = 1                                                         " Do not draw separators for empty sections (only for the active window) >
+  let g:airline#extensions#coc#enabled = 1                                                    " Enable COC Airline
 let g:airline#extensions#tabline#formatter = 'unique_tail'                                    " Smartly uniquify buffers names with similar filename, suppressing common parts of paths.
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]   " Custom setup that removes filetype/whitespace from default vim airline bar
 let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
