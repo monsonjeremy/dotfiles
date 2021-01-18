@@ -1,6 +1,6 @@
 [user]
 	name = monsonjeremy
-	signingkey = F0BAE5773AF96DCC
+	signingkey = 1E149DA4B81CF897
 	email = monson.jeremy@gmail.com
 
 [filter "lfs"]
