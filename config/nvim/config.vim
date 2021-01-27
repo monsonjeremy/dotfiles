@@ -65,11 +65,13 @@ let g:material_terminal_italics = 1
 let g:material_theme_style = 'palenight'
 let g:tokyonight_style = 'storm' " available: night, storm
 let g:tokyonight_enable_italic = 1
+let g:airline_theme='onehalfdark'
 syntax on
 set background=dark
 set cursorline                                  " Disable Highlight current row
 set termguicolors                               " Enable true color support
-colorscheme tokyonight
+colorscheme onehalfdark
+highlight NormalFloat cterm=NONE ctermfg=168 ctermbg=236 gui=NONE guifg=#dcdfe4 guibg=#282c34
 
 
 " }}}

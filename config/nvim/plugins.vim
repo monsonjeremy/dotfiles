@@ -60,6 +60,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 Plug 'voldikss/vim-floaterm'
 Plug 'chaoren/vim-wordmotion'
@@ -204,7 +205,7 @@ let g:airline_theme='tokyonight'
 let g:airline_extensions = ['branch', 'hunks', 'coc']                                         " Enable extensions
 let g:airline_section_z = airline#section#create(['linenr'])                                  " Update section z to just have line number
 let g:airline_skip_empty_sections = 1                                                         " Do not draw separators for empty sections (only for the active window) >
-  let g:airline#extensions#coc#enabled = 1                                                    " Enable COC Airline
+let g:airline#extensions#coc#enabled = 1                                                    " Enable COC Airline
 let g:airline#extensions#tabline#formatter = 'unique_tail'                                    " Smartly uniquify buffers names with similar filename, suppressing common parts of paths.
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]   " Custom setup that removes filetype/whitespace from default vim airline bar
 let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
