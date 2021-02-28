@@ -65,6 +65,7 @@ alias mkdir='mkdir -pv'
 alias mv='mv -iv'
 alias rmrf='rm -rf'
 alias sshnc='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias code='code-insiders .'
 
 # Aliases
 alias top="vtop --theme=wizard"
