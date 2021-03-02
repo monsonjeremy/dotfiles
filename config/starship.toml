@@ -1,8 +1,60 @@
+format = """
+$username\
+$hostname\
+$shlvl\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$dart\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$julia\
+$nim\
+$nodejs\
+$ocaml\
+$php\
+$python\
+$ruby\
+$rust\
+$swift\
+$terraform\
+$conda\
+$memory_usage\
+$aws\
+$env_var\
+$custom\
+$cmd_duration\
+$lua\
+$jobs\
+$battery\
+$time\
+$status\
+$line_break\
+$character"""
+
 [directory]
 truncation_length = 2
 
 [aws]
-symbol = "🅰"
+symbol = "☁️  "
 
 [git_status]
 disabled = true
+
+[time]
+disabled = false
+
+[cmd_duration]
+disabled = false
+
