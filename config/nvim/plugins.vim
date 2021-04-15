@@ -20,7 +20,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " === Syntax Highlighting === "
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-eunuch'
 Plug 'neoclide/jsonc.vim'
 Plug 'ntpeters/vim-better-whitespace'
@@ -62,6 +62,8 @@ Plug 'ghifarit53/tokyonight-vim'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+
 Plug 'voldikss/vim-floaterm'
 Plug 'chaoren/vim-wordmotion'
 
@@ -89,7 +91,6 @@ let g:indentLine_setColors = 0
 let g:blamer_enabled = 0
 let g:blamer_prefix = ' > '
 " }}}
-
 
 " Hexokinase {{{
 let g:Hexokinase_highlighters = [ 'virtual' ]
@@ -263,3 +264,13 @@ nnoremap <leader>ga :Git fetch --all<CR>
 nnoremap <leader>grum :Git rebase upstream/master<CR>
 nnoremap <leader>grom :Git rebase origin/master<CR>
 " }}}
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+  },
+}
+EOF

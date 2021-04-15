@@ -33,5 +33,13 @@
     "suggest.noselect": false,
     "javascript.suggestionActions.enabled": false,
     "typescript.suggestionActions.enabled": false,
-    "javascript.validate.enable": false
+    "javascript.validate.enable": false,
+    "languageserver": {
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"],
+            "ignoredRootPaths": ["~"]
+        }
+    }
 }
