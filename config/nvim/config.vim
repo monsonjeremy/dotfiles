@@ -70,7 +70,7 @@ syntax on
 set background=dark
 set cursorline                                  " Disable Highlight current row
 set termguicolors                               " Enable true color support
-colorscheme onehalfdark
+colorscheme base16-onedark
 highlight NormalFloat cterm=NONE ctermfg=168 ctermbg=236 gui=NONE guifg=#dcdfe4 guibg=#282c34
 
 

@@ -20,8 +20,9 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " === Syntax Highlighting === "
-" Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-eunuch'
+Plug 'chriskempson/base16-vim'
+Plug 'folke/lsp-colors.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'neoclide/jsonc.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-commentary'
@@ -40,6 +41,10 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'luochen1990/rainbow'
 Plug 'Yggdroot/indentLine'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'cespare/vim-toml'
+
+" Commands
+Plug 'tpope/vim-eunuch'
 
 Plug 'APZelos/blamer.nvim'
 Plug 'Raimondi/delimitMate'
@@ -48,10 +53,9 @@ Plug 'easymotion/vim-easymotion'
 Plug 'AndrewRadev/dsf.vim'
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 
-" Editor {{{
+" Editor
 Plug 'kkoomen/vim-doge'
 Plug 'matze/vim-move'
-" }}}
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -63,6 +67,7 @@ Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter-refactor'
 
 Plug 'voldikss/vim-floaterm'
 Plug 'chaoren/vim-wordmotion'
@@ -159,6 +164,7 @@ augroup coc
   autocmd FileType typescript,json,javascript setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  autocmd FileType markdown :call CocDisable()
 augroup end
 
 " Using CocList
@@ -266,11 +272,40 @@ nnoremap <leader>grom :Git rebase origin/master<CR>
 " }}}
 
 lua <<EOF
+require("lsp-colors").setup {
+  Error = "#db4b4b",
+  Warning = "#e0af68",
+  Information = "#0db9d7",
+  Hint = "#10B981"
+}
+
+require("trouble").setup {
+  -- your configuration comes here
+  -- or leave it empty to use the default settings
+  -- refer to the configuration section below
+}
+
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = {},  -- list of language that will be disabled
   },
+  refactor = {
+    highlight_definitions = { enable = true },
+    smart_rename = {
+      enable = true,
+      keymaps = {
+        smart_rename = "grr",
+      },
+    },
+    navigation = {
+      enable = true,
+      keymaps = {
+        goto_definition = "gnd",
+      },
+    },
+  },
 }
 EOF
+

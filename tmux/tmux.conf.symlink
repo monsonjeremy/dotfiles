@@ -25,6 +25,8 @@ set -g mode-style "fg=colour3"
 # ***    GENERAL   *** #
 ########################
 
+set-option -g focus-events on
+
 # allow clipboard
 set -g default-command "reattach-to-user-namespace -l ${SHELL}"
 
