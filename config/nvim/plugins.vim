@@ -30,8 +30,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'Yggdroot/indentLine'
@@ -66,6 +64,9 @@ Plug 'joshdick/onedark.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
 
+" Status Line
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+
 Plug 'voldikss/vim-floaterm'
 Plug 'chaoren/vim-wordmotion'
 
@@ -82,8 +83,8 @@ vnoremap <leader>p "_dP
 
 " Indent Guides {{{
 " let g:indentLine_char = '┊'
-let g:indentLine_char = ''
-let g:indentLine_first_char = ''
+let g:indentLine_char = '│'
+let g:indentLine_first_char = '│'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
 " }}
@@ -200,40 +201,11 @@ noremap - <PageUp>                                                              
 
 " Customize NERDTree directory
 hi! NERDTreeCWD guifg=#99c794
-" }}}
 
-" Vim airline {{{
-" Wrap in try/catch to avoid errors on initial install before plugin is available
-try
-let g:airline_theme='tokyonight'
-let g:airline_extensions = ['branch', 'hunks', 'coc']                                         " Enable extensions
-let g:airline_section_z = airline#section#create(['linenr'])                                  " Update section z to just have line number
-let g:airline_skip_empty_sections = 1                                                         " Do not draw separators for empty sections (only for the active window) >
-let g:airline#extensions#coc#enabled = 1                                                    " Enable COC Airline
-let g:airline#extensions#tabline#formatter = 'unique_tail'                                    " Smartly uniquify buffers names with similar filename, suppressing common parts of paths.
-let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]   " Custom setup that removes filetype/whitespace from default vim airline bar
-let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'    " Configure error/warning section to use coc.nvim
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-let g:NERDTreeStatusline = ''                                                                 " Hide the Nerdtree status line to avoid clutter
-let g:airline_exclude_preview = 1                                                             " Disable vim-airline in preview mode
-let g:airline_powerline_fonts = 1                                                             " Enable powerline fonts
-let g:airline_highlighting_cache = 1                                                          " Enable caching of syntax highlighting groups
-let g:airline#extensions#hunks#enabled=0                                                      " Don't show git changes to current file in airline
-if !exists('g:airline_symbols')                                                               " Define custom airline symbols
-  let g:airline_symbols = {}
-endif
-
-catch
-  echo 'Airline not installed. It should work after running :PlugInstall'
-endtry
-
-" vim-javascript {{{
+" vim-javascript
 let g:javascript_plugin_jsdoc = 1                     " Enable syntax highlighting for JSDoc
-" }}}
 
-" Auto Close Tag {{{
+" Auto Close Tag
 let g:closetag_shortcut = '>'                         " Shortcut for closing tags, default is '>'
 let g:closetag_close_shortcut = '<leader>>'
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
@@ -248,61 +220,61 @@ let g:closetag_regions = {
     \ 'javascript.js': 'jsxRegion',
     \ }
 
-" Rainbox Parens {{{
+" Rainbox Parens
 let g:rainbow_active = 1                "set to 0 if you want to enable it later via :RainbowToggle
-" }}}
 
-" Vim Move {{{
+" Vim Move
 let g:move_map_keys = 0
 vmap ∆ <Plug>MoveBlockDown
 vmap ˚ <Plug>MoveBlockUp
 nmap ∆ <Plug>MoveLineDown
 nmap ˚ <Plug>MoveLineUp
-" }}}
-"
 
-" Git {{{
+
+" Git
 nnoremap <leader>gc :GBranches<CR>
 nnoremap <leader>ga :Git fetch --all<CR>
 nnoremap <leader>grum :Git rebase upstream/master<CR>
 nnoremap <leader>grom :Git rebase origin/master<CR>
-" }}}
+
 
 lua <<EOF
-require("lsp-colors").setup {
-  Error = "#db4b4b",
-  Warning = "#e0af68",
-  Information = "#0db9d7",
-  Hint = "#10B981"
-}
+  require("statusLine")
+  require("lsp-colors").setup {
+    Error = "#db4b4b",
+    Warning = "#e0af68",
+    Information = "#0db9d7",
+    Hint = "#10B981"
+  }
 
-require("trouble").setup {
-  -- your configuration comes here
-  -- or leave it empty to use the default settings
-  -- refer to the configuration section below
-}
+  require("trouble").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
 
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = {},  -- list of language that will be disabled
-  },
-  refactor = {
-    highlight_definitions = { enable = true },
-    smart_rename = {
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = "maintained",
+    highlight = {
       enable = true,
-      keymaps = {
-        smart_rename = "grr",
+      disable = {},
+    },
+    refactor = {
+      highlight_definitions = { enable = true },
+      smart_rename = {
+        enable = true,
+        keymaps = {
+            smart_rename = "grr",
+        },
+        },
+        navigation = {
+        enable = true,
+        keymaps = {
+            goto_definition = "gnd",
+        },
       },
     },
-    navigation = {
-      enable = true,
-      keymaps = {
-        goto_definition = "gnd",
-      },
-    },
-  },
-}
+  }
 EOF
+
 
