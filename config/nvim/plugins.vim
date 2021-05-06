@@ -68,8 +68,9 @@ Plug 'windwp/nvim-autopairs'
 " Status Line
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 
-Plug 'voldikss/vim-floaterm'
 Plug 'chaoren/vim-wordmotion'
+
+Plug 'akinsho/nvim-toggleterm.lua'
 
 " === Initialize plugin system === "
 call plug#end()
