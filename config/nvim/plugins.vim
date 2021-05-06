@@ -22,8 +22,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/jsonc.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-commentary'
-Plug 'jiangmiao/auto-pairs'
-Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'airblade/vim-gitgutter'
@@ -65,6 +63,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'windwp/nvim-ts-autotag'
+Plug 'windwp/nvim-autopairs'
 
 " Status Line
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
@@ -233,6 +232,11 @@ nnoremap <leader>grom :Git rebase origin/master<CR>
 lua <<EOF
   require("statusLine")
   require("tabLine")
+
+  require("nvim-autopairs").setup({
+    check_ts = true,
+  })
+
   require("lsp-colors").setup {
     Error = "#db4b4b",
     Warning = "#e0af68",
@@ -247,6 +251,9 @@ lua <<EOF
   }
 
   require("nvim-treesitter.configs").setup {
+    autopairs = {
+      enable = true
+    },
     autotag = {
       enable = true,
     },
