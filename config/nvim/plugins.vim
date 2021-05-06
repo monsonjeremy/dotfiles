@@ -29,7 +29,6 @@ Plug 'tpope/vim-repeat'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'heavenshell/vim-jsdoc'
-Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'Yggdroot/indentLine'
@@ -40,6 +39,7 @@ Plug 'cespare/vim-toml'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/lsp-colors.nvim'
 Plug 'folke/lsp-trouble.nvim'
+Plug 'kyazdani42/nvim-tree.lua'
 
 " Commands
 Plug 'tpope/vim-eunuch'
@@ -186,21 +186,13 @@ nmap <leader>y :StripWhitespace<CR>                              "   <leader>y -
 nmap <leader>z :JsDoc<CR>                                        " Generate jsdoc for function under cursor
 " }}}
 
-" NERDTree {{{
-" Automaticaly close nvim if NERDTree is only thing left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$'] " Hide certain files and directories from NERDTree
-let g:NERDTreeShowHidden = 1                                                                          " Show hidden files/directories
-let g:NERDTreeMinimalUI = 1                                                                           " Remove bookmarks and help text from NERDTree
-let g:NERDTreeDirArrowExpandable = '⬏'                                                                " Custom icons for expandable/expanded directories
-let g:NERDTreeDirArrowCollapsible = '⬎'
-nmap <leader>n :NERDTreeToggle<CR>                                                                    "  <leader>n - Toggle NERDTree on/off
-nmap <leader>f :NERDTreeFind<CR>                                                                      "  <leader>f - Opens current file location in NERDTree
-noremap , <PageDown>                                                                                  "   ,       - PageDown
-noremap - <PageUp>                                                                                    "   -       - PageUp
+" Nvim Lua Tree
+nnoremap <leader>n :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>f :NvimTreeFindFile<CR>
 
-" Customize NERDTree directory
-hi! NERDTreeCWD guifg=#99c794
+let g:nvim_tree_auto_close = 1
+let g:nvim_tree_indent_markers = 1
 
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1                     " Enable syntax highlighting for JSDoc
