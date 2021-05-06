@@ -178,11 +178,10 @@ hi! link CocWarningSign Number
 hi! link CocInfoSign Type
 " }}}
 
-" vim-better-whitespace {{{
+" vim-better-whitespace
 nmap <leader>y :StripWhitespace<CR>                              "   <leader>y - Automatically remove trailing whitespace
-" }}}
 
-" vim-jsdoc shortcuts {{{
+" vim-jsdoc shortcuts
 nmap <leader>z :JsDoc<CR>                                        " Generate jsdoc for function under cursor
 " }}}
 
