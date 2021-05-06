@@ -61,11 +61,7 @@ set foldtext=NeatFoldText()
 " Colors {{{
 let g:onedark_terminal_italics=1
 let g:onedark_hide_endofbuffer=1
-let g:material_terminal_italics = 1
-let g:material_theme_style = 'palenight'
-let g:tokyonight_style = 'storm' " available: night, storm
-let g:tokyonight_enable_italic = 1
-let g:airline_theme='onehalfdark'
+
 syntax on
 set background=dark
 set cursorline                                  " Disable Highlight current row

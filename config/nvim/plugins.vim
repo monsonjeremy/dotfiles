@@ -62,9 +62,6 @@ Plug 'junegunn/fzf.vim'
 
 " Colorscheme
 Plug 'joshdick/onedark.vim'
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
