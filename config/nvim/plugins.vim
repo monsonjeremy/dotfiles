@@ -19,10 +19,6 @@ call plug#begin('~/.config/nvim/plugged')
 " Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" === Syntax Highlighting === "
-Plug 'chriskempson/base16-vim'
-Plug 'folke/lsp-colors.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'neoclide/jsonc.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-commentary'
@@ -37,15 +33,18 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'luochen1990/rainbow'
+
 Plug 'Yggdroot/indentLine'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'cespare/vim-toml'
 
+" Lua
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/lsp-colors.nvim'
+Plug 'folke/lsp-trouble.nvim'
+
 " Commands
 Plug 'tpope/vim-eunuch'
-
 Plug 'APZelos/blamer.nvim'
 Plug 'Raimondi/delimitMate'
 Plug 'RRethy/vim-illuminate'
@@ -61,6 +60,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Colorscheme
+Plug 'chriskempson/base16-vim'
 Plug 'joshdick/onedark.vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
