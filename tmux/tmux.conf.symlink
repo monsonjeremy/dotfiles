@@ -105,7 +105,7 @@ setw -g window-status-activity-style "none"
 setw -g window-status-separator ""
 setw -g window-status-style "none,fg=#768390,bg=#2d333b"
 set -g status-left ""
-set -g status-right "#[fg=#768390,bg=#2d333b] %Y-%m-%d %H:%M "
+set -g status-right "#[fg=#768390,bg=#2d333b] %Y-%m-%d │ %H:%M "
 setw -g window-status-format "#[fg=#768390,bg=#2d333b] #W "
 setw -g window-status-current-format "#[fg=#22272e,bg=#539bf5,bold] #W "
 
