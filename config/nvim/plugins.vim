@@ -28,7 +28,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'heavenshell/vim-jsdoc'
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'Yggdroot/indentLine'
@@ -40,6 +39,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/lsp-colors.nvim'
 Plug 'folke/lsp-trouble.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'akinsho/nvim-bufferline.lua'
 
 " Commands
 Plug 'tpope/vim-eunuch'
@@ -51,7 +51,7 @@ Plug 'AndrewRadev/dsf.vim'
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 
 " Editor
-Plug 'kkoomen/vim-doge'
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'matze/vim-move'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -63,6 +63,8 @@ Plug 'joshdick/onedark.vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
+Plug 'p00f/nvim-ts-rainbow'
+Plug 'windwp/nvim-ts-autotag'
 
 " Status Line
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
@@ -75,31 +77,31 @@ call plug#end()
 
 " Plugin settings
 
-" Editing {{{
+" Editing
 nnoremap <leader>bs /<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>
 vnoremap X "_d                                                        " Delete line to black hole register
 vnoremap <leader>p "_dP
 "}}}
 
-" Indent Guides {{{
+" Indent Guides
 " let g:indentLine_char = '┊'
 let g:indentLine_char = '│'
 let g:indentLine_first_char = '│'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
 " }}
-" }}}
 
-" Blamer nvim {{{
+
+" Blamer nvim
 let g:blamer_enabled = 0
 let g:blamer_prefix = ' > '
-" }}}
 
-" Hexokinase {{{
+
+" Hexokinase
 let g:Hexokinase_highlighters = [ 'virtual' ]
-" }}}
 
-" Coc.nvim {{{
+
+" Coc.nvim
 
 
 " Use K to show documentation in preview window
@@ -176,14 +178,13 @@ nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 hi! link CocErrorSign WarningMsg
 hi! link CocWarningSign Number
 hi! link CocInfoSign Type
-" }}}
+
 
 " vim-better-whitespace
 nmap <leader>y :StripWhitespace<CR>                              "   <leader>y - Automatically remove trailing whitespace
 
-" vim-jsdoc shortcuts
-nmap <leader>z :JsDoc<CR>                                        " Generate jsdoc for function under cursor
-" }}}
+" vim-doge
+nmap <leader>z :DogeGenerate<CR>
 
 " Nvim Lua Tree
 nnoremap <leader>n :NvimTreeToggle<CR>
@@ -231,6 +232,7 @@ nnoremap <leader>grom :Git rebase origin/master<CR>
 
 lua <<EOF
   require("statusLine")
+  require("tabLine")
   require("lsp-colors").setup {
     Error = "#db4b4b",
     Warning = "#e0af68",
@@ -244,7 +246,15 @@ lua <<EOF
     -- refer to the configuration section below
   }
 
-  require'nvim-treesitter.configs'.setup {
+  require("nvim-treesitter.configs").setup {
+    autotag = {
+      enable = true,
+    },
+    rainbow = {
+      enable = true,
+      extended_mode = true,
+      max_file_lines = 2000,
+    },
     ensure_installed = "maintained",
     highlight = {
       enable = true,
