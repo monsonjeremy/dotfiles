@@ -166,3 +166,8 @@ augroup jsonc_ft
   au!
   autocmd BufNewFile,BufRead *.json   set ft=json5
 augroup END
+
+augroup highlight_yank
+  autocmd!
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 80})
+augroup END
