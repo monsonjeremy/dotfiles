@@ -31,9 +31,6 @@ nnoremap <leader><BS> :vsp<CR><c-^>
 nnoremap <leader>q ZZ<C-w><C-p>
 nnoremap <leader>ll ZZ<C-w><C-p>
 
-" Update current buffer and close it without saving (needed to close terminal buffers)
-nnoremap <silent> <leader>dk :update<bar>:bd!<CR>
-
 " Update and close buffer, keep window open and switch to previous file
 nnoremap <silent> <leader>ds :update<bar>:lclose<bar>b#<bar>bd! #<CR>
 
@@ -77,13 +74,6 @@ nnoremap <silent> <Leader>th :sp term://zsh<CR>
 tnoremap <Esc> <C-\><C-n>                        " Escape to exit to normal mode in terminal
 tnoremap jj <C-\><C-n>
 
-" Splits
-nnoremap <silent> <C-h> :call WinMove('h')<CR> " Move to the split in the direction shown, or create a new split
-nnoremap <silent> <C-j> :call WinMove('j')<CR>
-nnoremap <silent> <C-k> :call WinMove('k')<CR>
-nnoremap <silent> <C-l> :call WinMove('l')<CR>
-nnoremap <C-w>f :vertical wincmd f<CR>         " Open file under cursor in vertical split
-
 " Grep / Search
 vnoremap <silent> / :<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0\|exec '/'.g:srchstr\|endif<CR>
 vnoremap <silent> ? :<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0\|exec '?'.g:srchstr\|endif<CR>
@@ -96,11 +86,6 @@ nnoremap d* *``dgn
 nnoremap d# *``dgN
 
 nnoremap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
-
-
-" === Search shorcuts === "
-"   <leader>/ - Clear highlighted search terms while preserving history
-nmap <silent> <leader>/ :nohlsearch<CR>
 
 " Allows you to save files you opened without write permissions via sudo
 cmap w!! w !sudo tee %

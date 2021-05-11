@@ -17,3 +17,16 @@ map("n", "<Leader>ww", [[ oconst wait = (ms: number): Promise<void> => {<CR>retu
 -- Search and replace under cursor
 map("n", "<Leader>s", [[ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left> ]], opt)
 
+map("n", "<C-h>", [[:call WinMove('h')<CR>]], { noremap=true, silent=true })
+map("n", "<C-j>", [[:call WinMove('j')<CR>]], { noremap=true, silent=true })
+map("n", "<C-k>", [[:call WinMove('k')<CR>]], { noremap=true, silent=true })
+map("n", "<C-l>", [[:call WinMove('l')<CR>]], { noremap=true, silent=true })
+map("n", "<C-w>f", [[:vertical wincmd f<CR>]], { noremap=true, silent=true })
+
+-- Comments
+map("n", "<leader>/", [[:CommentToggle<CR>]], {noremap = true, silent = true})
+map("v", "<leader>/", [[:CommentToggle<CR>]], {noremap = true, silent = true})
+
+-- === Search shorcuts === "
+map("n", "<C-_>", [[:nohlsearch<CR>]], {noremap = true, silent = true})
+
