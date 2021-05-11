@@ -7,7 +7,6 @@ if !exists('g:vscode')
   scriptencoding utf-8
 
   source $HOME/.config/nvim/functions.vim
-  source $HOME/.config/nvim/commands.vim
 
   " Plugins
   source $HOME/.config/nvim/plugins.vim

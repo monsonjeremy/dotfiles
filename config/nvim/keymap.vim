@@ -10,7 +10,7 @@ nnoremap <Space> <Nop>
 nnoremap <leader>ve :vsplit $MYVIMRC<CR>
 
 " Source Vimrc
-nnoremap <leader>vs :source $MYVIMRC<CR>
+nnoremap <Leader>vs :so ~/.config/nvim/init.vim<CR>
 
 " Use jj as escape
 inoremap jj <Esc>
@@ -83,7 +83,6 @@ nnoremap <silent> <C-j> :call WinMove('j')<CR>
 nnoremap <silent> <C-k> :call WinMove('k')<CR>
 nnoremap <silent> <C-l> :call WinMove('l')<CR>
 nnoremap <C-w>f :vertical wincmd f<CR>         " Open file under cursor in vertical split
-
 
 " Grep / Search
 vnoremap <silent> / :<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0\|exec '/'.g:srchstr\|endif<CR>

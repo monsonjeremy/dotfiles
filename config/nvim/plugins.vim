@@ -26,6 +26,7 @@ Plug 'junegunn/fzf.vim'
 " Lua
 Plug 'neovim/nvim-lspconfig'
 Plug 'ojroques/nvim-lspfuzzy'
+Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
@@ -106,3 +107,18 @@ nnoremap <leader>grum :Git rebase upstream/master<CR>
 nnoremap <leader>grom :Git rebase origin/master<CR>
 
 lua require("init")
+
+" Auto reload vimrc
+augroup autoreloadvimrc
+  autocmd!
+  autocmd BufWritePost *.vim source $MYVIMRC
+augroup end
+" }}}
+
+" Terminal buffer
+augroup terminal
+  autocmd!
+  autocmd TermOpen *
+    \ setlocal nonumber |
+    \ setlocal signcolumn=no
+augroup end

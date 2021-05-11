@@ -35,7 +35,6 @@ set updatetime=100                              " You will have bad experience f
 set cmdheight=2                                 " Give more space for displaying messages.
 set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-" }}}
 
 " Backup
 set backup                                      " Enable backup of files
@@ -44,19 +43,16 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set noswapfile
-" }}}
 
 " Undo
 set undofile                                    " Keep a persistent backup file.
 set undodir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-" }}}
 
 " Folding
 set foldmethod=indent
 set foldlevelstart=99
 set foldnestmax=2
 set foldtext=NeatFoldText()
-" }}}
 
 " Colors
 let g:onedark_terminal_italics=1
@@ -71,7 +67,6 @@ set shiftwidth=2                                " Indentation amount for < and >
 set nojoinspaces                                " Prevents inserting two spaces after punctuation on a join (J).
 set nrformats-=octal                            " Numbers that start with a zero will be considered to be octal
 set smartindent
-" }}}
 
 " Line numbers
 set number                                      " Show line numbers
@@ -90,7 +85,6 @@ set omnifunc=syntaxcomplete#Complete
 
 " Substitute
 set inccommand=nosplit                          " Shows the effects of a command incrementally, as you type.
-" }}}
 
 " Splits
 set splitright                                  " Open vertical splits to the right
@@ -102,7 +96,6 @@ set diffopt+=algorithm:patience
 
 " Tags
 set tags=./.tags,.tags;
-" }}}
 
 " Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 if (has("nvim"))
@@ -131,4 +124,14 @@ augroup END
 augroup highlight_yank
   autocmd!
   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 150})
+augroup END
+
+augroup auto_remove_trailing_whitespace
+    autocmd!
+    autocmd BufWritePre * %s/\s\+$//e
+augroup END
+
+augroup rust_inlay_hints
+    autocmd!
+    autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
 augroup END
