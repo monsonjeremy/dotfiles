@@ -20,7 +20,7 @@ function! FloatingFZF()
 endfunction
 
 function! FZFWithDevIcons()
-  let l:fzf_files_options = ' --preview "bat --theme="OneHalfDark" --style=numbers,changes --color always {2..-1} | head -'.&lines.'" --expect=ctrl-t,ctrl-v,ctrl-x --multi'
+  let l:fzf_files_options = ' --preview "bat --theme="TwoDark" --style=numbers,changes --color always {2..-1} | head -'.&lines.'" --expect=ctrl-t,ctrl-v,ctrl-x --multi'
   " if needed: --bind=ctrl-a:select-all,ctrl-d:deselect-all
 
 	function! s:files()

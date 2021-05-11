@@ -36,6 +36,7 @@ brew 'fnm'
 brew 'rust'
 brew 'topgrade'
 brew 'bat'
+brew 'luarocks'
 
 cask 'docker'
 cask 'font-source-code-pro'
