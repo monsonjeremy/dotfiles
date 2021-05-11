@@ -1,6 +1,9 @@
 
 " Keymap
 
+" Console log whats currently in the clipboard
+let @l = "iconsole.log('jjpa:', jjpA;jj=="
+
 nnoremap <Space> <Nop>
 
 " Open Vimrc in split
@@ -43,7 +46,6 @@ nnoremap <leader>e :e<CR>
 " Close all other wndows
 nnoremap <leader><CR> :only<CR>
 
-
 " Select last paste in visual mode
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
@@ -54,17 +56,9 @@ nnoremap <esc>^[ <esc>^[
 " Toggle relative line numbers
 nnoremap <silent> <leader>, :call NumberToggle()<cr>
 
-" Tabs
-" New tab
-nnoremap <leader>tn :tabnew<CR>
-nnoremap <silent> [t :tabp<CR>      " Previous tab (override unimpaired jump to next tag)
-nnoremap <silent> ]t :tabn<CR>      " Next tab (override unimpaired jump to previous tag)
-
-
 " Macros
 nnoremap <leader>mq :<C-U><C-R><C-R>='let @q = '. string(getreg('q'))<CR><C-F><left> " Easily edit the macro stored at register q
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>                              " Run macro over selected rows using @
-
 
 " Movement
 " Move to end of line
@@ -83,7 +77,6 @@ nnoremap <silent> <Leader>th :sp term://zsh<CR>
 tnoremap <Esc> <C-\><C-n>                        " Escape to exit to normal mode in terminal
 tnoremap jj <C-\><C-n>
 
-
 " Splits
 nnoremap <silent> <C-h> :call WinMove('h')<CR> " Move to the split in the direction shown, or create a new split
 nnoremap <silent> <C-j> :call WinMove('j')<CR>
@@ -92,24 +85,9 @@ nnoremap <silent> <C-l> :call WinMove('l')<CR>
 nnoremap <C-w>f :vertical wincmd f<CR>         " Open file under cursor in vertical split
 
 
-" Folds
-" Navigate between closed folds
-nnoremap <silent> zn :call NextClosedFold('j')<CR>
-nnoremap <silent> zN :call NextClosedFold('k')<CR>
-
-
 " Grep / Search
-" Regular grep
-nnoremap <leader>h :silent grep! -R  .<left><left>
 vnoremap <silent> / :<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0\|exec '/'.g:srchstr\|endif<CR>
 vnoremap <silent> ? :<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0\|exec '?'.g:srchstr\|endif<CR>
-
-" Grep word under cursor: (from Learn Vimscript the hard way:
-" http://learnvimscriptthehardway.stevelosh.com/chapters/32.html)
-"nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cword>")) . " ."<CR>:copen<CR>
-nnoremap <leader>g :call SearchAndGrep("normal")<CR>
-vnoremap <leader>g :<c-u>call SearchAndGrep(visualmode())<CR>
-
 
 " Substitute
 nnoremap c* *``cgn
@@ -117,9 +95,6 @@ nnoremap c# *``cgN
 
 nnoremap d* *``dgn
 nnoremap d# *``dgN
-
-nnoremap <C-space> :call SubstituteWordOrSelection("normal")<CR>
-vnoremap <C-space> :<c-u>call SubstituteWordOrSelection(visualmode())<CR>
 
 nnoremap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
@@ -144,9 +119,6 @@ nnoremap <leader>Y gg"+yG
 
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
-
-" ctrl s saves the file without closing
-nmap <C-s> :w<CR>
 
 nnoremap <Leader>ww oconst wait = (ms: number): Promise<void> => {<CR>return new Promise(res => setTimeout(res, ms));<CR>}<esc>k=i{<CR>
 

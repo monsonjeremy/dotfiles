@@ -79,15 +79,6 @@ let g:indentLine_first_char = '│'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
 
-
-" Blamer nvim
-let g:blamer_enabled = 0
-let g:blamer_prefix = ' > '
-
-" Hexokinase
-let g:Hexokinase_highlighters = [ 'virtual' ]
-
-
 " vim-better-whitespace
 nmap <leader>y :StripWhitespace<CR>                              "   <leader>y - Automatically remove trailing whitespace
 

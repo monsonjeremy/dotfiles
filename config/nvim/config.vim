@@ -13,7 +13,7 @@ set mouse=a                                     " Enable mouse.
 set lazyredraw                                  " Only redraw when needed
 set nostartofline                               " Do not jump to first character with page commands.
 set showmatch                                   " Highlight matching [{()}]
-set completeopt=longest,menuone,preview
+set completeopt=menuone,noselect
 set clipboard=unnamedplus                       " Use the clipboard register
 set list
 set listchars=nbsp:¬,tab:>-,extends:»,precedes:«,trail:•
@@ -58,19 +58,11 @@ set foldnestmax=2
 set foldtext=NeatFoldText()
 " }}}
 
-" Colors {{{
+" Colors
 let g:onedark_terminal_italics=1
 let g:onedark_hide_endofbuffer=1
 
-syntax on
-set background=dark
-set cursorline                                  " Disable Highlight current row
-set termguicolors                               " Enable true color support
-colorscheme base16-onedark
-highlight NormalFloat cterm=NONE ctermfg=168 ctermbg=236 gui=NONE guifg=#dcdfe4 guibg=#282c34
 
-
-" }}}
 " Tabs (whitespace settings) {{{
 set tabstop=4                                   " Render Tabs using this many spaces.
 set softtabstop=2
@@ -126,11 +118,6 @@ let g:netrw_bufsettings='noma nomod nu nowrap ro nobl'
 set tags=./.tags,.tags;
 " }}}
 
-" Reload icons after init source
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
-
 " Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 if (has("nvim"))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
@@ -146,18 +133,6 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-" Make background transparent for many things
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE
-hi! LineNr ctermfg=NONE guibg=NONE
-hi! SignColumn ctermfg=NONE guibg=NONE
-hi! StatusLine guifg=#16252b guibg=#6699CC
-hi! StatusLineNC guifg=#16252b guibg=#16252b
-
-" Try to hide vertical spit and end of buffer symbol
-hi! VertSplit gui=NONE guifg=#17252c guibg=#17252c
-" hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=#17252c guifg=#17252c
-
 " Python 3 virtual env
 let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
@@ -169,5 +144,5 @@ augroup END
 
 augroup highlight_yank
   autocmd!
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 80})
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 150})
 augroup END

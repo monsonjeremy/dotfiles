@@ -1,5 +1,7 @@
 
 require("colors")
+require('file_icons')
+require("mappings")
 require("git")
 require("lsp")
 require("lsp_compe")
