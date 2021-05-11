@@ -9,6 +9,9 @@ require("lsp_trouble")
 require("treesitter")
 require("tabline")
 require("statusline")
+require('nvim_comment').setup({
+  comment_empty = false
+})
 
 
 

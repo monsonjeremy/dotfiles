@@ -73,5 +73,5 @@ map("n", "<S-t>", [[<Cmd>tabnew<CR>]], opt)
 map("n", "<S-x>", [[<Cmd>bdelete<CR>]], opt)
 
 -- tabnew and tabprev
-map("n", "<S-Right>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
-map("n", "<S-Left>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
+map("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
+map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)

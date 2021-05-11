@@ -1,8 +1,28 @@
+require'lspinstall'.setup()
+local function setup_servers()
+  require'lspinstall'.setup()
+  local servers = require'lspinstall'.installed_servers()
+  for _, server in pairs(servers) do
+    require'lspconfig'[server].setup{}
+  end
+end
+
+setup_servers()
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+require'lspinstall'.post_install_hook = function ()
+  setup_servers() -- reload installed servers
+  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+end
+
 local function on_attach(client)
   require 'illuminate'.on_attach(client)
 end
 
-require'lspconfig'.tsserver.setup{ on_attach=on_attach }
+require'lspconfig'.tsserver.setup{
+  on_attach=on_attach,
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+}
 require'lspconfig'.pyls.setup{ on_attach=on_attach }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -49,6 +69,7 @@ local opts = {
 }
 
 require('symbols-outline').setup(opts)
+local saga = require 'lspsaga'
 
 local cmd = vim.cmd
 
@@ -57,9 +78,24 @@ cmd "nnoremap <leader>dd :lua vim.lsp.buf.definition()<CR>"
 cmd "nnoremap <leader>df :lua vim.lsp.buf.implementation()<CR>"
 cmd "nnoremap <leader>dt :lua vim.lsp.buf.signature_help()<CR>"
 cmd "nnoremap <leader>dr :lua vim.lsp.buf.references()<CR>"
-cmd "nnoremap <leader>drr :lua vim.lsp.buf.rename()<CR>"
-cmd "nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>"
-cmd "nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>"
+cmd "nnoremap <leader>drr :Lspsaga rename<CR><CR>"
+cmd "nnoremap <silent> <leader>pd :Lspsaga preview_definition<CR>"
+cmd "nnoremap <leader>sh :Lspsaga signature_help<CR>"
+cmd "nnoremap <silent> K :Lspsaga hover_doc<CR>"
 cmd "nnoremap <leader>cs :lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>"
-cmd "nnoremap <leader>dn :lua vim.lsp.diagnostic.goto_next()<CR>"
-cmd "nnoremap <leader>dp :lua vim.lsp.diagnostic.goto_prev()<CR>"
+cmd "nnoremap <leader>dn :Lspsaga diagnostic_jump_next<CR>"
+cmd "nnoremap <leader>dp :Lspsaga diagnostic_jump_prev<CR>"
+cmd "nnoremap <silent><leader>ca :Lspsaga code_action<CR>"
+cmd "vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>"
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = {
+      prefix = "",
+      spacing = 0,
+    },
+    signs = true,
+    underline = true,
+  }
+)
+

@@ -30,13 +30,13 @@ require('lspkind').init({
   -- Below are defaults
   symbol_map = {
     Text = '',
-    Method = 'ƒ',
+    Method = '',
     Function = '',
     Constructor = '',
     Variable = '',
     Class = '',
     Interface = 'ﰮ',
-    Module = '',
+    Module = '',
     Property = '',
     Unit = '',
     Value = '',
