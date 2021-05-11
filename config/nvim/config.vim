@@ -37,7 +37,7 @@ set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 " }}}
 
-" Backup {{{
+" Backup
 set backup                                      " Enable backup of files
 set writebackup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -46,12 +46,12 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set noswapfile
 " }}}
 
-" Undo {{{
+" Undo
 set undofile                                    " Keep a persistent backup file.
 set undodir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " }}}
 
-" Folding {{{
+" Folding
 set foldmethod=indent
 set foldlevelstart=99
 set foldnestmax=2
@@ -63,7 +63,7 @@ let g:onedark_terminal_italics=1
 let g:onedark_hide_endofbuffer=1
 
 
-" Tabs (whitespace settings) {{{
+" Tabs (whitespace settings)
 set tabstop=4                                   " Render Tabs using this many spaces.
 set softtabstop=2
 set expandtab                                   " Insert spaces when TAB is pressed.
@@ -73,48 +73,34 @@ set nrformats-=octal                            " Numbers that start with a zero
 set smartindent
 " }}}
 
-" Line numbers {{{
+" Line numbers
 set number                                      " Show line numbers
 set relativenumber
 set numberwidth=3                               " Gutter width for line numbers
 set signcolumn=yes
-"}}}
 
-" Search {{{
+
+" Search
 set grepprg=ag\ --vimgrep
 set ignorecase                                  " Make searching case insensitive.
 set smartcase                                   " Use case sensitive search when query has mixed case.
 set gdefault                                    " Use 'g' flag by default with :s/foo/bar/.
 set omnifunc=syntaxcomplete#Complete
-"}}}
 
-" Substitute {{{
+
+" Substitute
 set inccommand=nosplit                          " Shows the effects of a command incrementally, as you type.
 " }}}
 
-" Splits {{{
+" Splits
 set splitright                                  " Open vertical splits to the right
 set splitbelow                                  " Open horizontal splits below
 set diffopt+=vertical                           " Open diff in vertical split
 set diffopt+=indent-heuristic
 set diffopt+=algorithm:patience
-"}}}
 
-" Netrw {{{
-let g:netrw_liststyle=4
-let g:netrw_preview=1
-let g:netrw_alto=0
-let g:netrw_winsize=50
-let g:netrw_keepdir=1
-let g:netrw_menu=0
-let g:netrw_banner=0
 
-" Allow netrw to remove non-empty local directories
-let g:netrw_localrmdir='rm -r'
-let g:netrw_bufsettings='noma nomod nu nowrap ro nobl'
-" }}}
-"
-" Tags {{{
+" Tags
 set tags=./.tags,.tags;
 " }}}
 
