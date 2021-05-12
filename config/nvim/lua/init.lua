@@ -4,14 +4,15 @@ require('file_icons')
 require("mappings")
 require("git")
 require("lsp")
-require("lsp_compe")
-require("lsp_trouble")
+require("autocompletion")
 require("treesitter")
 require("tabline")
 require("statusline")
+
 require('nvim_comment').setup({
   comment_empty = false
 })
+require("trouble").setup {}
 
 
 

@@ -63,9 +63,9 @@ cmd "hi LspDiagnosticsVirtualTextHint guifg=#61afef"
 
 require('colorizer').setup()
 
-require("lsp-colors").setup {
+require("lsp-colors").setup({
   Error = "#db4b4b",
   Warning = "#e0af68",
   Information = "#61afef",
   Hint = "#10B981"
-}
+})

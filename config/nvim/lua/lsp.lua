@@ -1,4 +1,5 @@
 require'lspinstall'.setup()
+
 local function setup_servers()
   require'lspinstall'.setup()
   local servers = require'lspinstall'.installed_servers()
@@ -15,15 +16,10 @@ require'lspinstall'.post_install_hook = function ()
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
+
 local function on_attach(client)
   require 'illuminate'.on_attach(client)
 end
-
-require'lspconfig'.tsserver.setup{
-  on_attach=on_attach,
-  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-}
-require'lspconfig'.pyls.setup{ on_attach=on_attach }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -35,67 +31,51 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   }
 }
 
-require'lspconfig'.rust_analyzer.setup{
-  on_attach=on_attach,
+local lspconfig = require("lspconfig")
+
+lspconfig.tsserver.setup{
+  on_attach= function(client)
+    client.resolved_capabilities.document_formatting = false
+    on_attach(client)
+  end,
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+}
+
+lspconfig.rust_analyzer.setup{
+  on_attach= function(client)
+    client.resolved_capabilities.document_formatting = false
+    on_attach(client)
+  end,
   capabilities=capabilities
 }
 
-require'lspconfig'.jsonls.setup {
+lspconfig.yamlls.setup {on_attach = on_attach}
+lspconfig.cssls.setup {on_attach = on_attach}
+lspconfig.html.setup {on_attach = on_attach}
+lspconfig.bashls.setup {on_attach = on_attach}
+lspconfig.dockerls.setup {on_attach = on_attach}
+lspconfig.cssls.setup {on_attach = on_attach}
+lspconfig.pyls.setup{ on_attach=on_attach }
+lspconfig.dotls.setup{ on_attach=on_attach }
+lspconfig.terraformls.setup{ on_attach=on_attach }
+lspconfig.vimls.setup{ on_attach=on_attach}
+lspconfig.jsonls.setup {
   on_attach=on_attach,
-  commands = {
-    Format = {
-      function()
-        vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
-      end
-    }
-  }
-}
-require'lspconfig'.dotls.setup{ on_attach=on_attach }
-require'lspconfig'.terraformls.setup{ on_attach=on_attach }
-require'lspconfig'.tsserver.setup{ on_attach=on_attach }
-require'lspconfig'.vimls.setup{ on_attach=on_attach}
-require('lspfuzzy').setup {}
-
-local opts = {
-  -- whether to highlight the currently hovered symbol
-  -- disable if your cpu usage is higher than you want it
-  -- or you just hate the highlight
-  -- default: true
-  highlight_hovered_item = true,
-
-  -- whether to show outline guides
-  -- default: true
-  show_guides = true,
+  cmd = {"json-languageserver", "--stdio"}
 }
 
-require('symbols-outline').setup(opts)
-local saga = require 'lspsaga'
+local function eslint_config_exists()
+  local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
 
-local cmd = vim.cmd
+  if not vim.tbl_isempty(eslintrc) then
+    return true
+  end
 
-cmd "let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']"
-cmd "nnoremap <leader>dd :lua vim.lsp.buf.definition()<CR>"
-cmd "nnoremap <leader>df :lua vim.lsp.buf.implementation()<CR>"
-cmd "nnoremap <leader>dt :lua vim.lsp.buf.signature_help()<CR>"
-cmd "nnoremap <leader>dr :lua vim.lsp.buf.references()<CR>"
-cmd "nnoremap <leader>drr :Lspsaga rename<CR><CR>"
-cmd "nnoremap <silent> <leader>pd :Lspsaga preview_definition<CR>"
-cmd "nnoremap <leader>sh :Lspsaga signature_help<CR>"
-cmd "nnoremap <silent> K :Lspsaga hover_doc<CR>"
-cmd "nnoremap <leader>cs :lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>"
-cmd "nnoremap <leader>dn :Lspsaga diagnostic_jump_next<CR>"
-cmd "nnoremap <leader>dp :Lspsaga diagnostic_jump_prev<CR>"
-cmd "nnoremap <silent><leader>ca :Lspsaga code_action<CR>"
-cmd "vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>"
+  if vim.fn.filereadable("package.json") then
+    if vim.fn.json_decode(vim.fn.readfile("package.json"))["eslintConfig"] then
+      return true
+    end
+  end
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-      prefix = "",
-      spacing = 0,
-    },
-    signs = true,
-    underline = true,
-  }
-)
-
+  return false
+end

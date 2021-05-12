@@ -15,6 +15,7 @@ if !filereadable(plugpath)
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+
 " Icons
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ryanoasis/vim-devicons'
@@ -43,6 +44,12 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'onsails/lspkind-nvim'
 Plug 'hrsh7th/vim-vsnip'
+
+" Keymaps
+Plug 'folke/which-key.nvim'
+
+" Dashboard
+" Plug 'ChristianChiarulli/dashboard-nvim'
 
 " Syntax/Colors
 Plug 'p00f/nvim-ts-rainbow'
