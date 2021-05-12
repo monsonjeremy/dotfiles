@@ -28,13 +28,13 @@ set shortmess+=c                                " don't give ins-completion-menu
 set nomodeline
 set scrolloff=5
 set autoread                                    " Automatically re-read file if a change was detected outside of vim
-set fillchars+=vert:.                           " Change vertical split character to be a space (essentially hide it)
+set fillchars+=vert:\│
 set noshowmode                                  " Don't dispay mode in command line (airilne already shows it)
 set winbl=10                                    " Set floating window to be slightly transparent
 set updatetime=100                              " You will have bad experience for diagnostic messages when it's default 4000.
 set cmdheight=2                                 " Give more space for displaying messages.
 set colorcolumn=100
-highlight ColorColumn ctermbg=0 guibg=lightgrey
+highlight ColorColumn ctermbg=0 guibg=#383c44
 
 " Backup
 set backup                                      " Enable backup of files
@@ -54,11 +54,6 @@ set foldlevelstart=99
 set foldnestmax=2
 set foldtext=NeatFoldText()
 
-" Colors
-let g:onedark_terminal_italics=1
-let g:onedark_hide_endofbuffer=1
-
-
 " Tabs (whitespace settings)
 set tabstop=4                                   " Render Tabs using this many spaces.
 set softtabstop=2
@@ -73,7 +68,6 @@ set number                                      " Show line numbers
 set relativenumber
 set numberwidth=3                               " Gutter width for line numbers
 set signcolumn=yes
-
 
 " Search
 set grepprg=ag\ --vimgrep
@@ -92,7 +86,6 @@ set splitbelow                                  " Open horizontal splits below
 set diffopt+=vertical                           " Open diff in vertical split
 set diffopt+=indent-heuristic
 set diffopt+=algorithm:patience
-
 
 " Tags
 set tags=./.tags,.tags;

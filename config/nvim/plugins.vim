@@ -63,7 +63,6 @@ Plug 'matze/vim-move'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'windwp/nvim-autopairs'
 Plug 'simrat39/symbols-outline.nvim'
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'terrortylor/nvim-comment'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -87,10 +86,7 @@ vnoremap X "_d
 let g:indentLine_char = '│'
 let g:indentLine_first_char = '│'
 let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 0
-
-" vim-better-whitespace
-nmap <leader>y :StripWhitespace<CR>                              "   <leader>y - Automatically remove trailing whitespace
+" let g:indentLine_setColors = 0
 
 " vim-doge
 nmap <leader>z :DogeGenerate<CR>

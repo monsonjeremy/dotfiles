@@ -8,11 +8,10 @@ require("autocompletion")
 require("treesitter")
 require("tabline")
 require("statusline")
+require("fileTree")
 
 require('nvim_comment').setup({
   comment_empty = false
 })
 require("trouble").setup {}
-
-
 

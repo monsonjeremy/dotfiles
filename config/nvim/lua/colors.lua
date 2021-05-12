@@ -8,7 +8,8 @@ cmd "set termguicolors"
 local base16 = require('base16')
 base16(base16.themes.onedark, true)
 
-cmd "highlight NormalFloat cterm=NONE ctermfg=168 ctermbg=236 gui=NONE guifg=#dcdfe4 guibg=#282c34"
+-- Color for the floating windows
+cmd "highlight NormalFloat cterm=NONE ctermfg=168 ctermbg=236 gui=NONE guifg=#fff guibg=#24283b"
 
 cmd "hi DiffAdd guifg=#10B981 guibg=none"
 cmd "hi DiffChange guifg=#61afef guibg=none"
@@ -22,30 +23,33 @@ cmd "hi cursorlinenr guifg=#abb2bf"
 -- NvimTree
 cmd "hi NvimTreeFolderIcon guifg = #61afef"
 cmd "hi NvimTreeFolderName guifg = #61afef"
+cmd "hi NvimTreeIndentMarker guifg=#383c44"
+cmd "hi NvimTreeNormal guibg=#1e222a"
+cmd "hi NvimTreeVertSplit guifg=#1e222a"
 cmd "hi NvimTreeRootFolder guifg=#f9929b"
 
+cmd "hi NvimInternalError guifg=#f9929b"
 cmd "hi Comment guifg=#42464e"
 
 cmd "hi NvimInternalError guifg=#f9929b"
 
+cmd "hi EndOfBuffer guifg=#1e222a"
+
 -- Transparent
 cmd "hi Normal ctermbg=NONE guibg=NONE"
-cmd "hi NonText ctermbg=NONE guibg=NONE"
+cmd "hi NonText ctermbg=NONE guibg=#1e222a guifg=#1e222a"
 cmd "hi LineNr ctermfg=NONE guibg=NONE"
 cmd "hi SignColumn ctermfg=NONE guibg=NONE"
 
-cmd "hi StatusLine guifg=#16252b guibg=#6699CC"
-cmd "hi StatusLineNC guifg=#16252b guibg=#16252b"
-
 -- " Try to hide vertical split and end of buffer symbol
-cmd "hi VertSplit gui=NONE guifg=#17252c guibg=#17252c"
+cmd "hi VertSplit gui=NONE guifg=#383c44 guibg=#1e222a"
 
 -- Highlight trailing whitespaces
-cmd "highlight Trail ctermbg=red guibg=red"
+cmd "hi Trail ctermbg=red guibg=red"
 cmd "call matchadd('Trail', '\\s\\+$', 100)"
 
 -- inactive statuslines as thin splitlines
-cmd("highlight! StatusLineNC gui=underline guifg=#383c44")
+cmd "highlight! StatusLineNC gui=underline guifg=#383c44 guibg=NONE"
 
 -- error / warnings
 cmd "hi LspDiagnosticsSignError guifg=#f9929b"
