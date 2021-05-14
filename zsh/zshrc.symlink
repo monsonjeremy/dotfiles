@@ -1,6 +1,5 @@
 # Path to oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
-export TERM=xterm-256color-italic
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
@@ -10,8 +9,6 @@ eval "$(starship init zsh)"
 # TMUX
 # Automatically start tmux
 ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_FIXTERM=false
-ZSH_TMUX_FIXTERM_WITHOUT_256COLOR=xterm
 ZSH_TMUX_AUTOQUIT=false
 ZSH_TMUX_AUTOCONNECT=true
 
