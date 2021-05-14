@@ -4,11 +4,11 @@ lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(
   lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
     update_in_insert = false,
-    -- virtual_text = {
-    --   -- prefix = "●",
-    --   -- spacing = 4,
-    --   severity_limit = "Warning",
-    -- },
+    virtual_text = {
+      prefix = "●",
+      spacing = 4,
+      severity_limit = "Warning",
+    },
     -- signs = true
   }
 )
