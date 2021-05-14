@@ -114,12 +114,6 @@ nnoremap <leader>grom :Git rebase origin/master<CR>
 
 lua require("init")
 
-" Auto reload vimrc
-augroup autoreloadvimrc
-  autocmd!
-  autocmd BufWritePost *.vim source $MYVIMRC
-augroup end
-
 " Terminal buffer
 augroup terminal
   autocmd!

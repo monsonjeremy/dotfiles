@@ -1,4 +1,3 @@
-
 " Keymap
 
 " Console log whats currently in the clipboard

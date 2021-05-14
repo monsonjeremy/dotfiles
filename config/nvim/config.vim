@@ -108,22 +108,3 @@ endif
 let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
 
-" augroup jsonc_ft
-"   au!
-"   autocmd BufNewFile,BufRead *.json set ft=json5
-" augroup END
-
-augroup highlight_yank
-  autocmd!
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 150})
-augroup END
-
-augroup auto_remove_trailing_whitespace
-    autocmd!
-    autocmd BufWritePre * %s/\s\+$//e
-augroup END
-
-augroup rust_inlay_hints
-    autocmd!
-    autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
-augroup END

@@ -1,4 +1,6 @@
 local cmd = vim.cmd
+vim.g.tokyonight_style = "storm"
+vim.g.tokyonight_italic_functions = true
 
 cmd "syntax on"
 cmd "set background=dark"
