@@ -1,17 +1,17 @@
-
-require("colors")
-require('file_icons')
-require("mappings")
+require("config")
+require('fileIcons')
 require("git")
 require("lsp")
-require("autocompletion")
 require("treesitter")
 require("tabline")
-require("statusline")
 require("fileTree")
 
-require('nvim_comment').setup({
-  comment_empty = false
+-- Plugins
+require("trouble").setup({})
+require("todo-comments").setup({})
+require('lualine').setup({
+  options = {
+    theme = 'tokyonight',
+  }
 })
-require("trouble").setup {}
 

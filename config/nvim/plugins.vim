@@ -16,6 +16,8 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'hoob3rt/lualine.nvim'
+
 " Icons
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ryanoasis/vim-devicons'
@@ -38,32 +40,32 @@ Plug 'akinsho/nvim-bufferline.lua'
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'akinsho/nvim-toggleterm.lua'
-Plug 'folke/lsp-colors.nvim'
 Plug 'folke/lsp-trouble.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'onsails/lspkind-nvim'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'famiu/nvim-reload'
+Plug 'folke/todo-comments.nvim'
+Plug 'glepnir/dashboard-nvim'
 
 " Keymaps
 Plug 'folke/which-key.nvim'
 
-" Dashboard
-" Plug 'ChristianChiarulli/dashboard-nvim'
-
 " Syntax/Colors
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'Yggdroot/indentLine'
-Plug 'norcalli/nvim-base16.lua'
+" Plug 'norcalli/nvim-base16.lua'
+Plug 'folke/tokyonight.nvim'
 
 " Editing
-Plug 'RRethy/vim-illuminate'
+" Plug 'RRethy/vim-illuminate'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'matze/vim-move'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'windwp/nvim-autopairs'
 Plug 'simrat39/symbols-outline.nvim'
-Plug 'terrortylor/nvim-comment'
+Plug 'b3nj5m1n/kommentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'AndrewRadev/dsf.vim'
@@ -118,7 +120,6 @@ augroup autoreloadvimrc
   autocmd!
   autocmd BufWritePost *.vim source $MYVIMRC
 augroup end
-" }}}
 
 " Terminal buffer
 augroup terminal

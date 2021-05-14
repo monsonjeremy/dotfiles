@@ -10,7 +10,7 @@ nnoremap <Space> <Nop>
 nnoremap <leader>ve :vsplit $MYVIMRC<CR>
 
 " Source Vimrc
-nnoremap <Leader>vs :so ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>vs :Reload<CR>
 
 " Use jj as escape
 inoremap jj <Esc>

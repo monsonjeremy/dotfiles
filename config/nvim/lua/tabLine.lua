@@ -1,9 +1,5 @@
--- colors
 
-local bar_fg = "#565c64"
-local activeBuffer_fg = "#c8ccd4"
-
-require "bufferline".setup {
+require "bufferline".setup({
     options = {
         buffer_close_icon = "",
         modified_icon = "",
@@ -18,48 +14,7 @@ require "bufferline".setup {
         show_buffer_close_icons = true,
         separator_style = "thin"
     },
-    highlights = {
-        background = {
-            guifg = bar_fg,
-            guibg = "#282c34"
-        },
-        fill = {
-            guifg = bar_fg,
-            guibg = "#282c34"
-        },
-        -- focused window
-        buffer_selected = {
-            guifg = activeBuffer_fg,
-            guibg = "#1e222a",
-            gui = "bold"
-        },
-        separator_selected = {
-            guifg = "#1e222a",
-            guibg = "#1e222a"
-        },
-        -- unfocused opened window
-        buffer_visible = {
-            guifg = "#9298a0",
-            guibg = "#282c34"
-        },
-        separator_visible = {
-            guifg = "#282c34",
-            guibg = "#282c34"
-        },
-        separator = {
-            guifg = "#282c34",
-            guibg = "#282c34"
-        },
-        indicator_selected = {
-            guifg = "#282c34",
-            guibg = "#282c34"
-        },
-        modified_selected = {
-            guifg = "#A3BE8C",
-            guibg = "#1e222a"
-        }
-    }
-}
+})
 
 local opt = {silent = true}
 

@@ -76,7 +76,6 @@ set smartcase                                   " Use case sensitive search when
 set gdefault                                    " Use 'g' flag by default with :s/foo/bar/.
 set omnifunc=syntaxcomplete#Complete
 
-
 " Substitute
 set inccommand=nosplit                          " Shows the effects of a command incrementally, as you type.
 
@@ -109,10 +108,10 @@ endif
 let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
 
-augroup jsonc_ft
-  au!
-  autocmd BufNewFile,BufRead *.json   set ft=json5
-augroup END
+" augroup jsonc_ft
+"   au!
+"   autocmd BufNewFile,BufRead *.json set ft=json5
+" augroup END
 
 augroup highlight_yank
   autocmd!

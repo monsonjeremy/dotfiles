@@ -23,9 +23,6 @@ map("n", "<C-k>", [[:call WinMove('k')<CR>]], { noremap=true, silent=true })
 map("n", "<C-l>", [[:call WinMove('l')<CR>]], { noremap=true, silent=true })
 map("n", "<C-w>f", [[:vertical wincmd f<CR>]], { noremap=true, silent=true })
 
--- Comments
-map("n", "<leader>/", [[:CommentToggle<CR>]], {noremap = true, silent = true})
-map("v", "<leader>/", [[:CommentToggle<CR>]], {noremap = true, silent = true})
 
 -- === Search shorcuts === "
 map("n", "<C-_>", [[:nohlsearch<CR>]], {noremap = true, silent = true})
@@ -33,6 +30,7 @@ map("n", "<C-_>", [[:nohlsearch<CR>]], {noremap = true, silent = true})
 -- LSP
 local cmd = vim.cmd
 cmd "let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']"
+
 cmd "nnoremap <leader>dd :lua vim.lsp.buf.definition()<CR>"
 cmd "nnoremap <leader>df :lua vim.lsp.buf.implementation()<CR>"
 cmd "nnoremap <leader>dt :lua vim.lsp.buf.signature_help()<CR>"

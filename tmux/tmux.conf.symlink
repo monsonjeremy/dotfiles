@@ -1,11 +1,7 @@
-#######################
 # ***    PLUGINS   *** #
-########################
 set -g @plugin 'tmux-plugins/tmux-cpu'
 
-########################
 # ***    DISPLAY   *** #
-########################
 
 # Set tmux to display in 256 colors
 set -g default-terminal 'tmux-256color-italic'
