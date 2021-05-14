@@ -38,12 +38,12 @@ lsp_config.efm.setup({
     'typescriptreact'
   },
   on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_formatting = true
     on_attach(client)
   end,
   root_dir = lsp_config.util.root_pattern(unpack(efm_root_markers)),
   init_options = {
-    documentFormatting = false
+    documentFormatting = true
   },
   settings = {
     rootMarkers = efm_root_markers,

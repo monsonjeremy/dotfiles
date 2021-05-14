@@ -55,7 +55,6 @@ Plug 'folke/which-key.nvim'
 " Syntax/Colors
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'Yggdroot/indentLine'
-" Plug 'norcalli/nvim-base16.lua'
 Plug 'folke/tokyonight.nvim'
 
 " Editing
