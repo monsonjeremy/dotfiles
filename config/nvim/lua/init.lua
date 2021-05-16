@@ -1,4 +1,3 @@
-require('packer')
+require('plugins')
 require('config')
-require('fzf')
 

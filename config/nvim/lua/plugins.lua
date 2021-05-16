@@ -11,16 +11,7 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
-  use {
-    'neovim/nvim-lspconfig',
-    config = function() require('plugins.lsp') end
-  }
-  use {
-    'kyazdani42/nvim-web-devicons',
-    config = function ()
-      require('plugins.nvim-web-devicons')
-    end
-  }
+
   use 'tpope/vim-fugitive'
   use 'ryanoasis/vim-devicons'
   use 'nvim-lua/plenary.nvim'
@@ -41,6 +32,23 @@ return require('packer').startup(function()
   use 'chaoren/vim-wordmotion'
   use 'tweekmonster/startuptime.vim'
   use 'ray-x/lsp_signature.nvim'
+
+  use {
+    'neovim/nvim-lspconfig',
+    config = function() require('lsp') end
+  }
+
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+  }
+
+  use {
+    'kyazdani42/nvim-web-devicons',
+    config = function ()
+      require('plugins.nvim-web-devicons')
+    end
+  }
 
   use {
     'folke/tokyonight.nvim',
@@ -169,7 +177,8 @@ return require('packer').startup(function()
     'pwntester/octo.nvim',
     config=function()
       require"octo".setup()
-    end
+    end,
+    opt = true
   }
 
 end, {

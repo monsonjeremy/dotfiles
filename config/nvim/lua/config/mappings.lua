@@ -15,6 +15,7 @@ map("v", "X", [["_d]])
 -- FZF
 map("n", "<C-p>", [[:call FZFWithDevIcons()<CR>]], opts)
 map("n", "<leader>p", [[:Buffers<CR>]], opts)
+map("n", "<leader>fp", [[:Telescope find_files<CR>]], opts)
 map("n", "<leader>ff", [[:RG<CR>]], opts)
 map("n", "<leader>fr", [[:RgRegex<CR>]], opts)
 map("n", "<leader>fh", [[:History<CR>]], opts)
