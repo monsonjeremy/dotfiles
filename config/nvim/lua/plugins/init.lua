@@ -1,0 +1,8 @@
+require('plugins.bufferline')
+require('plugins.gitsigns')
+require('plugins.lspkind')
+require('plugins.lualine')
+require('plugins.nvim-autopairs')
+require('plugins.treesitter')
+require('plugins.devicons')
+require('plugins.tokyonight')

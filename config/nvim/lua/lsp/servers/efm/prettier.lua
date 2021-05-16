@@ -1,4 +1,4 @@
 return {
-  formatCommand = 'prettier_d_slim --stdin --stdin-filepath ${INPUT}',
+  formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}",
   formatStdin = true
 }
