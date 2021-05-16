@@ -13,7 +13,7 @@ end
 
 -- Apply global options
 function M.apply_options(opts)
-  for k, v in pairs(opts) do vim.opt[k] = v end
+  for k, v in pairs(opts) do vim.o[k] = v end
 end
 
 function M.apply_globals(globals)
@@ -43,6 +43,19 @@ end
 -- Check if the windows width is greater than a given number of columns
 function M.has_width_gt(cols)
   return vim.fn.winwidth(0) / 2 > cols
+end
+
+function M.apply_colorscheme(name, mode)
+  M.apply_options({
+    termguicolors = true,
+    background = mode
+  })
+
+  M.apply_globals({
+    colors_name = name
+  })
+
+  vim.api.nvim_command('colorscheme ' .. name)
 end
 
 return M

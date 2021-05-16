@@ -24,13 +24,15 @@ set_sign("Error", "ﰸ")
 
 lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(
   lsp.diagnostic.on_publish_diagnostics, {
+    underline = {
+      severity_limit = "Warning"
+    },
     virtual_text = {
-      underline = true,
       prefix = "●",
       spacing = 2,
-      signs = {
-        severity_limit = "Warning",
-      }
     },
+    signs = {
+      severity_limit = "Warning",
+    }
   }
 )

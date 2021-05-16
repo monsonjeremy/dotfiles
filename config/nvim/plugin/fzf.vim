@@ -106,13 +106,11 @@ let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 autocmd! FileType fzf
 autocmd  FileType fzf set noshowmode noruler nonu
 
-nnoremap <silent> <C-p> :call FZFWithDevIcons()<CR>
-nnoremap <silent> <leader>p :Buffers<CR>
-nnoremap <silent> <leader>ff :RG<CR>
-nnoremap <silent> <leader>fr :RgRegex<CR>
-nnoremap <silent> <leader>fh :History<CR>
-" nnoremap <silent> <leader>fo :Format<CR>
-inoremap <silent> <c-space> <esc>:Snippets<CR>
+" nnoremap <silent> <C-p> :call FZFWithDevIcons()<CR>
+" nnoremap <silent> <leader>p :Buffers<CR>
+" nnoremap <silent> <leader>ff :RG<CR>
+" nnoremap <silent> <leader>fr :RgRegex<CR>
+" nnoremap <silent> <leader>fh :History<CR>
 
 imap <c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)

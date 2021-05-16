@@ -1,19 +1,13 @@
+-- require('config.settings')
 require('config.colors')
 require('config.mappings')
+require('config.functions')
 
+vim.g["indentLine_char"] = '│'
+vim.g["indentLine_first_char"] = '│'
+vim.g["indentLine_showFirstIndentLevel"] = 1
 
-vim.cmd[[
-au TextYankPost * silent! lua require("vim.highlight").on_yank({ higroup = 'IncSearch', timeout = 300 })
-]]
+vim.g["python_host_prog"] = '~/.pyenv/versions/neovim2/bin/python'
+vim.g["python3_host_prog"] = '~/.pyenv/versions/neovim3/bin/python'
 
-vim.cmd[[
-au BufWritePre * %s/\s\+$//e
-]]
-
-vim.cmd[[
-au BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
-]]
-
-vim.cmd[[
-au BufWritePost *.vim :Reload
-]]
+vim.g["move_map_keys"] = 0

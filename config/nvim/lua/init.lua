@@ -1,5 +1,4 @@
-require('plugins.init')
+require('packer')
 require('config')
-require('lsp')
 require('fzf')
 

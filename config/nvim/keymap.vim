@@ -46,11 +46,7 @@ nnoremap <leader><CR> :only<CR>
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Escape to clear highlighting in normal mode
-nnoremap <silent> <esc> :nohlsearch<return><esc>
-nnoremap <esc>^[ <esc>^[
-
-" Toggle relative line numbers
-nnoremap <silent> <leader>, :call NumberToggle()<cr>
+nnoremap <silent> <Esc> :nohlsearch<CR>
 
 " Macros
 nnoremap <leader>mq :<C-U><C-R><C-R>='let @q = '. string(getreg('q'))<CR><C-F><left> " Easily edit the macro stored at register q

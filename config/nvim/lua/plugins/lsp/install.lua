@@ -1,4 +1,4 @@
-local lspinstall = require('lspinstall')
+--[[ local lspinstall = require('lspinstall')
 
 lspinstall.setup()
 
@@ -18,4 +18,4 @@ for _, server in pairs(required_servers) do
   if not vim.tbl_contains(installed_servers, server) then
     require'lspinstall'.install_server(server)
   end
-end
+end ]]
