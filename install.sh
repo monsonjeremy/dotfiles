@@ -144,7 +144,5 @@ echo "---------------------------------------------------------"
 defaults write -g KeyRepeat -int 2
 defaults write -g InitialKeyRepeat -int 10
 cp .rgignore ~/.rgignore
-tic -x tmux-256color.terminfo
-tic -x xterm-256color-italic.terminfo
 
 exit 0
