@@ -1,5 +1,4 @@
 vim.defer_fn(function ()
-  print('defered execution of higlights')
   vim.cmd[[highlight LspDiagnosticsVirtualTextError guifg=#db4b4b guibg=NONE]]
   vim.cmd[[highlight LspDiagnosticsVirtualTextHint guifg=#1abc9c guibg=NONE]]
   vim.cmd[[highlight LspDiagnosticsVirtualTextInformation guifg=#0db9d7 guibg=NONE]]
@@ -9,4 +8,4 @@ vim.defer_fn(function ()
   vim.cmd[[highlight LspDiagnosticsUnderlineHint guisp=NONE gui=undercurl]] -- #1abc9c
   vim.cmd[[highlight LspDiagnosticsUnderlineInformation guisp=#0db9d7 gui=undercurl]]
   vim.cmd[[highlight LspDiagnosticsUnderlineWarning guisp=#e0af68 gui=undercurl]]
-end, 20)
+end, 15)

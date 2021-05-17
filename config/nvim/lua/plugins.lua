@@ -11,7 +11,7 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
-
+  use 'kabouzeid/nvim-lspinstall'
   use 'tpope/vim-fugitive'
   use 'ryanoasis/vim-devicons'
   use 'nvim-lua/plenary.nvim'

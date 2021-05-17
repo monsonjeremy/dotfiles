@@ -13,9 +13,7 @@ lsp_config.tsserver.setup({
   filetypes = {
     "javascript",
     "javascriptreact",
-    "javascript.jsx",
     "typescript",
     "typescriptreact",
-    "typescript.tsx"
   },
 })

@@ -1,3 +1,7 @@
+vim.g.vsnip_filetypes = {
+  typescriptreact = {"typescript"}
+}
+
 require("compe").setup({
   enabled = true,
   autocomplete = true,
