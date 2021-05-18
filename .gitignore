@@ -7,8 +7,8 @@ tags
 tmp/*
 
 vimrc.local
-config/nvim/plugged
-config/nvim/autoload/plug.vim
+config/nvim/plugin/packer_compiled.vim
 backup/
 *.log
 .DS_Store
+
