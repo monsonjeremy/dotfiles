@@ -40,7 +40,15 @@ return require('packer').startup(function()
 
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+    config = function()
+      require('telescope').setup({
+        defaults = {
+          prompt_position = "top",
+          sorting_strategy = "ascending"
+        }
+      })
+    end
   }
 
   use {

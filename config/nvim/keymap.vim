@@ -98,6 +98,5 @@ nnoremap <leader>Y gg"+yG
 
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
-
-nnoremap <Leader>ww oconst wait = (ms: number): Promise<void> => {<CR>return new Promise(res => setTimeout(res, ms));<CR>}<esc>k=i{<CR>
-
+noremap , <PageDown>
+noremap - <PageUp>
