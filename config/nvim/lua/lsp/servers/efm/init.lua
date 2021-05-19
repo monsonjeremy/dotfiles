@@ -33,6 +33,11 @@ lsp_config.efm.setup({
     efm_log_dir .. "efm.log"
   },
   filetypes = {
+    'json',
+    'css',
+    'scss',
+    'yaml',
+    'markdown',
     'javascript',
     'javascriptreact',
     'typescript',

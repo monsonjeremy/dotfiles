@@ -20,18 +20,18 @@ augroup BWCCreateDir
 augroup END
 
 " Load node modules
-function! LoadMainNodeModule(fname)
-    let nodeModules = "./node_modules/"
-    let packageJsonPath = nodeModules . a:fname . "/package.json"
+" function! LoadMainNodeModule(fname)
+"     let nodeModules = "./node_modules/"
+"     let packageJsonPath = nodeModules . a:fname . "/package.json"
 
-    if filereadable(packageJsonPath)
-        return nodeModules . a:fname . "/" . json_decode(join(readfile(packageJsonPath))).main
-    else
-        return nodeModules . a:fname
-    endif
-endfunction
+"     if filereadable(packageJsonPath)
+"         return nodeModules . a:fname . "/" . json_decode(join(readfile(packageJsonPath))).main
+"     else
+"         return nodeModules . a:fname
+"     endif
+" endfunction
 
-set includeexpr=LoadMainNodeModule(v:fname)
+" set includeexpr=LoadMainNodeModule(v:fname)
 
 " Create and move to split
 " Check if a split already exists in the direction you want to move to.
@@ -53,16 +53,16 @@ endfunction
 
 
 " Style fold text
-function! NeatFoldText()
-  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
-  let lines_count = v:foldend - v:foldstart + 1
-  let lines_count_text = '| ' . printf("%s", lines_count . ' lines') . ' |'
-  let foldchar = matchstr(&fillchars, 'fold:\zs.')
-  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
-  let foldtextend = lines_count_text . repeat(foldchar, 8)
-  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
-endfunction
+" function! NeatFoldText()
+"   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+"   let lines_count = v:foldend - v:foldstart + 1
+"   let lines_count_text = '| ' . printf("%s", lines_count . ' lines') . ' |'
+"   let foldchar = matchstr(&fillchars, 'fold:\zs.')
+"   let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+"   let foldtextend = lines_count_text . repeat(foldchar, 8)
+"   let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+"   return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+" endfunction
 
 " Search within range
 function! RangeSearch(direction)

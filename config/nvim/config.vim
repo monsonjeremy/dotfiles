@@ -42,7 +42,7 @@ set undodir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set foldmethod=indent
 set foldlevelstart=99
 set foldnestmax=2
-set foldtext=NeatFoldText()
+" set foldtext=NeatFoldText()
 set tabstop=4                                   "  Render Tabs using this many spaces.
 set softtabstop=2
 set expandtab                                   "  Insert spaces when TAB is pressed.
