@@ -4,18 +4,8 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$PATH:$HOME/miniconda/bin"
 export GPG_TTY="tty"
 
-# Set EDITOR variable to nvim/vim
-if [ -f /usr/local/bin/nvim ]; then
-    export EDITOR=/usr/local/bin/nvim
-elif [ -f /usr/local/bin/vim ]; then
-    export EDITOR=/usr/local/bin/vim
-else
-    export EDITOR=/usr/bin/vim
-fi
-
 export CLICOLOR=1
 export LSCOLORS="GxFxCxDxBxegedabagaced" # Mac OS
-export LS_COLORS="di=1;36:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34;43" # Linux
 export GREP_OPTIONS="--color"
 
 if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
@@ -52,7 +42,6 @@ fi
 command -v bat  > /dev/null && export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {} --theme='OneHalfDark''"
 command -v blsd > /dev/null && export FZF_ALT_C_COMMAND='blsd'
 command -v tree > /dev/null && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
-
 
 # Aliases
 

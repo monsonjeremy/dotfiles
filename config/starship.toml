@@ -10,7 +10,6 @@ $git_state\
 $git_status\
 $hg_branch\
 $docker_context\
-$package\
 $cmake\
 $dart\
 $dotnet\
@@ -34,11 +33,9 @@ $memory_usage\
 $aws\
 $env_var\
 $custom\
-$cmd_duration\
 $lua\
 $jobs\
 $battery\
-$time\
 $status\
 $line_break\
 $character"""
@@ -47,7 +44,7 @@ $character"""
 truncation_length = 2
 
 [aws]
-symbol = "☁️  "
+symbol = "☁️ "
 
 [git_status]
 disabled = true
