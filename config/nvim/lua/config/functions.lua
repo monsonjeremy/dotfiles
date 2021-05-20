@@ -14,6 +14,11 @@ vim.cmd[[
 au BufWritePost *.vim :Reload
 ]]
 
+-- Set common config files as JSON
+vim.cmd[[
+au BufNewFile,BufRead .eslintrc,.babelrc,.prettierrc,.nycrc set filetype=json
+]]
+
 vim.cmd[[
 au TermOpen * setlocal nonumber | setlocal signcolumn=no
 ]]
