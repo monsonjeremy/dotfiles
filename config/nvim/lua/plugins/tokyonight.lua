@@ -1,3 +1,5 @@
+vim.g.tokyonight_style = "storm"
+
 vim.defer_fn(function ()
   vim.cmd[[highlight LspDiagnosticsVirtualTextError guifg=#db4b4b guibg=NONE]]
   vim.cmd[[highlight LspDiagnosticsVirtualTextHint guifg=#1abc9c guibg=NONE]]

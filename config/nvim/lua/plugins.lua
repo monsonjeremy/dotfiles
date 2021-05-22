@@ -22,8 +22,6 @@ return require('packer').startup(function()
   use 'famiu/nvim-reload'
   use 'sindrets/diffview.nvim'
   use 'nanotee/zoxide.vim'
-  use 'Yggdroot/indentLine'
-  use 'matze/vim-move'
   use 'simrat39/symbols-outline.nvim'
   use 'b3nj5m1n/kommentary'
   use 'tpope/vim-surround'
@@ -32,6 +30,27 @@ return require('packer').startup(function()
   use 'chaoren/vim-wordmotion'
   use 'tweekmonster/startuptime.vim'
   use 'ray-x/lsp_signature.nvim'
+  use "folke/lua-dev.nvim"
+
+  use {
+    'matze/vim-move',
+    config = function()
+      require('plugins.vim-move')
+    end
+  }
+
+  use {
+    'Yggdroot/indentLine',
+    config = function()
+      require('plugins.indentline')
+    end
+  }
+  use {
+    'glepnir/dashboard-nvim',
+    config = function()
+      require('plugins.dashboard')
+    end
+  }
 
   use {
     'neovim/nvim-lspconfig',
@@ -39,15 +58,18 @@ return require('packer').startup(function()
   }
 
   use {
+    'windwp/nvim-spectre',
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+    config = function()
+      require('plugins.nvim-spectre')
+    end
+  }
+
+  use {
     'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
     config = function()
-      require('telescope').setup({
-        defaults = {
-          prompt_position = "top",
-          sorting_strategy = "ascending"
-        }
-      })
+      require('plugins.telescope')
     end
   }
 
@@ -61,7 +83,6 @@ return require('packer').startup(function()
   use {
     'folke/tokyonight.nvim',
     config = function()
-      print('Running tokyonight postinstall')
       require('plugins.tokyonight')
     end
   }
