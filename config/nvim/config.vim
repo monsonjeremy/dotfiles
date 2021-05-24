@@ -22,7 +22,7 @@ set tildeop                                     "  Enable ~ operator.
 set timeoutlen=800                              "  Timeout Leader after 400 ms.
 set virtualedit=block                           "  Enable virtualedit when in Visual Block mode.
 set hidden                                      "  Allow for unsaved changes when switchin buffers (use confirm if you want to be prompted for save)
-set cmdheight=2                                 "  Better display for messages
+set cmdheight=1                                "  Better display for messages
 set shortmess+=c                                "  don't give ins-completion-menu messages.
 set nomodeline
 set scrolloff=5
@@ -30,7 +30,6 @@ set autoread                                    "  Automatically re-read file if
 set noshowmode                                  "  Don't dispay mode in command line (airilne already shows it)
 set winbl=10                                    "  Set floating window to be slightly transparent
 set updatetime=100                              "  You will have bad experience for diagnostic messages when it's default 4000.
-set cmdheight=2                                 "  Give more space for displaying messages.
 set backup                                      "  Enable backup of files
 set writebackup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp

@@ -31,6 +31,21 @@ return require('packer').startup(function()
   use 'tweekmonster/startuptime.vim'
   use 'ray-x/lsp_signature.nvim'
   use "folke/lua-dev.nvim"
+  use 'nvim-treesitter/playground'
+
+  use {
+    'monsonjeremy/onedark.nvim',
+    config = function()
+      require('plugins.onedark')
+    end
+  }
+
+  use {
+    'folke/tokyonight.nvim',
+    config = function()
+      require('plugins.tokyonight')
+    end
+  }
 
   use {
     'matze/vim-move',
@@ -45,6 +60,7 @@ return require('packer').startup(function()
       require('plugins.indentline')
     end
   }
+
   use {
     'glepnir/dashboard-nvim',
     config = function()
@@ -77,13 +93,6 @@ return require('packer').startup(function()
     'kyazdani42/nvim-web-devicons',
     config = function ()
       require('plugins.nvim-web-devicons')
-    end
-  }
-
-  use {
-    'folke/tokyonight.nvim',
-    config = function()
-      require('plugins.tokyonight')
     end
   }
 
