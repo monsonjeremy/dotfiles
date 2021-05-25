@@ -1,5 +1,4 @@
--- require('config.settings')
-require('config.colors')
+require('config.options')
 require('config.mappings')
 require('config.functions')
 

@@ -36,7 +36,9 @@ return require('packer').startup(function()
   use {
     'monsonjeremy/onedark.nvim',
     config = function()
-      require('plugins.onedark')
+      local utils = require('utils')
+      require('plugins.onedark').setupOneDark()
+      utils.apply_colorscheme("onedark", "dark")
     end
   }
 

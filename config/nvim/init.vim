@@ -3,7 +3,6 @@ if !exists('g:vscode')
   let g:mapleader=" "
   let maplocalleader = "ﬁ"
 
-  set termguicolors
   scriptencoding utf-8
 
   source $HOME/.config/nvim/functions.vim

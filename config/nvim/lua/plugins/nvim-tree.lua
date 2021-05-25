@@ -1,6 +1,5 @@
 local map = require('utils').map
 local g = vim.g
-vim.o.termguicolors = true
 local opts = {
   noremap = true,
   silent = true
