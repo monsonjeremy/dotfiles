@@ -4,10 +4,8 @@ function M.setupOneDark()
   local utils = require('utils')
 
   utils.apply_globals({
-    onedark_hide_inactive_statusline = true
+    onedark_hide_inactive_statusline = true,
   })
-
-  print(vim.g.onedark_hide_inactive_statusline)
 
   vim.defer_fn(function ()
     vim.cmd[[highlight LspDiagnosticsVirtualTextError guifg=#db4b4b guibg=NONE]]
