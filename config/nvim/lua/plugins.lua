@@ -59,6 +59,13 @@ return require('packer').startup(function(use)
   }
 
   use {
+    'shaunsingh/nord.nvim',
+    config = function()
+      require('plugins.nord')
+    end
+  }
+
+  use {
     'matze/vim-move',
     config = function()
       require('plugins.vim-move')
@@ -223,11 +230,11 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'pwntester/octo.nvim',
-    config=function()
-      require"octo".setup()
-    end,
-    opt = true
+    'TimUntersberger/neogit',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('neogit').setup({})
+    end
   }
 
 end, {
