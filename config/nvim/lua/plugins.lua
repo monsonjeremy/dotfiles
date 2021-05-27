@@ -10,7 +10,7 @@ end
 
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
   use 'kabouzeid/nvim-lspinstall'
   use 'tpope/vim-fugitive'
   use 'ryanoasis/vim-devicons'
@@ -32,6 +32,15 @@ return require('packer').startup(function()
   use 'ray-x/lsp_signature.nvim'
   use "folke/lua-dev.nvim"
   use 'nvim-treesitter/playground'
+
+  use {
+    'phaazon/hop.nvim',
+    as = 'hop',
+    config = function()
+      require('plugins.hop')
+    end,
+    branch = 'pre-extmarks'
+  }
 
   use {
     'monsonjeremy/onedark.nvim',
@@ -111,7 +120,7 @@ return require('packer').startup(function()
     config = function() require("plugins.nvim-treesitter") end
   }
   use { 'nvim-treesitter/nvim-treesitter-refactor', requires = { 'nvim-treesitter/nvim-treesitter' } }
-  use { 'p00f/nvim-ts-rainbow', requires = { 'nvim-treesitter/nvim-treesitter' } }
+  use { 'p00f/nvim-ts-rainbow', requires = { 'nvim-treesitter/nvim-treesitter' }, branch = 'master' }
   use { 'windwp/nvim-ts-autotag', requires = { 'nvim-treesitter/nvim-treesitter' } }
 
   use {
