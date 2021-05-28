@@ -11,7 +11,7 @@ local opts = {
 
 map('n', '<leader>dd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 map('n', '<leader>df', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-map('n', '<leader>dt', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+map('n', '<leader>dt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 map('n', '<leader>dr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 map('n', '<leader>drr', '<cmd>Lspsaga rename<CR><CR>', opts)
 map('n', '<leader>pd', '<cmd>Lspsaga preview_definition<CR>', opts)
