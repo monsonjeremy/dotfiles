@@ -26,7 +26,7 @@ local function on_attach(client)
   buf_map('v', '<leader>ca', '<cmd><C-U>Lspsaga range_code_action<CR>', opts)
 
   vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
-  vim.cmd [[autocmd CursorHoldI * silent! lua require('lspsaga.signaturehelp').signature_help()]]
+  vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_command [[augroup Format]]
