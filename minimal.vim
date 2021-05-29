@@ -13,5 +13,6 @@ vnoremap <leader>s :lua require('spectre').open_visual()<CR>
 nnoremap <leader>sp viw:lua require('spectre').open_file_search()<cr>
 
 lua << EOF
+  _G.__is_log =true
   require('spectre').setup()
 EOF
