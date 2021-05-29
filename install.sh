@@ -27,13 +27,6 @@ if command -v brew >/dev/null 2>&1; then
 fi
 
 echo "---------------------------------------------------------"
-echo "$(tput setaf 2)Installing Python NeoVim client.$(tput sgr 0)"
-echo "---------------------------------------------------------"
-
-pip install neovim
-pip3 install neovim
-
-echo "---------------------------------------------------------"
 echo "$(tput setaf 2)Installing node neovim package$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
@@ -83,11 +76,17 @@ echo "---------------------------------------------------------"
 echo "$(tput setaf 2)Setting up asdf.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
-asdf add python
 asdf plugin add python
 asdf install python 3.9.5
 asdf install python 2.7.18
 asdf global python 3.9.5 2.7.18
+
+echo "---------------------------------------------------------"
+echo "$(tput setaf 2)Installing Python NeoVim client.$(tput sgr 0)"
+echo "---------------------------------------------------------"
+
+pip2 install neovim
+pip3 install neovim
 
 # Ruby
 
