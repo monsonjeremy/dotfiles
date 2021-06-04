@@ -37,6 +37,8 @@ brew 'sd'
 brew 'ninja'
 brew 'cargo'
 brew 'asdf'
+brew 'gnu-sed'
+brew 'git-delta'
 
 cask 'docker'
 

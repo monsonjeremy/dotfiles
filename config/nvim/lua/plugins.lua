@@ -38,8 +38,7 @@ return require('packer').startup(function(use)
     as = 'hop',
     config = function()
       require('plugins.hop')
-    end,
-    branch = 'pre-extmarks'
+    end
   }
 
   use {
