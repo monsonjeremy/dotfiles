@@ -6,7 +6,10 @@ local opts = {
 
 require('telescope').setup({
   defaults = {
-    prompt_position = "top",
+    prompt_prefix='🔍 ',
+    layout_config = {
+      prompt_position = "top",
+    },
     sorting_strategy = "ascending"
   }
 })
