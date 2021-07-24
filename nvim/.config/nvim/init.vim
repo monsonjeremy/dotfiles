@@ -1,7 +1,6 @@
 if !exists('g:vscode')
   " Use space as Leader key (default).
   let g:mapleader=" "
-  let maplocalleader = "ﬁ"
   set fillchars=eob:\ ,
 
   scriptencoding utf-8

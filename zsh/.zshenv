@@ -4,6 +4,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$PATH:$HOME/miniconda/bin"
 export GPG_TTY="tty"
 
+export DOTFILES=$HOME/dotfiles
+export STOW_FOLDERS="dotfiles,nvim,kitty,tmux,starship,zsh"
+
 export CLICOLOR=1
 export LSCOLORS="GxFxCxDxBxegedabagaced" # Mac OS
 export GREP_OPTIONS="--color"
