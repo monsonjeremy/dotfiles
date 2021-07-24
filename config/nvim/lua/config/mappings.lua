@@ -13,9 +13,6 @@ map("n", "<Leader>bs", [[/<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>]])
 map("v", "X", [["_d]])
 
 -- FZF
-map("n", "<C-p>", [[:Telescope find_files<CR>]], opts)
-map("n", "<leader>p", [[:Telescope buffers <CR>]], opts)
-map("n", "<leader>ff", [[:Telescope live_grep<CR>]], opts)
 map("n", "<leader>fr", [[:RgRegex<CR>]], opts)
 map("n", "<leader>fh", [[:History<CR>]], opts)
 
@@ -39,37 +36,5 @@ map("n", "<leader>ga", [[:Git fetch --all<CR>]], opts)
 map("n", "<leader>grum", [[:Git rebase upstream/master<CR>]], opts)
 map("n", "<leader>grom", [[:Git rebase -i origin/master<CR>]], opts)
 
--- LSP
-map('n', '<leader>dd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-map('n', '<leader>df', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-map('n', '<leader>dt', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-map('n', '<leader>dr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-map('n', '<leader>drr', '<cmd>Lspsaga rename<CR><CR>', opts)
-map('n', '<leader>pd', '<cmd>Lspsaga preview_definition<CR>', opts)
-map('n', '<leader>sh', '<cmd>Lspsaga signature_help<CR>', opts)
-map('n', 'K', '<cmd>Lspsaga hover_doc<CR>', opts)
-map('n', '<leader>cs', '<cmd>Lspsaga show_line_diagnostics<CR>', opts)
-map('n', '<leader>dn', '<cmd>Lspsaga diagnostic_jump_next<CR>', opts)
-map('n', '<leader>dp', '<cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
-map('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
-map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.formatting_sync(nil, 1000)<CR>', opts)
-map('v', '<leader>ca', '<cmd><C-U>Lspsaga range_code_action<CR>', opts)
-
--- Nvim Tree
-map("n", "<Leader>n", [[:NvimTreeToggle<CR>]], opts)
-map("n", "<Leader>r", [[:NvimTreeRefresh<CR>]], opts)
-map("n", "<Leader>f", [[:NvimTreeFindFile<CR>]], opts)
-
 -- Vim Doge
 map("n", "<Leader>z", [[:DogeGenerate<CR>]], opts)
-
--- Buffer line
-map("n", "<S-t>", [[<Cmd>tabnew<CR>]], opts)
-map("n", "<S-x>", [[<Cmd>bdelete<CR>]], opts)
-map("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opts)
-map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opts)
-
-map("v", "∆", [[<Plug>MoveBlockDown]], { noremap = false, silent = false })
-map("v", "˚", [[<Plug>MoveBlockUp]], { noremap = false, silent = false })
-map("n", "∆", [[<Plug>MoveLineDown]], { noremap = false, silent = false })
-map("n", "˚", [[<Plug>MoveLineUp]], { noremap = false, silent = false })

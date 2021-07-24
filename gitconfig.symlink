@@ -161,7 +161,21 @@
 	pushInsteadOf = "git://gist.github.com/"
 
 [url "git://gist.github.com/"]
-
 	insteadOf = "gist:"
+
 [gpg]
 	program = /usr/local/bin/gpg
+
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+
+[delta]
+    syntax-theme = OneHalfDark
+    navigate = true
+    side-by-side = true
+
+[interactive]
+    diffFilter = delta --color-only

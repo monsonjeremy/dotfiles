@@ -12,7 +12,7 @@ local function on_attach(client)
 
   buf_map('n', '<leader>dd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_map('n', '<leader>di', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_map('n', '<leader>dt', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_map('n', '<leader>dt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_map('n', '<leader>dr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_map('n', '<leader>drr', '<cmd>Lspsaga rename<CR><CR>', opts)
   buf_map('n', '<leader>pd', '<cmd>Lspsaga preview_definition<CR>', opts)
@@ -24,6 +24,9 @@ local function on_attach(client)
   buf_map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.formatting_sync(nil, 1000)<CR>', opts)
   buf_map('v', '<leader>ca', '<cmd><C-U>Lspsaga range_code_action<CR>', opts)
+
+  vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
+  vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_command [[augroup Format]]

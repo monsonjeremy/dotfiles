@@ -1,23 +1,17 @@
 local lsp_config = require('lspconfig')
 local on_attach = require('lsp.on_attach')
 
-lsp_config.sumneko_lua.setup({
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      diagnostics = {
-        enable = true,
-        globals = {
-          "vim",
-          "describe",
-          "it",
-          "before_each",
-          "after_each",
-          "awesome",
-          "theme",
-          "client"
-        }
-      }
-    }
+local path = vim.fn.expand('~')
+local luadev = require('lua-dev').setup({
+  lspconfig = {
+    cmd = {
+      path .. '/lua-language-server/bin/macOS/lua-language-server',
+      '-E',
+      path .. '/lua-language-server/main.lua'
+    },
+    on_attach = on_attach
   }
 })
+
+lsp_config.sumneko_lua.setup(luadev)
+

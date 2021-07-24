@@ -1,5 +1,9 @@
+local map = require('utils').map
 local g = vim.g
-vim.o.termguicolors = true
+local opts = {
+  noremap = true,
+  silent = true
+}
 
 g.nvim_tree_side = "left"
 g.nvim_tree_width = 26
@@ -20,3 +24,7 @@ g.nvim_tree_show_icons = {
     folders = 1,
     files = 1
 }
+
+map("n", "<Leader>n", [[:NvimTreeToggle<CR>]], opts)
+map("n", "<Leader>r", [[:NvimTreeRefresh<CR>]], opts)
+map("n", "<Leader>f", [[:NvimTreeFindFile<CR>]], opts)

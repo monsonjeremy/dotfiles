@@ -2,8 +2,8 @@ if !exists('g:vscode')
   " Use space as Leader key (default).
   let g:mapleader=" "
   let maplocalleader = "ﬁ"
+  set fillchars=eob:\ ,
 
-  set termguicolors
   scriptencoding utf-8
 
   source $HOME/.config/nvim/functions.vim

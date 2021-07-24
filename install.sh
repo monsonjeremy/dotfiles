@@ -27,13 +27,6 @@ if command -v brew >/dev/null 2>&1; then
 fi
 
 echo "---------------------------------------------------------"
-echo "$(tput setaf 2)Installing Python NeoVim client.$(tput sgr 0)"
-echo "---------------------------------------------------------"
-
-pip install neovim
-pip3 install neovim
-
-echo "---------------------------------------------------------"
 echo "$(tput setaf 2)Installing node neovim package$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
@@ -80,30 +73,22 @@ echo "---------------------------------------------------------"
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
 echo "---------------------------------------------------------"
-echo "$(tput setaf 2)Installing pyenv.$(tput sgr 0)"
+echo "$(tput setaf 2)Setting up asdf.$(tput sgr 0)"
 echo "---------------------------------------------------------"
-git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
-eval "$(pyenv init - --no-rehash)"
+asdf plugin add python
+asdf install python 3.9.5
+asdf install python 2.7.18
+asdf global python 3.9.5 2.7.18
 
-pyenv install 2.7.15
-pyenv install 3.6.7
+echo "---------------------------------------------------------"
+echo "$(tput setaf 2)Installing Python NeoVim client.$(tput sgr 0)"
+echo "---------------------------------------------------------"
 
-pyenv virtualenv 2.7.15 neovim2
-pyenv virtualenv 3.6.7 neovim3
+pip2 install neovim
+pip3 install neovim
 
-pyenv activate neovim2
-pip install neovim
-
-pyenv activate neovim3
-pip install neovim
-
-# The following is optional, and the neovim3 env is still active
-# This allows flake8 to be available to linter plugins regardless
-# of what env is currently active.  Repeat this pattern for other
-# packages that provide cli programs that are used in Neovim.
-pip install flake8
-ln -s `pyenv which flake8` ~/bin/flake8
+# Ruby
 
 sudo gem install neovim
 

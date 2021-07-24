@@ -1,3 +1,9 @@
+local map = require('utils').map
+local opts = {
+  noremap = true,
+  silent = true
+}
+
 require("bufferline").setup({
   options = {
       buffer_close_icon = "",
@@ -14,3 +20,8 @@ require("bufferline").setup({
       separator_style = "thin"
   },
 })
+
+map("n", "<S-t>", [[<Cmd>tabnew<CR>]], opts)
+map("n", "<S-x>", [[<Cmd>bdelete<CR>]], opts)
+map("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opts)
+map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opts)
