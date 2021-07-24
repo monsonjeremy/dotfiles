@@ -32,6 +32,7 @@ return require('packer').startup(function(use)
   use 'ray-x/lsp_signature.nvim'
   use "folke/lua-dev.nvim"
   use 'nvim-treesitter/playground'
+  use 'tversteeg/registers.nvim'
 
   use {
     'phaazon/hop.nvim',
@@ -42,18 +43,25 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'monsonjeremy/onedark.nvim',
+    'hoob3rt/lualine.nvim',
     config = function()
-      local utils = require('utils')
-      require('plugins.onedark').setupOneDark()
-      utils.apply_colorscheme("onedark", "dark")
+      require 'plugins.lualine'
     end
   }
 
   use {
     'folke/tokyonight.nvim',
+    after = 'lualine.nvim',
     config = function()
       require('plugins.tokyonight')
+    end
+  }
+
+  use {
+    'ful1e5/onedark.nvim',
+    after = 'lualine.nvim',
+    config = function()
+      require('plugins.onedark').setupOneDark()
     end
   }
 
@@ -122,7 +130,7 @@ return require('packer').startup(function(use)
 
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+    run = ':TSupdate',
     config = function() require("plugins.nvim-treesitter") end
   }
   use { 'nvim-treesitter/nvim-treesitter-refactor', requires = { 'nvim-treesitter/nvim-treesitter' } }
@@ -194,11 +202,6 @@ return require('packer').startup(function(use)
     config = function()
       require("todo-comments").setup({})
     end
-  }
-
-  use {
-    'hoob3rt/lualine.nvim',
-    config = function() require 'plugins.lualine' end
   }
 
   use {

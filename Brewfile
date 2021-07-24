@@ -35,10 +35,10 @@ brew 'luarocks'
 brew 'efm-langserver'
 brew 'sd'
 brew 'ninja'
-brew 'cargo'
 brew 'asdf'
 brew 'gnu-sed'
 brew 'git-delta'
+brew 'font-sf-mono-nerd-font'
 
 cask 'docker'
 

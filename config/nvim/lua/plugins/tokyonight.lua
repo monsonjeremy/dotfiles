@@ -11,4 +11,4 @@ vim.defer_fn(function ()
   vim.cmd[[highlight LspDiagnosticsUnderlineHint guisp=NONE gui=undercurl]] -- #1abc9c
   vim.cmd[[highlight LspDiagnosticsUnderlineInformation guisp=#0db9d7 gui=undercurl]]
   vim.cmd[[highlight LspDiagnosticsUnderlineWarning guisp=#e0af68 gui=undercurl]]
-end, 15)
+end, 1)
