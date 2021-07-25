@@ -37,15 +37,16 @@ function! WinMove(key)
   endif
 endfunction
 
-
-Style fold text
-function! NeatFoldText()
-  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
-  let lines_count = v:foldend - v:foldstart + 1
-  let lines_count_text = '| ' . printf("%s", lines_count . ' lines') . ' |'
-  let foldchar = matchstr(&fillchars, 'fold:\zs.')
-  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
-  let foldtextend = lines_count_text . repeat(foldchar, 8)
-  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+" Search within range
+function! RangeSearch(direction)
+  call inputsave()
+  let g:srchstr = input(a:direction)
+  call inputrestore()
+  if strlen(g:srchstr) > 0
+    let g:srchstr = g:srchstr.
+          \ '\%>'.(line("'<")-1).'l'.
+          \ '\%<'.(line("'>")+1).'l'
+  else
+    let g:srchstr = ''
+  endif
 endfunction

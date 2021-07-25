@@ -11,14 +11,12 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-  use 'kabouzeid/nvim-lspinstall'
   use 'tpope/vim-fugitive'
   use 'ryanoasis/vim-devicons'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/lsp_extensions.nvim'
   use 'glepnir/lspsaga.nvim'
   use 'akinsho/nvim-toggleterm.lua'
-  use 'hrsh7th/vim-vsnip'
   use 'famiu/nvim-reload'
   use 'sindrets/diffview.nvim'
   use 'nanotee/zoxide.vim'
@@ -31,11 +29,22 @@ return require('packer').startup(function(use)
   use 'tweekmonster/startuptime.vim'
   use 'ray-x/lsp_signature.nvim'
   use "folke/lua-dev.nvim"
-  use 'nvim-treesitter/playground'
   use 'tversteeg/registers.nvim'
 
   use {
+    'kabouzeid/nvim-lspinstall',
+    event = "BufRead"
+  }
+
+  use {
     'phaazon/hop.nvim',
+    cmd = {
+      "HopWord",
+      "HopLine",
+      "HopChar1",
+      "HopChar2",
+      "HopPattern"
+    },
     as = 'hop',
     config = function()
       require('plugins.hop')
@@ -88,6 +97,13 @@ return require('packer').startup(function(use)
 
   use {
     'glepnir/dashboard-nvim',
+    cmd = {
+      "Dashboard",
+      "DashboardNewFile",
+      "DashboardJumpMarks",
+      "SessionLoad",
+      "SessionSave"
+    },
     config = function()
       require('plugins.dashboard')
     end
@@ -95,6 +111,7 @@ return require('packer').startup(function(use)
 
   use {
     'neovim/nvim-lspconfig',
+    after = "nvim-lspinstall",
     config = function() require('lsp') end
   }
 
@@ -131,15 +148,51 @@ return require('packer').startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSupdate',
+    requires = 'nvim-treesitter',
     config = function() require("plugins.nvim-treesitter") end
   }
-  use { 'nvim-treesitter/nvim-treesitter-refactor', requires = { 'nvim-treesitter/nvim-treesitter' } }
-  use { 'p00f/nvim-ts-rainbow', requires = { 'nvim-treesitter/nvim-treesitter' }, branch = 'master' }
-  use { 'windwp/nvim-ts-autotag', requires = { 'nvim-treesitter/nvim-treesitter' } }
+
+  use {
+    'nvim-treesitter/nvim-treesitter-refactor',
+    event = 'BufRead',
+    requires = 'nvim-treesitter',
+  }
+
+  use {
+    'nvim-treesitter/playground',
+    cmd = 'TSPlayground'
+  }
+
+  use {
+    'p00f/nvim-ts-rainbow',
+    event = 'BufRead',
+    requires = 'nvim-treesitter',
+  }
+
+  use {
+    'windwp/nvim-ts-autotag',
+    event = 'BufRead',
+    requires = 'nvim-treesitter',
+  }
 
   use {
     'hrsh7th/nvim-compe',
-    requires = {'hrsh7th/vim-vsnip'}
+    event = "InsertEnter",
+    wants = "LuaSnip",
+    requires = {
+      {
+        "L3MON4D3/LuaSnip",
+        wants = "friendly-snippets",
+        event = "InsertCharPre",
+        config = function()
+          require "plugins.luasnip"
+        end
+      },
+      {
+        "rafamadriz/friendly-snippets",
+        event = "InsertCharPre"
+      }
+    },
   }
 
   use {
@@ -184,6 +237,7 @@ return require('packer').startup(function(use)
 
   use {
     'norcalli/nvim-colorizer.lua',
+    event = 'BufRead',
     config = function()
       require('colorizer').setup()
     end
@@ -191,6 +245,7 @@ return require('packer').startup(function(use)
 
   use {
     'onsails/lspkind-nvim',
+    event = "BufRead",
     config = function()
       require('plugins.lspkind')
     end
@@ -213,6 +268,7 @@ return require('packer').startup(function(use)
 
   use {
     'kkoomen/vim-doge',
+    event = 'BufRead',
     run = function() vim.fn['doge#install']() end
   }
 
@@ -241,6 +297,11 @@ return require('packer').startup(function(use)
 
 end, {
   display = {
-    open_fn = require('packer.util').float,
+    open_fn = function()
+      return require("packer.util").float({border = "single"})
+    end
+  },
+  git = {
+      clone_timeout = 600 -- Timeout, in seconds, for git clones
   }
 })

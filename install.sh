@@ -23,12 +23,6 @@ fi
 
 sh ./stow.sh
 
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-else
-    echo "$(tput setaf 2)oh-my-zsh already installed.$(tput sgr 0)"
-fi
-
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
 echo "$(tput setaf 2)Setting up asdf.$(tput sgr 0)"

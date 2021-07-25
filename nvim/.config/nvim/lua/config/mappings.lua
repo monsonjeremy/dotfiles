@@ -3,6 +3,7 @@ local map = require('utils').map
 
 local g = vim.g
 g.mapleader = " "
+
 local opts = {
   noremap = true,
   silent = true
@@ -23,12 +24,6 @@ map("n", "<Leader>ww", [[ oconst wait = (ms: number): Promise<void> => {<CR>retu
 -- Search and replace under cursor
 map("n", "<Leader>s", [[ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left> ]], opts)
 
-map("n", "<C-h>", [[:call WinMove('h')<CR>]], opts)
-map("n", "<C-j>", [[:call WinMove('j')<CR>]], opts)
-map("n", "<C-k>", [[:call WinMove('k')<CR>]], opts)
-map("n", "<C-l>", [[:call WinMove('l')<CR>]], opts)
-map("n", "<C-w>f", [[:vertical wincmd f<CR>]], opts)
-
 -- === Search shorcuts === "
 map("n", "<C-_>", [[:nohlsearch<CR>]], opts)
 
@@ -38,3 +33,9 @@ map("n", "<leader>grom", [[:Git rebase -i origin/master<CR>]], opts)
 
 -- Vim Doge
 map("n", "<Leader>z", [[:DogeGenerate<CR>]], opts)
+
+map("n", "<C-h>", [[:call WinMove('h')<CR>]], opts)
+map("n", "<C-j>", [[:call WinMove('j')<CR>]], opts)
+map("n", "<C-k>", [[:call WinMove('k')<CR>]], opts)
+map("n", "<C-l>", [[:call WinMove('l')<CR>]], opts)
+map("n", "<C-w>f", [[:vertical wincmd f<CR>]], opts)

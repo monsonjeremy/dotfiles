@@ -19,6 +19,9 @@ vim.cmd[[
 au BufNewFile,BufRead .eslintrc,.babelrc,.prettierrc,.nycrc set filetype=json
 ]]
 
-vim.cmd[[
-au TermOpen * setlocal nonumber | setlocal signcolumn=no
-]]
+-- hide line numbers , statusline in specific buffers!
+vim.api.nvim_exec([[
+  au TermOpen term://* setlocal nonumber laststatus=0 signcolumn=no
+  au TermClose term://* bd!
+  au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
+]], false)

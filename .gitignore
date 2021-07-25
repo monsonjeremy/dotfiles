@@ -6,10 +6,7 @@ tags
 
 tmp/*
 
-vimrc.local
-config/nvim/plugin/packer_compiled.vim
 backup/
 *.log
 .DS_Store
-
 packer_compiled.lua

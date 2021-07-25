@@ -1,14 +1,6 @@
-if !exists('g:vscode')
-  " Use space as Leader key (default).
-  let g:mapleader=" "
-  set fillchars=eob:\ ,
+source $HOME/.config/nvim/functions.vim
 
-  scriptencoding utf-8
+lua require("init")
 
-  source $HOME/.config/nvim/functions.vim
-
-  lua require("init")
-
-  source $HOME/.config/nvim/config.vim
-  source $HOME/.config/nvim/keymap.vim
-endif
+" source $HOME/.config/nvim/config.vim
+source $HOME/.config/nvim/keymap.vim

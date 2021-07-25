@@ -1,8 +1,4 @@
 " Keymap
-
-" Console log whats currently in the clipboard
-let @l = "iconsole.log('jjpa:', jjpA;jj=="
-
 nnoremap <Space> <Nop>
 
 " Open Vimrc in split
