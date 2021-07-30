@@ -21,16 +21,16 @@ local efm_languages = {
   less = { prettier },
   graphql = { prettier },
   vue = { prettier },
-  html = { prettier }
+  html = { prettier },
 }
 
-lsp_config.efm.setup({
+return {
   cmd = {
-    "efm-langserver",
-    "-c",
+    'efm-langserver',
+    '-c',
     efm_config,
-    "-logfile",
-    efm_log_dir .. "efm.log"
+    '-logfile',
+    efm_log_dir .. 'efm.log',
   },
   filetypes = {
     'json',
@@ -41,7 +41,7 @@ lsp_config.efm.setup({
     'javascript',
     'javascriptreact',
     'typescript',
-    'typescriptreact'
+    'typescriptreact',
   },
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = true
@@ -49,11 +49,11 @@ lsp_config.efm.setup({
   end,
   root_dir = lsp_config.util.root_pattern(unpack(efm_root_markers)),
   init_options = {
-    documentFormatting = true, code_action = true
+    documentFormatting = true,
+    code_action = true,
   },
   settings = {
     rootMarkers = efm_root_markers,
-    languages = efm_languages
+    languages = efm_languages,
   },
-})
-
+}

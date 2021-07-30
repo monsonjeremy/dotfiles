@@ -1,6 +1,6 @@
-require("nvim-treesitter.configs").setup {
+require('nvim-treesitter.configs').setup({
   autopairs = {
-    enable = true
+    enable = true,
   },
   autotag = {
     enable = true,
@@ -11,25 +11,25 @@ require("nvim-treesitter.configs").setup {
     max_file_lines = 2000,
   },
   ensure_installed = {
-    "javascript",
-    "bash",
-    "graphql",
-    "regex",
-    "python",
-    "erlang",
-    "elixir",
-    "comment",
-    "jsdoc",
-    "yaml",
-    "rust",
-    "css",
-    "tsx",
-    "html",
-    "dockerfile",
-    "lua",
-    "typescript",
-    "toml",
-    "json",
+    'javascript',
+    'bash',
+    'graphql',
+    'regex',
+    'python',
+    'erlang',
+    'elixir',
+    'comment',
+    'jsdoc',
+    'yaml',
+    'rust',
+    'css',
+    'tsx',
+    'html',
+    'dockerfile',
+    'lua',
+    'typescript',
+    'toml',
+    'json',
   },
   highlight = {
     enable = true,
@@ -41,4 +41,4 @@ require("nvim-treesitter.configs").setup {
       enable = true,
     },
   },
-}
+})

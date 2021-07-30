@@ -1,9 +1,9 @@
-require("compe").setup({
+require('compe').setup({
   enabled = true,
   autocomplete = true,
   debug = false,
   min_length = 1,
-  preselect = "always",
+  preselect = 'always',
   throttle_time = 80,
   source_timeout = 200,
   incomplete_delay = 400,
@@ -13,14 +13,14 @@ require("compe").setup({
   documentation = true,
   source = {
     calc = true,
-    vsnip = { kind = "﬌" },
+    vsnip = { kind = '﬌' },
     nvim_lua = true,
     spell = true,
     tags = true,
     -- used to be "..."
-    path = {kind = "  "},
-    buffer = {kind = " ﬘ " , true},
-    nvim_lsp = {kind = "  "},
-    treesitter = {kind = "  "},
-  }
+    path = { kind = '  ' },
+    buffer = { kind = ' ﬘ ', true },
+    nvim_lsp = { kind = '  ' },
+    treesitter = { kind = '  ' },
+  },
 })

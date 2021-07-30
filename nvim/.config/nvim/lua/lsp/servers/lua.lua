@@ -1,4 +1,3 @@
-local lsp_config = require('lspconfig')
 local on_attach = require('lsp.on_attach')
 
 local path = vim.fn.expand('~')
@@ -7,11 +6,10 @@ local luadev = require('lua-dev').setup({
     cmd = {
       path .. '/lua-language-server/bin/macOS/lua-language-server',
       '-E',
-      path .. '/lua-language-server/main.lua'
+      path .. '/lua-language-server/main.lua',
     },
-    on_attach = on_attach
-  }
+    on_attach = on_attach,
+  },
 })
 
-lsp_config.sumneko_lua.setup(luadev)
-
+return luadev

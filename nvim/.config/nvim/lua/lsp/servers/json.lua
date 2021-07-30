@@ -1,9 +1,8 @@
-local lsp_config = require('lspconfig')
 local on_attach = require('lsp.on_attach')
 
-lsp_config.jsonls.setup({
+return {
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
     on_attach(client)
-  end
-})
+  end,
+}

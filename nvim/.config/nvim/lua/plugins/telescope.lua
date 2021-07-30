@@ -1,7 +1,7 @@
 local map = require('utils').map
 local opts = {
   noremap = true,
-  silent = true
+  silent = true,
 }
 
 require('telescope').setup({
@@ -14,17 +14,17 @@ require('telescope').setup({
       '--line-number',
       '--column',
       '--smart-case',
-      '--hidden'
+      '--hidden',
     },
-    prompt_prefix='🔍 ',
+    prompt_prefix = '🔍 ',
     layout_config = {
-      prompt_position = "top",
+      prompt_position = 'top',
     },
-    sorting_strategy = "ascending",
-    file_ignore_patterns = { 'node_modules', '.git', 'terraform.tfstate' }
-  }
+    sorting_strategy = 'ascending',
+    file_ignore_patterns = { 'node_modules', '.git', 'terraform.tfstate' },
+  },
 })
 
-map("n", "<C-p>", [[:Telescope find_files hidden=true<CR>]], opts)
-map("n", "<leader>p", [[:Telescope buffers <CR>]], opts)
-map("n", "<leader>ff", [[:Telescope live_grep<CR>]], opts)
+map('n', '<C-p>', [[:Telescope find_files hidden=true<CR>]], opts)
+map('n', '<leader>p', [[:Telescope buffers <CR>]], opts)
+map('n', '<leader>ff', [[:Telescope live_grep<CR>]], opts)

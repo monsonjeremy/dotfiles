@@ -21,6 +21,6 @@ require('lspkind').init({
     Folder = '',
     EnumMember = '',
     Constant = '',
-    Struct = ''
+    Struct = '',
   },
 })

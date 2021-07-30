@@ -1,10 +1,10 @@
 local M = {}
 
 function M.add(value, str, sep)
-  sep = sep or ","
-  str = str or ""
-  value = type(value) == "table" and table.concat(value, sep) or value
-  return str ~= "" and table.concat({value, str}, sep) or value
+  sep = sep or ','
+  str = str or ''
+  value = type(value) == 'table' and table.concat(value, sep) or value
+  return str ~= '' and table.concat({ value, str }, sep) or value
 end
 
 function M.concat(value)
@@ -13,11 +13,15 @@ end
 
 -- Apply global options
 function M.apply_options(opts)
-  for k, v in pairs(opts) do vim.o[k] = v end
+  for k, v in pairs(opts) do
+    vim.o[k] = v
+  end
 end
 
 function M.apply_globals(globals)
-  for k, v in pairs(globals) do vim.g[k] = v end
+  for k, v in pairs(globals) do
+    vim.g[k] = v
+  end
 end
 
 -- Map keys
@@ -48,14 +52,21 @@ end
 function M.apply_colorscheme(name, mode)
   M.apply_options({
     termguicolors = true,
-    background = mode
+    background = mode,
   })
 
   M.apply_globals({
-    colors_name = name
+    colors_name = name,
   })
 
   vim.api.nvim_command('colorscheme ' .. name)
+end
+
+function M.merge_table(t1, t2)
+  for k, v in pairs(t2) do
+    t1[k] = v
+  end
+  return t1
 end
 
 return M

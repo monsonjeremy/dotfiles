@@ -7,9 +7,9 @@ require('lualine').setup({
     lualine_c = {
       {
         'diagnostics',
-        sources = { 'nvim_lsp' }
+        sources = { 'nvim_lsp' },
       },
-      { 'filename', }
+      { 'filename' },
     },
-  }
+  },
 })
