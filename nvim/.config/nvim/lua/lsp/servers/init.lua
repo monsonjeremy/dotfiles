@@ -9,5 +9,6 @@ M.rust = require('lsp.servers.rust')
 M.typescript = require('lsp.servers.typescript')
 M.vim = require('lsp.servers.vim')
 M.efm = require('lsp.servers.efm')
+M.terraform = require('lsp.servers.terraform')
 
 return M

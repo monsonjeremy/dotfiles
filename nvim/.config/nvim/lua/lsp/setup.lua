@@ -18,6 +18,7 @@ local function setup_servers()
     'vim',
     'efm',
     'graphql',
+    'terraform',
   }
 
   -- get all installed servers

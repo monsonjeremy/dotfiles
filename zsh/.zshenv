@@ -25,7 +25,7 @@ export EDITOR='nvim'
 # Enabled true color support for terminals
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-FD_OPTIONS="--type f --hidden --follow --exclude .git --exclude node_modules"
+FD_OPTIONS="--type f --hidden --follow --exclude .git/ --exclude node_modules"
 export FZF_DEFAULT_OPTS="
 --border
 --margin=1,2
