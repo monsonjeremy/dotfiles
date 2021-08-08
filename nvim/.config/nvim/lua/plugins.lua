@@ -38,6 +38,7 @@ return require('packer').startup(function(use)
   use('hrsh7th/vim-vsnip-integ')
   use('hrsh7th/vim-vsnip')
   use('rafamadriz/friendly-snippets')
+  use('vuki656/package-info.nvim')
 
   use({
     'neovim/nvim-lspconfig',
