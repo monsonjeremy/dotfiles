@@ -28,6 +28,7 @@ opt.textwidth = 100
 opt.wildmenu = true
 opt.inccommand = 'nosplit'
 opt.showmatch = true
+opt.conceallevel = 0 -- Show `` in markdown files
 
 -- Numbers
 opt.number = true

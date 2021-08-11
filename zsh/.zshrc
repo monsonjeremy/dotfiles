@@ -67,7 +67,4 @@ kitty + complete setup zsh | source /dev/stdin
 
 source ~/perl5/perlbrew/etc/bashrc
 
-alias luamake=/Users/jmonson/lua-language-server/3rd/luamake/luamake
-alias lua-language-server="~/lua-language-server/bin/macOS/lua-language-server -E ~/lua-language-server/main.lua"
-
 . /opt/homebrew/opt/asdf/asdf.sh

@@ -5,4 +5,8 @@ return {
     client.resolved_capabilities.document_formatting = true
     on_attach(client)
   end,
+  filetypes = {
+    'html',
+    'svelte',
+  },
 }

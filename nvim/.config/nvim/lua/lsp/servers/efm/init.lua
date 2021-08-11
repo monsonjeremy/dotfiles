@@ -11,6 +11,7 @@ local efm_languages = {
   yaml = { prettier },
   json = { prettier },
   markdown = { prettier },
+  md = { prettier },
   javascript = { eslint },
   javascriptreact = { eslint },
   typescript = { eslint },
