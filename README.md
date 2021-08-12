@@ -5,10 +5,9 @@
 <br/>
 
 ## Table of Contents
+
 - [Installation](#installation)
 - [Commands](#commands)
-
-
 
 ## Installation
 
@@ -19,4 +18,3 @@ sh install.sh
 ## Commands
 
 See the [Commands Guide](docs/COMMANDS.md) for a list of mappings/shortcuts.
-
