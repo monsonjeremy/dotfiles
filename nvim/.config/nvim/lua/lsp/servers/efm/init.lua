@@ -39,6 +39,7 @@ return {
     'scss',
     'yaml',
     'markdown',
+    'md',
     'javascript',
     'javascriptreact',
     'typescript',
