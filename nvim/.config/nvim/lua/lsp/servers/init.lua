@@ -11,4 +11,7 @@ M.vim = require('lsp.servers.vim')
 M.efm = require('lsp.servers.efm')
 M.terraform = require('lsp.servers.terraform')
 
+-- Not yet supported by lspinstall
+require('lsp.servers.prisma')
+
 return M
