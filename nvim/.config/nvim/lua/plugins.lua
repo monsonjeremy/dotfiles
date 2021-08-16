@@ -12,7 +12,6 @@ vim.cmd([[packadd packer.nvim]])
 
 return require('packer').startup(function(use)
   use('wbthomason/packer.nvim')
-  use('hrsh7th/vim-vsnip')
   use('tpope/vim-fugitive')
   use('ryanoasis/vim-devicons')
   use('nvim-lua/plenary.nvim')
@@ -31,12 +30,6 @@ return require('packer').startup(function(use)
   use('folke/lua-dev.nvim')
   use('tversteeg/registers.nvim')
   use('kabouzeid/nvim-lspinstall')
-  use('hrsh7th/vim-vsnip')
-  use('hrsh7th/vim-vsnip-integ')
-  use('rafamadriz/friendly-snippets')
-  use('hrsh7th/vim-vsnip-integ')
-  use('hrsh7th/vim-vsnip')
-  use('rafamadriz/friendly-snippets')
   use('vuki656/package-info.nvim')
 
   use({
@@ -202,9 +195,10 @@ return require('packer').startup(function(use)
     config = function()
       require('plugins.compe')
     end,
-    wants = {
+    requires = {
       'hrsh7th/vim-vsnip',
       'hrsh7th/vim-vsnip-integ',
+      'rafamadriz/friendly-snippets'
     },
   })
 
