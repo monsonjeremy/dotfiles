@@ -1,3 +1,1 @@
-require("toggleterm").setup({
-  size = 25
-})
+require('toggleterm').setup({ size = 25 })

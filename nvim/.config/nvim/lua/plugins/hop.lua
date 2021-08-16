@@ -1,8 +1,5 @@
 local map = require('utils').map
-local opts = {
-  noremap = true,
-  silent = true,
-}
+local opts = { noremap = true, silent = true }
 
 require('hop').setup({})
 

@@ -3,10 +3,7 @@ local map = require('utils').map
 local g = vim.g
 g.mapleader = ' '
 
-local opts = {
-  noremap = true,
-  silent = true,
-}
+local opts = { noremap = true, silent = true }
 
 -- general
 map('n', '<Leader>bs', [[/<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>]])
@@ -18,12 +15,9 @@ map('n', '<leader>fh', [[:History<CR>]], opts)
 
 -- save
 map('n', '<C-s>', [[ <Cmd> w <CR>]], opts)
-map(
-  'n',
-  '<Leader>ww',
-  [[ oconst wait = (ms: number): Promise<void> => {<CR>return new Promise(res => setTimeout(res, ms));<CR>}<esc>k=i{<CR> ]],
-  opts
-)
+map('n', '<Leader>ww',
+    [[ oconst wait = (ms: number): Promise<void> => {<CR>return new Promise(res => setTimeout(res, ms));<CR>}<esc>k=i{<CR> ]],
+    opts)
 
 -- Search and replace under cursor
 map('n', '<Leader>s', [[ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left> ]], opts)
@@ -82,18 +76,12 @@ map('t', '<Esc>', [[<C-\><C-n>]], opts)
 map('t', 'jj', [[<C-\><C-n>]], opts)
 
 -- Grep / Search
-map(
-  'v',
-  '/',
-  [[:<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0\|exec '/'.g:srchstr\|endif<CR>]],
-  opts
-)
-map(
-  'v',
-  '?',
-  [[:<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0\|exec '?'.g:srchstr\|endif<CR>]],
-  opts
-)
+map('v', '/',
+    [[:<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0\|exec '/'.g:srchstr\|endif<CR>]],
+    opts)
+map('v', '?',
+    [[:<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0\|exec '?'.g:srchstr\|endif<CR>]],
+    opts)
 
 -- Substitute
 map('n', 'c*', [[*``cgn]], opts)
@@ -116,13 +104,13 @@ map('v', '<leader>d', [[_d]], opts)
 map('n', ',', [[<PageDown>]], opts)
 map('n', '-', [[<PageUp>]], opts)
 
-map("n", "<Leader>tt", [[:ToggleTerm<CR>]], opts)
+map('n', '<Leader>tt', [[:ToggleTerm<CR>]], opts)
 
 -- Telescope
-map("n", "<C-p>", [[:Telescope find_files<CR>]], opts)
-map("n", "<leader>p", [[:Telescope buffers <CR>]], opts)
-map("n", "<leader>ff", [[:Telescope live_grep<CR>]], opts)
+map('n', '<C-p>', [[:Telescope find_files<CR>]], opts)
+map('n', '<leader>p', [[:Telescope buffers <CR>]], opts)
+map('n', '<leader>ff', [[:Telescope live_grep<CR>]], opts)
 
 -- Hop
-map("n", "<leader>hw", [[:HopWord<cr>]], opts)
-map("n", "<leader>h", [[:HopLine<cr>]], opts)
+map('n', '<leader>hw', [[:HopWord<cr>]], opts)
+map('n', '<leader>h', [[:HopLine<cr>]], opts)

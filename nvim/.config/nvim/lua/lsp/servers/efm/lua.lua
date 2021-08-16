@@ -1,4 +1,1 @@
-return {
-  formatCommand = 'lua-format -i',
-  formatStdin = true,
-}
+return { formatCommand = 'lua-format -i', formatStdin = true }

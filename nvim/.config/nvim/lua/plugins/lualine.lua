@@ -3,13 +3,5 @@ require('lualine').setup({
     -- theme = 'tokyonight',
     theme = 'onedark',
   },
-  sections = {
-    lualine_c = {
-      {
-        'diagnostics',
-        sources = { 'nvim_lsp' },
-      },
-      { 'filename' },
-    },
-  },
+  sections = { lualine_c = { { 'diagnostics', sources = { 'nvim_lsp' } }, { 'filename' } } },
 })

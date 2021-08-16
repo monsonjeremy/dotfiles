@@ -43,40 +43,23 @@ opt.smartindent = true
 -- Backups
 opt.backup = true
 opt.writebackup = true
-opt.backupdir = "~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp"
-opt.backupskip = "/tmp/*,/private/tmp/*"
-opt.directory = "~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp"
+opt.backupdir = '~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp'
+opt.backupskip = '/tmp/*,/private/tmp/*'
+opt.directory = '~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp'
 opt.swapfile = false
 opt.undofile = true
-opt.undodir= "~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp"
+opt.undodir = '~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp'
 
 -- shortmess options
-opt.shortmess:append('asI') --disable intro
+opt.shortmess:append('asI') -- disable intro
 
 -- disable tilde on end of buffer:
-vim.cmd("let &fcs='eob: '")
+vim.cmd('let &fcs=\'eob: \'')
 
 local disabled_built_ins = {
-  'netrw',
-  'netrwPlugin',
-  'netrwSettings',
-  'netrwFileHandlers',
-  'gzip',
-  'zip',
-  'zipPlugin',
-  'tar',
-  'tarPlugin',
-  'getscript',
-  'getscriptPlugin',
-  'vimball',
-  'vimballPlugin',
-  '2html_plugin',
-  'logipat',
-  'rrhelper',
-  'spellfile_plugin',
-  'matchit',
+  'netrw', 'netrwPlugin', 'netrwSettings', 'netrwFileHandlers', 'gzip', 'zip',
+  'zipPlugin', 'tar', 'tarPlugin', 'getscript', 'getscriptPlugin', 'vimball',
+  'vimballPlugin', '2html_plugin', 'logipat', 'rrhelper', 'spellfile_plugin', 'matchit',
 }
 
-for _, plugin in pairs(disabled_built_ins) do
-  vim.g['loaded_' .. plugin] = 1
-end
+for _, plugin in pairs(disabled_built_ins) do vim.g['loaded_' .. plugin] = 1 end

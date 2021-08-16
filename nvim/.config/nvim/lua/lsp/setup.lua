@@ -8,16 +8,7 @@ local function setup_servers()
   require('lspinstall').setup()
 
   local required_servers = {
-    'bash',
-    'css',
-    'html',
-    'json',
-    'lua',
-    'rust',
-    'typescript',
-    'vim',
-    'efm',
-    'graphql',
+    'bash', 'css', 'html', 'json', 'lua', 'rust', 'typescript', 'vim', 'efm', 'graphql',
     'terraform',
   }
 
@@ -32,9 +23,7 @@ local function setup_servers()
   for _, server in pairs(servers) do
     local config = base_config()
 
-    if configs[server] ~= nil then
-      config = merge_table(config, configs[server])
-    end
+    if configs[server] ~= nil then config = merge_table(config, configs[server]) end
 
     require('lspconfig')[server].setup(config)
   end
@@ -48,15 +37,9 @@ require('lspinstall').post_install_hook = function()
   vim.cmd('bufdo e') -- this triggers the FileType autocmd that starts the server
 end
 
-lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
-  underline = {
-    severity_limit = 'Warning',
-  },
-  virtual_text = {
-    prefix = '●',
-    spacing = 2,
-  },
-  signs = {
-    severity_limit = 'Warning',
-  },
-})
+lsp.handlers['textDocument/publishDiagnostics'] =
+  lsp.with(lsp.diagnostic.on_publish_diagnostics, {
+    underline = { severity_limit = 'Warning' },
+    virtual_text = { prefix = '●', spacing = 2 },
+    signs = { severity_limit = 'Warning' },
+  })

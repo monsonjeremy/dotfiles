@@ -1,6 +1,4 @@
-vim.g.vsnip_filetypes = {
-  typescriptreact = { 'typescript' },
-}
+vim.g.vsnip_filetypes = { typescriptreact = { 'typescript' } }
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)

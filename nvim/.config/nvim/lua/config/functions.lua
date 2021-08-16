@@ -1,48 +1,29 @@
-local M = {}
 local cmd = vim.api.nvim_exec
 
-cmd(
-  [[
+cmd([[
     au TextYankPost * silent! lua require("vim.highlight").on_yank({ higroup = 'IncSearch', timeout = 300 })
-  ]],
-  false
-)
+  ]], false)
 
-cmd(
-  [[
+cmd([[
     au BufWritePre * %s/\s\+$//e
-  ]],
-  false
-)
+  ]], false)
 
-cmd(
-  [[
+cmd([[
     au BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
-  ]],
-  false
-)
+  ]], false)
 
-cmd(
-  [[
+cmd([[
     au BufWritePost *.vim :Reload
-  ]],
-  false
-)
+  ]], false)
 
 -- Set common config files as JSON
-cmd(
-  [[
+cmd([[
     au BufNewFile,BufRead .eslintrc,.babelrc,.prettierrc,.nycrc set filetype=json
-  ]],
-  false
-)
+  ]], false)
 
 -- hide line numbers , statusline in specific buffers!
-cmd(
-  [[
+cmd([[
     au TermOpen term://* setlocal nonumber laststatus=0 signcolumn=no
     au TermClose term://* bd!
     au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
-  ]],
-  false
-)
+  ]], false)

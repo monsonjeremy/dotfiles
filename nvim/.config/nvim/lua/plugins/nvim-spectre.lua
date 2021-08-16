@@ -2,10 +2,7 @@ require('spectre').setup()
 
 local map = require('utils').map
 
-local opts = {
-  noremap = true,
-  silent = true,
-}
+local opts = { noremap = true, silent = true }
 
 map('n', '<Leader>sp', [[:lua require('spectre').open()<CR>]], opts)
 map('n', '<Leader>so', [[:lua require('spectre').show_options()<CR>]], opts)
