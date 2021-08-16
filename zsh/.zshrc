@@ -67,4 +67,4 @@ kitty + complete setup zsh | source /dev/stdin
 
 source ~/perl5/perlbrew/etc/bashrc
 
-. /opt/homebrew/opt/asdf/asdf.sh
+. $(brew --prefix asdf)/asdf.sh

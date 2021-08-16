@@ -115,3 +115,14 @@ map('n', '<leader>d', [[_d]], opts)
 map('v', '<leader>d', [[_d]], opts)
 map('n', ',', [[<PageDown>]], opts)
 map('n', '-', [[<PageUp>]], opts)
+
+map("n", "<Leader>tt", [[:ToggleTerm<CR>]], opts)
+
+-- Telescope
+map("n", "<C-p>", [[:Telescope find_files<CR>]], opts)
+map("n", "<leader>p", [[:Telescope buffers <CR>]], opts)
+map("n", "<leader>ff", [[:Telescope live_grep<CR>]], opts)
+
+-- Hop
+map("n", "<leader>hw", [[:HopWord<cr>]], opts)
+map("n", "<leader>h", [[:HopLine<cr>]], opts)

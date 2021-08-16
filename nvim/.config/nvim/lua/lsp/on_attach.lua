@@ -22,7 +22,6 @@ local on_attach = function(client)
 
   -- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
   vim.cmd([[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]])
-
   if client.resolved_capabilities.document_formatting then
     buf_map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.formatting_sync(nil, 1000)<CR>', opts)
     buf_map('n', '<space>f', '<cmd>lua vim.lsp.buf.range_formatting_sync(nil, 1000)<CR>', opts)

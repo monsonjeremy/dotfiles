@@ -17,7 +17,6 @@ return require('packer').startup(function(use)
   use('ryanoasis/vim-devicons')
   use('nvim-lua/plenary.nvim')
   use('glepnir/lspsaga.nvim')
-  use('akinsho/nvim-toggleterm.lua')
   use('famiu/nvim-reload')
   use('sindrets/diffview.nvim')
   use('nanotee/zoxide.vim')
@@ -45,6 +44,13 @@ return require('packer').startup(function(use)
     config = function()
       require('lsp')
     end,
+  })
+
+  use({
+    'akinsho/nvim-toggleterm.lua',
+    config = function()
+      require('plugins.toggleterm')
+    end
   })
 
   use({
