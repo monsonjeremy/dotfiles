@@ -1,4 +1,7 @@
-require('nvim-web-devicons').setup({
+local present, devicons = pcall(require, 'nvim-web-devicons')
+if not present then return end
+
+devicons.setup({
   override = {
     html = { icon = '', color = '#DE8C92', name = 'html' },
     css = { icon = '', color = '#61afef', name = 'css' },

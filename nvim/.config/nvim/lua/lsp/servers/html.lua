@@ -4,5 +4,6 @@ return {
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = true
     on_attach(client)
-  end, filetypes = { 'html', 'svelte' },
+  end,
+  filetypes = { 'html', 'svelte' },
 }

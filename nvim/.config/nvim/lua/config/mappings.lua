@@ -107,10 +107,45 @@ map('n', '-', [[<PageUp>]], opts)
 map('n', '<Leader>tt', [[:ToggleTerm<CR>]], opts)
 
 -- Telescope
-map('n', '<C-p>', [[:Telescope find_files<CR>]], opts)
+map('n', '<C-p>', [[:Telescope find_files hidden=true<CR>]], opts)
 map('n', '<leader>p', [[:Telescope buffers <CR>]], opts)
 map('n', '<leader>ff', [[:Telescope live_grep<CR>]], opts)
 
 -- Hop
 map('n', '<leader>hw', [[:HopWord<cr>]], opts)
 map('n', '<leader>h', [[:HopLine<cr>]], opts)
+
+map('n', '<S-t>', [[<Cmd>tabnew<CR>]], opts)
+map('n', '<S-x>', [[<Cmd>bdelete<CR>]], opts)
+map('n', '<TAB>', [[<Cmd>BufferLineCycleNext<CR>]], opts)
+map('n', '<S-TAB>', [[<Cmd>BufferLineCyclePrev<CR>]], opts)
+
+map('n', '<Leader>sp', [[:lua require('spectre').open()<CR>]], opts)
+map('n', '<Leader>so', [[:lua require('spectre').show_options()<CR>]], opts)
+map('n', '<Leader>spf', [[:lua require('spectre').open_file_search()<CR>]], opts)
+map('v', '<Leader>sp', [[:lua require('spectre').open_visual()<CR>]], opts)
+
+map('n', '<Leader>n', [[:NvimTreeToggle<CR>]], opts)
+map('n', '<Leader>r', [[:NvimTreeRefresh<CR>]], opts)
+map('n', '<Leader>f', [[:NvimTreeFindFile<CR>]], opts)
+
+map('v', '∆', [[<Plug>MoveBlockDown]], { noremap = false, silent = false })
+map('v', '˚', [[<Plug>MoveBlockUp]], { noremap = false, silent = false })
+map('n', '∆', [[<Plug>MoveLineDown]], { noremap = false, silent = false })
+map('n', '˚', [[<Plug>MoveLineUp]], { noremap = false, silent = false })
+
+vim.cmd(
+  'silent! command PackerCompile lua require(\'plugins\') require(\'packer\').compile()')
+vim.cmd(
+  'silent! command PackerInstall lua require(\'plugins\') require(\'packer\').install()')
+vim.cmd(
+  'silent! command PackerStatus lua require(\'plugins\') require(\'packer\').status()')
+vim.cmd('silent! command PackerSync lua require(\'plugins\') require(\'packer\').sync()')
+vim.cmd(
+  'silent! command PackerUpdate lua require(\'plugins\') require(\'packer\').update()')
+
+vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.tab_complete()', { expr = true })
+vim.api.nvim_set_keymap('s', '<Tab>', 'v:lua.tab_complete()', { expr = true })
+vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
+vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
+vim.api.nvim_set_keymap('i', '<CR>', 'v:lua.completions()', { expr = true })

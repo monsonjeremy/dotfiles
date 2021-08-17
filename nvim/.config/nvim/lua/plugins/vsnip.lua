@@ -1,3 +1,6 @@
+local present = pcall(require, 'vsnip')
+if not present then return end
+
 vim.g.vsnip_filetypes = { typescriptreact = { 'typescript' } }
 
 local t = function(str)
@@ -45,9 +48,4 @@ function _G.completions()
   return npairs.autopairs_cr()
 end
 
---  mappings
-vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.tab_complete()', { expr = true })
-vim.api.nvim_set_keymap('s', '<Tab>', 'v:lua.tab_complete()', { expr = true })
-vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
-vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
-vim.api.nvim_set_keymap('i', '<CR>', 'v:lua.completions()', { expr = true })
+-- require('compe').register_source('vsnip', require('compe_vsnip'))
