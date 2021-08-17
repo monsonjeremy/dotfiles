@@ -57,6 +57,12 @@ map('n', '<Esc>', [[:nohlsearch<CR>]], opts)
 
 -- Macros
 -- Run macro over selected rows using @
+vim.cmd([[
+  function! ExecuteMacroOverVisualRange()
+    echo "@".getcmdline()
+    execute ":'<,'>normal @".nr2char(getchar())
+  endfunction
+]])
 map('x', '@', [[:<C-u>call ExecuteMacroOverVisualRange()<CR>]], opts)
 
 -- Movement
