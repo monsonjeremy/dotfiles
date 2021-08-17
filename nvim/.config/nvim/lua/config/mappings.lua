@@ -32,11 +32,6 @@ map('n', '<leader>grom', [[:Git rebase -i origin/master<CR>]], opts)
 -- Vim Doge
 map('n', '<Leader>z', [[:DogeGenerate<CR>]], opts)
 
-map('n', '<C-h>', [[:call WinMove('h')<CR>]], opts)
-map('n', '<C-j>', [[:call WinMove('j')<CR>]], opts)
-map('n', '<C-k>', [[:call WinMove('k')<CR>]], opts)
-map('n', '<C-l>', [[:call WinMove('l')<CR>]], opts)
-
 map('n', '<Space>', [[<Nop>]], opts)
 map('n', '<leader>ve', [[:vsplit $MYVIMRC<CR>]], opts)
 map('i', 'jj', [[<Esc>]], opts)
@@ -80,14 +75,6 @@ map('o', 'H', [[^]], opts)
 -- Escape to exit to normal mode in terminal
 map('t', '<Esc>', [[<C-\><C-n>]], opts)
 map('t', 'jj', [[<C-\><C-n>]], opts)
-
--- Grep / Search
-map('v', '/',
-    [[:<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0\|exec '/'.g:srchstr\|endif<CR>]],
-    opts)
-map('v', '?',
-    [[:<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0\|exec '?'.g:srchstr\|endif<CR>]],
-    opts)
 
 -- Substitute
 map('n', 'c*', [[*``cgn]], opts)
@@ -155,3 +142,47 @@ vim.api.nvim_set_keymap('s', '<Tab>', 'v:lua.tab_complete()', { expr = true })
 vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
 vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
 vim.api.nvim_set_keymap('i', '<CR>', 'v:lua.completions()', { expr = true })
+
+vim.cmd([[
+  " Create and move to split
+  " Check if a split already exists in the direction you want to move to.
+  " If it does, the function simply moves the focus to that split.
+  " If there isn’t a split already, the function creates a new split and
+  " moves the focus to that split
+  function! WinMove(key)
+    let t:curwin = winnr()
+    execute "wincmd ".a:key
+    if (t:curwin == winnr())
+      if (match(a:key,'[jk]'))
+        wincmd v
+      else
+        wincmd s
+      endif
+      execute "wincmd ".a:key
+    endif
+  endfunction
+]])
+map('n', '<C-h>', [[:call WinMove('h')<CR>]], opts)
+map('n', '<C-j>', [[:call WinMove('j')<CR>]], opts)
+map('n', '<C-k>', [[:call WinMove('k')<CR>]], opts)
+map('n', '<C-l>', [[:call WinMove('l')<CR>]], opts)
+
+vim.cmd([[
+  function! RangeSearch(direction)
+    call inputsave()
+    let g:srchstr = input(a:direction)
+    call inputrestore()
+    if strlen(g:srchstr) > 0
+      let g:srchstr = g:srchstr.'\%>'.(line("'<")-1).'l'.'\%<'.(line("'>")+1).'l'
+    else
+      let g:srchstr = ''
+    endif
+  endfunction
+]])
+
+map('v', '/',
+    [[:<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0 | exec '/'.g:srchstr | endif<CR>]],
+    opts)
+map('v', '?',
+    [[:<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0 | exec '?'.g:srchstr | endif<CR>]],
+    opts)

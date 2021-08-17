@@ -3,8 +3,8 @@ vim.cmd('syntax on')
 local opt = vim.opt
 local g = vim.g
 
-g['python_host_prog'] = '~/.asdf/installs/python/2.7.18/bin/python'
-g['python3_host_prog'] = '~/.asdf/installs/python/3.9.5/bin/python'
+g['python_host_prog'] = vim.env.HOME .. '/.asdf/installs/python/2.7.18/bin/python'
+g['python3_host_prog'] = vim.env.HOME .. '/.asdf/installs/python/3.9.5/bin/python'
 
 opt.completeopt = 'menuone,noselect'
 opt.termguicolors = true
