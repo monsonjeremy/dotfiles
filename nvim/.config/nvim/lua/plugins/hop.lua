@@ -1,7 +1,4 @@
-local map = require('utils').map
-local opts = { noremap = true, silent = true }
+local present, hop = pcall(require, 'hop')
+if not present then return end
 
-require('hop').setup({})
-
-map('n', '<leader>hw', [[:HopWord<cr>]], opts)
-map('n', '<leader>h', [[:HopLine<cr>]], opts)
+hop.setup({})

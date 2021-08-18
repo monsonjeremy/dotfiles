@@ -1,6 +1,19 @@
 local cmd = vim.api.nvim_exec
 
 cmd([[
+    function! MkNonExDir(file, buf)
+      if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+          call mkdir(dir, 'p')
+        endif
+      endif
+    endfunction
+
+    au BufWritePre * :call MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+  ]], false)
+
+cmd([[
     au TextYankPost * silent! lua require("vim.highlight").on_yank({ higroup = 'IncSearch', timeout = 300 })
   ]], false)
 

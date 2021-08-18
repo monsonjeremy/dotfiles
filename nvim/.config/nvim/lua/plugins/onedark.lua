@@ -1,7 +1,10 @@
 local M = {}
 
 function M.setupOneDark()
-  require('onedark').setup({ hideInactiveStatusline = true })
+  local present, onedark = pcall(require, 'onedark')
+  if not present then return end
+
+  onedark.setup({ hideInactiveStatusline = true })
 end
 
 return M
