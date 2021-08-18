@@ -195,7 +195,7 @@ return packer.startup(function()
         wants = 'vim-vsnip-integ',
         event = 'InsertCharPre',
         config = function()
-          require 'plugins.vsnip'
+          require('plugins.vsnip')
         end,
       },
       { 'hrsh7th/vim-vsnip-integ', event = 'InsertCharPre' },

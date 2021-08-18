@@ -1,6 +1,3 @@
-local present = pcall(require, 'vsnip')
-if not present then return end
-
 vim.g.vsnip_filetypes = { typescriptreact = { 'typescript' } }
 
 local t = function(str)
