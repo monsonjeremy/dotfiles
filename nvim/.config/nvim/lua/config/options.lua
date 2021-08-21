@@ -29,6 +29,7 @@ opt.wildmenu = true
 opt.inccommand = 'nosplit'
 opt.showmatch = true
 opt.conceallevel = 0 -- Show `` in markdown files
+opt.smartcase = true
 
 -- Numbers
 opt.number = true
