@@ -3,8 +3,8 @@ vim.cmd('syntax on')
 local opt = vim.opt
 local g = vim.g
 
-g['python_host_prog'] = '~/.asdf/installs/python/2.7.18/bin/python'
-g['python3_host_prog'] = '~/.asdf/installs/python/3.9.5/bin/python'
+g['python_host_prog'] = vim.env.HOME .. '/.asdf/installs/python/2.7.18/bin/python'
+g['python3_host_prog'] = vim.env.HOME .. '/.asdf/installs/python/3.9.5/bin/python'
 
 opt.completeopt = 'menuone,noselect'
 opt.termguicolors = true
@@ -58,9 +58,24 @@ opt.shortmess:append('asI') -- disable intro
 vim.cmd('let &fcs=\'eob: \'')
 
 local disabled_built_ins = {
-  'netrw', 'netrwPlugin', 'netrwSettings', 'netrwFileHandlers', 'gzip', 'zip',
-  'zipPlugin', 'tar', 'tarPlugin', 'getscript', 'getscriptPlugin', 'vimball',
-  'vimballPlugin', '2html_plugin', 'logipat', 'rrhelper', 'spellfile_plugin', 'matchit',
+  'netrw',
+  'netrwPlugin',
+  'netrwSettings',
+  'netrwFileHandlers',
+  'gzip',
+  'zip',
+  'zipPlugin',
+  'tar',
+  'tarPlugin',
+  'getscript',
+  'getscriptPlugin',
+  'vimball',
+  'vimballPlugin',
+  '2html_plugin',
+  'logipat',
+  'rrhelper',
+  'spellfile_plugin',
+  'matchit',
 }
 
 for _, plugin in pairs(disabled_built_ins) do vim.g['loaded_' .. plugin] = 1 end

@@ -4,5 +4,6 @@ return {
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
     on_attach(client)
-  end, filetypes = { 'css', 'scss' },
+  end,
+  filetypes = { 'css', 'scss' },
 }
