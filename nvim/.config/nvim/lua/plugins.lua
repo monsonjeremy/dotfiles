@@ -122,7 +122,13 @@ return packer.startup(function()
   use({ 'chaoren/vim-wordmotion', event = 'BufRead' })
   use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
   use({ 'tversteeg/registers.nvim', cmd = 'Registers' })
-  use({ 'vuki656/package-info.nvim', ft = 'json' })
+  use({
+    'vuki656/package-info.nvim',
+    ft = 'json',
+    config = function()
+      require('package-info').setup()
+    end,
+  })
   use({
     'phaazon/hop.nvim',
     cmd = { 'HopWord', 'HopLine', 'HopChar1', 'HopChar2', 'HopPattern' },
@@ -224,6 +230,7 @@ return packer.startup(function()
 
   use({
     'lewis6991/gitsigns.nvim',
+    event = 'BufRead',
     after = 'plenary.nvim',
     config = function()
       require('plugins.gitsigns')
