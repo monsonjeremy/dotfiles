@@ -100,6 +100,7 @@ return packer.startup(function()
   use { 'nvim-lua/popup.nvim', after = 'plenary.nvim' }
   use({
     'famiu/nvim-reload',
+    cmd = 'Reload',
     config = function()
       local reload = require('nvim-reload')
       local plugin_dir = vim.fn.stdpath('config') .. '/plugin/packer_compiled.lua'
