@@ -98,7 +98,19 @@ return packer.startup(function()
   use({ 'tpope/vim-fugitive', cmd = { 'Git' } })
   use { 'nvim-lua/plenary.nvim' }
   use { 'nvim-lua/popup.nvim', after = 'plenary.nvim' }
-  use({ 'famiu/nvim-reload', cmd = 'Reload' })
+  use({
+    'famiu/nvim-reload',
+    config = function()
+      local reload = require('nvim-reload')
+      local plugin_dir = vim.fn.stdpath('config') .. '/plugin/packer_compiled.lua'
+      reload.vim_reload_dirs = { }
+      reload.lua_reload_dirs = { }
+      reload.post_reload_hook = function ()
+        vim.cmd("source " .. plugin_dir)
+        vim.cmd("colorscheme onedark")
+      end
+    end
+  })
   use({ 'sindrets/diffview.nvim', cmd = 'DiffviewOpen' })
   use({ 'nanotee/zoxide.vim', cmd = { 'z', 'Zi', 'Z' } })
   use({ 'simrat39/symbols-outline.nvim', cmd = 'SymbolsOutline' })
