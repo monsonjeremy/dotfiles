@@ -104,13 +104,13 @@ return packer.startup(function()
     config = function()
       local reload = require('nvim-reload')
       local plugin_dir = vim.fn.stdpath('config') .. '/plugin/packer_compiled.lua'
-      reload.vim_reload_dirs = { }
-      reload.lua_reload_dirs = { }
-      reload.post_reload_hook = function ()
-        vim.cmd("source " .. plugin_dir)
-        vim.cmd("colorscheme onedark")
+      reload.vim_reload_dirs = {}
+      reload.lua_reload_dirs = {}
+      reload.post_reload_hook = function()
+        vim.cmd('source ' .. plugin_dir)
+        vim.cmd('colorscheme onedark')
       end
-    end
+    end,
   })
   use({ 'sindrets/diffview.nvim', cmd = 'DiffviewOpen' })
   use({ 'nanotee/zoxide.vim', cmd = { 'z', 'Zi', 'Z' } })

@@ -52,7 +52,7 @@ end
 lsp.handlers['textDocument/publishDiagnostics'] =
   lsp.with(lsp.diagnostic.on_publish_diagnostics, {
     underline = { severity_limit = 'Warning' },
-    virtual_text = { prefix = '●', spacing = 2 },
+    virtual_text = { prefix = '●', spacing = 2, severity_limit = 'Warning' },
     signs = { severity_limit = 'Warning' },
   })
 

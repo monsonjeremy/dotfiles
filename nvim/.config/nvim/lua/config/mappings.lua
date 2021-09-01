@@ -120,7 +120,6 @@ map('v', '˚', [[<Plug>MoveBlockUp]], opts)
 map('n', '∆', [[<Plug>MoveLineDown]], opts)
 map('n', '˚', [[<Plug>MoveLineUp]], opts)
 
-
 map('i', '<Tab>', 'v:lua.tab_complete()', { expr = true })
 map('s', '<Tab>', 'v:lua.tab_complete()', { expr = true })
 map('i', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
@@ -131,7 +130,6 @@ map('n', '<C-h>', [[:call WinMove('h')<CR>]], opts)
 map('n', '<C-j>', [[:call WinMove('j')<CR>]], opts)
 map('n', '<C-k>', [[:call WinMove('k')<CR>]], opts)
 map('n', '<C-l>', [[:call WinMove('l')<CR>]], opts)
-
 
 map('v', '/',
     [[:<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0 | exec '/'.g:srchstr | endif<CR>]],

@@ -13,6 +13,7 @@ telescope.setup({
       '--column',
       '--smart-case',
       '--hidden',
+      '--fixed-strings',
     },
     prompt_prefix = '   ',
     layout_config = { prompt_position = 'top' },
