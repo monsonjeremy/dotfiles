@@ -124,6 +124,7 @@ return packer.startup(function()
   use({ 'tversteeg/registers.nvim', cmd = 'Registers' })
   use({
     'vuki656/package-info.nvim',
+    requires = "MunifTanjim/nui.nvim",
     ft = 'json',
     config = function()
       require('package-info').setup()
@@ -195,29 +196,40 @@ return packer.startup(function()
 
   use({
     'windwp/nvim-autopairs',
-    after = 'nvim-compe',
+    after = 'nvim-cmp',
     config = function()
       require('plugins.autopairs')
     end,
   })
 
+  use({ 'hrsh7th/cmp-nvim-lsp' })
   use({
-    'hrsh7th/nvim-compe',
-    event = 'InsertEnter',
+    'hrsh7th/nvim-cmp',
     config = function()
       require('plugins.compe')
     end,
-    wants = 'vim-vsnip',
+    wants = {
+      'vim-vsnip',
+      'cmp-vsnip',
+      'cmp-nvim-lsp',
+      'cmp-buffer',
+      'cmp-path',
+      'cmp-treesitter',
+      'cmp-spell',
+    },
     requires = {
       {
         'hrsh7th/vim-vsnip',
-        wants = 'vim-vsnip-integ',
         event = 'InsertCharPre',
-        config = function()
+        --[[ config = function()
           require('plugins.vsnip')
-        end,
+        end, ]]
       },
-      { 'hrsh7th/vim-vsnip-integ', event = 'InsertCharPre' },
+      { 'hrsh7th/cmp-vsnip', event = 'InsertCharPre' },
+      { 'hrsh7th/cmp-buffer', event = 'InsertCharPre' },
+      { 'hrsh7th/cmp-path', event = 'InsertCharPre' },
+      { 'f3fora/cmp-spell', event = 'InsertCharPre' },
+      { 'ray-x/cmp-treesitter', event = 'InsertCharPre' },
     },
   })
 
