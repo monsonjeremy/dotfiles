@@ -1,3 +1,6 @@
+local present, nvimtree = pcall(require, 'nvim-tree')
+if not present then return end
+
 local g = vim.g
 
 g.nvim_tree_side = 'left'
@@ -36,3 +39,5 @@ g.nvim_tree_icons = {
   },
   lsp = { hint = '', info = '', warning = '', error = '' },
 }
+
+nvimtree.setup()
