@@ -92,7 +92,7 @@ return packer.startup(function()
     ft = 'rs',
     config = function()
       require('rust-tools').setup()
-    end
+    end,
   })
 
   -- Terminal
@@ -227,7 +227,7 @@ return packer.startup(function()
       'cmp-spell',
     },
     requires = {
-      { 'hrsh7th/vim-vsnip', event = 'InsertCharPre', },
+      { 'hrsh7th/vim-vsnip', event = 'InsertCharPre' },
       { 'hrsh7th/cmp-vsnip', event = 'InsertCharPre' },
       { 'hrsh7th/cmp-buffer', event = 'InsertCharPre' },
       { 'hrsh7th/cmp-path', event = 'InsertCharPre' },

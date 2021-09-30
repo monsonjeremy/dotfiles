@@ -4,25 +4,24 @@ local present2, lspkind = pcall(require, 'lspkind')
 if not (present or present2) then return end
 
 cmp.setup({
-  completion = {
-    completeopt = 'menu,menuone,noinsert',
-  },
+  completion = { completeopt = 'menu,menuone,noinsert' },
   formatting = {
-   format = function(entry, vim_item)
-      vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
+    format = function(entry, vim_item)
+      vim_item.kind = require('lspkind').presets.default[vim_item.kind] .. ' ' ..
+                        vim_item.kind
       vim_item.menu = ({
         buffer = ' ﬘ ',
         path = '   ',
         nvim_lsp = '  ',
         treesitter = '  ',
-        vsnip = ' ﬌ '
+        vsnip = ' ﬌ ',
       })[entry.source.name]
       return vim_item
     end,
   },
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` user.
+      vim.fn['vsnip#anonymous'](args.body) -- For `vsnip` user.
     end,
   },
   mapping = {
@@ -42,5 +41,5 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'path' },
     { name = 'treesitter' },
-  }
+  },
 })
