@@ -5,7 +5,6 @@ return {
     client.resolved_capabilities.document_formatting = false
     if client.config.flags then client.config.flags.allow_incremental_sync = true end
     require('lsp_signature').on_attach({ use_lspsaga = true })
-    require('virtualtypes').on_attach()
     on_attach(client)
   end,
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },

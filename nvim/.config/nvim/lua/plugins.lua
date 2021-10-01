@@ -41,7 +41,6 @@ return packer.startup(function()
   })
 
   -- LSP
-  use({ 'jubnzv/virtual-types.nvim', event = 'BufRead' })
   use({ 'tami5/lspsaga.nvim', event = 'BufRead' })
   use({ 'ray-x/lsp_signature.nvim', event = 'BufRead' })
   use({ 'folke/lua-dev.nvim', event = 'BufRead' })
@@ -149,13 +148,7 @@ return packer.startup(function()
     end,
   })
 
-  use({
-    'matze/vim-move',
-    keys = { { 'v', '∆' }, { 'v', '˚' }, { 'n', '∆' }, { 'n', '˚' } },
-    config = function()
-      require('plugins.vim-move')
-    end,
-  })
+  use({ 'fedepujol/move.nvim', cmd = { 'MoveLine', 'MoveBlock' } })
 
   use({
     'glepnir/dashboard-nvim',
@@ -308,5 +301,5 @@ return packer.startup(function()
       require('neogit').setup({})
     end,
   })
-  use({ 'nathom/filetype.nvim' })
+  -- use({ 'nathom/filetype.nvim' })
 end)

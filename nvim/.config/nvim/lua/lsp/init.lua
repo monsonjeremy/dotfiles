@@ -65,7 +65,7 @@ end
 set_sign('Hint', '')
 set_sign('Information', '')
 set_sign('Warning', ' ')
-set_sign('Error', 'ﰸ')
+set_sign('Error', '')
 
 -- suppress error messages from lang servers
 vim.notify = function(msg, log_level, _opts)
