@@ -4,8 +4,8 @@ if not present then return end
 lspkind.init({
   with_text = false, -- Below are defaults
   symbol_map = {
-    Text = "",
-    Method = "",
+    Text = '',
+    Method = '',
     Function = '',
     Constructor = '',
     Variable = '',
@@ -17,7 +17,7 @@ lspkind.init({
     Value = '',
     Enum = '了',
     Keyword = '',
-    Snippet = "",
+    Snippet = '',
     Color = '',
     File = '',
     Folder = '',

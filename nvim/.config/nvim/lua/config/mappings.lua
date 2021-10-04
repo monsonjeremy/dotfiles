@@ -9,10 +9,6 @@ local opts = { noremap = true, silent = true }
 map('n', '<Leader>bs', [[/<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>]])
 map('v', 'X', [["_d]])
 
--- FZF
-map('n', '<leader>fr', [[:RgRegex<CR>]], opts)
-map('n', '<leader>fh', [[:History<CR>]], opts)
-
 -- save
 map('n', '<C-s>', [[ <Cmd> w <CR>]], opts)
 map('n', '<Leader>ww',

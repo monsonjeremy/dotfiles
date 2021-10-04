@@ -35,6 +35,7 @@ return packer.startup(function()
   })
   use({
     'kyazdani42/nvim-web-devicons',
+    event = 'BufRead',
     config = function()
       require('plugins.nvim-web-devicons')
     end,
@@ -48,7 +49,10 @@ return packer.startup(function()
   use({ 'nvim-lua/lsp_extensions.nvim', event = 'BufRead' })
   use({
     'ojroques/nvim-lspfuzzy',
-    requires = { { 'junegunn/fzf' }, { 'junegunn/fzf.vim' } },
+    requires = {
+      { 'junegunn/fzf', event = 'BufRead' },
+      { 'junegunn/fzf.vim', event = 'BufRead' },
+    },
     event = 'BufRead',
     config = function()
       require('lspfuzzy').setup({})
@@ -160,6 +164,7 @@ return packer.startup(function()
 
   use({
     'windwp/nvim-spectre',
+    module = 'spectre',
     requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
     config = function()
       require('plugins.nvim-spectre')
@@ -199,7 +204,8 @@ return packer.startup(function()
 
   use({
     'windwp/nvim-autopairs',
-    after = 'nvim-cmp',
+    after = 'cmp',
+    event = 'BufRead',
     config = function()
       require('plugins.autopairs')
     end,
@@ -207,6 +213,7 @@ return packer.startup(function()
 
   use({
     'hrsh7th/nvim-cmp',
+    as = 'cmp',
     -- module = 'cmp',
     config = function()
       require('plugins.compe')
@@ -234,6 +241,7 @@ return packer.startup(function()
 
   use({
     'akinsho/nvim-bufferline.lua',
+    event = 'BufRead',
     config = function()
       require('plugins.bufferline')
     end,
@@ -304,7 +312,7 @@ return packer.startup(function()
   })
 
   use({
-    "AckslD/nvim-neoclip.lua",
+    'AckslD/nvim-neoclip.lua',
     event = 'BufRead',
     config = function()
       require('neoclip').setup()
