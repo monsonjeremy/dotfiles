@@ -61,7 +61,7 @@ return packer.startup(function()
   use({
     'folke/trouble.nvim',
     event = 'BufRead',
-    requires = 'kyazdani42/nvim-web-devicons',
+    after = 'nvim-web-devicons',
     config = function()
       require('trouble').setup({})
     end,
@@ -79,6 +79,7 @@ return packer.startup(function()
       require('lsp')
     end,
     after = {
+      'cmp',
       'cmp-nvim-lsp',
       'nvim-lspinstall',
       'lspsaga.nvim',
@@ -165,7 +166,6 @@ return packer.startup(function()
   use({
     'windwp/nvim-spectre',
     module = 'spectre',
-    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
     config = function()
       require('plugins.nvim-spectre')
     end,
@@ -184,7 +184,6 @@ return packer.startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSupdate',
     event = 'BufRead',
-    requires = 'nvim-treesitter',
     config = function()
       require('plugins.nvim-treesitter')
     end,
@@ -193,14 +192,14 @@ return packer.startup(function()
   use({
     'nvim-treesitter/nvim-treesitter-refactor',
     event = 'BufRead',
-    requires = 'nvim-treesitter',
+    after = 'nvim-treesitter'
   })
 
   use({ 'nvim-treesitter/playground', cmd = 'TSPlayground' })
 
-  use({ 'p00f/nvim-ts-rainbow', event = 'BufRead', requires = 'nvim-treesitter' })
+  use({ 'p00f/nvim-ts-rainbow', event = 'BufRead', after = 'nvim-treesitter' })
 
-  use({ 'windwp/nvim-ts-autotag', event = 'BufRead', requires = 'nvim-treesitter' })
+  use({ 'windwp/nvim-ts-autotag', event = 'BufRead', after = 'nvim-treesitter' })
 
   use({
     'windwp/nvim-autopairs',
@@ -214,7 +213,6 @@ return packer.startup(function()
   use({
     'hrsh7th/nvim-cmp',
     as = 'cmp',
-    -- module = 'cmp',
     config = function()
       require('plugins.compe')
     end,
@@ -237,7 +235,7 @@ return packer.startup(function()
     },
   })
 
-  use({ 'hrsh7th/cmp-nvim-lsp', event = 'BufRead' })
+  use({ 'hrsh7th/cmp-nvim-lsp', event = 'BufRead', after = 'cmp' })
 
   use({
     'akinsho/nvim-bufferline.lua',
