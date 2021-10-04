@@ -35,20 +35,25 @@ return packer.startup(function()
   })
   use({
     'kyazdani42/nvim-web-devicons',
+    event = 'BufRead',
     config = function()
       require('plugins.nvim-web-devicons')
     end,
   })
 
   -- LSP
-  use({ 'glepnir/lspsaga.nvim', event = 'BufRead' })
+  use({ 'tami5/lspsaga.nvim', event = 'BufRead' })
   use({ 'ray-x/lsp_signature.nvim', event = 'BufRead' })
   use({ 'folke/lua-dev.nvim', event = 'BufRead' })
   use({ 'kabouzeid/nvim-lspinstall', event = 'BufRead' })
   use({ 'nvim-lua/lsp_extensions.nvim', event = 'BufRead' })
   use({
     'ojroques/nvim-lspfuzzy',
-    requires = { { 'junegunn/fzf' }, { 'junegunn/fzf.vim' } },
+    requires = {
+      { 'junegunn/fzf', event = 'BufRead' },
+      { 'junegunn/fzf.vim', event = 'BufRead' },
+    },
+    event = 'BufRead',
     config = function()
       require('lspfuzzy').setup({})
     end,
@@ -74,6 +79,7 @@ return packer.startup(function()
       require('lsp')
     end,
     after = {
+      'cmp-nvim-lsp',
       'nvim-lspinstall',
       'lspsaga.nvim',
       'lsp_signature.nvim',
@@ -83,6 +89,13 @@ return packer.startup(function()
       'trouble.nvim',
       'lspkind-nvim',
     },
+  })
+  use({
+    'simrat39/rust-tools.nvim',
+    ft = 'rs',
+    config = function()
+      require('rust-tools').setup()
+    end,
   })
 
   -- Terminal
@@ -96,7 +109,7 @@ return packer.startup(function()
 
   -- Navigation / Helpers
   use({ 'tpope/vim-fugitive', cmd = { 'Git' } })
-  use { 'nvim-lua/plenary.nvim' }
+  use({ 'nvim-lua/plenary.nvim' })
   use { 'nvim-lua/popup.nvim', after = 'plenary.nvim' }
   use({
     'famiu/nvim-reload',
@@ -122,13 +135,14 @@ return packer.startup(function()
   use({ 'chaoren/vim-wordmotion', event = 'BufRead' })
   use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
   use({ 'tversteeg/registers.nvim', cmd = 'Registers' })
-  use({
+  --[[ use({
     'vuki656/package-info.nvim',
+    requires = "MunifTanjim/nui.nvim",
     ft = 'json',
     config = function()
       require('package-info').setup()
     end,
-  })
+  }) ]]
   use({
     'phaazon/hop.nvim',
     cmd = { 'HopWord', 'HopLine', 'HopChar1', 'HopChar2', 'HopPattern' },
@@ -138,13 +152,7 @@ return packer.startup(function()
     end,
   })
 
-  use({
-    'matze/vim-move',
-    keys = { { 'v', '∆' }, { 'v', '˚' }, { 'n', '∆' }, { 'n', '˚' } },
-    config = function()
-      require('plugins.vim-move')
-    end,
-  })
+  use({ 'fedepujol/move.nvim', cmd = { 'MoveLine', 'MoveBlock' } })
 
   use({
     'glepnir/dashboard-nvim',
@@ -156,6 +164,7 @@ return packer.startup(function()
 
   use({
     'windwp/nvim-spectre',
+    module = 'spectre',
     requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
     config = function()
       require('plugins.nvim-spectre')
@@ -195,34 +204,44 @@ return packer.startup(function()
 
   use({
     'windwp/nvim-autopairs',
-    after = 'nvim-compe',
+    after = 'cmp',
+    event = 'BufRead',
     config = function()
       require('plugins.autopairs')
     end,
   })
 
   use({
-    'hrsh7th/nvim-compe',
-    event = 'InsertEnter',
+    'hrsh7th/nvim-cmp',
+    as = 'cmp',
+    -- module = 'cmp',
     config = function()
       require('plugins.compe')
     end,
-    wants = 'vim-vsnip',
+    wants = {
+      'vim-vsnip',
+      'cmp-vsnip',
+      'cmp-nvim-lsp',
+      'cmp-buffer',
+      'cmp-path',
+      'cmp-treesitter',
+      'cmp-spell',
+    },
     requires = {
-      {
-        'hrsh7th/vim-vsnip',
-        wants = 'vim-vsnip-integ',
-        event = 'InsertCharPre',
-        config = function()
-          require('plugins.vsnip')
-        end,
-      },
-      { 'hrsh7th/vim-vsnip-integ', event = 'InsertCharPre' },
+      { 'hrsh7th/vim-vsnip', event = 'InsertCharPre' },
+      { 'hrsh7th/cmp-vsnip', event = 'InsertCharPre' },
+      { 'hrsh7th/cmp-buffer', event = 'InsertCharPre' },
+      { 'hrsh7th/cmp-path', event = 'InsertCharPre' },
+      { 'f3fora/cmp-spell', event = 'InsertCharPre' },
+      { 'ray-x/cmp-treesitter', event = 'InsertCharPre' },
     },
   })
 
+  use({ 'hrsh7th/cmp-nvim-lsp', event = 'BufRead' })
+
   use({
     'akinsho/nvim-bufferline.lua',
+    event = 'BufRead',
     config = function()
       require('plugins.bufferline')
     end,
@@ -271,7 +290,7 @@ return packer.startup(function()
 
   use({
     'kkoomen/vim-doge',
-    event = 'BufRead',
+    cmd = { 'DogeGenerate' },
     run = function()
       vim.fn['doge#install']()
     end,
@@ -291,4 +310,13 @@ return packer.startup(function()
       require('neogit').setup({})
     end,
   })
+
+  use({
+    'AckslD/nvim-neoclip.lua',
+    event = 'BufRead',
+    config = function()
+      require('neoclip').setup()
+    end,
+  })
+  -- use({ 'nathom/filetype.nvim' })
 end)

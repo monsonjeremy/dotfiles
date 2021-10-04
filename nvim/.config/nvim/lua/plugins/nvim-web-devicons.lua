@@ -6,7 +6,6 @@ devicons.setup({
     html = { icon = '', color = '#DE8C92', name = 'html' },
     css = { icon = '', color = '#61afef', name = 'css' },
     js = { icon = '', color = '#EBCB8B', name = 'js' },
-    ts = { icon = 'ﯤ', color = '#519ABA', name = 'ts' },
     kt = { icon = '󱈙', color = '#ffcb91', name = 'kt' },
     png = { icon = ' ', color = '#BD77DC', name = 'png' },
     jpg = { icon = ' ', color = '#BD77DC', name = 'jpg' },

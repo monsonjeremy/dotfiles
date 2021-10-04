@@ -9,10 +9,6 @@ local opts = { noremap = true, silent = true }
 map('n', '<Leader>bs', [[/<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>]])
 map('v', 'X', [["_d]])
 
--- FZF
-map('n', '<leader>fr', [[:RgRegex<CR>]], opts)
-map('n', '<leader>fh', [[:History<CR>]], opts)
-
 -- save
 map('n', '<C-s>', [[ <Cmd> w <CR>]], opts)
 map('n', '<Leader>ww',
@@ -115,16 +111,10 @@ map('n', '<Leader>n', [[:NvimTreeToggle<CR>]], opts)
 map('n', '<Leader>r', [[:NvimTreeRefresh<CR>]], opts)
 map('n', '<Leader>f', [[:NvimTreeFindFile<CR>]], opts)
 
-map('v', '∆', [[<Plug>MoveBlockDown]], opts)
-map('v', '˚', [[<Plug>MoveBlockUp]], opts)
-map('n', '∆', [[<Plug>MoveLineDown]], opts)
-map('n', '˚', [[<Plug>MoveLineUp]], opts)
-
-map('i', '<Tab>', 'v:lua.tab_complete()', { expr = true })
-map('s', '<Tab>', 'v:lua.tab_complete()', { expr = true })
-map('i', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
-map('s', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
-map('i', '<CR>', 'v:lua.completions()', { expr = true })
+map('n', '∆', ':MoveLine(1)<CR>', opts)
+map('n', '˚', ':MoveLine(-1)<CR>', opts)
+map('v', '∆', ':MoveBlock(1)<CR>', opts)
+map('v', '˚', ':MoveBlock(-1)<CR>', opts)
 
 map('n', '<C-h>', [[:call WinMove('h')<CR>]], opts)
 map('n', '<C-j>', [[:call WinMove('j')<CR>]], opts)
