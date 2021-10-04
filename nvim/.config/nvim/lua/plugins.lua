@@ -105,7 +105,7 @@ return packer.startup(function()
 
   -- Navigation / Helpers
   use({ 'tpope/vim-fugitive', cmd = { 'Git' } })
-  use { 'nvim-lua/plenary.nvim' }
+  use({ 'nvim-lua/plenary.nvim' })
   use { 'nvim-lua/popup.nvim', after = 'plenary.nvim' }
   use({
     'famiu/nvim-reload',
@@ -207,6 +207,7 @@ return packer.startup(function()
 
   use({
     'hrsh7th/nvim-cmp',
+    -- module = 'cmp',
     config = function()
       require('plugins.compe')
     end,
@@ -299,6 +300,14 @@ return packer.startup(function()
     after = 'plenary.nvim',
     config = function()
       require('neogit').setup({})
+    end,
+  })
+
+  use({
+    "AckslD/nvim-neoclip.lua",
+    event = 'BufRead',
+    config = function()
+      require('neoclip').setup()
     end,
   })
   -- use({ 'nathom/filetype.nvim' })
