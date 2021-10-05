@@ -24,6 +24,8 @@ require('null-ls').config({
     null_ls.builtins.diagnostics.luacheck,
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.formatting.shfmt,
+    null_ls.builtins.formatting.stylelint,
+    null_ls.builtins.diagnostics.hadolint,
   },
 })
 

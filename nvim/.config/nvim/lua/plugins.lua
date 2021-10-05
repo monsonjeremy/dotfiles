@@ -69,6 +69,7 @@ return packer.startup(function()
   use({
     'onsails/lspkind-nvim',
     event = 'BufRead',
+    module = 'lspkind',
     config = function()
       require('plugins.lspkind')
     end,

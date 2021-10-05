@@ -38,6 +38,9 @@ brew 'gnu-sed'
 brew 'git-delta'
 brew 'stow'
 brew 'zsh'
+brew 'shellcheck'
+brew 'shfmt'
+brew 'hadolint'
 
 cask 'docker'
 
