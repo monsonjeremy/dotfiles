@@ -1,11 +1,34 @@
 local present1, lspconfig = pcall(require, 'lspconfig')
 local present2, lspinstall = pcall(require, 'lspinstall')
-if not (present1 or present2) then return end
+local present3, null_ls = pcall(require, 'null-ls')
+if not (present1 or present2 or present3) then return end
 
 local base_config = require('lsp.config')
 local configs = require('lsp.servers')
 local merge_table = require('utils').merge_table
 local lsp = vim.lsp
+
+local buf_map = require('utils').buf_map
+local buf_option = require('utils').buf_option
+
+local opts = { noremap = true, silent = true }
+
+require('null-ls').config({
+  sources = {
+    null_ls.builtins.formatting.prettierd.with({
+      filetypes = { 'html', 'json', 'yaml', 'markdown', 'css', 'scss', 'gql' },
+    }),
+    null_ls.builtins.formatting.prismaFmt,
+    null_ls.builtins.formatting.rustfmt,
+    null_ls.builtins.formatting.stylua.with({
+      extra_args = { "--config-path", vim.fn.expand("~/dotfiles/stylua.toml") },
+    }),
+    null_ls.builtins.formatting.terraform_fmt,
+    null_ls.builtins.formatting.trim_whitespace,
+    null_ls.builtins.diagnostics.luacheck,
+  },
+})
+
 
 -- lsp-install
 local function setup_servers()
@@ -31,7 +54,7 @@ local function setup_servers()
     if not vim.tbl_contains(servers, server) then lspinstall.install_server(server) end
   end
 
-  for _, server in pairs(servers) do
+  for _, server in pairs(merge_table(servers, { 'null-ls' })) do
     local config = base_config()
 
     if configs[server] ~= nil then config = merge_table(config, configs[server]) end
@@ -76,3 +99,4 @@ vim.notify = function(msg, log_level, _opts)
     vim.api.nvim_echo({ { msg } }, true, {})
   end
 end
+

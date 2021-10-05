@@ -2,7 +2,7 @@ local present, _ = pcall(require, 'packerInit')
 local packer
 
 if present then
-  packer = require 'packer'
+  packer = require('packer')
 else
   return false
 end
@@ -92,6 +92,12 @@ return packer.startup(function()
     },
   })
   use({
+    'jose-elias-alvarez/null-ls.nvim',
+    after = "nvim-lspconfig",
+    module = 'null-ls',
+    requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  })
+  use({
     'simrat39/rust-tools.nvim',
     ft = 'rs',
     config = function()
@@ -111,7 +117,7 @@ return packer.startup(function()
   -- Navigation / Helpers
   use({ 'tpope/vim-fugitive', cmd = { 'Git' } })
   use({ 'nvim-lua/plenary.nvim' })
-  use { 'nvim-lua/popup.nvim', after = 'plenary.nvim' }
+  use({ 'nvim-lua/popup.nvim', after = 'plenary.nvim' })
   use({
     'famiu/nvim-reload',
     cmd = 'Reload',
@@ -192,7 +198,7 @@ return packer.startup(function()
   use({
     'nvim-treesitter/nvim-treesitter-refactor',
     event = 'BufRead',
-    after = 'nvim-treesitter'
+    after = 'nvim-treesitter',
   })
 
   use({ 'nvim-treesitter/playground', cmd = 'TSPlayground' })

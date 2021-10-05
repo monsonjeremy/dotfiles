@@ -29,12 +29,7 @@ local on_attach = function(client)
     buf_map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.formatting_sync(nil, 1000)<CR>', opts)
     buf_map('v', '<leader>fr',
             '<cmd>lua vim.lsp.buf.range_formatting_sync(nil, 1000)<CR>', opts)
-    vim.api.nvim_exec([[
-      augroup Format
-      autocmd! * <buffer>
-      autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
-      augroup END
-    ]], false)
+    vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
   end
 end
 
