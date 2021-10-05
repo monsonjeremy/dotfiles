@@ -10,7 +10,7 @@ local configs = require('lsp.servers')
 local merge_table = require('utils').merge_table
 local lsp = vim.lsp
 
-require('null-ls').config({
+null_ls.config({
   sources = {
     null_ls.builtins.formatting.prettierd.with({
       filetypes = { 'html', 'json', 'yaml', 'markdown', 'css', 'scss', 'gql' },
@@ -21,7 +21,15 @@ require('null-ls').config({
     }),
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.trim_whitespace,
-    null_ls.builtins.diagnostics.luacheck,
+    null_ls.builtins.diagnostics.luacheck.with({
+      extra_args = {
+        '--config',
+        vim.fn.expand('~/dotfiles/.luacheckrc'),
+        '--globals',
+        'vim',
+        'bufnr',
+      },
+    }),
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.stylelint,
@@ -42,7 +50,6 @@ local function setup_servers()
     'rust',
     'typescript',
     'vim',
-    'efm',
     'graphql',
     'terraform',
   }
