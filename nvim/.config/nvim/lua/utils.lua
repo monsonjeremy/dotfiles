@@ -13,11 +13,15 @@ end
 
 -- Apply global options
 function M.apply_options(opts)
-  for k, v in pairs(opts) do vim.o[k] = v end
+  for k, v in pairs(opts) do
+    vim.o[k] = v
+  end
 end
 
 function M.apply_globals(globals)
-  for k, v in pairs(globals) do vim.g[k] = v end
+  for k, v in pairs(globals) do
+    vim.g[k] = v
+  end
 end
 
 -- Map keys
@@ -54,7 +58,9 @@ function M.apply_colorscheme(name, mode)
 end
 
 function M.merge_table(t1, t2)
-  for k, v in pairs(t2) do t1[k] = v end
+  for k, v in pairs(t2) do
+    t1[k] = v
+  end
   return t1
 end
 

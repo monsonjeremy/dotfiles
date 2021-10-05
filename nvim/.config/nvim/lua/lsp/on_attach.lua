@@ -27,8 +27,7 @@ local on_attach = function(client)
 
   if client.resolved_capabilities.document_formatting then
     buf_map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.formatting_sync(nil, 1000)<CR>', opts)
-    buf_map('v', '<leader>fr',
-            '<cmd>lua vim.lsp.buf.range_formatting_sync(nil, 1000)<CR>', opts)
+    buf_map('v', '<leader>fr', '<cmd>lua vim.lsp.buf.range_formatting_sync(nil, 1000)<CR>', opts)
     vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
   end
 end
