@@ -26,12 +26,16 @@ return {
       eslint_enable_diagnostics = true,
       eslint_diagnostics_debounce = 250,
       eslint_opts = {
-        '-f',
-        'visualstudio',
-        '--stdin',
-        '--stdin-filename',
-        '$FILENAME',
+        args = {
+          '-f',
+          'json',
+          '--stdin',
+          '--stdin-filename',
+          '$FILENAME',
+        },
+        diagnostics_format = '#{m} [#{c}]',
       },
+
       enable_formatting = true,
       formatter = 'eslint_d',
       format_on_save = true,
