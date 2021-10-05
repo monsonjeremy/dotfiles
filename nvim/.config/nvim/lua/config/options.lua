@@ -5,7 +5,7 @@ local g = vim.g
 
 g['python_host_prog'] = vim.env.HOME .. '/.asdf/installs/python/2.7.18/bin/python'
 g['python3_host_prog'] = vim.env.HOME .. '/.asdf/installs/python/3.9.5/bin/python'
--- g.did_load_filetypes = true
+g.did_load_filetypes = true
 
 opt.completeopt = 'menu,menuone,noselect'
 opt.termguicolors = true

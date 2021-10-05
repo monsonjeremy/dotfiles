@@ -322,5 +322,5 @@ return packer.startup(function()
       require('neoclip').setup()
     end,
   })
-  -- use({ 'nathom/filetype.nvim' })
+  use({ 'nathom/filetype.nvim' })
 end)

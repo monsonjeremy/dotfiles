@@ -10,17 +10,11 @@ local configs = require('lsp.servers')
 local merge_table = require('utils').merge_table
 local lsp = vim.lsp
 
-local buf_map = require('utils').buf_map
-local buf_option = require('utils').buf_option
-
-local opts = { noremap = true, silent = true }
-
 require('null-ls').config({
   sources = {
     null_ls.builtins.formatting.prettierd.with({
       filetypes = { 'html', 'json', 'yaml', 'markdown', 'css', 'scss', 'gql' },
     }),
-    null_ls.builtins.formatting.prismaFmt,
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.stylua.with({
       extra_args = { '--config-path', vim.fn.expand('~/dotfiles/stylua.toml') },
@@ -28,6 +22,8 @@ require('null-ls').config({
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.trim_whitespace,
     null_ls.builtins.diagnostics.luacheck,
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.formatting.shfmt,
   },
 })
 
@@ -95,7 +91,7 @@ set_sign('Warning', ' ')
 set_sign('Error', '')
 
 -- suppress error messages from lang servers
-vim.notify = function(msg, log_level, _opts)
+vim.notify = function(msg, log_level)
   if msg:match('exit code') then
     return
   end

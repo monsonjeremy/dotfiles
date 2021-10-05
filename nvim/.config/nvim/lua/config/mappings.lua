@@ -14,7 +14,8 @@ map('n', '<C-s>', [[ <Cmd> w <CR>]], opts)
 map(
   'n',
   '<Leader>ww',
-  [[ oconst wait = (ms: number): Promise<void> => {<CR>return new Promise(res => setTimeout(res, ms));<CR>}<esc>k=i{<CR> ]],
+  [[ oconst wait = (ms: number): Promise<void> => {<CR>return new]]
+    .. [[Promise(res => setTimeout(res, ms));<CR>}<esc>k=i{<CR> ]],
   opts
 )
 

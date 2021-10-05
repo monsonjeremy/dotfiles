@@ -16,14 +16,7 @@ vim.cmd([[
 
 cmd(
   [[
-    au TextYankPost * silent! lua require("vim.highlight").on_yank({ higroup = 'IncSearch', timeout = 300 })
-  ]],
-  false
-)
-
-cmd(
-  [[
-    au BufWritePre * %s/\s\+$//e
+    au TextYankPost * silent! lua require("vim.highlight").on_yank({ timeout = 300 })
   ]],
   false
 )
@@ -32,6 +25,13 @@ cmd(
 cmd(
   [[
     au BufNewFile,BufRead .eslintrc,.babelrc,.prettierrc,.nycrc set filetype=json
+  ]],
+  false
+)
+
+cmd(
+  [[
+    au BufNewFile,BufRead *.prisma set filetype=prisma
   ]],
   false
 )
