@@ -79,7 +79,9 @@ local disabled_built_ins = {
   'matchit',
 }
 
-for _, plugin in pairs(disabled_built_ins) do vim.g['loaded_' .. plugin] = 1 end
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g['loaded_' .. plugin] = 1
+end
 
 g.nvim_tree_ignore = { '.git', '.cache' }
 g.nvim_tree_gitignore = 1
@@ -92,8 +94,7 @@ g.nvim_tree_allow_resize = 1
 g.nvim_tree_git_hl = 1
 g.nvim_tree_highlight_opened_files = 1
 g.nvim_tree_show_icons = { git = 0, folders = 1, files = 1 }
-g.nvim_tree_special_files =
-  { 'README.md', 'Makefile', 'MAKEFILE', 'package.json', '.env' }
+g.nvim_tree_special_files = { 'README.md', 'Makefile', 'MAKEFILE', 'package.json', '.env' }
 g.nvim_tree_icons = {
   default = '',
   symlink = '',

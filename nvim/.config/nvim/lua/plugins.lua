@@ -93,9 +93,9 @@ return packer.startup(function()
   })
   use({
     'jose-elias-alvarez/null-ls.nvim',
-    after = "nvim-lspconfig",
+    after = 'nvim-lspconfig',
     module = 'null-ls',
-    requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
   })
   use({
     'simrat39/rust-tools.nvim',

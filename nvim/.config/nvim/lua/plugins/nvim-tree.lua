@@ -1,5 +1,7 @@
 local present, nvimtree = pcall(require, 'nvim-tree')
-if not present then return end
+if not present then
+  return
+end
 
 nvimtree.setup({
   update_cwd = true,

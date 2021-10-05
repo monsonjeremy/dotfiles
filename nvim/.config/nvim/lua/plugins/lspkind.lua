@@ -1,5 +1,7 @@
 local present, lspkind = pcall(require, 'lspkind')
-if not present then return end
+if not present then
+  return
+end
 
 lspkind.init({
   with_text = false, -- Below are defaults

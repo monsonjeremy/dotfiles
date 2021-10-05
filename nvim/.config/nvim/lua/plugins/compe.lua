@@ -1,14 +1,15 @@
 local present, cmp = pcall(require, 'cmp')
 local present2, lspkind = pcall(require, 'lspkind')
 
-if not (present or present2) then return end
+if not (present or present2) then
+  return
+end
 
 cmp.setup({
   completion = { completeopt = 'menu,menuone,noinsert' },
   formatting = {
     format = function(entry, vim_item)
-      vim_item.kind = require('lspkind').presets.default[vim_item.kind] .. ' ' ..
-                        vim_item.kind
+      vim_item.kind = require('lspkind').presets.default[vim_item.kind] .. ' ' .. vim_item.kind
       vim_item.menu = ({
         buffer = ' ﬘ ',
         path = '   ',

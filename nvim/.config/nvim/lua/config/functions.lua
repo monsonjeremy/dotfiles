@@ -1,14 +1,10 @@
 local cmd = vim.api.nvim_exec
 
-vim.cmd(
-  'silent! command PackerCompile lua require(\'plugins\') require(\'packer\').compile()')
-vim.cmd(
-  'silent! command PackerInstall lua require(\'plugins\') require(\'packer\').install()')
-vim.cmd(
-  'silent! command PackerStatus lua require(\'plugins\') require(\'packer\').status()')
+vim.cmd('silent! command PackerCompile lua require(\'plugins\') require(\'packer\').compile()')
+vim.cmd('silent! command PackerInstall lua require(\'plugins\') require(\'packer\').install()')
+vim.cmd('silent! command PackerStatus lua require(\'plugins\') require(\'packer\').status()')
 vim.cmd('silent! command PackerSync lua require(\'plugins\') require(\'packer\').sync()')
-vim.cmd(
-  'silent! command PackerUpdate lua require(\'plugins\') require(\'packer\').update()')
+vim.cmd('silent! command PackerUpdate lua require(\'plugins\') require(\'packer\').update()')
 
 -- Run macro over selected rows using @
 vim.cmd([[
@@ -18,18 +14,27 @@ vim.cmd([[
   endfunction
 ]])
 
-cmd([[
+cmd(
+  [[
     au TextYankPost * silent! lua require("vim.highlight").on_yank({ higroup = 'IncSearch', timeout = 300 })
-  ]], false)
+  ]],
+  false
+)
 
-cmd([[
+cmd(
+  [[
     au BufWritePre * %s/\s\+$//e
-  ]], false)
+  ]],
+  false
+)
 
 -- Set common config files as JSON
-cmd([[
+cmd(
+  [[
     au BufNewFile,BufRead .eslintrc,.babelrc,.prettierrc,.nycrc set filetype=json
-  ]], false)
+  ]],
+  false
+)
 
 vim.cmd([[
   function! RangeSearch(direction)

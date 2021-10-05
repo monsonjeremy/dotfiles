@@ -3,7 +3,7 @@
 onedark_path = lua
 
 format:
-	@for file in `find ./lua -name '*.lua'`;do lua-format $$file -i; done;
+	stylua -g '*.lua' -g '!packer_compiled.lua' --config-path '../../../stylua.toml' -- .
 
 lint: $(onedark_path)
 	@luacheck $(onedark_path)

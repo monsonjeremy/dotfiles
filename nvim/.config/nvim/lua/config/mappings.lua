@@ -11,9 +11,12 @@ map('v', 'X', [["_d]])
 
 -- save
 map('n', '<C-s>', [[ <Cmd> w <CR>]], opts)
-map('n', '<Leader>ww',
-    [[ oconst wait = (ms: number): Promise<void> => {<CR>return new Promise(res => setTimeout(res, ms));<CR>}<esc>k=i{<CR> ]],
-    opts)
+map(
+  'n',
+  '<Leader>ww',
+  [[ oconst wait = (ms: number): Promise<void> => {<CR>return new Promise(res => setTimeout(res, ms));<CR>}<esc>k=i{<CR> ]],
+  opts
+)
 
 -- Search and replace under cursor
 map('n', '<Leader>s', [[ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left> ]], opts)
@@ -121,9 +124,15 @@ map('n', '<C-j>', [[:call WinMove('j')<CR>]], opts)
 map('n', '<C-k>', [[:call WinMove('k')<CR>]], opts)
 map('n', '<C-l>', [[:call WinMove('l')<CR>]], opts)
 
-map('v', '/',
-    [[:<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0 | exec '/'.g:srchstr | endif<CR>]],
-    opts)
-map('v', '?',
-    [[:<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0 | exec '?'.g:srchstr | endif<CR>]],
-    opts)
+map(
+  'v',
+  '/',
+  [[:<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0 | exec '/'.g:srchstr | endif<CR>]],
+  opts
+)
+map(
+  'v',
+  '?',
+  [[:<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0 | exec '?'.g:srchstr | endif<CR>]],
+  opts
+)
