@@ -28,17 +28,20 @@ return {
         args = {
           '-f',
           'json',
+          '--cache',
           '--stdin',
           '--stdin-filename',
           '$FILENAME',
         },
         diagnostics_format = '#{m} [#{c}]',
+        default_timeout = 60000,
       },
 
       enable_formatting = true,
       formatter = 'eslint_d',
       format_on_save = true,
       formatter_opts = {
+        '--cache',
         '--fix-to-stdout',
         '--stdin',
         '--stdin-filename',
