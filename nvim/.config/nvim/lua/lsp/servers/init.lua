@@ -13,4 +13,6 @@ M.terraform = require('lsp.servers.terraform')
 -- Not yet supported by lspinstall
 require('lsp.servers.prisma')
 
+require('lsp.servers.null-ls')
+
 return M

@@ -16,7 +16,6 @@ return {
 
     -- defaults
     ts_utils.setup({
-      debug = true,
       enable_import_on_completion = true,
       import_all_timeout = 5000,
       import_all_scan_buffers = 100,

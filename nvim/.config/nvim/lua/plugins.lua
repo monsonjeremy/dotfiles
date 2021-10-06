@@ -150,14 +150,14 @@ return packer.startup(function()
   use({ 'chaoren/vim-wordmotion', event = 'BufRead' })
   use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
   use({ 'tversteeg/registers.nvim', cmd = 'Registers' })
-  --[[ use({
+  use({
     'vuki656/package-info.nvim',
-    requires = "MunifTanjim/nui.nvim",
+    requires = 'MunifTanjim/nui.nvim',
     ft = 'json',
     config = function()
       require('package-info').setup()
     end,
-  }) ]]
+  })
   use({
     'phaazon/hop.nvim',
     cmd = { 'HopWord', 'HopLine', 'HopChar1', 'HopChar2', 'HopPattern' },
@@ -301,14 +301,6 @@ return packer.startup(function()
   })
 
   use({
-    'kkoomen/vim-doge',
-    cmd = { 'DogeGenerate' },
-    run = function()
-      vim.fn['doge#install']()
-    end,
-  })
-
-  use({
     'dsznajder/vscode-es7-javascript-react-snippets',
     event = 'InsertEnter',
     run = 'yarn install --frozen-lockfile && yarn compile',
@@ -331,4 +323,15 @@ return packer.startup(function()
     end,
   })
   use({ 'nathom/filetype.nvim' })
+
+  use({
+    'danymat/neogen',
+    module = 'neogen',
+    cmd = 'Neogen',
+    config = function()
+      require('neogen').setup({
+        enabled = true,
+      })
+    end,
+  })
 end)

@@ -29,8 +29,8 @@ map('n', '<leader>ga', [[:Git fetch --all<CR>]], opts)
 map('n', '<leader>grum', [[:Git rebase upstream/master<CR>]], opts)
 map('n', '<leader>grom', [[:Git rebase -i origin/master<CR>]], opts)
 
--- Vim Doge
-map('n', '<Leader>z', [[:DogeGenerate<CR>]], opts)
+map('n', '<leader>dg', [[:Neogen<CR>]], opts)
+map('n', '<leader>ps', [[:PackerSync<CR>]], opts)
 
 map('n', '<Space>', [[<Nop>]], opts)
 map('n', '<leader>ve', [[:vsplit $MYVIMRC<CR>]], opts)

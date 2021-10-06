@@ -1,7 +1,6 @@
 local present1, lspconfig = pcall(require, 'lspconfig')
 local present2, lspinstall = pcall(require, 'lspinstall')
-local present3, null_ls = pcall(require, 'null-ls')
-if not (present1 or present2 or present3) then
+if not (present1 or present2) then
   return
 end
 
@@ -9,33 +8,6 @@ local base_config = require('lsp.config')
 local configs = require('lsp.servers')
 local merge_table = require('utils').merge_table
 local lsp = vim.lsp
-
-null_ls.config({
-  sources = {
-    null_ls.builtins.formatting.prettierd.with({
-      filetypes = { 'html', 'json', 'yaml', 'markdown', 'css', 'scss', 'gql' },
-    }),
-    null_ls.builtins.formatting.rustfmt,
-    null_ls.builtins.formatting.stylua.with({
-      extra_args = { '--config-path', vim.fn.expand('~/dotfiles/stylua.toml') },
-    }),
-    null_ls.builtins.formatting.terraform_fmt,
-    null_ls.builtins.formatting.trim_whitespace,
-    null_ls.builtins.diagnostics.luacheck.with({
-      extra_args = {
-        '--config',
-        vim.fn.expand('~/dotfiles/.luacheckrc'),
-        '--globals',
-        'vim',
-        'bufnr',
-      },
-    }),
-    null_ls.builtins.diagnostics.shellcheck,
-    null_ls.builtins.formatting.shfmt,
-    null_ls.builtins.formatting.stylelint,
-    null_ls.builtins.diagnostics.hadolint,
-  },
-})
 
 -- lsp-install
 local function setup_servers()
