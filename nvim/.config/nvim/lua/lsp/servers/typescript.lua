@@ -26,6 +26,7 @@ return {
       eslint_diagnostics_debounce = 250,
       eslint_opts = {
         args = {
+          '--cache',
           '-f',
           'json',
           '--stdin',
@@ -40,6 +41,7 @@ return {
       formatter = 'eslint_d',
       format_on_save = true,
       formatter_opts = {
+        '--cache',
         '--fix-to-stdout',
         '--stdin',
         '--stdin-filename',
