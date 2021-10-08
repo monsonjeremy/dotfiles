@@ -5,9 +5,7 @@ end
 
 null_ls.config({
   sources = {
-    null_ls.builtins.formatting.prettierd.with({
-      filetypes = { 'html', 'json', 'yaml', 'markdown', 'css', 'scss', 'gql' },
-    }),
+    null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.stylua.with({
       extra_args = { '--config-path', vim.fn.expand('~/dotfiles/stylua.toml') },
@@ -16,13 +14,9 @@ null_ls.config({
     null_ls.builtins.formatting.trim_whitespace,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.stylelint.with({
-      args = {
+      extra_args = {
         '--config',
         vim.fn.expand('~/dotfiles/.stylelintrc.json'),
-        '--fix',
-        '--stdin',
-        '--stdin-filename',
-        '$FILENAME',
       },
     }),
     null_ls.builtins.diagnostics.luacheck.with({

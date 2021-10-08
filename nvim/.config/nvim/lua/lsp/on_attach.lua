@@ -15,8 +15,18 @@ local on_attach = function(client)
   buf_map('n', '<leader>sh', '<cmd>Lspsaga signature_help<CR>', opts)
   buf_map('n', 'K', '<cmd>Lspsaga hover_doc<CR>', opts)
   buf_map('n', '<leader>cs', '<cmd>Lspsaga show_line_diagnostics<CR>', opts)
-  buf_map('n', '<leader>dn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_map('n', '<leader>dp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_map(
+    'n',
+    '<leader>dn',
+    '<cmd>lua vim.lsp.diagnostic.goto_next({ severity = { min=vim.diagnostic.severity.WARN } })<CR>',
+    opts
+  )
+  buf_map(
+    'n',
+    '<leader>dp',
+    '<cmd>lua vim.lsp.diagnostic.goto_prev({ severity = { min=vim.diagnostic.severity.WARN } })<CR>',
+    opts
+  )
   buf_map('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
   buf_map('v', '<leader>ca', '<cmd><C-U>Lspsaga range_code_action<CR>', opts)
 

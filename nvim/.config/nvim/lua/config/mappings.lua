@@ -18,9 +18,11 @@ map(
     .. [[Promise(res => setTimeout(res, ms));<CR>}<esc>k=i{<CR> ]],
   opts
 )
+map('n', '<Leader>ss', [[ O/** @type {sinon.SinonStub} */<esc><CR>]], opts)
 
 -- Search and replace under cursor
 map('n', '<Leader>s', [[ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left> ]], opts)
+map('v', '<Leader>s', [[ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left> ]], opts)
 
 -- === Search shorcuts === "
 map('n', '<C-_>', [[:nohlsearch<CR>]], opts)

@@ -28,7 +28,6 @@ return {
         args = {
           '-f',
           'json',
-          '--cache',
           '--stdin',
           '--stdin-filename',
           '$FILENAME',
@@ -41,14 +40,11 @@ return {
       formatter = 'eslint_d',
       format_on_save = true,
       formatter_opts = {
-        '--cache',
         '--fix-to-stdout',
         '--stdin',
         '--stdin-filename',
         '$FILENAME',
       },
-      update_imports_on_move = true,
-      require_confirmation_on_move = true,
     })
 
     -- required to fix code action ranges and filter diagnostics
