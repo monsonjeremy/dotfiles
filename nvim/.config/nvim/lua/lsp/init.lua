@@ -61,8 +61,8 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_pub
 })
 
 local function set_sign(type, icon)
-  local sign = string.format('LspDiagnosticsSign%s', type)
-  local texthl = string.format('LspDiagnosticsDefault%s', type)
+  local sign = string.format('DiagnosticSign%s', type)
+  local texthl = string.format('DiagnosticDefault%s', type)
   vim.fn.sign_define(sign, { text = icon, texthl = texthl })
 end
 
