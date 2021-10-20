@@ -36,7 +36,6 @@ map('n', '<leader>ps', [[:PackerSync<CR>]], opts)
 
 map('n', '<Space>', [[<Nop>]], opts)
 map('n', '<leader>ve', [[:vsplit $MYVIMRC<CR>]], opts)
-map('i', 'jj', [[<Esc>]], opts)
 
 -- Yank to end of line
 map('n', 'Y', 'y$', opts)

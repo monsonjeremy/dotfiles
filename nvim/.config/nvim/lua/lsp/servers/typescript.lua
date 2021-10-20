@@ -1,4 +1,5 @@
 local on_attach = require('lsp.on_attach')
+local util = require('lspconfig/util')
 local opts = { silent = true }
 
 return {
@@ -33,19 +34,27 @@ return {
           '--stdin-filename',
           '$FILENAME',
         },
+        use_cache = true,
+        cwd = function(params)
+          return util.root_pattern('Makefile', '.git', 'package.json')(params.bufname)
+        end,
         diagnostics_format = '#{m} [#{c}]',
-        default_timeout = 60000,
       },
 
       enable_formatting = true,
       formatter = 'eslint_d',
       format_on_save = true,
       formatter_opts = {
-        '--cache',
-        '--fix-to-stdout',
-        '--stdin',
-        '--stdin-filename',
-        '$FILENAME',
+        args = {
+          '--cache',
+          '--fix-to-stdout',
+          '--stdin',
+          '--stdin-filename',
+          '$FILENAME',
+        },
+        cwd = function(params)
+          return util.root_pattern('Makefile', '.git', 'package.json')(params.bufname)
+        end,
       },
     })
 
