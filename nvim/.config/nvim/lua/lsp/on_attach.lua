@@ -18,13 +18,13 @@ local on_attach = function(client)
   buf_map(
     'n',
     '<leader>dn',
-    [[<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next({ severity = { min=vim.diagnostic.severity.WARN } })<CR>]],
+    [[<cmd>lua require('lspsaga.diagnostic').navigate('next')({ severity = { min=vim.diagnostic.severity.WARN } })<CR>]],
     opts
   )
   buf_map(
     'n',
     '<leader>dp',
-    [[<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev({ severity = { min=vim.diagnostic.severity.WARN } })<CR>]],
+    [[<cmd>lua require('lspsaga.diagnostic').navigate('prev')({ severity = { min=vim.diagnostic.severity.WARN } })<CR>]],
     opts
   )
   buf_map('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)

@@ -70,9 +70,6 @@ return packer.startup(function()
     'onsails/lspkind-nvim',
     event = 'BufRead',
     module = 'lspkind',
-    config = function()
-      require('plugins.lspkind')
-    end,
   })
   use({
     'neovim/nvim-lspconfig',
@@ -143,7 +140,13 @@ return packer.startup(function()
   use({ 'sindrets/diffview.nvim', cmd = 'DiffviewOpen' })
   use({ 'nanotee/zoxide.vim', cmd = { 'z', 'Zi', 'Z' } })
   use({ 'simrat39/symbols-outline.nvim', cmd = 'SymbolsOutline' })
-  use({ 'b3nj5m1n/kommentary', event = 'BufRead' })
+  use({
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end,
+    event = 'BufRead',
+  })
   use({ 'tpope/vim-surround', event = 'BufRead' })
   use({ 'tpope/vim-repeat', keys = '.' })
   use({ 'AndrewRadev/dsf.vim', event = 'BufRead' })
@@ -271,6 +274,7 @@ return packer.startup(function()
   use({
     'kyazdani42/nvim-tree.lua',
     cmd = { 'NvimTreeToggle', 'NvimTreeFindFile' },
+    after = 'nvim-web-devicons',
     config = function()
       require('plugins.nvim-tree')
     end,

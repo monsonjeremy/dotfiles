@@ -6,7 +6,15 @@ end
 nvimtree.setup({
   update_cwd = true,
   auto_close = true,
-  lsp_diagnostics = true,
+  diagnostics = {
+    enable = true,
+    icons = {
+      hint = '',
+      info = '',
+      warning = '',
+      error = '',
+    },
+  },
   view = {
     -- width of the window, can be either a number (columns) or a string in `%`
     width = 25,

@@ -1,4 +1,4 @@
-vim.cmd('syntax on')
+-- vim.cmd('syntax on')
 
 local opt = vim.opt
 local g = vim.g
