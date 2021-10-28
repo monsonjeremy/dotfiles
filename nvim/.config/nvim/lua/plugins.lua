@@ -14,7 +14,7 @@ return packer.startup(function()
 
   -- UI
   use({
-    'hoob3rt/lualine.nvim',
+    'nvim-lualine/lualine.nvim',
     config = function()
       require('plugins.lualine')
     end,
@@ -39,6 +39,11 @@ return packer.startup(function()
     config = function()
       require('plugins.nvim-web-devicons')
     end,
+  })
+
+  use({
+    'github/copilot.vim',
+    event = 'InsertEnter',
   })
 
   -- LSP

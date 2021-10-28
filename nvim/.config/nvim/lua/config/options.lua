@@ -54,6 +54,7 @@ opt.undodir = '~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp'
 
 -- shortmess options
 opt.shortmess:append('asI') -- disable intro
+vim.opt.formatoptions:remove({ 'o' })
 
 -- disable tilde on end of buffer:
 vim.cmd('let &fcs=\'eob: \'')
