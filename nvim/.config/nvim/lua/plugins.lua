@@ -246,6 +246,7 @@ return packer.startup(function()
       'cmp-path',
       'cmp-treesitter',
       'cmp-spell',
+      'cmp-rg',
     },
     requires = {
       { 'hrsh7th/vim-vsnip', event = 'InsertCharPre' },
@@ -254,6 +255,7 @@ return packer.startup(function()
       { 'hrsh7th/cmp-path', event = 'InsertCharPre' },
       { 'f3fora/cmp-spell', event = 'InsertCharPre' },
       { 'ray-x/cmp-treesitter', event = 'InsertCharPre' },
+      { 'lukas-reineke/cmp-rg', event = 'InsertCharPre' },
     },
   })
 

@@ -21,6 +21,7 @@ cmd(
   ]],
   false
 )
+cmd([[autocmd BufEnter * set formatoptions-=o]], false)
 
 -- Set common config files as JSON
 cmd(
