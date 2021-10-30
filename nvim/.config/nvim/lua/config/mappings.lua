@@ -11,12 +11,18 @@ map('v', 'X', [["_d]])
 
 -- save
 map('n', '<C-s>', [[ <Cmd> w <CR>]], opts)
-map('n', '<Leader>ww',
-    [[ oconst wait = (ms: number): Promise<void> => {<CR>return new Promise(res => setTimeout(res, ms));<CR>}<esc>k=i{<CR> ]],
-    opts)
+map(
+  'n',
+  '<Leader>ww',
+  [[ oconst wait = (ms: number): Promise<void> => {<CR>return new]]
+    .. [[Promise(res => setTimeout(res, ms));<CR>}<esc>k=i{<CR> ]],
+  opts
+)
+map('n', '<Leader>ss', [[ O/** @type {sinon.SinonStub} */<esc><CR>]], opts)
 
 -- Search and replace under cursor
 map('n', '<Leader>s', [[ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left> ]], opts)
+map('v', '<Leader>s', [[ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left> ]], opts)
 
 -- === Search shorcuts === "
 map('n', '<C-_>', [[:nohlsearch<CR>]], opts)
@@ -25,12 +31,11 @@ map('n', '<leader>ga', [[:Git fetch --all<CR>]], opts)
 map('n', '<leader>grum', [[:Git rebase upstream/master<CR>]], opts)
 map('n', '<leader>grom', [[:Git rebase -i origin/master<CR>]], opts)
 
--- Vim Doge
-map('n', '<Leader>z', [[:DogeGenerate<CR>]], opts)
+map('n', '<leader>dg', [[:Neogen<CR>]], opts)
+map('n', '<leader>ps', [[:PackerSync<CR>]], opts)
 
 map('n', '<Space>', [[<Nop>]], opts)
 map('n', '<leader>ve', [[:vsplit $MYVIMRC<CR>]], opts)
-map('i', 'jj', [[<Esc>]], opts)
 
 -- Yank to end of line
 map('n', 'Y', 'y$', opts)
@@ -121,9 +126,15 @@ map('n', '<C-j>', [[:call WinMove('j')<CR>]], opts)
 map('n', '<C-k>', [[:call WinMove('k')<CR>]], opts)
 map('n', '<C-l>', [[:call WinMove('l')<CR>]], opts)
 
-map('v', '/',
-    [[:<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0 | exec '/'.g:srchstr | endif<CR>]],
-    opts)
-map('v', '?',
-    [[:<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0 | exec '?'.g:srchstr | endif<CR>]],
-    opts)
+map(
+  'v',
+  '/',
+  [[:<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0 | exec '/'.g:srchstr | endif<CR>]],
+  opts
+)
+map(
+  'v',
+  '?',
+  [[:<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0 | exec '?'.g:srchstr | endif<CR>]],
+  opts
+)

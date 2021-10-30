@@ -13,12 +13,22 @@ local on_attach = function(client)
   buf_map('n', '<leader>drr', '<cmd>Lspsaga rename<CR><CR>', opts)
   buf_map('n', '<leader>pd', '<cmd>Lspsaga preview_definition<CR>', opts)
   buf_map('n', '<leader>sh', '<cmd>Lspsaga signature_help<CR>', opts)
-  buf_map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_map('n', 'K', '<cmd>Lspsaga hover_doc<CR>', opts)
   buf_map('n', '<leader>cs', '<cmd>Lspsaga show_line_diagnostics<CR>', opts)
-  buf_map('n', '<leader>dn', '<cmd>Lspsaga diagnostic_jump_next<CR>', opts)
-  buf_map('n', '<leader>dp', '<cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
-  buf_map('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
-  buf_map('v', '<leader>ca', '<cmd><C-U>Lspsaga range_code_action<CR>', opts)
+  buf_map(
+    'n',
+    '<leader>dn',
+    [[<cmd>lua require('lspsaga.diagnostic').navigate('next')({ severity = { min=vim.diagnostic.severity.WARN } })<CR>]],
+    opts
+  )
+  buf_map(
+    'n',
+    '<leader>dp',
+    [[<cmd>lua require('lspsaga.diagnostic').navigate('prev')({ severity = { min=vim.diagnostic.severity.WARN } })<CR>]],
+    opts
+  )
+  buf_map('n', '<leader>ca', '<cmd>Telescope lsp_code_actions<CR>', opts)
+  buf_map('v', '<leader>ca', '<cmd><C-U>Telescope lsp_range_code_actions<CR>', opts)
 
   -- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
   if client.resolved_capabilities.signature_help then
@@ -27,14 +37,8 @@ local on_attach = function(client)
 
   if client.resolved_capabilities.document_formatting then
     buf_map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.formatting_sync(nil, 1000)<CR>', opts)
-    buf_map('v', '<leader>fr',
-            '<cmd>lua vim.lsp.buf.range_formatting_sync(nil, 1000)<CR>', opts)
-    vim.api.nvim_exec([[
-      augroup Format
-      autocmd! * <buffer>
-      autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
-      augroup END
-    ]], false)
+    buf_map('v', '<leader>fr', '<cmd>lua vim.lsp.buf.range_formatting_sync(nil, 1000)<CR>', opts)
+    vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
   end
 end
 

@@ -1,8 +1,7 @@
 local present, bufferline = pcall(require, 'bufferline')
-if not present then return end
-
-local map = require('utils').map
-local opts = { noremap = true, silent = true }
+if not present then
+  return
+end
 
 bufferline.setup({
   options = {

@@ -2,7 +2,7 @@ local present, _ = pcall(require, 'packerInit')
 local packer
 
 if present then
-  packer = require 'packer'
+  packer = require('packer')
 else
   return false
 end
@@ -14,7 +14,7 @@ return packer.startup(function()
 
   -- UI
   use({
-    'hoob3rt/lualine.nvim',
+    'nvim-lualine/lualine.nvim',
     config = function()
       require('plugins.lualine')
     end,
@@ -39,6 +39,11 @@ return packer.startup(function()
     config = function()
       require('plugins.nvim-web-devicons')
     end,
+  })
+
+  use({
+    'github/copilot.vim',
+    event = 'InsertEnter',
   })
 
   -- LSP
@@ -69,9 +74,7 @@ return packer.startup(function()
   use({
     'onsails/lspkind-nvim',
     event = 'BufRead',
-    config = function()
-      require('plugins.lspkind')
-    end,
+    module = 'lspkind',
   })
   use({
     'neovim/nvim-lspconfig',
@@ -91,6 +94,19 @@ return packer.startup(function()
       'lspkind-nvim',
     },
   })
+
+  use({
+    'jose-elias-alvarez/null-ls.nvim',
+    after = 'nvim-lspconfig',
+    module = 'null-ls',
+  })
+
+  use({
+    'jose-elias-alvarez/nvim-lsp-ts-utils',
+    after = 'nvim-lspconfig',
+    module = 'nvim-lsp-ts-utils',
+  })
+
   use({
     'simrat39/rust-tools.nvim',
     ft = 'rs',
@@ -111,7 +127,7 @@ return packer.startup(function()
   -- Navigation / Helpers
   use({ 'tpope/vim-fugitive', cmd = { 'Git' } })
   use({ 'nvim-lua/plenary.nvim' })
-  use { 'nvim-lua/popup.nvim', after = 'plenary.nvim' }
+  use({ 'nvim-lua/popup.nvim', after = 'plenary.nvim' })
   use({
     'famiu/nvim-reload',
     cmd = 'Reload',
@@ -129,21 +145,27 @@ return packer.startup(function()
   use({ 'sindrets/diffview.nvim', cmd = 'DiffviewOpen' })
   use({ 'nanotee/zoxide.vim', cmd = { 'z', 'Zi', 'Z' } })
   use({ 'simrat39/symbols-outline.nvim', cmd = 'SymbolsOutline' })
-  use({ 'b3nj5m1n/kommentary', event = 'BufRead' })
+  use({
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end,
+    event = 'BufRead',
+  })
   use({ 'tpope/vim-surround', event = 'BufRead' })
   use({ 'tpope/vim-repeat', keys = '.' })
   use({ 'AndrewRadev/dsf.vim', event = 'BufRead' })
   use({ 'chaoren/vim-wordmotion', event = 'BufRead' })
   use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
   use({ 'tversteeg/registers.nvim', cmd = 'Registers' })
-  --[[ use({
+  use({
     'vuki656/package-info.nvim',
-    requires = "MunifTanjim/nui.nvim",
+    requires = 'MunifTanjim/nui.nvim',
     ft = 'json',
     config = function()
       require('package-info').setup()
     end,
-  }) ]]
+  })
   use({
     'phaazon/hop.nvim',
     cmd = { 'HopWord', 'HopLine', 'HopChar1', 'HopChar2', 'HopPattern' },
@@ -192,7 +214,7 @@ return packer.startup(function()
   use({
     'nvim-treesitter/nvim-treesitter-refactor',
     event = 'BufRead',
-    after = 'nvim-treesitter'
+    after = 'nvim-treesitter',
   })
 
   use({ 'nvim-treesitter/playground', cmd = 'TSPlayground' })
@@ -224,6 +246,7 @@ return packer.startup(function()
       'cmp-path',
       'cmp-treesitter',
       'cmp-spell',
+      'cmp-rg',
     },
     requires = {
       { 'hrsh7th/vim-vsnip', event = 'InsertCharPre' },
@@ -232,6 +255,7 @@ return packer.startup(function()
       { 'hrsh7th/cmp-path', event = 'InsertCharPre' },
       { 'f3fora/cmp-spell', event = 'InsertCharPre' },
       { 'ray-x/cmp-treesitter', event = 'InsertCharPre' },
+      { 'lukas-reineke/cmp-rg', event = 'InsertCharPre' },
     },
   })
 
@@ -257,6 +281,7 @@ return packer.startup(function()
   use({
     'kyazdani42/nvim-tree.lua',
     cmd = { 'NvimTreeToggle', 'NvimTreeFindFile' },
+    after = 'nvim-web-devicons',
     config = function()
       require('plugins.nvim-tree')
     end,
@@ -287,14 +312,6 @@ return packer.startup(function()
   })
 
   use({
-    'kkoomen/vim-doge',
-    cmd = { 'DogeGenerate' },
-    run = function()
-      vim.fn['doge#install']()
-    end,
-  })
-
-  use({
     'dsznajder/vscode-es7-javascript-react-snippets',
     event = 'InsertEnter',
     run = 'yarn install --frozen-lockfile && yarn compile',
@@ -316,5 +333,16 @@ return packer.startup(function()
       require('neoclip').setup()
     end,
   })
-  -- use({ 'nathom/filetype.nvim' })
+  use({ 'nathom/filetype.nvim' })
+
+  use({
+    'danymat/neogen',
+    module = 'neogen',
+    cmd = 'Neogen',
+    config = function()
+      require('neogen').setup({
+        enabled = true,
+      })
+    end,
+  })
 end)
