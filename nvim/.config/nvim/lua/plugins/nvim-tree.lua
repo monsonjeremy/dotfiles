@@ -22,4 +22,11 @@ nvimtree.setup({
     side = 'left',
     -- if true the tree will resize itself after opening a file
   },
+  filters = {
+    dotfiles = false,
+    custom = {
+      '.git',
+      '.cache',
+    },
+  },
 })

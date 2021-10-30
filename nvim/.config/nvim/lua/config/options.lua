@@ -83,11 +83,11 @@ for _, plugin in pairs(disabled_built_ins) do
   vim.g['loaded_' .. plugin] = 1
 end
 
-g.nvim_tree_ignore = { '.git', '.cache' }
+-- g.nvim_tree_ignore = { '.git', '.cache' }
 g.nvim_tree_gitignore = 1
 g.nvim_tree_quit_on_open = 0
 g.nvim_tree_indent_markers = 1
-g.nvim_tree_hide_dotfiles = 0
+-- g.nvim_tree_hide_dotfiles = 0
 g.nvim_tree_git_hl = 1
 g.nvim_tree_root_folder_modifier = ':t'
 g.nvim_tree_allow_resize = 1
