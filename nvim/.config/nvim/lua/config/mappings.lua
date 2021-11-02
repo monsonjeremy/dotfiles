@@ -1,4 +1,4 @@
-local map = require('utils').map
+local map = require('helpers').map
 
 local g = vim.g
 g.mapleader = ' '

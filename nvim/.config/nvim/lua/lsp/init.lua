@@ -6,7 +6,7 @@ end
 
 local base_config = require('lsp.config')
 local configs = require('lsp.servers')
-local merge_table = require('utils').merge_table
+local merge_table = require('helpers').merge_table
 local lsp = vim.lsp
 
 -- lsp-install

@@ -1,5 +1,5 @@
-local buf_map = require('utils').buf_map
-local buf_option = require('utils').buf_option
+local buf_map = require('helpers').buf_map
+local buf_option = require('helpers').buf_option
 
 local on_attach = function(client)
   local opts = { noremap = true, silent = true }
