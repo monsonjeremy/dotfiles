@@ -10,6 +10,7 @@ end
 local use = packer.use
 
 return packer.startup(function()
+  use('lewis6991/impatient.nvim')
   use({ 'wbthomason/packer.nvim', event = 'VimEnter' })
 
   -- UI
@@ -345,4 +346,9 @@ return packer.startup(function()
       })
     end,
   })
-end)
+end, {
+  config = {
+    -- Move to lua dir so impatient.nvim can cache it
+    compile_path = vim.fn.stdpath('config') .. '/plugin/packer_compiled.lua',
+  },
+})
