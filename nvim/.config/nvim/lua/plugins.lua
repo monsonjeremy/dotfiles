@@ -21,6 +21,12 @@ return packer.startup(function()
     end,
   })
   use({
+    'luukvbaal/stabilize.nvim',
+    config = function()
+      require('stabilize').setup()
+    end,
+  })
+  use({
     'lukas-reineke/indent-blankline.nvim',
     event = 'BufRead',
     config = function()
@@ -62,6 +68,15 @@ return packer.startup(function()
     event = 'BufRead',
     config = function()
       require('lspfuzzy').setup({})
+    end,
+  })
+  use({
+    'filipdutescu/renamer.nvim',
+    event = 'BufRead',
+    after = 'plenary.nvim',
+    requires = { { 'nvim-lua/plenary.nvim' } },
+    config = function()
+      require('renamer').setup()
     end,
   })
   use({
@@ -179,10 +194,9 @@ return packer.startup(function()
   use({ 'fedepujol/move.nvim', cmd = { 'MoveLine', 'MoveBlock' } })
 
   use({
-    'glepnir/dashboard-nvim',
-    event = 'VimEnter',
+    'goolord/alpha-nvim',
     config = function()
-      require('plugins.dashboard')
+      require('alpha').setup(require('alpha.themes.dashboard').opts)
     end,
   })
 

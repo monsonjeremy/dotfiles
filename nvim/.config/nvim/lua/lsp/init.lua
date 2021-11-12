@@ -9,6 +9,8 @@ local configs = require('lsp.servers')
 local merge_table = require('helpers').merge_table
 local lsp = vim.lsp
 
+lsp.set_log_level('error')
+
 -- lsp-install
 local function setup_servers()
   lspinstall.setup()
