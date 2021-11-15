@@ -254,8 +254,8 @@ return packer.startup(function()
       require('plugins.compe')
     end,
     wants = {
-      'vim-vsnip',
-      'cmp-vsnip',
+      'LuaSnip',
+      'cmp_luasnip',
       'cmp-nvim-lsp',
       'cmp-buffer',
       'cmp-path',
@@ -264,8 +264,8 @@ return packer.startup(function()
       'cmp-rg',
     },
     requires = {
-      { 'hrsh7th/vim-vsnip', event = 'InsertCharPre' },
-      { 'hrsh7th/cmp-vsnip', event = 'InsertCharPre' },
+      { 'L3MON4D3/LuaSnip', event = 'InsertCharPre' },
+      { 'saadparwaiz1/cmp_luasnip', event = 'InsertCharPre' },
       { 'hrsh7th/cmp-buffer', event = 'InsertCharPre' },
       { 'hrsh7th/cmp-path', event = 'InsertCharPre' },
       { 'f3fora/cmp-spell', event = 'InsertCharPre' },
@@ -328,7 +328,6 @@ return packer.startup(function()
 
   use({
     'dsznajder/vscode-es7-javascript-react-snippets',
-    event = 'InsertEnter',
     run = 'yarn install --frozen-lockfile && yarn compile',
   })
 

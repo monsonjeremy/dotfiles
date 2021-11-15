@@ -1,5 +1,6 @@
 local present, cmp = pcall(require, 'cmp')
 local present2, lspkind = pcall(require, 'lspkind')
+local present3, luasnip = pcall(require, 'luasnip')
 
 if not (present or present2) then
   return
@@ -21,7 +22,7 @@ cmp.setup({
   },
   snippet = {
     expand = function(args)
-      vim.fn['vsnip#anonymous'](args.body) -- For `vsnip` user.
+      luasnip.lsp_expand(args.body)
     end,
   },
   mapping = {
@@ -29,6 +30,8 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
       elseif vim.b._copilot_suggestion ~= nil then
         vim.fn.feedkeys(
           vim.api.nvim_replace_termcodes(vim.fn['copilot#Accept'](), true, true, true),
@@ -41,17 +44,27 @@ cmp.setup({
       'i',
       's',
     }),
-    ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   sources = {
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'spell' },
-    { name = 'vsnip' },
+    { name = 'luasnip', opts = { use_show_condition = false } },
     { name = 'buffer' },
     { name = 'path' },
     { name = 'treesitter' },
     { name = 'rg' },
   },
 })
+
+require('luasnip/loaders/from_vscode').load()
