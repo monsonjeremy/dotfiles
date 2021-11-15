@@ -126,6 +126,8 @@ map('n', '<C-j>', [[:call WinMove('j')<CR>]], opts)
 map('n', '<C-k>', [[:call WinMove('k')<CR>]], opts)
 map('n', '<C-l>', [[:call WinMove('l')<CR>]], opts)
 
+map('i', '<C-c>', [[copilot#Accept('<CR>')]], { expr = true, silent = true })
+
 map(
   'v',
   '/',
