@@ -10,7 +10,6 @@ M.typescript = require('lsp.servers.typescript')
 M.vim = require('lsp.servers.vim')
 M.terraform = require('lsp.servers.terraform')
 
-print('loading LSP')
 -- Not yet supported by lspinstall
 require('lsp.servers.prisma')
 require('lsp.servers.null-ls.init')

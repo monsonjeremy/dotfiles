@@ -2,42 +2,19 @@ local util = require('lspconfig/util')
 local m = {}
 
 local lookForPackageJson = function(params)
-  return util.root_pattern('Makefile', '.git', 'package.json')(params.bufname)
+  return util.root_pattern('.git', 'package.json')(params.bufname)
 end
 
-local eslintFormattingConfig = {
-  only_local = 'node_modules/.bin',
-  use_cache = true,
-  cwd = lookForPackageJson,
-  diagnostics_format = '#{m} [#{c}]',
-  args = {
-    '--cache',
-    '--fix-to-stdout',
-    '--stdin',
-    '--stdin-filename',
-    '$FILENAME',
-  },
-}
-
-local eslintDiagnosticsConfig = {
-  only_local = 'node_modules/.bin',
-  use_cache = true,
-  cwd = lookForPackageJson,
-  diagnostics_format = '#{m} [#{c}]',
-  args = {
-    '--cache',
-    '-f',
-    'json',
-    '--stdin',
-    '--stdin-filename',
-    '$FILENAME',
-  },
-}
-
 local eslintConfig = {
-  only_local = 'node_modules/.bin',
   cwd = lookForPackageJson,
   diagnostics_format = '#{m} [#{c}]',
+  use_cache = true,
+  -- condition = function(utils)
+  --   return utils.root_has_file('.eslintrc')
+  --     or utils.root_has_file('.eslintrc.json')
+  --     or utils.root_has_file('.eslintrc.yaml')
+  --     or utils.root_has_file('.eslintrc.js')
+  -- end,
 }
 
 m.eslintConfig = eslintConfig

@@ -1,8 +1,9 @@
 local present, cmp = pcall(require, 'cmp')
 local present2, lspkind = pcall(require, 'lspkind')
 local present3, luasnip = pcall(require, 'luasnip')
+local present4, luasnipVscode = pcall(require, 'luasnip/loaders/from_vscode')
 
-if not (present or present2) then
+if not (present or present2 or present3) then
   return
 end
 
@@ -67,4 +68,8 @@ cmp.setup({
   },
 })
 
-require('luasnip/loaders/from_vscode').lazy_load()
+if not present3 then
+  return
+end
+
+luasnipVscode.lazy_load()

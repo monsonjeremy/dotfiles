@@ -1,4 +1,3 @@
-print('entering null-ls')
 local present, null_ls = pcall(require, 'null-ls')
 if not present then
   return
@@ -35,7 +34,6 @@ local luaCheckConfig = {
 null_ls.config({
   sources = {
     null_ls.builtins.formatting.prettierd,
-    null_ls.builtins.formatting.eslintd,
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.stylua.with(styluaConfig),
     null_ls.builtins.formatting.terraform_fmt,
@@ -49,6 +47,6 @@ null_ls.config({
     null_ls.builtins.diagnostics.hadolint,
     null_ls.builtins.diagnostics.eslint_d.with(eslint.eslintConfig),
     null_ls.builtins.code_actions.eslint_d.with(eslint.eslintConfig),
-    null_ls.builtins.code_actions.gitsigns
+    null_ls.builtins.code_actions.gitsigns,
   },
 })
