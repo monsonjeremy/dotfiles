@@ -40,7 +40,7 @@ null_ls.config({
     null_ls.builtins.formatting.trim_whitespace,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.stylelint.with(styleLintFormattingConfig),
-    null_ls.builtins.formatting.eslint_d.with(eslint.eslintConfig),
+    null_ls.builtins.formatting.eslint_d.with(eslint.eslintFormattingConfig),
     null_ls.builtins.diagnostics.luacheck.with(luaCheckConfig),
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.diagnostics.stylelint.with(styleLintDiagnosticsConfig),

@@ -17,6 +17,11 @@ local eslintConfig = {
   -- end,
 }
 
+local eslintFormattingConfig = {
+  cwd = lookForPackageJson,
+}
+
 m.eslintConfig = eslintConfig
+m.eslintFormattingConfig = eslintFormattingConfig
 
 return m
