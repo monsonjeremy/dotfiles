@@ -20,42 +20,6 @@ return {
       enable_import_on_completion = true,
       import_all_timeout = 5000,
       import_all_scan_buffers = 100,
-      eslint_enable_code_actions = true,
-      eslint_enable_disable_comments = true,
-      eslint_bin = 'eslint_d',
-      eslint_enable_diagnostics = true,
-      eslint_diagnostics_debounce = 250,
-      eslint_opts = {
-        args = {
-          '--cache',
-          '-f',
-          'json',
-          '--stdin',
-          '--stdin-filename',
-          '$FILENAME',
-        },
-        use_cache = true,
-        cwd = function(params)
-          return util.root_pattern('Makefile', '.git', 'package.json')(params.bufname)
-        end,
-        diagnostics_format = '#{m} [#{c}]',
-      },
-
-      enable_formatting = true,
-      formatter = 'eslint_d',
-      format_on_save = true,
-      formatter_opts = {
-        args = {
-          '--cache',
-          '--fix-to-stdout',
-          '--stdin',
-          '--stdin-filename',
-          '$FILENAME',
-        },
-        cwd = function(params)
-          return util.root_pattern('Makefile', '.git', 'package.json')(params.bufname)
-        end,
-      },
     })
 
     -- required to fix code action ranges and filter diagnostics
