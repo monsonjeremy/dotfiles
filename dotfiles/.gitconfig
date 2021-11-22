@@ -16,8 +16,10 @@
 	# View the current working tree status using the short format
 	s = status -s
 
-    # Rebase
-    up = !"git fetch origin && git rebase -i origin/master"
+        deleted = log --diff-filter=D --summary
+
+        # Rebase
+        up = !"git fetch origin && git rebase -i origin/master"
 
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
