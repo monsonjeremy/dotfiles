@@ -2,6 +2,7 @@
 export ZSH=~/.oh-my-zsh
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
 eval "$(fnm env)"
 eval "$(starship init zsh)"
@@ -69,3 +70,4 @@ kitty + complete setup zsh | source /dev/stdin
 source ~/perl5/perlbrew/etc/bashrc
 
 . $(brew --prefix asdf)/asdf.sh
+export PATH="/usr/local/sbin:$PATH"

@@ -23,8 +23,7 @@ local function auto_install_servers()
     'prismals',
     'elixirls',
     'dockerls',
-    'codeqlls',
-    -- 'stylelint_lsp',
+    'stylelint_lsp',
     'eslint',
   }
 
