@@ -25,7 +25,7 @@ local function auto_install_servers()
     'dockerls',
     'codeqlls',
     -- 'stylelint_lsp',
-    -- 'eslint',
+    'eslint',
   }
 
   for _, name in pairs(required_servers) do
@@ -42,7 +42,8 @@ end
 auto_install_servers()
 
 lspinstall.on_server_ready(function(server)
-  server:setup(configs[server.name] or base_config())
+  local config = configs[server.name]
+  server:setup(config or base_config())
   vim.cmd([[ do User LspAttachBuffers ]])
 end)
 
