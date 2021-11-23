@@ -1,77 +1,52 @@
-local present1, lspconfig = pcall(require, 'lspconfig')
-local present2, lspinstall = pcall(require, 'lspinstall')
-if not (present1 or present2) then
+local present1 = pcall(require, 'lspconfig')
+local present2, lspinstall = pcall(require, 'nvim-lsp-installer')
+local present3, lsp_installer_servers = pcall(require, 'nvim-lsp-installer.servers')
+if not (present1 or present2 or present3) then
   return
 end
 
 local base_config = require('lsp.config')
 local configs = require('lsp.servers')
-local merge_table = require('helpers').merge_table
-local lsp = vim.lsp
 
-lsp.set_log_level('error')
-
--- lsp-install
-local function setup_servers()
-  lspinstall.setup()
-
+local function auto_install_servers()
   local required_servers = {
-    'bash',
-    'css',
+    'bashls',
+    'cssls',
     'html',
-    'json',
-    'lua',
-    'rust',
-    'typescript',
-    'vim',
+    'jsonls',
+    'sumneko_lua',
+    'rust_analyzer',
+    'tsserver',
+    'vimls',
     'graphql',
-    'terraform',
+    'terraformls',
+    'prismals',
+    'elixirls',
+    'dockerls',
+    'codeqlls',
+    -- 'stylelint_lsp',
+    -- 'eslint',
   }
 
-  -- get all installed servers
-  local servers = lspinstall.installed_servers()
-  for _, server in pairs(required_servers) do
-    if not vim.tbl_contains(servers, server) then
-      lspinstall.install_server(server)
+  for _, name in pairs(required_servers) do
+    local ok, server = lsp_installer_servers.get_server(name)
+    -- Check that the server is supported in nvim-lsp-installer
+    if ok then
+      if not server:is_installed() then
+        server:install()
+      end
     end
-  end
-
-  for _, server in pairs(merge_table(servers, { 'null-ls' })) do
-    local config = base_config()
-
-    if configs[server] ~= nil then
-      config = merge_table(config, configs[server])
-    end
-
-    lspconfig[server].setup(config)
   end
 end
 
-setup_servers()
+auto_install_servers()
+
+lspinstall.on_server_ready(function(server)
+  server:setup(configs[server.name] or base_config())
+  vim.cmd([[ do User LspAttachBuffers ]])
+end)
+
 vim.cmd('bufdo e')
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-lspinstall.post_install_hook = function()
-  setup_servers() -- reload installed servers
-  vim.cmd('bufdo e') -- this triggers the FileType autocmd that starts the server
-end
-
-lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
-  underline = { severity_limit = 'Warning' },
-  virtual_text = { prefix = '●', spacing = 2, severity_limit = 'Warning' },
-  signs = { severity_limit = 'Warning' },
-})
-
-local function set_sign(type, icon)
-  local sign = string.format('DiagnosticSign%s', type)
-  local texthl = string.format('DiagnosticDefault%s', type)
-  vim.fn.sign_define(sign, { text = icon, texthl = texthl })
-end
-
-set_sign('Hint', '')
-set_sign('Information', '')
-set_sign('Warning', '')
-set_sign('Error', '')
 
 -- suppress error messages from lang servers
 vim.notify = function(msg, log_level)

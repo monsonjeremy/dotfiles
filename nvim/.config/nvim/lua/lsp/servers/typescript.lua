@@ -1,5 +1,4 @@
 local on_attach = require('lsp.on_attach')
-local util = require('lspconfig/util')
 local opts = { silent = true }
 
 return {

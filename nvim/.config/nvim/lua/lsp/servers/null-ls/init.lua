@@ -3,6 +3,8 @@ if not present then
   return
 end
 
+local on_attach = require('lsp.on_attach')
+
 local eslint = require('lsp.servers.null-ls.eslint')
 
 local styluaConfig = {
@@ -27,18 +29,18 @@ local luaCheckConfig = {
   extra_args = {
     '--config',
     vim.fn.expand('~/dotfiles/.luacheckrc'),
-    '--globals vim bufnr',
   },
 }
 
 null_ls.config({
+  debug = true,
   sources = {
     null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.rustfmt,
-    null_ls.builtins.formatting.stylua.with(styluaConfig),
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.trim_whitespace,
     null_ls.builtins.formatting.shfmt,
+    null_ls.builtins.formatting.stylua.with(styluaConfig),
     null_ls.builtins.formatting.stylelint.with(styleLintFormattingConfig),
     null_ls.builtins.formatting.eslint_d.with(eslint.eslintFormattingConfig),
     null_ls.builtins.diagnostics.luacheck.with(luaCheckConfig),
@@ -49,4 +51,12 @@ null_ls.config({
     null_ls.builtins.code_actions.eslint_d.with(eslint.eslintConfig),
     null_ls.builtins.code_actions.gitsigns,
   },
+})
+
+require('lspconfig')['null-ls'].setup({
+  capabilities = vim.lsp.protocol.make_client_capabilities(),
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = true
+    on_attach(client)
+  end,
 })

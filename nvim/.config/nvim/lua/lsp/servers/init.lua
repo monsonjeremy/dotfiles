@@ -1,17 +1,20 @@
 local M = {}
 
-M.bash = require('lsp.servers.bash')
-M.css = require('lsp.servers.css')
+M.bashls = require('lsp.servers.bash')
+M.cssls = require('lsp.servers.css')
 M.html = require('lsp.servers.html')
-M.json = require('lsp.servers.json')
-M.lua = require('lsp.servers.lua')
-M.rust = require('lsp.servers.rust')
-M.typescript = require('lsp.servers.typescript')
-M.vim = require('lsp.servers.vim')
-M.terraform = require('lsp.servers.terraform')
+M.jsonls = require('lsp.servers.json')
+M.sumneko_lua = require('lsp.servers.lua')
+M.rust_analyzer = require('lsp.servers.rust')
+M.tsserver = require('lsp.servers.typescript')
+M.vimls = require('lsp.servers.vim')
+M.terraformls = require('lsp.servers.terraform')
+M.prismals = require('lsp.servers.prisma')
+M.elixirls = require('lsp.servers.elixir')
+M.eslint = require('lsp.servers.eslint')
+M.stylelint_lsp = require('lsp.servers.stylelint')
 
 -- Not yet supported by lspinstall
-require('lsp.servers.prisma')
-require('lsp.servers.null-ls.init')
+require('lsp.servers.null-ls')
 
 return M
