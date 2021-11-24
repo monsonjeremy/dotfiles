@@ -57,7 +57,7 @@ return packer.startup(function()
   use({ 'tami5/lspsaga.nvim', event = 'BufRead' })
   use({ 'ray-x/lsp_signature.nvim', event = 'BufRead' })
   use({ 'folke/lua-dev.nvim', event = 'BufRead' })
-  use({ 'kabouzeid/nvim-lspinstall', event = 'BufRead' })
+  use({ 'williamboman/nvim-lsp-installer', event = 'BufRead' })
   use({ 'nvim-lua/lsp_extensions.nvim', event = 'BufRead' })
   use({
     'ojroques/nvim-lspfuzzy',
@@ -100,7 +100,7 @@ return packer.startup(function()
     after = {
       'cmp',
       'cmp-nvim-lsp',
-      'nvim-lspinstall',
+      'nvim-lsp-installer',
       'lspsaga.nvim',
       'lsp_signature.nvim',
       'lua-dev.nvim',

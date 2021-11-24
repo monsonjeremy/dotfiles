@@ -33,7 +33,4 @@ return packer.init({
       return require('packer.util').float({ border = 'single' })
     end,
   },
-  git = {
-    clone_timeout = 1000, -- Timeout, in seconds, for git clones
-  },
 })
