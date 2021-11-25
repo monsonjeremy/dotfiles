@@ -71,3 +71,4 @@ source ~/perl5/perlbrew/etc/bashrc
 
 . $(brew --prefix asdf)/asdf.sh
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"

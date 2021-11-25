@@ -48,7 +48,7 @@ opt.smartindent = true
 -- Backups
 opt.backup = true
 opt.writebackup = true
-opt.backupdir = '~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp'
+opt.backupdir = '~/.local/share/nvim/backup'
 opt.backupskip = '/tmp/*,/private/tmp/*'
 opt.directory = '~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp'
 opt.swapfile = false
