@@ -15,6 +15,12 @@ return packer.startup(function()
 
   -- UI
   use({
+    'VonHeikemen/searchbox.nvim',
+    requires = {
+      { 'MunifTanjim/nui.nvim' },
+    },
+  })
+  use({
     'nvim-lualine/lualine.nvim',
     config = function()
       require('plugins.lualine')

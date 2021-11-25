@@ -126,6 +126,9 @@ map('n', '<C-j>', [[:call WinMove('j')<CR>]], opts)
 map('n', '<C-k>', [[:call WinMove('k')<CR>]], opts)
 map('n', '<C-l>', [[:call WinMove('l')<CR>]], opts)
 
+map('n', '/', '<cmd>lua require("searchbox").incsearch()<CR>', opts)
+map('n', '?', '<cmd>lua require("searchbox").incsearch({ reverse = true })<CR>', opts)
+
 map(
   'v',
   '/',
