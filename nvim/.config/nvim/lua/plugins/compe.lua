@@ -60,7 +60,7 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'spell' },
-    { name = 'luasnip', opts = { use_show_condition = false } },
+    { name = 'luasnip', option = { use_show_condition = false } },
     { name = 'buffer' },
     { name = 'path' },
     { name = 'treesitter' },
