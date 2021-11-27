@@ -1,5 +1,7 @@
 # Path to oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
+export GEM_HOME="$HOME/.gem"
+export PATH="$PATH:$GEM_HOME/bin"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
@@ -72,3 +74,4 @@ source ~/perl5/perlbrew/etc/bashrc
 . $(brew --prefix asdf)/asdf.sh
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"

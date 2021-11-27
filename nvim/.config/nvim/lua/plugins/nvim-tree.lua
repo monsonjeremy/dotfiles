@@ -29,4 +29,7 @@ nvimtree.setup({
       '.cache',
     },
   },
+  git = {
+    ignore = 1,
+  },
 })

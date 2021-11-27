@@ -48,7 +48,7 @@ opt.smartindent = true
 -- Backups
 opt.backup = true
 opt.writebackup = true
-opt.backupdir = '~/.local/share/nvim/backup'
+opt.backupdir = vim.fn.expand('~/.local/share/nvim/backup')
 opt.backupskip = '/tmp/*,/private/tmp/*'
 opt.directory = '~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp'
 opt.swapfile = false
@@ -87,7 +87,6 @@ for _, plugin in pairs(disabled_built_ins) do
 end
 
 -- g.nvim_tree_ignore = { '.git', '.cache' }
-g.nvim_tree_gitignore = 1
 g.nvim_tree_quit_on_open = 0
 g.nvim_tree_indent_markers = 1
 -- g.nvim_tree_hide_dotfiles = 0
