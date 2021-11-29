@@ -39,35 +39,19 @@ nvim +PackerSync +qall
 defaults write -g KeyRepeat -int 2
 defaults write -g InitialKeyRepeat -int 10
 
-cp .rgignore ~/.rgignore
-
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 eval "$(fnm env)"
 fnm install 16
 fnm default 16
 fnm use 16
-npm i -g bash-language-server \
-  eslint_d \
+npm i -g eslint_d \
   neovim \
   npm \
   prettier \
   prettier_d_slim \
   typescript \
-  vim-language-server \
-  vscode-css-languageserver-bin \
-  vscode-html-languageserver-bin \
-  vscode-json-languageserver-bin \
-  eslint_d \
   neovim \
-  npm \
-  prettier \
-  prettier_d_slim \
-  typescript \
-  vim-language-server \
-  vscode-css-languageserver-bin \
-  vscode-html-languageserver-bin \
-  vscode-json-languageserver-bin \
 
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
