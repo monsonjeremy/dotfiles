@@ -10,7 +10,7 @@ return {
       autoFixOnSave = true,
       autoFixOnFormat = true,
       configFile = vim.fn.expand('~/dotfiles/.stylelintrc.json'),
-      cssInJs = true,
     },
   },
+  filetypes = { 'css', 'scss' },
 }
