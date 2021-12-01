@@ -37,9 +37,6 @@ map('n', '<leader>ps', [[:PackerSync<CR>]], opts)
 map('n', '<Space>', [[<Nop>]], opts)
 map('n', '<leader>ve', [[:vsplit $MYVIMRC<CR>]], opts)
 
--- Yank to end of line
-map('n', 'Y', 'y$', opts)
-
 -- Yank all matches
 map('n', '<leader>Y', [[:CopyMatches<CR>]], opts)
 
