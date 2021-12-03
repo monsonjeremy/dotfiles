@@ -28,6 +28,7 @@ if not present then
 end
 
 return packer.init({
+  max_jobs = 50,
   display = {
     open_fn = function()
       return require('packer.util').float({ border = 'single' })
