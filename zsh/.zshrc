@@ -71,7 +71,7 @@ kitty + complete setup zsh | source /dev/stdin
 
 source ~/perl5/perlbrew/etc/bashrc
 
-. $(brew --prefix asdf)/asdf.sh
+. $(brew --prefix asdf)/libexec/asdf.sh
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"

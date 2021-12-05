@@ -30,8 +30,6 @@ nvimtree.setup({
     },
   },
   git = {
-    enable = false,
     ignore = true,
-    timeout = 40,
   },
 })
