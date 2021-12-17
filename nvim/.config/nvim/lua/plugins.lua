@@ -259,7 +259,7 @@ return packer.startup(function()
       'cmp-path',
       'cmp-treesitter',
       'cmp-spell',
-      'cmp-rg',
+      -- 'cmp-rg',
     },
     requires = {
       { 'L3MON4D3/LuaSnip', event = 'InsertCharPre' },
@@ -268,7 +268,7 @@ return packer.startup(function()
       { 'hrsh7th/cmp-path', event = 'InsertCharPre' },
       { 'f3fora/cmp-spell', event = 'InsertCharPre' },
       { 'ray-x/cmp-treesitter', event = 'InsertCharPre' },
-      { 'lukas-reineke/cmp-rg', event = 'InsertCharPre' },
+      -- { 'lukas-reineke/cmp-rg', event = 'InsertCharPre' },
     },
   })
 

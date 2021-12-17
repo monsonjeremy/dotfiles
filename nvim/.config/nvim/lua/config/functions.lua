@@ -31,13 +31,6 @@ cmd(
   false
 )
 
-cmd(
-  [[
-    au BufNewFile,BufRead *.prisma set filetype=prisma
-  ]],
-  false
-)
-
 vim.cmd([[
   function! RangeSearch(direction)
     call inputsave()
