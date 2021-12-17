@@ -1,6 +1,7 @@
 {
   "extends": "stylelint-config-standard-scss",
   "rules": {
-    "string-quotes": "single"
+    "string-quotes": "single",
+    "selector-class-pattern": false
   }
 }

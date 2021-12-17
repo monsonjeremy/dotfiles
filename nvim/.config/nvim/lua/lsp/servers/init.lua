@@ -13,6 +13,7 @@ M.prismals = require('lsp.servers.prisma')
 M.elixirls = require('lsp.servers.elixir')
 M.eslint = require('lsp.servers.eslint')
 M.stylelint_lsp = require('lsp.servers.stylelint')
+M.dockerls = require('lsp.servers.dockerls')
 
 -- Not yet supported by lspinstall
 require('lsp.servers.null-ls')

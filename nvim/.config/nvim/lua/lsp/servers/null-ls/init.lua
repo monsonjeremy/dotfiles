@@ -16,8 +16,12 @@ local luaCheckConfig = {
   },
 }
 
-null_ls.config({
-  debug = true,
+null_ls.setup({
+  capabilities = vim.lsp.protocol.make_client_capabilities(),
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = true
+    on_attach(client)
+  end,
   sources = {
     null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.rustfmt,
@@ -31,12 +35,4 @@ null_ls.config({
     -- null_ls.builtins.diagnostics.stylelint.with(styleLintDiagnosticsConfig),
     null_ls.builtins.code_actions.gitsigns,
   },
-})
-
-require('lspconfig')['null-ls'].setup({
-  capabilities = vim.lsp.protocol.make_client_capabilities(),
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = true
-    on_attach(client)
-  end,
 })

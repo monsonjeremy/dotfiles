@@ -25,6 +25,7 @@ local function auto_install_servers()
     'dockerls',
     'stylelint_lsp',
     'eslint',
+    'cssmodules_ls',
   }
 
   for _, name in pairs(required_servers) do

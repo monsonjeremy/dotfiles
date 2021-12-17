@@ -181,14 +181,6 @@ return packer.startup(function()
   use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
   use({ 'tversteeg/registers.nvim', cmd = 'Registers' })
   use({
-    'vuki656/package-info.nvim',
-    requires = 'MunifTanjim/nui.nvim',
-    ft = 'json',
-    config = function()
-      require('package-info').setup()
-    end,
-  })
-  use({
     'phaazon/hop.nvim',
     cmd = { 'HopWord', 'HopLine', 'HopChar1', 'HopChar2', 'HopPattern' },
     as = 'hop',
