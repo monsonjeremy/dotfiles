@@ -2,6 +2,7 @@
   "extends": "stylelint-config-standard-scss",
   "rules": {
     "string-quotes": "single",
-    "selector-class-pattern": false
+    "selector-class-pattern": false,
+    "color-function-notation": "off"
   }
 }
