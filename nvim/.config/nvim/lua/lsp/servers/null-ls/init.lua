@@ -9,6 +9,10 @@ local styluaConfig = {
   extra_args = { '--config-path', vim.fn.expand('~/dotfiles/stylua.toml') },
 }
 
+local mixFormatConfig = {
+  filetypes = { 'elixir', 'heex' },
+}
+
 local luaCheckConfig = {
   extra_args = {
     '--config',
@@ -29,9 +33,11 @@ null_ls.setup({
     null_ls.builtins.formatting.trim_whitespace,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.stylua.with(styluaConfig),
+    null_ls.builtins.formatting.mix.with(mixFormatConfig),
     null_ls.builtins.diagnostics.luacheck.with(luaCheckConfig),
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.diagnostics.hadolint,
+    null_ls.builtins.diagnostics.credo,
     -- null_ls.builtins.diagnostics.stylelint.with(styleLintDiagnosticsConfig),
     null_ls.builtins.code_actions.gitsigns,
   },

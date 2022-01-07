@@ -5,7 +5,18 @@ end
 
 treesitter.setup({
   autopairs = { enable = true },
-  autotag = { enable = true },
+  autotag = {
+    enable = true,
+    filetypes = {
+      'html',
+      'javascript',
+      'javascriptreact',
+      'typescriptreact',
+      'svelte',
+      'vue',
+      'heex',
+    },
+  },
   rainbow = { enable = true, extended_mode = false, max_file_lines = 2000 },
   ensure_installed = 'maintained',
   highlight = { enable = true, use_languagetree = true },

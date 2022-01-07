@@ -20,6 +20,13 @@ telescope.setup({
     prompt_prefix = '  ',
     layout_config = { prompt_position = 'top' },
     sorting_strategy = 'ascending',
-    file_ignore_patterns = { 'node_modules', '.git/', 'terraform.tfstate' },
+    file_ignore_patterns = {
+      'node_modules',
+      '.git/',
+      'terraform.tfstate',
+      'deps',
+      '_build',
+      '.elixir_ls',
+    },
   },
 })

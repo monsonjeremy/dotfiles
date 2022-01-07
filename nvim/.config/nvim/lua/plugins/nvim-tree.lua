@@ -27,9 +27,13 @@ nvimtree.setup({
     custom = {
       '.git',
       '.cache',
+      'node_modules',
+      '_build',
+      'deps',
+      'priv',
     },
   },
   git = {
-    ignore = true,
+    ignore = false,
   },
 })
