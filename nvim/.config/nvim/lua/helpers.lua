@@ -31,12 +31,12 @@ end
 
 -- Buffer local keymap
 function M.buf_map(...)
-  vim.api.nvim_buf_set_keymap(bufnr, ...)
+  vim.api.nvim_buf_set_keymap(vim.api.nvim_get_current_buf(), ...)
 end
 
 -- Buffer local option
 function M.buf_option(...)
-  vim.api.nvim_buf_set_option(bufnr, ...)
+  vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), ...)
 end
 
 -- Check whether the current buffer is empty

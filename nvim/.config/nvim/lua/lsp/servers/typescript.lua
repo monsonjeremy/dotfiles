@@ -25,9 +25,27 @@ return {
     ts_utils.setup_client(client)
 
     -- no default maps, so you may want to define some here
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gs', ':TSLspOrganize<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', ':TSLspRenameFile<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', ':TSLspImportAll<CR>', opts)
+    vim.api.nvim_buf_set_keymap(
+      vim.api.nvim_get_current_buf(),
+      'n',
+      'gs',
+      ':TSLspOrganize<CR>',
+      opts
+    )
+    vim.api.nvim_buf_set_keymap(
+      vim.api.nvim_get_current_buf(),
+      'n',
+      'gr',
+      ':TSLspRenameFile<CR>',
+      opts
+    )
+    vim.api.nvim_buf_set_keymap(
+      vim.api.nvim_get_current_buf(),
+      'n',
+      'gi',
+      ':TSLspImportAll<CR>',
+      opts
+    )
 
     on_attach(client)
   end,

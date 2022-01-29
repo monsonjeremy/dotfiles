@@ -15,6 +15,13 @@ return packer.startup(function()
 
   -- UI
   use({
+    'j-hui/fidget.nvim',
+    config = function()
+      require('fidget').setup({})
+    end,
+  })
+
+  use({
     'VonHeikemen/searchbox.nvim',
     requires = {
       { 'MunifTanjim/nui.nvim' },

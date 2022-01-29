@@ -8,6 +8,7 @@ g['python3_host_prog'] = vim.env.HOME .. '/.asdf/installs/python/3.9.5/bin/pytho
 g['copilot_no_tab_map'] = true
 g['copilot_assume_mapped'] = true
 
+g.do_filetype_lua = 1
 g.did_load_filetypes = true
 
 opt.completeopt = 'menu,menuone,noselect'
