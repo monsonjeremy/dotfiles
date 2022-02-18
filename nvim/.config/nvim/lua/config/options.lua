@@ -7,6 +7,7 @@ g['python_host_prog'] = vim.env.HOME .. '/.asdf/installs/python/2.7.18/bin/pytho
 g['python3_host_prog'] = vim.env.HOME .. '/.asdf/installs/python/3.9.5/bin/python'
 g['copilot_no_tab_map'] = true
 g['copilot_assume_mapped'] = true
+g['copilot_tab_fallback'] = true
 
 g.do_filetype_lua = 1
 g.did_load_filetypes = true

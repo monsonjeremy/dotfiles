@@ -63,6 +63,7 @@ return packer.startup(function()
 
   use({
     'github/copilot.vim',
+    commit = 'c01314840b94da0b9767b52f8a4bbc579214e509',
     event = 'InsertEnter',
   })
 
@@ -89,7 +90,7 @@ return packer.startup(function()
     after = 'plenary.nvim',
     requires = { { 'nvim-lua/plenary.nvim' } },
     config = function()
-      require('renamer').setup()
+      require('renamer').setup({})
     end,
   })
   use({
@@ -333,6 +334,7 @@ return packer.startup(function()
 
   use({
     'dsznajder/vscode-es7-javascript-react-snippets',
+    commit = '2a6a1ffac598d7f5b4097d06c4190c5bcced99d9',
     run = 'yarn install --frozen-lockfile && yarn compile',
   })
 
@@ -352,7 +354,19 @@ return packer.startup(function()
       require('neoclip').setup()
     end,
   })
-  use({ 'nathom/filetype.nvim' })
+  use({
+    'nathom/filetype.nvim',
+    config = function()
+      require('filetype').setup({
+        overrides = {
+          extensions = {
+            -- Set the filetype of *.pn files to potion
+            exs = 'elixir',
+          },
+        },
+      })
+    end,
+  })
 
   use({
     'danymat/neogen',

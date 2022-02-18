@@ -12,6 +12,7 @@ treesitter.setup({
       'javascript',
       'javascriptreact',
       'typescriptreact',
+      'tsx',
       'svelte',
       'vue',
       'heex',

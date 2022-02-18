@@ -6,7 +6,7 @@ function M.setupOneDark()
     return
   end
 
-  onedark.setup({ hideInactiveStatusline = true })
+  onedark.setup({ hideInactiveStatusline = true, customTelescope = true })
 end
 
 return M

@@ -38,7 +38,6 @@ null_ls.setup({
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.diagnostics.hadolint,
     null_ls.builtins.diagnostics.credo,
-    -- null_ls.builtins.diagnostics.stylelint.with(styleLintDiagnosticsConfig),
     null_ls.builtins.code_actions.gitsigns,
   },
 })
