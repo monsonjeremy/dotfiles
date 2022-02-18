@@ -62,6 +62,11 @@ return packer.startup(function()
   })
 
   use({
+    'gpanders/editorconfig.nvim',
+    event = 'BufRead',
+  })
+
+  use({
     'github/copilot.vim',
     commit = 'c01314840b94da0b9767b52f8a4bbc579214e509',
     event = 'InsertEnter',
