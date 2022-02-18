@@ -62,6 +62,11 @@ return packer.startup(function()
   })
 
   use({
+    'gpanders/editorconfig.nvim',
+    event = 'BufRead',
+  })
+
+  use({
     'github/copilot.vim',
     event = 'InsertEnter',
   })
