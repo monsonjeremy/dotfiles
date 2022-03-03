@@ -34,6 +34,7 @@ null_ls.setup({
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.stylua.with(styluaConfig),
     null_ls.builtins.formatting.mix.with(mixFormatConfig),
+    null_ls.builtins.formatting.prismaFmt,
     null_ls.builtins.diagnostics.luacheck.with(luaCheckConfig),
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.diagnostics.hadolint,
