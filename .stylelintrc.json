@@ -1,8 +1,8 @@
 {
-  "extends": "stylelint-config-standard-scss",
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier"],
   "rules": {
     "string-quotes": "single",
-    "selector-class-pattern": false,
-    "color-function-notation": "off"
+    "selector-class-pattern": null,
+    "color-function-notation": null
   }
 }

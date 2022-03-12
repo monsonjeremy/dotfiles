@@ -29,6 +29,7 @@ return packer.startup(function()
   })
   use({
     'nvim-lualine/lualine.nvim',
+    commit = '2bddaf05084408917f4453739125c388a540d7f7',
     config = function()
       require('plugins.lualine')
     end,
