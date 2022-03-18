@@ -15,6 +15,11 @@ nvimtree.setup({
       error = '',
     },
   },
+  actions = {
+    open_file = {
+      quit_on_open = false,
+    },
+  },
   view = {
     -- width of the window, can be either a number (columns) or a string in `%`
     width = 25,
