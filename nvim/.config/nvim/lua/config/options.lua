@@ -34,6 +34,15 @@ opt.wildmenu = true
 opt.showmatch = true
 opt.conceallevel = 0 -- Show `` in markdown files
 opt.smartcase = true
+vim.opt.fillchars = {
+  horiz = '━',
+  horizup = '┻',
+  horizdown = '┳',
+  vert = '┃',
+  vertleft = '┫',
+  vertright = '┣',
+  verthoriz = '╋',
+}
 
 -- Numbers
 opt.number = true
@@ -111,3 +120,6 @@ g.nvim_tree_icons = {
   },
   lsp = { hint = '', info = '', warning = '', error = '' },
 }
+
+-- suppress error messages from lang servers
+vim.notify = require('notify')

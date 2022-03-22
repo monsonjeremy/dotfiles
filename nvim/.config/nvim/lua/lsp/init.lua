@@ -7,6 +7,7 @@ end
 
 local base_config = require('lsp.config')
 local configs = require('lsp.servers')
+require('lsp.status')
 
 local function auto_install_servers()
   local required_servers = {
@@ -48,15 +49,3 @@ lspinstall.on_server_ready(function(server)
 end)
 
 vim.cmd('bufdo e')
-
--- suppress error messages from lang servers
-vim.notify = function(msg, log_level)
-  if msg:match('exit code') then
-    return
-  end
-  if log_level == vim.log.levels.ERROR then
-    vim.api.nvim_err_writeln(msg)
-  else
-    vim.api.nvim_echo({ { msg } }, true, {})
-  end
-end

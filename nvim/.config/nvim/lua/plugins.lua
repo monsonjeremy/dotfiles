@@ -14,12 +14,12 @@ return packer.startup(function()
   use({ 'wbthomason/packer.nvim', event = 'VimEnter' })
 
   -- UI
-  use({
-    'j-hui/fidget.nvim',
-    config = function()
-      require('fidget').setup({})
-    end,
-  })
+  -- use({
+  --   'j-hui/fidget.nvim',
+  --   config = function()
+  --     require('fidget').setup({})
+  --   end,
+  -- })
 
   use({
     'VonHeikemen/searchbox.nvim',
@@ -66,6 +66,8 @@ return packer.startup(function()
     'gpanders/editorconfig.nvim',
     event = 'BufRead',
   })
+
+  use('rcarriga/nvim-notify')
 
   use({
     'github/copilot.vim',
