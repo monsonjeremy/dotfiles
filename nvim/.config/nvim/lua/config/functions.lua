@@ -41,6 +41,14 @@ vim.api.nvim_create_autocmd('BufNewFile,BufRead', {
   end,
 })
 
+vim.api.nvim_create_autocmd('BufNewFile,BufRead', {
+  group = 'JeremyCustom',
+  pattern = '.env*',
+  callback = function()
+    vim.bo.filetype = 'sh'
+  end,
+})
+
 vim.api.nvim_create_autocmd('BufEnter', {
   group = 'JeremyCustom',
   pattern = '*',

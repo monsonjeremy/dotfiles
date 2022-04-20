@@ -2,6 +2,7 @@ local on_attach = require('lsp.on_attach')
 local opts = { silent = true }
 
 return {
+  init_options = require('nvim-lsp-ts-utils').init_options,
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
@@ -19,6 +20,10 @@ return {
       enable_import_on_completion = true,
       import_all_timeout = 5000,
       import_all_scan_buffers = 100,
+      auto_inlay_hints = true,
+      inlay_hints_highlight = 'Comment',
+      inlay_hints_priority = 200, -- priority of the hint extmarks
+      inlay_hints_throttle = 150, -- throttle the inlay hint request
     })
 
     -- required to fix code action ranges and filter diagnostics

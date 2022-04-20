@@ -5,7 +5,6 @@ end
 
 nvimtree.setup({
   update_cwd = true,
-  auto_close = true,
   diagnostics = {
     enable = true,
     icons = {
@@ -26,6 +25,11 @@ nvimtree.setup({
     -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
     side = 'left',
     -- if true the tree will resize itself after opening a file
+  },
+  renderer = {
+    indent_markers = {
+      enabled = false,
+    },
   },
   filters = {
     dotfiles = false,
