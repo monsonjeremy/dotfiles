@@ -156,6 +156,7 @@ return packer.startup(function()
   -- Terminal
   use({
     'akinsho/nvim-toggleterm.lua',
+    branch = 'main',
     cmd = 'ToggleTerm',
     config = function()
       require('plugins.toggleterm')
@@ -190,7 +191,15 @@ return packer.startup(function()
     end,
     event = 'BufRead',
   })
-  use({ 'tpope/vim-surround', event = 'BufRead' })
+  -- use({ 'tpope/vim-surround', event = 'BufRead' })
+  use({
+    'echasnovski/mini.nvim',
+    branch = 'stable',
+    event = 'BufRead',
+    config = function()
+      require('mini.surround').setup()
+    end,
+  })
   use({ 'tpope/vim-repeat', keys = '.' })
   use({ 'AndrewRadev/dsf.vim', event = 'BufRead' })
   use({ 'chaoren/vim-wordmotion', event = 'BufRead' })
@@ -292,6 +301,7 @@ return packer.startup(function()
 
   use({
     'akinsho/nvim-bufferline.lua',
+    branch = 'main',
     event = 'BufRead',
     config = function()
       require('plugins.bufferline')
