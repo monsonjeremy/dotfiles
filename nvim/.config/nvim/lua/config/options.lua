@@ -10,7 +10,7 @@ g['copilot_assume_mapped'] = true
 g['copilot_tab_fallback'] = true
 
 g.do_filetype_lua = 1
-g.did_load_filetypes = true
+g.did_load_filetypes = 0
 
 opt.completeopt = 'menu,menuone,noselect'
 opt.termguicolors = true

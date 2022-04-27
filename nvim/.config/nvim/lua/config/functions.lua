@@ -15,39 +15,8 @@ vim.cmd([[
   endfunction
 ]])
 
--- cmd(
---   [[
---     au TextYankPost * silent! lua require("vim.highlight").on_yank({ timeout = 300 })
---   ]],
---   false
--- )
--- cmd([[autocmd BufEnter * set formatoptions-=o]], false)
-
--- Set common config files as JSON
--- cmd(
---   [[
---     au BufNewFile,BufRead .eslintrc,.babelrc,.prettierrc,.nycrc set filetype=json
---   ]],
---   false
--- )
-
 vim.api.nvim_create_augroup('JeremyCustom', {})
-
-vim.api.nvim_create_autocmd('BufNewFile,BufRead', {
-  group = 'JeremyCustom',
-  pattern = '.eslintrc,.babelrc,.prettierrc,.nycrc',
-  callback = function()
-    vim.bo.filetype = 'json'
-  end,
-})
-
-vim.api.nvim_create_autocmd('BufNewFile,BufRead', {
-  group = 'JeremyCustom',
-  pattern = '.env*',
-  callback = function()
-    vim.bo.filetype = 'sh'
-  end,
-})
+vim.api.nvim_create_augroup('JeremyFT', {})
 
 vim.api.nvim_create_autocmd('BufEnter', {
   group = 'JeremyCustom',

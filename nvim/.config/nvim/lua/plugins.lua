@@ -380,6 +380,17 @@ return packer.startup(function()
           extensions = {
             -- Set the filetype of *.pn files to potion
             exs = 'elixir',
+            tf = 'terraform',
+          },
+          literal = {
+            ['.eslintrc'] = 'json',
+            ['.prettierrc'] = 'json',
+            ['.babelrc'] = 'json',
+            ['.nycrc'] = 'json',
+          },
+          complex = {
+            -- Set the filetype of any full filename matching the regex to gitconfig
+            ['.env*'] = 'bash', -- Included in the plugin
           },
         },
       })
