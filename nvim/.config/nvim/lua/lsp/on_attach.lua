@@ -31,11 +31,11 @@ local on_attach = function(client)
   buf_map('v', '<leader>ca', '<cmd><C-U>Telescope lsp_range_code_actions<CR>', opts)
 
   -- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
-  if client.resolved_capabilities.signature_help then
+  if client.server_capabilities.signature_help then
     vim.cmd([[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]])
   end
 
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     buf_map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.formatting_seq_sync(nil, 1000)<CR>', opts)
     buf_map('v', '<leader>fr', '<cmd>lua vim.lsp.buf.range_formatting_sync(nil, 1000)<CR>', opts)
     vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync(nil, 500)')

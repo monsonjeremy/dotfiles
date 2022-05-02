@@ -1,6 +1,7 @@
 local on_attach = require('lsp.on_attach')
+local lspconfig = require('lspconfig')
 
-return {
+lspconfig.tailwindcss.setup({
   filetypes = {
     'djangohtml',
     'handlebars',
@@ -26,4 +27,4 @@ return {
       eruby = 'erb',
     },
   },
-}
+})

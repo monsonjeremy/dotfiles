@@ -1,16 +1,14 @@
 local present1 = pcall(require, 'lspconfig')
 local present2, lspinstall = pcall(require, 'nvim-lsp-installer')
-local present3, lsp_installer_servers = pcall(require, 'nvim-lsp-installer.servers')
-if not (present1 or present2 or present3) then
+if not (present1 or present2) then
   return
 end
 
-local base_config = require('lsp.config')
-local configs = require('lsp.servers')
+local lsp = vim.lsp
 require('lsp.status')
 
-local function auto_install_servers()
-  local required_servers = {
+lspinstall.setup({
+  ensure_installed = {
     'bashls',
     'cssls',
     'html',
@@ -27,25 +25,28 @@ local function auto_install_servers()
     'stylelint_lsp',
     'eslint',
     'cssmodules_ls',
-  }
+    'tailwindcss',
+  },
+  automatic_installation = true,
+})
 
-  for _, name in pairs(required_servers) do
-    local ok, server = lsp_installer_servers.get_server(name)
-    -- Check that the server is supported in nvim-lsp-installer
-    if ok then
-      if not server:is_installed() then
-        server:install()
-      end
-    end
-  end
+local function set_sign(type, icon)
+  local sign = string.format('DiagnosticSign%s', type)
+  local texthl = string.format('DiagnosticDefault%s', type)
+  vim.fn.sign_define(sign, { text = icon, texthl = texthl })
 end
 
-auto_install_servers()
+set_sign('Hint', '')
+set_sign('Information', '')
+set_sign('Warning', '')
+set_sign('Error', '')
 
-lspinstall.on_server_ready(function(server)
-  local config = configs[server.name]
-  server:setup(config or base_config())
-  vim.cmd([[ do User LspAttachBuffers ]])
-end)
+lsp.set_log_level('error')
 
-vim.cmd('bufdo e')
+lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
+  underline = { severity_limit = 'Warning' },
+  virtual_text = { prefix = '●', spacing = 2, severity_limit = 'Warning' },
+  signs = { severity_limit = 'Warning' },
+})
+
+local configs = require('lsp.servers')

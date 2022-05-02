@@ -1,11 +1,12 @@
 local on_attach = require('lsp.on_attach')
+local lspconfig = require('lspconfig')
 local opts = { silent = true }
 
-return {
+lspconfig.tsserver.setup({
   init_options = require('nvim-lsp-ts-utils').init_options,
   on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
 
     if client.config.flags then
       client.config.flags.allow_incremental_sync = true
@@ -55,4 +56,4 @@ return {
     on_attach(client)
   end,
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-}
+})

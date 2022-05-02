@@ -23,7 +23,7 @@ local luaCheckConfig = {
 null_ls.setup({
   capabilities = vim.lsp.protocol.make_client_capabilities(),
   on_attach = function(client)
-    client.resolved_capabilities.document_formatting = true
+    client.server_capabilities.document_formatting = true
     on_attach(client)
   end,
   sources = {

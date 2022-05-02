@@ -1,8 +1,9 @@
 local on_attach = require('lsp.on_attach')
+local lspconfig = require('lspconfig')
 
-return {
+lspconfig.stylelint_lsp.setup({
   on_attach = function(client)
-    client.resolved_capabilities.document_formatting = true
+    client.server_capabilities.document_formatting = true
     on_attach(client)
   end,
   settings = {
@@ -13,4 +14,4 @@ return {
     },
   },
   filetypes = { 'css', 'scss' },
-}
+})
