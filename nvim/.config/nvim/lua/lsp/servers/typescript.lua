@@ -2,7 +2,17 @@ local on_attach = require('lsp.on_attach')
 local lspconfig = require('lspconfig')
 local opts = { silent = true }
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
+
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = { 'documentation', 'detail', 'additionalTextEdits' },
+}
+
 lspconfig.tsserver.setup({
+  capabilities = capabilities,
   init_options = require('nvim-lsp-ts-utils').init_options,
   on_attach = function(client)
     client.server_capabilities.document_formatting = false

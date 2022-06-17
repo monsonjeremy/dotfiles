@@ -27,8 +27,41 @@ nvimtree.setup({
     -- if true the tree will resize itself after opening a file
   },
   renderer = {
+    highlight_git = true,
+    root_folder_modifier = ':t',
+    highlight_opened_files = 'all',
     indent_markers = {
       enable = false,
+    },
+    special_files = {
+      'README.md',
+      'Makefile',
+      'MAKEFILE',
+      'package.json',
+      '.env',
+    },
+    icons = {
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = false,
+      },
+      glyphs = {
+
+        default = '',
+        symlink = '',
+        folder = {
+          open = '',
+          default = '',
+          -- default = '',
+          -- open = '',
+          empty = '',
+          empty_open = '',
+          symlink = '',
+          symlink_open = '',
+        },
+      },
     },
   },
   filters = {
