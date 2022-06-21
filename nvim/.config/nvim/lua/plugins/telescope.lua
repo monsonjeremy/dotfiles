@@ -1,7 +1,9 @@
 local present, telescope = pcall(require, 'telescope')
+
 if not present then
   return
 end
+
 local default = {
   defaults = {
     vimgrep_arguments = {
@@ -52,6 +54,11 @@ local default = {
     color_devicons = true,
     use_less = true,
     set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+    extensions = {
+      ['ui-select'] = {
+        require('telescope.themes').get_dropdown({}),
+      },
+    },
   },
 }
 
@@ -64,13 +71,12 @@ M.setup = function(override_flag)
 
   telescope.setup(default)
 
-  local extensions = { 'themes', 'terms' }
+  local extensions = { 'ui-select' }
 
-  pcall(function()
-    for _, ext in ipairs(extensions) do
-      telescope.load_extension(ext)
-    end
-  end)
+  for _, ext in ipairs(extensions) do
+    print('loading extension: ' .. ext)
+    telescope.load_extension(ext)
+  end
 end
 
 M.setup()

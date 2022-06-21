@@ -27,8 +27,8 @@ local on_attach = function(client)
     [[<cmd>lua require('lspsaga.diagnostic').navigate('prev')({ severity = { min=vim.diagnostic.severity.WARN } })<CR>]],
     opts
   )
-  buf_map('n', '<leader>ca', '<cmd>Telescope lsp_code_actions<CR>', opts)
-  buf_map('v', '<leader>ca', '<cmd><C-U>Telescope lsp_range_code_actions<CR>', opts)
+  buf_map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_map('v', '<leader>ca', '<cmd><C-U>lua vim.lsp.buf.range_code_action()<CR>', opts)
 
   -- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
   if client.server_capabilities.signature_help then

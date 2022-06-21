@@ -234,7 +234,8 @@ return packer.startup({
     use({
       'nvim-telescope/telescope.nvim',
       cmd = 'Telescope',
-      after = 'plenary.nvim',
+      after = { 'plenary.nvim', 'telescope-ui-select.nvim' },
+      requires = { 'nvim-telescope/telescope-ui-select.nvim' },
       config = function()
         require('plugins.telescope')
       end,
