@@ -75,3 +75,6 @@ source ~/perl5/perlbrew/etc/bashrc
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
+
+export PNPM_HOME="/Users/jmonson/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
