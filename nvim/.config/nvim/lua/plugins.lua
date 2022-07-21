@@ -72,7 +72,6 @@ return packer.startup({
 
     use({
       'github/copilot.vim',
-      commit = 'c01314840b94da0b9767b52f8a4bbc579214e509',
       event = 'InsertEnter',
     })
 
@@ -235,7 +234,8 @@ return packer.startup({
     use({
       'nvim-telescope/telescope.nvim',
       cmd = 'Telescope',
-      after = 'plenary.nvim',
+      after = { 'plenary.nvim', 'telescope-ui-select.nvim' },
+      requires = { 'nvim-telescope/telescope-ui-select.nvim' },
       config = function()
         require('plugins.telescope')
       end,
