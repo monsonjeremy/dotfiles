@@ -68,7 +68,12 @@ return packer.startup({
       event = 'BufRead',
     })
 
-    use('rcarriga/nvim-notify')
+    use({
+      'rcarriga/nvim-notify',
+      config = function()
+        require('plugins.notify')
+      end,
+    })
 
     use({
       'github/copilot.vim',
