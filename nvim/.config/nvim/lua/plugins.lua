@@ -81,7 +81,7 @@ return packer.startup({
     })
 
     -- LSP
-    use({ 'tami5/lspsaga.nvim', event = 'BufRead' })
+    use({ 'glepnir/lspsaga.nvim', event = 'BufRead' })
     use({ 'ray-x/lsp_signature.nvim', event = 'BufRead' })
     use({ 'folke/lua-dev.nvim', event = 'BufRead' })
     use({ 'williamboman/nvim-lsp-installer', event = 'BufRead' })
