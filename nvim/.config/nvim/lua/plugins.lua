@@ -422,6 +422,15 @@ return packer.startup({
     --     })
     --   end,
     -- })
+
+    use({
+      'ThePrimeagen/refactoring.nvim',
+      event = 'BufRead',
+      requires = {
+        { 'nvim-lua/plenary.nvim' },
+        { 'nvim-treesitter/nvim-treesitter' },
+      },
+    })
   end,
   {
     config = {

@@ -41,7 +41,7 @@ local on_attach = function(client)
     opts
   )
   buf_map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_map('v', '<leader>ca', '<cmd><C-U>lua vim.lsp.buf.range_code_action()<CR>', opts)
+  buf_map('v', '<leader>ca', '<cmd><C-U>lua vim.lsp.buf.code_action()<CR>', opts)
 
   -- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
   if client.server_capabilities.signature_help then
@@ -50,6 +50,7 @@ local on_attach = function(client)
 
   if client.supports_method('textDocument/formatting') then
     buf_map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+    buf_map('v', '<leader>fo', '<cmd><C-U>lua vim.lsp.buf.format()<CR>', opts)
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
     vim.api.nvim_create_autocmd('BufWritePre', {
       group = augroup,
