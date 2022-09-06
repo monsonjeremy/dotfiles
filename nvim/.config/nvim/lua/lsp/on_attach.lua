@@ -1,6 +1,19 @@
 local buf_map = require('helpers').buf_map
 local buf_option = require('helpers').buf_option
 
+local lsp_formatting = function(bufnr)
+  vim.lsp.buf.format({
+    filter = function(client)
+      -- apply whatever logic you want (in this example, we'll only use null-ls)
+      return client.name == 'null-ls'
+    end,
+    bufnr = bufnr,
+  })
+end
+
+-- if you want to set up formatting on save, you can use this as a callback
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+
 local on_attach = function(client)
   local opts = { noremap = true, silent = true }
 
@@ -35,10 +48,16 @@ local on_attach = function(client)
     vim.cmd([[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]])
   end
 
-  if client.server_capabilities.document_formatting then
-    buf_map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.formatting_seq_sync(nil, 1000)<CR>', opts)
-    buf_map('v', '<leader>fr', '<cmd>lua vim.lsp.buf.range_formatting_sync(nil, 1000)<CR>', opts)
-    vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync(nil, 500)')
+  if client.supports_method('textDocument/formatting') then
+    buf_map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        lsp_formatting(bufnr)
+      end,
+    })
   end
 end
 
