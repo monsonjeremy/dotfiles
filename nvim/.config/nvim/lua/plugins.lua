@@ -103,7 +103,10 @@ return packer.startup({
       after = 'plenary.nvim',
       requires = { { 'nvim-lua/plenary.nvim' } },
       config = function()
-        require('renamer').setup({})
+        require('renamer').setup({
+          min_width = 30,
+          max_width = 80,
+        })
       end,
     })
     use({
@@ -172,23 +175,25 @@ return packer.startup({
     use({ 'tpope/vim-fugitive', cmd = { 'Git' } })
     use({ 'nvim-lua/plenary.nvim' })
     use({ 'nvim-lua/popup.nvim', after = 'plenary.nvim' })
-    use({
-      'famiu/nvim-reload',
-      cmd = 'Reload',
-      config = function()
-        local reload = require('nvim-reload')
-        local plugin_dir = vim.fn.stdpath('config') .. '/plugin/packer_compiled.lua'
-        reload.vim_reload_dirs = {}
-        reload.lua_reload_dirs = {}
-        reload.post_reload_hook = function()
-          vim.cmd('source ' .. plugin_dir)
-          vim.cmd('colorscheme onedark')
-        end
-      end,
-    })
-    use({ 'sindrets/diffview.nvim', cmd = 'DiffviewOpen' })
+
+    -- use({
+    --   'famiu/nvim-reload',
+    --   cmd = 'Reload',
+    --   config = function()
+    --     local reload = require('nvim-reload')
+    --     local plugin_dir = vim.fn.stdpath('config') .. '/plugin/packer_compiled.lua'
+    --     reload.vim_reload_dirs = {}
+    --     reload.lua_reload_dirs = {}
+    --     reload.post_reload_hook = function()
+    --       vim.cmd('source ' .. plugin_dir)
+    --       vim.cmd('colorscheme onedark')
+    --     end
+    --   end,
+    -- })
+    -- use({ 'sindrets/diffview.nvim', cmd = 'DiffviewOpen' })
+    -- use({ 'simrat39/symbols-outline.nvim', cmd = 'SymbolsOutline' })
+
     use({ 'nanotee/zoxide.vim', cmd = { 'z', 'Zi', 'Z' } })
-    use({ 'simrat39/symbols-outline.nvim', cmd = 'SymbolsOutline' })
     use({
       'numToStr/Comment.nvim',
       config = function()
@@ -202,22 +207,21 @@ return packer.startup({
       branch = 'stable',
       event = 'BufRead',
       config = function()
-        require('mini.surround').setup()
+        require('mini.surround').setup({})
       end,
     })
     use({ 'tpope/vim-repeat', keys = '.' })
-    use({ 'AndrewRadev/dsf.vim', event = 'BufRead' })
     use({ 'chaoren/vim-wordmotion', event = 'BufRead' })
     use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
     use({ 'tversteeg/registers.nvim', cmd = 'Registers' })
-    use({
-      'phaazon/hop.nvim',
-      cmd = { 'HopWord', 'HopLine', 'HopChar1', 'HopChar2', 'HopPattern' },
-      as = 'hop',
-      config = function()
-        require('plugins.hop')
-      end,
-    })
+    -- use({
+    --   'phaazon/hop.nvim',
+    --   cmd = { 'HopWord', 'HopLine', 'HopChar1', 'HopChar2', 'HopPattern' },
+    --   as = 'hop',
+    --   config = function()
+    --     require('plugins.hop')
+    --   end,
+    -- })
 
     use({ 'fedepujol/move.nvim', cmd = { 'MoveLine', 'MoveBlock' } })
 
@@ -362,22 +366,23 @@ return packer.startup({
       run = 'yarn install --frozen-lockfile && yarn compile',
     })
 
-    use({
-      'TimUntersberger/neogit',
-      cmd = 'Neogit',
-      after = 'plenary.nvim',
-      config = function()
-        require('neogit').setup({})
-      end,
-    })
+    -- use({
+    --   'TimUntersberger/neogit',
+    --   cmd = 'Neogit',
+    --   after = 'plenary.nvim',
+    --   config = function()
+    --     require('neogit').setup({})
+    --   end,
+    -- })
 
-    use({
-      'AckslD/nvim-neoclip.lua',
-      event = 'BufRead',
-      config = function()
-        require('neoclip').setup()
-      end,
-    })
+    -- use({
+    --   'AckslD/nvim-neoclip.lua',
+    --   event = 'BufRead',
+    --   config = function()
+    --     require('neoclip').setup()
+    --   end,
+    -- })
+
     use({
       'nathom/filetype.nvim',
       config = function()
@@ -407,16 +412,16 @@ return packer.startup({
       end,
     })
 
-    use({
-      'danymat/neogen',
-      module = 'neogen',
-      cmd = 'Neogen',
-      config = function()
-        require('neogen').setup({
-          enabled = true,
-        })
-      end,
-    })
+    -- use({
+    --   'danymat/neogen',
+    --   module = 'neogen',
+    --   cmd = 'Neogen',
+    --   config = function()
+    --     require('neogen').setup({
+    --       enabled = true,
+    --     })
+    --   end,
+    -- })
   end,
   {
     config = {
