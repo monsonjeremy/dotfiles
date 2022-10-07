@@ -1,5 +1,4 @@
 npm install -g \
-  @fsouza/prettierd@latest \
   @namics/stylelint-bem@latest \
   eslint_d@latest \
   neovim@latest \
