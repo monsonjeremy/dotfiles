@@ -9,19 +9,22 @@ export BREW_USR="/usr/local/bin/brew"
 export BREW_OPT="/opt/homebrew/bin/brew"
 
 if [ -f "$BREW_OPT" ] || [ -f "$BREW_USR" ]; then
-    echo "$(tput setaf 2)Homebrew is installed.$(tput sgr 0)"
+  echo "$(tput setaf 2)Homebrew is installed.$(tput sgr 0)"
 else
-    echo "$(tput setaf 3)Installing Homebrew. Homebrew requires osx command lines tools, please download xcode first$(tput sgr 0)"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/jmonson/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+  echo "$(tput setaf 3)Installing Homebrew. Homebrew requires osx command lines tools, please download xcode first$(tput sgr 0)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>/Users/jmonson/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+brew install stow
+sh ./stow.sh
 
 if command -v brew >/dev/null 2>&1; then
-    brew bundle
+  brew bundle
 fi
 
-sh ./stow.sh
+\curl -L https://install.perlbrew.pl | bash
 
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
@@ -34,7 +37,7 @@ pip install vim-vint
 
 sudo gem install neovim
 
-nvim +PackerSync +qall
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 defaults write -g KeyRepeat -int 2
 defaults write -g InitialKeyRepeat -int 10
@@ -51,11 +54,14 @@ npm i -g eslint_d \
   prettier \
   prettier_d_slim \
   typescript \
-  neovim \
+  neovim
+
+luarocks install luacheck
+cargo install stylua
 
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 fi
 
 echo "$(tput setaf 2)Switching shell to zsh. You may need to logout.$(tput sgr 0)"

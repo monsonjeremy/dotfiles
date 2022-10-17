@@ -3,9 +3,7 @@ local lsp = vim.lsp
 
 -- config that activates keymaps and enables snippet support
 local function base_config()
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(
-    lsp.protocol.make_client_capabilities()
-  )
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
   capabilities.textDocument.completion.completionItem.snippetSupport = true
   capabilities.textDocument.completion.completionItem.resolveSupport = {

@@ -1,6 +1,6 @@
 [user]
 	name = monsonjeremy
-	signingkey = 1E149DA4B81CF897
+	signingkey = 0061DDBE2D4934F4
 	email = monson.jeremy@gmail.com
 
 [filter "lfs"]
@@ -166,7 +166,7 @@
 	insteadOf = "gist:"
 
 [gpg]
-	program = /usr/local/bin/gpg
+	program = /opt/homebrew/bin/gpg
 
 [pager]
     diff = delta

@@ -38,6 +38,7 @@ brew 'zsh'
 brew 'shellcheck'
 brew 'shfmt'
 brew 'hadolint'
+brew 'fsouza/prettierd/prettierd'
 
 if (File.file?('Brewfile.local'))
   instance_eval(File.read('Brewfile.local'))

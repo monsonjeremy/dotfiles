@@ -83,7 +83,7 @@ return packer.startup({
     -- LSP
     use({ 'glepnir/lspsaga.nvim', event = 'BufRead' })
     use({ 'ray-x/lsp_signature.nvim', event = 'BufRead' })
-    use({ 'folke/lua-dev.nvim', event = 'BufRead' })
+    use({ 'folke/neodev.nvim' })
     use({ 'williamboman/nvim-lsp-installer', event = 'BufRead' })
     use({ 'nvim-lua/lsp_extensions.nvim', event = 'BufRead' })
     use({
@@ -133,7 +133,7 @@ return packer.startup({
         'nvim-lsp-installer',
         'lspsaga.nvim',
         'lsp_signature.nvim',
-        'lua-dev.nvim',
+        'neodev.nvim',
         'lsp_extensions.nvim',
         'nvim-lspfuzzy',
         'trouble.nvim',
@@ -252,6 +252,7 @@ return packer.startup({
 
     use({
       'nvim-treesitter/nvim-treesitter',
+      commit = '4cccb6f494eb255b32a290d37c35ca12584c74d0',
       run = ':TSUpdate',
       event = 'BufRead',
       config = function()
