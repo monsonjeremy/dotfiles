@@ -2,8 +2,7 @@ local on_attach = require('lsp.on_attach')
 local lspconfig = require('lspconfig')
 local opts = { silent = true }
 
-local capabilities =
-  require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -18,7 +17,7 @@ lspconfig.tsserver.setup({
       client.config.flags.allow_incremental_sync = true
     end
 
-    require('lsp_signature').on_attach({ bind = true, use_lspsaga = true })
+    -- require('lsp_signature').on_attach({ bind = true, use_lspsaga = true })
 
     local ts_utils = require('nvim-lsp-ts-utils')
 

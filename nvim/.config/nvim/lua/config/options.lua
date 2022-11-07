@@ -11,6 +11,7 @@ g['copilot_tab_fallback'] = true
 
 g.do_filetype_lua = 1
 g.did_load_filetypes = 0
+g.loaded_perl_provider = 0
 
 opt.completeopt = 'menu,menuone,noselect'
 opt.termguicolors = true
@@ -27,7 +28,7 @@ opt.updatetime = 250 -- update interval for gitsigns
 opt.timeoutlen = 400
 opt.clipboard = 'unnamedplus'
 opt.scrolloff = 8
-opt.lazyredraw = true
+-- opt.lazyredraw = true
 opt.linebreak = true
 opt.textwidth = 100
 opt.wildmenu = true
@@ -117,11 +118,8 @@ g.nvim_tree_allow_resize = 1
 --   lsp = { hint = '', info = '', warning = '', error = '' },
 -- }
 
-local present, notify = pcall(require, 'nofify')
-if present then
-  -- suppress error messages from lang servers
-  vim.notify = notify
-end
+-- suppress error messages from lang servers
+-- vim.notify = require('notify')
 
 local hl = function(group, opts)
   opts.default = true

@@ -69,10 +69,27 @@ return packer.startup({
     })
 
     use({
-      'rcarriga/nvim-notify',
+      'folke/noice.nvim',
+      event = 'VimEnter',
       config = function()
-        require('plugins.notify')
+        require('noice').setup({
+          lsp_progress = {
+            enabled = true,
+            format = 'lsp_progress',
+            format_done = 'lsp_progress_done',
+            throttle = 2000, -- frequency to update lsp progress message
+            view = 'mini',
+          },
+        })
       end,
+      requires = {
+        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+        'MunifTanjim/nui.nvim',
+        -- OPTIONAL:
+        --   `nvim-notify` is only needed, if you want to use the notification view.
+        --   If not available, we use `mini` as the fallback
+        --'rcarriga/nvim-notify',
+      },
     })
 
     use({
@@ -82,7 +99,7 @@ return packer.startup({
 
     -- LSP
     use({ 'glepnir/lspsaga.nvim', event = 'BufRead' })
-    use({ 'ray-x/lsp_signature.nvim', event = 'BufRead' })
+    -- use({ 'ray-x/lsp_signature.nvim', event = 'BufRead' })
     use({ 'folke/neodev.nvim' })
     use({ 'williamboman/nvim-lsp-installer', event = 'BufRead' })
     use({ 'nvim-lua/lsp_extensions.nvim', event = 'BufRead' })
@@ -132,7 +149,7 @@ return packer.startup({
         'cmp-nvim-lsp',
         'nvim-lsp-installer',
         'lspsaga.nvim',
-        'lsp_signature.nvim',
+        -- 'lsp_signature.nvim',
         'neodev.nvim',
         'lsp_extensions.nvim',
         'nvim-lspfuzzy',
