@@ -6,7 +6,11 @@ function M.setupOneDark()
     return
   end
 
-  onedark.setup({ hideInactiveStatusline = true, customTelescope = true })
+  onedark.setup({
+    hideInactiveStatusline = true,
+    customTelescope = true,
+  })
+  vim.cmd([[colorscheme onedark]])
 end
 
 return M

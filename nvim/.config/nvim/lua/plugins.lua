@@ -50,6 +50,7 @@ return packer.startup({
     })
     use({
       'monsonjeremy/onedark.nvim',
+      branch = 'treesitter',
       after = 'lualine.nvim',
       config = function()
         require('plugins.onedark').setupOneDark()
@@ -269,7 +270,7 @@ return packer.startup({
 
     use({
       'nvim-treesitter/nvim-treesitter',
-      commit = '4cccb6f494eb255b32a290d37c35ca12584c74d0',
+      -- commit = '4cccb6f494eb255b32a290d37c35ca12584c74d0',
       run = ':TSUpdate',
       event = 'BufRead',
       config = function()
@@ -441,14 +442,14 @@ return packer.startup({
     --   end,
     -- })
 
-    use({
-      'ThePrimeagen/refactoring.nvim',
-      event = 'BufRead',
-      requires = {
-        { 'nvim-lua/plenary.nvim' },
-        { 'nvim-treesitter/nvim-treesitter' },
-      },
-    })
+    -- use({
+    --   'ThePrimeagen/refactoring.nvim',
+    --   event = 'BufRead',
+    --   requires = {
+    --     { 'nvim-lua/plenary.nvim' },
+    --     { 'nvim-treesitter/nvim-treesitter' },
+    --   },
+    -- })
   end,
   {
     config = {
