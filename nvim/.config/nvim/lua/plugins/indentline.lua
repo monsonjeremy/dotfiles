@@ -9,6 +9,7 @@ indentBlankline.setup({
   show_first_indent_level = false,
   filetype_exclude = { 'help', 'packer', '', 'alpha' },
   buftype_exclude = {
+    'nofile',
     'terminal',
     'WhichKey',
     'dashboard',
