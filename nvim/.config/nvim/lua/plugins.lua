@@ -235,7 +235,7 @@ return packer.startup({
     use({ 'tpope/vim-repeat', keys = '.' })
     use({ 'chaoren/vim-wordmotion', event = 'BufRead' })
     use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
-    use({ 'tversteeg/registers.nvim', cmd = 'Registers' })
+    -- use({ 'tversteeg/registers.nvim', cmd = 'Registers' })
     -- use({
     --   'phaazon/hop.nvim',
     --   cmd = { 'HopWord', 'HopLine', 'HopChar1', 'HopChar2', 'HopPattern' },
