@@ -136,6 +136,10 @@ return packer.startup({
       end,
     })
     use({
+      'cshuaimin/ssr.nvim',
+      module = 'ssr',
+    })
+    use({
       'onsails/lspkind-nvim',
       event = 'BufRead',
       module = 'lspkind',

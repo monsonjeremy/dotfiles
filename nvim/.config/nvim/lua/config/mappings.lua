@@ -138,3 +138,7 @@ map(
   [[:<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0 | exec '?'.g:srchstr | endif<CR>]],
   opts
 )
+
+vim.keymap.set({ 'n', 'x' }, '<leader>sr', function()
+  require('ssr').open()
+end)
