@@ -49,4 +49,4 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_pub
   signs = { severity_limit = 'Warning' },
 })
 
-local configs = require('lsp.servers')
+require('lsp.servers')

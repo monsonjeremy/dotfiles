@@ -99,7 +99,13 @@ return packer.startup({
     })
 
     -- LSP
-    use({ 'glepnir/lspsaga.nvim', event = 'BufRead' })
+    use({
+      'glepnir/lspsaga.nvim',
+      branch = 'main',
+      config = function()
+        require('lspsaga').setup({})
+      end,
+    })
     -- use({ 'ray-x/lsp_signature.nvim', event = 'BufRead' })
     use({ 'folke/neodev.nvim' })
     use({ 'williamboman/nvim-lsp-installer', event = 'BufRead' })

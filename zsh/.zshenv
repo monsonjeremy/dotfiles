@@ -82,8 +82,8 @@ alias gpuf='git push --force'
 alias gpd='git pull --rebase'
 alias gr='git rebase -i'
 alias gs='git status'
-alias gcm="git checkout master"
-alias gpm="git pull origin master"
+alias gcm="git checkout main"
+alias gpm="git pull origin main"
 alias gcb="git checkout -b"
 
 # tmux aliases
