@@ -28,8 +28,8 @@ map('v', '<Leader>s', [[ :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left> ]], 
 map('n', '<C-_>', [[:nohlsearch<CR>]], opts)
 
 map('n', '<leader>ga', [[:Git fetch --all<CR>]], opts)
-map('n', '<leader>grum', [[:Git rebase upstream/master<CR>]], opts)
-map('n', '<leader>grom', [[:Git rebase -i origin/master<CR>]], opts)
+map('n', '<leader>grum', [[:Git rebase upstream/main<CR>]], opts)
+map('n', '<leader>grom', [[:Git rebase -i origin/main<CR>]], opts)
 
 map('n', '<leader>dg', [[:Neogen<CR>]], opts)
 map('n', '<leader>ps', [[:PackerSync<CR>]], opts)
