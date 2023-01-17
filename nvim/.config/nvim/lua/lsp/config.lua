@@ -1,5 +1,4 @@
 local on_attach = require('lsp.on_attach')
-local lsp = vim.lsp
 
 -- config that activates keymaps and enables snippet support
 local function base_config()
