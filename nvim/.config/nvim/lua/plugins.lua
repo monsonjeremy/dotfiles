@@ -93,9 +93,44 @@ return packer.startup({
       },
     })
 
+    -- use({
+    --   'github/copilot.vim',
+    --   event = 'InsertEnter',
+    -- })
+
     use({
-      'github/copilot.vim',
-      event = 'InsertEnter',
+      'zbirenbaum/copilot.lua',
+      cmd = 'Copilot',
+      event = 'VimEnter',
+      config = function()
+        vim.defer_fn(function()
+          require('copilot').setup({
+            suggestion = {
+              enabled = false,
+              -- enabled = true,
+              -- auto_trigger = true,
+              -- debounce = 75,
+              -- keymap = {
+              --   accept = '<Tab>',
+              --   accept_word = false,
+              --   accept_line = false,
+              --   next = '<C-]>',
+              --   prev = '<C-[>',
+              --   dismiss = '<C-e>',
+              -- },
+            },
+            panel = { enabled = false },
+          })
+        end, 100)
+      end,
+    })
+
+    use({
+      'zbirenbaum/copilot-cmp',
+      after = { 'copilot.lua' },
+      config = function()
+        require('copilot_cmp').setup()
+      end,
     })
 
     -- LSP
@@ -103,7 +138,28 @@ return packer.startup({
       'glepnir/lspsaga.nvim',
       branch = 'main',
       config = function()
-        require('lspsaga').setup({})
+        require('lspsaga').setup({
+          ui = {
+            -- theme = 'round',
+            title = true,
+            border = 'rounded',
+            colors = {
+              normal_bg = '#21252b',
+              title_bg = '#98c379',
+              red = '#f65866',
+              magenta = '#c678dd',
+              orange = '#d19a66',
+              yellow = '#e5c07b',
+              green = '#98c379',
+              cyan = '#56b6c2',
+              blue = '#61afef',
+              purple = '#c678dd',
+              white = '#abb2bf',
+              black = '#282c34', --  nvim bg
+            },
+            kind = {},
+          },
+        })
       end,
     })
     -- use({ 'ray-x/lsp_signature.nvim', event = 'BufRead' })

@@ -9,6 +9,7 @@ function M.setupOneDark()
   onedark.setup({
     hideInactiveStatusline = true,
     customTelescope = true,
+    darkFloat = true,
   })
   vim.cmd([[colorscheme onedark]])
 end

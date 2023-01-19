@@ -11,7 +11,8 @@ cmp.setup({
   completion = { completeopt = 'menu,menuone,noinsert' },
   formatting = {
     format = lspkind.cmp_format({
-      with_text = false,
+      mode = 'symbol',
+      symbol_map = { Copilot = '' },
       --[[ menu = {
         buffer = ' ﬘ ',
         path = '   ',
@@ -29,13 +30,13 @@ cmp.setup({
   mapping = {
     ['<C-e>'] = cmp.mapping.close(),
     ['<Tab>'] = cmp.mapping(function(fallback)
-      local copilot_keys = vim.fn['copilot#Accept']()
+      -- local copilot_keys = vim.fn['copilot#Accept']()
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-      elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
-        vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+      -- elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
+      --   vim.api.nvim_feedkeys(copilot_keys, 'i', true)
       else
         fallback()
       end
@@ -75,6 +76,7 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
   },
   sources = {
+    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'spell' },
@@ -85,6 +87,14 @@ cmp.setup({
     -- { name = 'rg' },
   },
 })
+
+-- cmp.event:on('menu_opened', function()
+--   vim.b.copilot_suggestion_hidden = true
+-- end)
+--
+-- cmp.event:on('menu_closed', function()
+--   vim.b.copilot_suggestion_hidden = false
+-- end)
 
 if not present3 then
   return
