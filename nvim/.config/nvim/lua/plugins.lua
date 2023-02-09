@@ -178,18 +178,6 @@ return packer.startup({
       end,
     })
     use({
-      'filipdutescu/renamer.nvim',
-      event = 'BufRead',
-      after = 'plenary.nvim',
-      requires = { { 'nvim-lua/plenary.nvim' } },
-      config = function()
-        require('renamer').setup({
-          min_width = 30,
-          max_width = 80,
-        })
-      end,
-    })
-    use({
       'folke/trouble.nvim',
       event = 'BufRead',
       after = 'nvim-web-devicons',
@@ -256,26 +244,10 @@ return packer.startup({
     })
 
     -- Navigation / Helpers
-    use({ 'tpope/vim-fugitive', cmd = { 'Git' } })
+    use({ 'tpope/vim-fugitive' })
+    use({ 'tpope/vim-rhubarb' })
     use({ 'nvim-lua/plenary.nvim' })
     use({ 'nvim-lua/popup.nvim', after = 'plenary.nvim' })
-
-    -- use({
-    --   'famiu/nvim-reload',
-    --   cmd = 'Reload',
-    --   config = function()
-    --     local reload = require('nvim-reload')
-    --     local plugin_dir = vim.fn.stdpath('config') .. '/plugin/packer_compiled.lua'
-    --     reload.vim_reload_dirs = {}
-    --     reload.lua_reload_dirs = {}
-    --     reload.post_reload_hook = function()
-    --       vim.cmd('source ' .. plugin_dir)
-    --       vim.cmd('colorscheme onedark')
-    --     end
-    --   end,
-    -- })
-    -- use({ 'sindrets/diffview.nvim', cmd = 'DiffviewOpen' })
-    -- use({ 'simrat39/symbols-outline.nvim', cmd = 'SymbolsOutline' })
 
     use({ 'nanotee/zoxide.vim', cmd = { 'z', 'Zi', 'Z' } })
     use({
@@ -285,7 +257,6 @@ return packer.startup({
       end,
       event = 'BufRead',
     })
-    -- use({ 'tpope/vim-surround', event = 'BufRead' })
     use({
       'echasnovski/mini.nvim',
       branch = 'stable',
@@ -297,16 +268,6 @@ return packer.startup({
     use({ 'tpope/vim-repeat', keys = '.' })
     use({ 'chaoren/vim-wordmotion', event = 'BufRead' })
     use({ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' })
-    -- use({ 'tversteeg/registers.nvim', cmd = 'Registers' })
-    -- use({
-    --   'phaazon/hop.nvim',
-    --   cmd = { 'HopWord', 'HopLine', 'HopChar1', 'HopChar2', 'HopPattern' },
-    --   as = 'hop',
-    --   config = function()
-    --     require('plugins.hop')
-    --   end,
-    -- })
-
     use({ 'fedepujol/move.nvim', cmd = { 'MoveLine', 'MoveBlock' } })
 
     use({
@@ -336,7 +297,6 @@ return packer.startup({
 
     use({
       'nvim-treesitter/nvim-treesitter',
-      -- commit = '4cccb6f494eb255b32a290d37c35ca12584c74d0',
       run = ':TSUpdate',
       event = 'BufRead',
       config = function()
@@ -344,10 +304,18 @@ return packer.startup({
       end,
     })
 
+    -- use({
+    --   'nvim-treesitter/nvim-treesitter-refactor',
+    --   event = 'BufRead',
+    --   after = 'nvim-treesitter',
+    -- })
     use({
-      'nvim-treesitter/nvim-treesitter-refactor',
-      event = 'BufRead',
-      after = 'nvim-treesitter',
+      'tzachar/local-highlight.nvim',
+      config = function()
+        require('local-highlight').setup({
+          hlgroup = 'IlluminatedWordText',
+        })
+      end,
     })
 
     use({ 'nvim-treesitter/playground', cmd = 'TSPlayground' })
@@ -451,23 +419,6 @@ return packer.startup({
       run = 'yarn install --frozen-lockfile && yarn compile',
     })
 
-    -- use({
-    --   'TimUntersberger/neogit',
-    --   cmd = 'Neogit',
-    --   after = 'plenary.nvim',
-    --   config = function()
-    --     require('neogit').setup({})
-    --   end,
-    -- })
-
-    -- use({
-    --   'AckslD/nvim-neoclip.lua',
-    --   event = 'BufRead',
-    --   config = function()
-    --     require('neoclip').setup()
-    --   end,
-    -- })
-
     use({
       'nathom/filetype.nvim',
       config = function()
@@ -496,26 +447,6 @@ return packer.startup({
         })
       end,
     })
-
-    -- use({
-    --   'danymat/neogen',
-    --   module = 'neogen',
-    --   cmd = 'Neogen',
-    --   config = function()
-    --     require('neogen').setup({
-    --       enabled = true,
-    --     })
-    --   end,
-    -- })
-
-    -- use({
-    --   'ThePrimeagen/refactoring.nvim',
-    --   event = 'BufRead',
-    --   requires = {
-    --     { 'nvim-lua/plenary.nvim' },
-    --     { 'nvim-treesitter/nvim-treesitter' },
-    --   },
-    -- })
   end,
   {
     config = {

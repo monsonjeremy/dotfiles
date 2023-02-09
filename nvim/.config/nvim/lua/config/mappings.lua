@@ -95,10 +95,6 @@ map('n', '<C-p>', [[:Telescope find_files hidden=true<CR>]], opts)
 map('n', '<leader>p', [[:Telescope buffers <CR>]], opts)
 map('n', '<leader>ff', [[:Telescope live_grep<CR>]], opts)
 
--- Hop
-map('n', '<leader>hw', [[:HopWord<cr>]], opts)
-map('n', '<leader>h', [[:HopLine<cr>]], opts)
-
 map('n', '<S-t>', [[<Cmd>tabnew<CR>]], opts)
 map('n', '<S-x>', [[<Cmd>bdelete<CR>]], opts)
 map('n', '<TAB>', [[<Cmd>BufferLineCycleNext<CR>]], opts)
