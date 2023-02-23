@@ -13,7 +13,7 @@ lspinstall.setup({
     'cssls',
     'html',
     'jsonls',
-    'sumneko_lua',
+    'lua_ls',
     'rust_analyzer',
     'tsserver',
     'vimls',

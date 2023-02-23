@@ -20,4 +20,4 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { 'documentation', 'detail', 'additionalTextEdits' },
 }
 
-lspconfig.sumneko_lua.setup({})
+lspconfig.lua_ls.setup({})

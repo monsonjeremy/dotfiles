@@ -32,7 +32,7 @@ map('n', '<leader>grum', [[:Git rebase upstream/main<CR>]], opts)
 map('n', '<leader>grom', [[:Git rebase -i origin/main<CR>]], opts)
 
 map('n', '<leader>dg', [[:Neogen<CR>]], opts)
-map('n', '<leader>ps', [[:PackerSync<CR>]], opts)
+map('n', '<leader>ps', [[:Lazy sync<CR>]], opts)
 
 map('n', '<Space>', [[<Nop>]], opts)
 map('n', '<leader>ve', [[:vsplit $MYVIMRC<CR>]], opts)

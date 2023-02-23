@@ -2,6 +2,7 @@ local present, bufferline = pcall(require, 'bufferline')
 if not present then
   return
 end
+local frappe = require('catppuccin.palettes').get_palette('frappe')
 
 bufferline.setup({
   options = {
@@ -20,5 +21,6 @@ bufferline.setup({
     show_buffer_close_icons = true,
     separator_style = 'thin',
     sort_by = 'directory',
+    -- highlights = require('catppuccin.groups.integrations.bufferline').get(),
   },
 })

@@ -37,7 +37,7 @@ pip install vim-vint
 
 sudo gem install neovim
 
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+nvim --headless -c 'autocmd User LazyComplete quitall' -c 'Lazy sync'
 
 defaults write -g KeyRepeat -int 2
 defaults write -g InitialKeyRepeat -int 10
