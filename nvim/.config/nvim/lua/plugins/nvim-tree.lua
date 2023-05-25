@@ -7,12 +7,6 @@ nvimtree.setup({
   update_cwd = true,
   diagnostics = {
     enable = true,
-    icons = {
-      hint = '',
-      info = '',
-      warning = '',
-      error = '',
-    },
   },
   actions = {
     open_file = {

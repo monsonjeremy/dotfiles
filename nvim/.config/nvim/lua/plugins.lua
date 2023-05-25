@@ -1,5 +1,4 @@
 require('lazy').setup({
-  'lewis6991/impatient.nvim',
   { 'wbthomason/packer.nvim', event = 'VimEnter' },
 
   -- UI
@@ -18,7 +17,6 @@ require('lazy').setup({
   },
   {
     'nvim-lualine/lualine.nvim',
-    commit = '2bddaf05084408917f4453739125c388a540d7f7',
     config = function()
       require('plugins.lualine')
     end,
@@ -83,27 +81,22 @@ require('lazy').setup({
             ['cmp.entry.get_documentation'] = true,
           },
           progress = {
-            enabled = true,
-            format = 'lsp_progress',
-            format_done = 'lsp_progress_done',
-            throttle = 10000, -- frequency to update lsp progress message
-            view = 'mini',
-            message = {
-              -- Messages shown by lsp servers
-              enabled = true,
-              view = 'mini',
-              opts = {
-                title = 'LSP',
-                replace = true,
-              },
-            },
+            view = 'notify',
           },
+        },
+        views = {
+          notify = { merge = true, replace = true, title = 'LSP' },
         },
       })
     end,
     dependencies = {
-      'MunifTanjim/nui.nvim',
-      -- 'rcarriga/nvim-notify',
+      -- 'MunifTanjim/nui.nvim',
+      {
+        'rcarriga/nvim-notify',
+        config = function()
+          require('plugins.notify')
+        end,
+      },
     },
   },
 
@@ -303,11 +296,30 @@ require('lazy').setup({
   },
 
   {
+    'aaronhallaert/advanced-git-search.nvim',
+    config = function()
+      require('telescope').load_extension('advanced_git_search')
+    end,
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      -- to show diff splits and open commits in browser
+      'tpope/vim-fugitive',
+    },
+  },
+
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     event = 'BufRead',
     config = function()
       require('plugins.nvim-treesitter')
+    end,
+  },
+
+  {
+    'chrisgrieser/nvim-various-textobjs',
+    config = function()
+      require('various-textobjs').setup({ useDefaultKeymaps = true })
     end,
   },
 
@@ -349,6 +361,14 @@ require('lazy').setup({
   },
 
   { 'L3MON4D3/LuaSnip', event = 'InsertCharPre' },
+  {
+    name = 'rendition-nvim',
+    dir = '~/Desktop/rendition-nvim',
+    config = function()
+      require('rendition').setup()
+    end,
+    dev = true,
+  },
   {
     'hrsh7th/nvim-cmp',
     name = 'cmp',
@@ -435,7 +455,7 @@ require('lazy').setup({
   {
     'dsznajder/vscode-es7-javascript-react-snippets',
     commit = '2a6a1ffac598d7f5b4097d06c4190c5bcced99d9',
-    build = 'npm ci  && npm run compile',
+    build = 'yarn install --frozen-lockfile && yarn compile',
   },
 
   {

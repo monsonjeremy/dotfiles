@@ -11,7 +11,7 @@ catppuccin.setup({
   },
   show_end_of_buffer = false, -- show the '~' characters after the end of buffers
   dim_inactive = {
-    enabled = false,
+    enabled = true,
     shade = 'dark',
     percentage = 0.15,
   },

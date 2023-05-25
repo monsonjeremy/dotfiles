@@ -5,7 +5,7 @@ if not (present1 or present2) then
 end
 
 local lsp = vim.lsp
-require('lsp.status')
+-- require('lsp.status')
 
 lspinstall.setup({
   ensure_installed = {
@@ -36,12 +36,12 @@ local function set_sign(type, icon)
   vim.fn.sign_define(sign, { text = icon, texthl = texthl })
 end
 
-set_sign('Hint', '')
+set_sign('Hint', '')
 set_sign('Information', '')
 set_sign('Warning', '')
-set_sign('Error', '')
+set_sign('Error', '⊗')
 
-lsp.set_log_level('error')
+lsp.set_log_level('warn')
 
 lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
   underline = { severity_limit = 'Warning' },
