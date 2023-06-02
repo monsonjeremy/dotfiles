@@ -1,2 +1,2 @@
-require('impatient')
+vim.loader.enable()
 require('init')

@@ -32,7 +32,7 @@ map('n', '<leader>grum', [[:Git rebase upstream/main<CR>]], opts)
 map('n', '<leader>grom', [[:Git rebase -i origin/main<CR>]], opts)
 
 map('n', '<leader>dg', [[:Neogen<CR>]], opts)
-map('n', '<leader>ps', [[:PackerSync<CR>]], opts)
+map('n', '<leader>ps', [[:Lazy sync<CR>]], opts)
 
 map('n', '<Space>', [[<Nop>]], opts)
 map('n', '<leader>ve', [[:vsplit $MYVIMRC<CR>]], opts)
@@ -94,10 +94,6 @@ map('n', '<Leader>tt', [[:ToggleTerm<CR>]], opts)
 map('n', '<C-p>', [[:Telescope find_files hidden=true<CR>]], opts)
 map('n', '<leader>p', [[:Telescope buffers <CR>]], opts)
 map('n', '<leader>ff', [[:Telescope live_grep<CR>]], opts)
-
--- Hop
-map('n', '<leader>hw', [[:HopWord<cr>]], opts)
-map('n', '<leader>h', [[:HopLine<cr>]], opts)
 
 map('n', '<S-t>', [[<Cmd>tabnew<CR>]], opts)
 map('n', '<S-x>', [[<Cmd>bdelete<CR>]], opts)

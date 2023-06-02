@@ -19,29 +19,29 @@ local on_attach = function(client)
 
   buf_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  buf_map('n', '<leader>dd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_map('n', '<leader>dd', '<cmd>Lspsaga goto_definition<CR>', opts)
   buf_map('n', '<leader>df', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_map('n', '<leader>dt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_map('n', '<leader>dr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_map('n', '<leader>drr', [[<cmd>lua require('renamer').rename()<cr>]], opts)
-  buf_map('n', '<leader>pd', '<cmd>Lspsaga preview_definition<CR>', opts)
+  buf_map('n', '<leader>drr', [[<cmd>Lspsaga rename<CR>]], opts)
+  buf_map('n', '<leader>pd', '<cmd>Lspsaga peek_definition<CR>', opts)
   -- buf_map('n', '<leader>sh', '<cmd>Lspsaga signature_help<CR>', opts)
   buf_map('n', 'K', '<cmd>Lspsaga hover_doc<CR>', opts)
   buf_map('n', '<leader>cs', '<cmd>Lspsaga show_line_diagnostics<CR>', opts)
   buf_map(
     'n',
     '<leader>dn',
-    [[<cmd>lua require('lspsaga.diagnostic').goto_next({ severity = { min=vim.diagnostic.severity.WARN } })<CR>]],
+    [[<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = { min=vim.diagnostic.severity.WARN } })<CR>]],
     opts
   )
   buf_map(
     'n',
     '<leader>dp',
-    [[<cmd>lua require('lspsaga.diagnostic').goto_prev({ severity = { min=vim.diagnostic.severity.WARN } })<CR>]],
+    [[<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = { min=vim.diagnostic.severity.WARN } })<CR>]],
     opts
   )
-  buf_map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_map('v', '<leader>ca', '<cmd><C-U>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_map('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
+  buf_map('v', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
 
   -- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
   if client.server_capabilities.signature_help then

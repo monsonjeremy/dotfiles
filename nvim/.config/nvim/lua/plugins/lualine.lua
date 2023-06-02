@@ -4,7 +4,7 @@ if not present then
 end
 
 lualine.setup({
-  options = { theme = 'onedark' },
+  options = { theme = 'catppuccin' },
   sections = {
     lualine_c = { { 'diagnostics', sources = { 'nvim_diagnostic' } }, { 'filename' } },
   },

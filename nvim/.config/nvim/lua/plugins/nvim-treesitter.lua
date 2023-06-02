@@ -53,7 +53,6 @@ treesitter.setup({
     'yaml',
   },
   highlight = { enable = true, use_languagetree = true },
-  refactor = { highlight_definitions = { enable = true }, navigation = { enable = true } },
   incremental_selection = {
     enable = true,
     keymaps = {

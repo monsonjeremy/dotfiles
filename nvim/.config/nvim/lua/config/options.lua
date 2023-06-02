@@ -24,7 +24,7 @@ opt.cul = true
 opt.mouse = 'a'
 opt.signcolumn = 'yes'
 opt.cmdheight = 1
-opt.updatetime = 250 -- update interval for gitsigns
+opt.updatetime = 200 -- update interval for gitsigns
 opt.timeoutlen = 400
 opt.clipboard = 'unnamedplus'
 opt.scrolloff = 8
@@ -91,6 +91,9 @@ local disabled_built_ins = {
   'spellfile_plugin',
   'matchit',
 }
+
+-- command -nargs=1 Browse silent exe '!xdg-open . <args>'
+vim.api.nvim_create_user_command('Browse', 'exe "!open . <args>"', { nargs = 1 })
 
 for _, plugin in pairs(disabled_built_ins) do
   vim.g['loaded_' .. plugin] = 1

@@ -5,6 +5,12 @@ if not present then
 end
 
 local default = {
+  pickers = {
+    find_files = {
+      -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+      find_command = { 'rg', '--files', '--hidden', '--follow' },
+    },
+  },
   defaults = {
     vimgrep_arguments = {
       'rg',
@@ -16,6 +22,7 @@ local default = {
       '--smart-case',
       '--hidden',
       '--fixed-strings',
+      '--follow',
     },
     file_ignore_patterns = {
       'node_modules',
