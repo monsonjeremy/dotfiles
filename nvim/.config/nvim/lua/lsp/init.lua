@@ -1,5 +1,6 @@
 local present1 = pcall(require, 'lspconfig')
-local present2, lspinstall = pcall(require, 'nvim-lsp-installer')
+local present2, mason = pcall(require, 'mason')
+local present3, masonAuto = pcall(require, 'mason-tool-installer')
 if not (present1 or present2) then
   return
 end
@@ -7,27 +8,29 @@ end
 local lsp = vim.lsp
 -- require('lsp.status')
 
-lspinstall.setup({
+mason.setup({
+  -- automatic_installation = true,
+})
+masonAuto.setup({
   ensure_installed = {
-    'bashls',
-    'cssls',
-    'html',
-    'jsonls',
-    'lua_ls',
-    'rust_analyzer',
-    'tsserver',
-    'vimls',
-    'graphql',
-    'terraformls',
-    'prismals',
-    'elixirls',
-    'dockerls',
-    'stylelint_lsp',
-    'eslint',
-    'cssmodules_ls',
-    'tailwindcss',
+    'bash-language-server',
+    'css-lsp',
+    'html-lsp',
+    'json-lsp',
+    'lua-language-server',
+    'rust-analyzer',
+    'typescript-language-server',
+    'vim-language-server',
+    'graphql-language-service-cli',
+    'terraform-ls',
+    'prisma-language-server',
+    'elixir-ls',
+    'dockerfile-language-server',
+    'stylelint-lsp',
+    'eslint-lsp',
+    'cssmodules-language-server',
+    'tailwindcss-language-server',
   },
-  automatic_installation = true,
 })
 
 local function set_sign(type, icon)

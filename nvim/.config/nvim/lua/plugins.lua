@@ -160,7 +160,11 @@ require('lazy').setup({
   },
   -- { 'ray-x/lsp_signature.nvim', event = 'BufRead' },
   { 'folke/neodev.nvim' },
-  { 'williamboman/nvim-lsp-installer', event = 'BufRead' },
+  {
+    'williamboman/mason.nvim',
+    build = ':MasonUpdate', -- :MasonUpdate updates registry contents
+  },
+  { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
   { 'nvim-lua/lsp_extensions.nvim', event = 'BufRead' },
   {
     'ojroques/nvim-lspfuzzy',
