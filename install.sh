@@ -44,7 +44,7 @@ defaults write -g InitialKeyRepeat -int 10
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-eval "$(fnm env)"
+eval "$(fnm env --use-on-cd)"
 fnm install 16
 fnm default 16
 fnm use 16

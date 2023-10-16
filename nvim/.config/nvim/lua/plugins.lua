@@ -1,19 +1,19 @@
 require('lazy').setup({
-  { 'wbthomason/packer.nvim', event = 'VimEnter' },
-
-  -- UI
-  -- {
-  --   'j-hui/fidget.nvim',
-  --   config = function()
-  --     require('fidget').setup({},
-  --   end,
-  -- },
-
   {
     'VonHeikemen/searchbox.nvim',
     dependencies = {
       { 'MunifTanjim/nui.nvim' },
     },
+  },
+  {
+    'luckasRanarison/nvim-devdocs',
+    lazy = true,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    opts = {},
   },
   {
     'nvim-lualine/lualine.nvim',
@@ -29,6 +29,8 @@ require('lazy').setup({
   },
   {
     'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
+    opts = {},
     event = 'BufRead',
     config = function()
       require('plugins.indentline')
@@ -41,6 +43,13 @@ require('lazy').setup({
       require('plugins.catppuccin-config')
     end,
   },
+  -- {
+  --   'AstroNvim/astrotheme',
+  --   config = function()
+  --     require('astrotheme').setup()
+  --     vim.cmd('colorscheme astrodark')
+  --   end,
+  -- },
   -- {
   --   'monsonjeremy/onedark.nvim',
   --   branch = 'treesitter',
@@ -134,6 +143,7 @@ require('lazy').setup({
 
   {
     'zbirenbaum/copilot-cmp',
+    commit = 'c2cdb3c0f5078b0619055af192295830a7987790',
     -- after = { 'copilot.lua' },
     config = function()
       require('copilot_cmp').setup()
@@ -142,7 +152,8 @@ require('lazy').setup({
 
   -- LSP
   {
-    'glepnir/lspsaga.nvim',
+    'nvimdev/lspsaga.nvim',
+    commit = '4f075452c466df263e69ae142f6659dcf9324bf6',
     branch = 'main',
     event = 'BufRead',
     config = function()
@@ -164,7 +175,26 @@ require('lazy').setup({
     'williamboman/mason.nvim',
     build = ':MasonUpdate', -- :MasonUpdate updates registry contents
   },
-  { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
+  'williamboman/mason-lspconfig.nvim',
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+    config = function()
+      require('typescript-tools').setup({
+        on_attach = function(client)
+          if require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc')(vim.fn.getcwd()) then
+            client.stop()
+            return
+          end
+        end,
+        settings = {
+          separate_diagnostic_server = true,
+          tsserver_plugins = {},
+        },
+      })
+    end,
+  },
   { 'nvim-lua/lsp_extensions.nvim', event = 'BufRead' },
   {
     'ojroques/nvim-lspfuzzy',
@@ -193,6 +223,45 @@ require('lazy').setup({
     'onsails/lspkind-nvim',
     event = 'BufRead',
     -- module = 'lspkind',
+  },
+  {
+    'elixir-tools/elixir-tools.nvim',
+    version = '*',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      local elixir = require('elixir')
+      local elixirls = require('elixir.elixirls')
+
+      elixir.setup({
+        nextls = { enable = true },
+        credo = {},
+        elixirls = {
+          enable = true,
+          settings = elixirls.settings({
+            dialyzerEnabled = false,
+            enableTestLenses = false,
+          }),
+          on_attach = function(client, bufnr)
+            vim.keymap.set(
+              'n',
+              '<space>fp',
+              ':ElixirFromPipe<cr>',
+              { buffer = true, noremap = true }
+            )
+            vim.keymap.set('n', '<space>tp', ':ElixirToPipe<cr>', { buffer = true, noremap = true })
+            vim.keymap.set(
+              'v',
+              '<space>em',
+              ':ElixirExpandMacro<cr>',
+              { buffer = true, noremap = true }
+            )
+          end,
+        },
+      })
+    end,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
   },
   {
     'neovim/nvim-lspconfig',
@@ -344,9 +413,29 @@ require('lazy').setup({
   { 'nvim-treesitter/playground', cmd = 'TSPlayground' },
 
   {
-    'HiPhish/nvim-ts-rainbow2',
-    event = 'BufRead',
-    -- after = 'nvim-treesitter'
+    'HiPhish/rainbow-delimiters.nvim',
+    config = function()
+      local rainbow_delimiters = require('rainbow-delimiters')
+
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [''] = rainbow_delimiters.strategy['global'],
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          lua = 'rainbow-blocks',
+        },
+        highlight = {
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
+        },
+      }
+    end,
   },
 
   {
@@ -365,14 +454,14 @@ require('lazy').setup({
   },
 
   { 'L3MON4D3/LuaSnip', event = 'InsertCharPre' },
-  {
-    name = 'rendition-nvim',
-    dir = '~/Desktop/rendition-nvim',
-    config = function()
-      require('rendition').setup()
-    end,
-    dev = true,
-  },
+  -- {
+  --   name = 'rendition-nvim',
+  --   dir = '~/Desktop/rendition-nvim',
+  --   config = function()
+  --     require('rendition').setup()
+  --   end,
+  --   dev = true,
+  -- },
   {
     'hrsh7th/nvim-cmp',
     name = 'cmp',
@@ -408,7 +497,7 @@ require('lazy').setup({
   {
     'akinsho/nvim-bufferline.lua',
     branch = 'main',
-    after = 'catppuccin',
+    dependencies = { 'catppuccin/nvim' },
     config = function()
       require('plugins.bufferline')
     end,
@@ -461,38 +550,7 @@ require('lazy').setup({
     commit = '2a6a1ffac598d7f5b4097d06c4190c5bcced99d9',
     build = 'yarn install --frozen-lockfile && yarn compile',
   },
-
-  {
-    'nathom/filetype.nvim',
-    config = function()
-      require('filetype').setup({
-        overrides = {
-          extensions = {
-            -- Set the filetype of *.pn files to potion
-            exs = 'elixir',
-            tf = 'terraform',
-          },
-          literal = {
-            ['.eslintrc'] = 'json',
-            ['.prettierrc'] = 'json',
-            ['.babelrc'] = 'json',
-            ['.nycrc'] = 'json',
-            ['.env'] = 'bash',
-            ['.env.local'] = 'bash',
-            ['.env.development'] = 'bash',
-            ['.env.production'] = 'bash',
-            ['.env.sandbox'] = 'bash',
-            ['.env.staging'] = 'bash',
-            ['.env.sample'] = 'bash',
-            ['.env.test'] = 'bash',
-          },
-        },
-      })
-    end,
-  },
 }, {
-  config = {
-    -- Move to lua dir so impatient.nvim can cache it
-    -- compile_path = vim.fn.stdpath('config') .. '/plugin/packer_compiled.lua',
-  },
+  defaults = {},
+  config = {},
 })

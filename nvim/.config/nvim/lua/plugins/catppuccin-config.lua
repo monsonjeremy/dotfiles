@@ -43,7 +43,7 @@ catppuccin.setup({
     telescope = true,
     treesitter = true,
     treesitter_context = true,
-    ts_rainbow2 = true,
+    rainbow_delimiters = true,
     notify = true,
     lsp_trouble = true,
     mini = true,

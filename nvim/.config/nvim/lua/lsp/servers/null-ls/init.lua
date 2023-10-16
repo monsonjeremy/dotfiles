@@ -20,6 +20,12 @@ local luaCheckConfig = {
   },
 }
 
+local credoConfig = {
+  env = {
+    MIX_ENV = 'test',
+  },
+}
+
 null_ls.setup({
   capabilities = vim.lsp.protocol.make_client_capabilities(),
   on_attach = function(client)
@@ -38,7 +44,7 @@ null_ls.setup({
     null_ls.builtins.diagnostics.luacheck.with(luaCheckConfig),
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.diagnostics.hadolint,
-    null_ls.builtins.diagnostics.credo,
+    -- null_ls.builtins.diagnostics.credo.with(credoConfig),
     null_ls.builtins.code_actions.gitsigns,
     -- null_ls.builtins.code_actions.refactoring,
   },

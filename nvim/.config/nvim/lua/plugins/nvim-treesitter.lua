@@ -7,6 +7,7 @@ treesitter.setup({
   autopairs = { enable = true },
   autotag = {
     enable = true,
+    enable_close_on_slash = false,
     filetypes = {
       'html',
       'javascript',
@@ -18,7 +19,14 @@ treesitter.setup({
       'heex',
     },
   },
-  rainbow = { enable = true, extended_mode = false, max_file_lines = 2000 },
+  rainbow = {
+    max_file_lines = 2000,
+    enable = true,
+    -- Which query to use for finding delimiters
+    query = 'rainbow-delimiters',
+    -- Highlight the entire buffer all at once
+    strategy = require('rainbow-delimiters').strategy.global,
+  },
   ensure_installed = {
     'bash',
     'comment',

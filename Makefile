@@ -1,9 +1,9 @@
 .DEFAULT_GOAL = check
 
 format:
-	@stylua -g '*.lua' -g '!packer_compiled.lua' -- ./nvim/.config/nvim
+	@stylua -g '*.lua' -- ./nvim/.config/nvim
 
 lint:
-	@luacheck . --exclude-files '**/packer_compiled.lua'
+	@luacheck .
 
 check: format lint

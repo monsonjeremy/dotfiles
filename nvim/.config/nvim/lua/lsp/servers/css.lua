@@ -12,4 +12,11 @@ lspconfig.cssls.setup({
   end,
   capabilities = capabilities,
   filetypes = { 'css', 'scss' },
+  settings = {
+    css = {
+      lint = {
+        unknownAtRules = 'ignore',
+      },
+    },
+  },
 })

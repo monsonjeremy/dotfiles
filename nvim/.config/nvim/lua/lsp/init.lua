@@ -1,35 +1,33 @@
-local present1 = pcall(require, 'lspconfig')
+local present1, lspconfig = pcall(require, 'lspconfig')
 local present2, mason = pcall(require, 'mason')
-local present3, masonAuto = pcall(require, 'mason-tool-installer')
-if not (present1 or present2) then
+local present3, masonLSP = pcall(require, 'mason-lspconfig')
+if not (present1 or present2 or present3) then
   return
 end
 
 local lsp = vim.lsp
--- require('lsp.status')
 
-mason.setup({
-  -- automatic_installation = true,
-})
-masonAuto.setup({
+mason.setup()
+masonLSP.setup({
   ensure_installed = {
-    'bash-language-server',
-    'css-lsp',
-    'html-lsp',
-    'json-lsp',
-    'lua-language-server',
-    'rust-analyzer',
-    'typescript-language-server',
-    'vim-language-server',
-    'graphql-language-service-cli',
-    'terraform-ls',
-    'prisma-language-server',
-    'elixir-ls',
-    'dockerfile-language-server',
-    'stylelint-lsp',
-    'eslint-lsp',
-    'cssmodules-language-server',
-    'tailwindcss-language-server',
+    'bashls',
+    'cssls',
+    'html',
+    'jsonls',
+    'lua_ls',
+    'rust_analyzer',
+    -- 'typescript-language-server',
+    'vimls',
+    'graphql',
+    'terraformls',
+    'tflint',
+    'prismals',
+    'elixirls',
+    'dockerls',
+    'stylelint_lsp',
+    'eslint',
+    'cssmodules_ls',
+    'tailwindcss',
   },
 })
 

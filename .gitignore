@@ -9,5 +9,4 @@ tmp/*
 backup/
 *.log
 .DS_Store
-packer_compiled.lua
 dotfiles/.gitconfig

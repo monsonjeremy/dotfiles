@@ -27,4 +27,21 @@ lspconfig.tailwindcss.setup({
       eruby = 'erb',
     },
   },
+  settings = {
+    tailwindCSS = {
+      lint = {
+        cssConflict = 'ignore',
+      },
+      experimental = {
+        classRegex = {
+          '[a-zA-Z]+ClassName=\\"([^\\"]*)\\"',
+          'className[a-zA-Z]+=\\"([^\\"]*)\\"',
+          '[`\'"`]([^\'"`,;]*)[`\'"`]',
+          '`([^`]*)`',
+          'twMerge\\(([\\S\\s]*?)\\)',
+          '(?:twMerge|twJoin)\\(([^\\);]*)[\\);]',
+        },
+      },
+    },
+  },
 })

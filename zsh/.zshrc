@@ -6,7 +6,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
-eval "$(fnm env)"
+eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
@@ -78,3 +78,18 @@ export PATH="/opt/homebrew/sbin:$PATH"
 
 export PNPM_HOME="/Users/jmonson/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+# bun completions
+[ -s "/opt/homebrew/Cellar/bun/1.0.1/share/zsh/site-functions/_bun" ] && source "/opt/homebrew/Cellar/bun/1.0.1/share/zsh/site-functions/_bun"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# GoLang
+export GOROOT=/Users/jeremymonson/.go
+export PATH=$GOROOT/bin:$PATH
+export GOPATH=/Users/jeremymonson/go
+export PATH=$GOPATH/bin:$PATH

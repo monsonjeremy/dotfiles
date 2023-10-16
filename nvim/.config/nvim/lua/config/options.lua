@@ -9,8 +9,6 @@ g['copilot_no_tab_map'] = true
 g['copilot_assume_mapped'] = true
 g['copilot_tab_fallback'] = true
 
-g.do_filetype_lua = 1
-g.did_load_filetypes = 0
 g.loaded_perl_provider = 0
 
 opt.completeopt = 'menu,menuone,noselect'

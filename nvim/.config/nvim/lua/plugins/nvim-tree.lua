@@ -32,6 +32,7 @@ nvimtree.setup({
       'Makefile',
       'MAKEFILE',
       'package.json',
+      '.gitignore',
       '.env',
     },
     icons = {
@@ -61,12 +62,11 @@ nvimtree.setup({
   filters = {
     dotfiles = false,
     custom = {
-      '.git',
+      '.git$',
       '.cache',
       'node_modules',
       '_build',
       'deps',
-      'priv',
     },
   },
   git = {
