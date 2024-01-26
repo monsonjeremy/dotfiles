@@ -7,4 +7,5 @@ npm install -g \
   stylelint-config-standard-scss@1.1.0 \
   stylelint-config-standard@22.0.0 \
   stylelint-scss@3.20.1 \
-  stylelint@14.11.0
+  stylelint@14.11.0 \
+  @microsoft/inshellisense@latest

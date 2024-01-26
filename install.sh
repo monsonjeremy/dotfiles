@@ -45,16 +45,17 @@ defaults write -g InitialKeyRepeat -int 10
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 eval "$(fnm env --use-on-cd)"
-fnm install 16
-fnm default 16
-fnm use 16
+fnm install 18
+fnm default 18
+fnm use 18
 npm i -g eslint_d \
   neovim \
   npm \
   prettier \
   prettier_d_slim \
   typescript \
-  neovim
+  neovim \
+  @microsoft/inshellisense
 
 luarocks install luacheck
 cargo install stylua

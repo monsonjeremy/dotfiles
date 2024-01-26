@@ -33,7 +33,7 @@ null_ls.setup({
     on_attach(client)
   end,
   sources = {
-    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.biome,
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.trim_whitespace,

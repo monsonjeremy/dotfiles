@@ -283,9 +283,7 @@ require('lazy').setup({
   },
 
   {
-    'jose-elias-alvarez/null-ls.nvim',
-    -- after = 'nvim-lspconfig',
-    -- module = 'null-ls',
+    'nvimtools/none-ls.nvim',
   },
 
   {

@@ -9,6 +9,7 @@ lspconfig.eslint.setup({
     on_attach(client)
   end,
   root_dir = util.root_pattern(
+    '.eslintrc*',
     '.git',
     '.eslintrc.json',
     '.eslintrc',

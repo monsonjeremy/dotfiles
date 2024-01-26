@@ -2,7 +2,7 @@ local util = require('lspconfig/util')
 local m = {}
 
 local lookForPackageJson = function(params)
-  return util.root_pattern('.git', '.eslintrc*', 'node_modules')(params.bufname)
+  return util.root_pattern('.eslintrc*', '.git', 'node_modules')(params.bufname)
 end
 
 local eslintConfig = {
