@@ -40,8 +40,8 @@ zle-line-init() {
 
 source $ZSH/oh-my-zsh.sh
 
-alias ls="exa -a --tree -L 1"
-alias ll="exa --tree --level=2 -a --long --header --accessed --git"
+alias ls="eza -a --tree -L 1"
+alias ll="eza --tree --level=2 -a --long --header --accessed --git"
 source ~/.functions
 
 # >>> conda initialize >>>

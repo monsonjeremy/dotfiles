@@ -284,6 +284,10 @@ require('lazy').setup({
 
   {
     'nvimtools/none-ls.nvim',
+    dependencies = {
+      'gbprod/none-ls-luacheck.nvim',
+      'gbprod/none-ls-shellcheck.nvim',
+    },
   },
 
   {
@@ -338,7 +342,13 @@ require('lazy').setup({
   { 'tpope/vim-repeat', keys = { '.', mode = 'n' } },
   { 'chaoren/vim-wordmotion', event = 'BufRead' },
   { 'tweekmonster/startuptime.vim', cmd = 'StartupTime' },
-  { 'fedepujol/move.nvim', cmd = { 'MoveLine', 'MoveBlock' } },
+  {
+    'fedepujol/move.nvim',
+    cmd = { 'MoveLine', 'MoveBlock' },
+    config = function()
+      require('move').setup()
+    end,
+  },
   {
     'glepnir/dashboard-nvim',
     event = 'VimEnter',

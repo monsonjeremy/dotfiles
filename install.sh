@@ -3,6 +3,9 @@
 export DOTFILES=$HOME/dotfiles
 export STOW_FOLDERS="dotfiles,nvim,kitty,tmux,starship,zsh"
 
+defaults write -g KeyRepeat -int 2
+defaults write -g InitialKeyRepeat -int 10
+
 echo "$(tput setaf 2)Checking for Homebrew installation.$(tput sgr 0)"
 
 export BREW_USR="/usr/local/bin/brew"
@@ -17,16 +20,14 @@ else
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-brew install stow
-sh ./stow.sh
-
 if command -v brew >/dev/null 2>&1; then
   brew bundle
 fi
 
 \curl -L https://install.perlbrew.pl | bash
 
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+brew install stow
+sh ./stow.sh
 
 echo "$(tput setaf 2)Setting up asdf.$(tput sgr 0)"
 asdf plugin add python
@@ -36,11 +37,6 @@ pip install neovim
 pip install vim-vint
 
 sudo gem install neovim
-
-nvim --headless -c 'autocmd User LazyComplete quitall' -c 'Lazy sync'
-
-defaults write -g KeyRepeat -int 2
-defaults write -g InitialKeyRepeat -int 10
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
@@ -64,6 +60,10 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 fi
+
+rustup component add rustfmt
+
+nvim --headless -c 'autocmd User LazyComplete quitall' -c 'Lazy sync'
 
 echo "$(tput setaf 2)Switching shell to zsh. You may need to logout.$(tput sgr 0)"
 

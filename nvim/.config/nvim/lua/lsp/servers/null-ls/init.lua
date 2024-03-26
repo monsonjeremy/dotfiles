@@ -26,6 +26,8 @@ local credoConfig = {
   },
 }
 
+local luacheck = require('none-ls-luacheck.diagnostics.luacheck')
+
 null_ls.setup({
   capabilities = vim.lsp.protocol.make_client_capabilities(),
   on_attach = function(client)
@@ -34,15 +36,14 @@ null_ls.setup({
   end,
   sources = {
     null_ls.builtins.formatting.biome,
-    null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.terraform_fmt,
-    null_ls.builtins.formatting.trim_whitespace,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.stylua.with(styluaConfig),
     null_ls.builtins.formatting.mix.with(mixFormatConfig),
     null_ls.builtins.formatting.prismaFmt,
-    null_ls.builtins.diagnostics.luacheck.with(luaCheckConfig),
-    null_ls.builtins.diagnostics.shellcheck,
+    luacheck.with(luaCheckConfig),
+    require("none-ls-shellcheck.diagnostics"),
+    require("none-ls-shellcheck.code_actions"),
     null_ls.builtins.diagnostics.hadolint,
     -- null_ls.builtins.diagnostics.credo.with(credoConfig),
     null_ls.builtins.code_actions.gitsigns,
