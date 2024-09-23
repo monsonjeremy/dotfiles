@@ -2,7 +2,7 @@ local present, bufferline = pcall(require, 'bufferline')
 if not present then
   return
 end
-local frappe = require('catppuccin.palettes').get_palette('frappe')
+local colors = require('catppuccin.palettes').get_palette('macchiato')
 
 bufferline.setup({
   options = {

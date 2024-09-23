@@ -83,3 +83,38 @@ vim.api.nvim_create_autocmd('BufEnter', {
     end
   end,
 })
+
+local function git_mv(old_name, new_name)
+  local cmd = string.format('git mv %s %s', old_name, new_name)
+  local result = vim.fn.system(cmd)
+
+  if vim.v.shell_error ~= 0 then
+    print('Error renaming file: ' .. result)
+  else
+    print('File renamed successfully')
+  end
+end
+
+local function git_rename_file()
+  local node = require('nvim-tree.lib').get_node_at_cursor()
+  if not node then
+    print('No file selected')
+    return
+  end
+  local old_name = node.absolute_path
+  local new_name = vim.fn.input('New name: ', old_name)
+  if new_name == '' or new_name == old_name then
+    print('Rename cancelled')
+    return
+  end
+  git_mv(old_name, new_name)
+end
+
+_G.git_rename_file = git_rename_file
+
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>gr',
+  ':lua git_rename_file()<CR>',
+  { noremap = true, silent = true }
+)

@@ -85,6 +85,7 @@ alias gs='git status'
 alias gcm="git checkout main"
 alias gpm="git pull origin main"
 alias gcb="git checkout -b"
+alias ghold="git add --all && git commit -m -n 'WIP'"
 
 # tmux aliases
 alias t='tmux'
@@ -226,3 +227,4 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 alias path='echo -e ${PATH//:/\\n}'
 
 . "$HOME/.cargo/env"
+source "/Users/jeremy.monson/.rover/env"

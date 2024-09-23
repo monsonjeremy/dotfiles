@@ -7,7 +7,9 @@ end
 
 local lsp = vim.lsp
 
-mason.setup()
+mason.setup({
+  log_level = vim.log.levels.DEBUG,
+})
 masonLSP.setup({
   ensure_installed = {
     'bashls',
@@ -43,11 +45,14 @@ set_sign('Warning', '')
 set_sign('Error', '⊗')
 
 lsp.set_log_level('warn')
+lsp.inlay_hint.enable()
 
 lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
-  underline = { severity_limit = 'Warning' },
-  virtual_text = { prefix = '●', spacing = 2, severity_limit = 'Warning' },
-  signs = { severity_limit = 'Warning' },
+  underline = { severity_limit = 'Warning', severity = { min = vim.diagnostic.severity.WARN } },
+  virtual_text = { prefix = '●', spacing = 2, severity = { min = vim.diagnostic.severity.WARN } },
+  signs = {
+    severity = { min = vim.diagnostic.severity.WARN },
+  },
 })
 
 require('lsp.servers')

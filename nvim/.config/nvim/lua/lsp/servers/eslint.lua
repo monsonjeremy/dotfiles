@@ -17,6 +17,6 @@ lspconfig.eslint.setup({
     'node_modules'
   ),
   settings = {
-    format = { enable = true },
+    experimental = { useFlatConfig = false },
   },
 })

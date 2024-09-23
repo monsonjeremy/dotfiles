@@ -37,27 +37,23 @@ require('lazy').setup({
     end,
   },
   {
+    'mistricky/codesnap.nvim',
+    build = 'make',
+    config = function()
+      require('codesnap').setup({
+        has_breadcrumbs = true,
+      })
+    end,
+  },
+  {
     'catppuccin/nvim',
     name = 'catppuccin',
+    priority = 1000,
+
     config = function()
       require('plugins.catppuccin-config')
     end,
   },
-  -- {
-  --   'AstroNvim/astrotheme',
-  --   config = function()
-  --     require('astrotheme').setup()
-  --     vim.cmd('colorscheme astrodark')
-  --   end,
-  -- },
-  -- {
-  --   'monsonjeremy/onedark.nvim',
-  --   branch = 'treesitter',
-  --   -- after = 'lualine.nvim',
-  --   config = function()
-  --     require('plugins.onedark').setupOneDark()
-  --   end,
-  -- },
   {
     'nvim-tree/nvim-web-devicons',
     event = 'BufRead',
@@ -140,6 +136,17 @@ require('lazy').setup({
       end, 100)
     end,
   },
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    branch = 'canary',
+    dependencies = {
+      { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
+      { 'nvim-lua/plenary.nvim' }, -- for curl, log wrapper
+    },
+    opts = {
+      -- See Configuration section for rest
+    },
+  },
 
   {
     'zbirenbaum/copilot-cmp',
@@ -153,7 +160,6 @@ require('lazy').setup({
   -- LSP
   {
     'nvimdev/lspsaga.nvim',
-    commit = '4f075452c466df263e69ae142f6659dcf9324bf6',
     branch = 'main',
     event = 'BufRead',
     config = function()
@@ -286,7 +292,6 @@ require('lazy').setup({
     'nvimtools/none-ls.nvim',
     dependencies = {
       'gbprod/none-ls-luacheck.nvim',
-      'gbprod/none-ls-shellcheck.nvim',
     },
   },
 
@@ -333,10 +338,12 @@ require('lazy').setup({
   },
   {
     'echasnovski/mini.nvim',
-    branch = 'stable',
+    version = '*',
     event = 'BufRead',
     config = function()
       require('mini.surround').setup({})
+      require('mini.ai').setup({})
+      require('mini.cursorword').setup({})
     end,
   },
   { 'tpope/vim-repeat', keys = { '.', mode = 'n' } },
@@ -409,15 +416,6 @@ require('lazy').setup({
   --   event = 'BufRead',
   --   after = 'nvim-treesitter',
   -- },
-  {
-    'tzachar/local-highlight.nvim',
-    config = function()
-      require('local-highlight').setup({
-        hlgroup = 'IlluminatedWordText',
-      })
-    end,
-  },
-
   { 'nvim-treesitter/playground', cmd = 'TSPlayground' },
 
   {
@@ -450,6 +448,9 @@ require('lazy').setup({
     'windwp/nvim-ts-autotag',
     event = 'BufRead',
     -- after = 'nvim-treesitter'
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end,
   },
 
   {
@@ -505,7 +506,7 @@ require('lazy').setup({
   {
     'akinsho/nvim-bufferline.lua',
     branch = 'main',
-    dependencies = { 'catppuccin/nvim' },
+    dependencies = { 'catppuccin' },
     config = function()
       require('plugins.bufferline')
     end,
@@ -552,11 +553,36 @@ require('lazy').setup({
       require('which-key').setup()
     end,
   },
-
   {
     'dsznajder/vscode-es7-javascript-react-snippets',
     commit = '2a6a1ffac598d7f5b4097d06c4190c5bcced99d9',
     build = 'yarn install --frozen-lockfile && yarn compile',
+  },
+  {
+    'shortcuts/no-neck-pain.nvim',
+    version = '*',
+    config = function()
+      require('no-neck-pain').setup({
+        width = 180,
+        buffers = {
+          colors = {
+            backgroundColor = 'catppuccin',
+            blend = -0.1,
+          },
+          scratchPad = {
+            -- set to `false` to
+            -- disable auto-saving
+            enabled = true,
+            -- set to `nil` to default
+            -- to current working directory
+            location = '~/Documents/',
+          },
+          bo = {
+            filetype = 'md',
+          },
+        },
+      })
+    end,
   },
 }, {
   defaults = {},

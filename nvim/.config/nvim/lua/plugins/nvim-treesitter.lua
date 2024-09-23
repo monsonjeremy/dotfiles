@@ -5,20 +5,6 @@ end
 
 treesitter.setup({
   autopairs = { enable = true },
-  autotag = {
-    enable = true,
-    enable_close_on_slash = false,
-    filetypes = {
-      'html',
-      'javascript',
-      'javascriptreact',
-      'typescriptreact',
-      'tsx',
-      'svelte',
-      'vue',
-      'heex',
-    },
-  },
   rainbow = {
     max_file_lines = 2000,
     enable = true,

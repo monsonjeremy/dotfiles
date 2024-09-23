@@ -81,7 +81,7 @@ M.setup = function(override_flag)
   local extensions = { 'ui-select' }
 
   for _, ext in ipairs(extensions) do
-    print('loading extension: ' .. ext)
+    -- print('loading extension: ' .. ext)
     telescope.load_extension(ext)
   end
 end

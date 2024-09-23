@@ -109,6 +109,8 @@ map('n', '<Leader>n', [[:NvimTreeToggle<CR>]], opts)
 map('n', '<Leader>r', [[:NvimTreeRefresh<CR>]], opts)
 map('n', '<Leader>f', [[:NvimTreeFindFile<CR>]], opts)
 
+map('n', '<Leader>np', [[:NoNeckPain<CR>]], opts)
+
 map('n', '∆', ':MoveLine(1)<CR>', opts)
 map('n', '˚', ':MoveLine(-1)<CR>', opts)
 map('v', '∆', ':MoveBlock(1)<CR>', opts)
@@ -138,3 +140,6 @@ map(
 vim.keymap.set({ 'n', 'x' }, '<leader>sr', function()
   require('ssr').open()
 end)
+
+vim.keymap.set('n', '<leader>xp', 'yy2o<ESC>kpV:!/bin/bash<CR>')
+vim.keymap.set('v', '<leader>xp', 'y\'<P\'<O<ESC>\'>o<ESC>:<C-u>\'<,\'>!/bin/bash<CR>')

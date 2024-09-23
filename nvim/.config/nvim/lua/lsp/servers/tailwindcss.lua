@@ -32,16 +32,16 @@ lspconfig.tailwindcss.setup({
       lint = {
         cssConflict = 'ignore',
       },
-      experimental = {
-        classRegex = {
-          '[a-zA-Z]+ClassName=\\"([^\\"]*)\\"',
-          'className[a-zA-Z]+=\\"([^\\"]*)\\"',
-          '[`\'"`]([^\'"`,;]*)[`\'"`]',
-          '`([^`]*)`',
-          'twMerge\\(([\\S\\s]*?)\\)',
-          '(?:twMerge|twJoin)\\(([^\\);]*)[\\);]',
-        },
-      },
+      -- experimental = {
+      --   classRegex = {
+      --     '[a-zA-Z]+ClassName=\\"([^\\"]*)\\"',
+      --     'className[a-zA-Z]+=\\"([^\\"]*)\\"',
+      --     '[`\'"`]([^\'"`,;]*)[`\'"`]',
+      --     '`([^`]*)`',
+      --     'twMerge\\(([\\S\\s]*?)\\)',
+      --     '(?:twMerge|twJoin)\\(([^\\);]*)[\\);]',
+      --   },
+      -- },
     },
   },
 })

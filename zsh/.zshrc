@@ -75,7 +75,7 @@ source ~/perl5/perlbrew/etc/bashrc
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
-
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PNPM_HOME="/Users/jmonson/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
@@ -93,3 +93,9 @@ export GOROOT=/Users/jeremymonson/.go
 export PATH=$GOROOT/bin:$PATH
 export GOPATH=/Users/jeremymonson/go
 export PATH=$GOPATH/bin:$PATH
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/opt/homebrew/opt/jpeg/bin:$PATH"

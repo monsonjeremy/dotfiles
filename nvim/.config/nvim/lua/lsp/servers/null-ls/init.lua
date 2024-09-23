@@ -35,15 +35,14 @@ null_ls.setup({
     on_attach(client)
   end,
   sources = {
-    null_ls.builtins.formatting.biome,
+    -- null_ls.builtins.formatting.biome,
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.stylua.with(styluaConfig),
     null_ls.builtins.formatting.mix.with(mixFormatConfig),
-    null_ls.builtins.formatting.prismaFmt,
+    -- null_ls.builtins.formatting.prismaFmt,
     luacheck.with(luaCheckConfig),
-    require("none-ls-shellcheck.diagnostics"),
-    require("none-ls-shellcheck.code_actions"),
+    null_ls.builtins.diagnostics.dotenv_linter,
     null_ls.builtins.diagnostics.hadolint,
     -- null_ls.builtins.diagnostics.credo.with(credoConfig),
     null_ls.builtins.code_actions.gitsigns,

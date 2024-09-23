@@ -4,7 +4,7 @@ if not present then
 end
 
 catppuccin.setup({
-  flavour = 'frappe',
+  flavour = 'macchiato',
   background = { -- :h background
     light = 'latte',
     dark = 'mocha',
