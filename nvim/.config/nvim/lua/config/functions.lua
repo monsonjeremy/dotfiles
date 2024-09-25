@@ -1,4 +1,4 @@
-local cmd = vim.api.nvim_exec
+local cmd = vim.api.nvim_exec2
 
 vim.cmd('silent! command LazySync lua require(\'plugins\') require(\'lazy\').sync()')
 vim.cmd([[silent! command Neogen lua require('neogen').generate()]])
@@ -17,8 +17,9 @@ vim.api.nvim_create_augroup('JeremyFT', {})
 vim.api.nvim_create_autocmd('BufEnter', {
   group = 'JeremyCustom',
   pattern = '*',
-  callback = function()
+  callback = function(args)
     vim.opt.formatoptions = vim.opt.formatoptions - { 'o' }
+    vim.bo[args.buf].formatexpr = nil
   end,
 })
 

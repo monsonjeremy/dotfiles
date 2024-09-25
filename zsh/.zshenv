@@ -85,7 +85,7 @@ alias gs='git status'
 alias gcm="git checkout main"
 alias gpm="git pull origin main"
 alias gcb="git checkout -b"
-alias ghold="git add --all && git commit -m -n 'WIP'"
+alias ghold="git add --all && git commit -n -m \"WIP\""
 
 # tmux aliases
 alias t='tmux'
