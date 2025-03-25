@@ -31,7 +31,7 @@ map('n', '<leader>ga', [[:Git fetch --all<CR>]], opts)
 map('n', '<leader>grum', [[:Git rebase upstream/main<CR>]], opts)
 map('n', '<leader>grom', [[:Git rebase -i origin/main<CR>]], opts)
 
-map('n', '<leader>dg', [[:Neogen<CR>]], opts)
+map('n', '<leader>dg', ':lua require(\'neogen\').generate()<CR>', opts)
 map('n', '<leader>ps', [[:Lazy sync<CR>]], opts)
 
 map('n', '<Space>', [[<Nop>]], opts)

@@ -12,14 +12,8 @@ cmp.setup({
   formatting = {
     format = lspkind.cmp_format({
       mode = 'symbol',
+      max_width = 50,
       symbol_map = { Copilot = '' },
-      --[[ menu = {
-        buffer = ' ﬘ ',
-        path = '   ',
-        nvim_lsp = '  ',
-        treesitter = '  ',
-        vsnip = ' ﬌ ',
-      }, ]]
     }),
   },
   snippet = {
@@ -30,14 +24,10 @@ cmp.setup({
   mapping = {
     ['<C-e>'] = cmp.mapping.close(),
     ['<Tab>'] = cmp.mapping(function(fallback)
-      -- local copilot_keys = vim.fn['copilot#Accept']()
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-      -- elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
-      --   vim.api.nvim_feedkeys(copilot_keys, 'i', true)
-      else
         fallback()
       end
     end, {
@@ -76,7 +66,7 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
   },
   sources = {
-    { name = 'copilot' },
+    { name = 'copilot', group_index = 2 },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'spell' },

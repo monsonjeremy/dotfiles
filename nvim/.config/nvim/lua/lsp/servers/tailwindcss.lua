@@ -2,6 +2,12 @@ local on_attach = require('lsp.on_attach')
 local lspconfig = require('lspconfig')
 
 lspconfig.tailwindcss.setup({
+  root_dir = require('lspconfig').util.root_pattern(
+    'tailwind.config.js',
+    'tailwind.config.ts',
+    'package.json',
+    'mix.exs'
+  ),
   filetypes = {
     'djangohtml',
     'handlebars',
@@ -20,10 +26,10 @@ lspconfig.tailwindcss.setup({
   },
   init_options = {
     userLanguages = {
-      ['phoenix-heex'] = 'html-eex',
-      elixir = 'html-eex',
-      heex = 'html-eex',
-      eelixir = 'html-eex',
+      ['phoenix-heex'] = 'html',
+      elixir = 'html',
+      heex = 'html',
+      eelixir = 'html',
       eruby = 'erb',
     },
   },
@@ -42,6 +48,17 @@ lspconfig.tailwindcss.setup({
       --     '(?:twMerge|twJoin)\\(([^\\);]*)[\\);]',
       --   },
       -- },
+      experimental = {
+        classRegex = {
+          { 'class[:=]\\s*"([^"]*)"', 'class' }, -- Basic class support
+          { 'class[:=]\\s*\'([^\']*)\'', 'class' }, -- Support for single-quoted class strings
+          { 'class[:=]\\s*~s\\(([^)]*)\\)', 'class' }, -- Support for Phoenix Sigil Syntax
+        },
+      },
+      includeLanguages = {
+        elixir = 'html',
+        heex = 'html',
+      },
     },
   },
 })

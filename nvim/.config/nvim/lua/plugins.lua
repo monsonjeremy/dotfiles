@@ -6,6 +6,12 @@ require('lazy').setup({
     },
   },
   {
+    'danymat/neogen',
+    config = true,
+    -- Uncomment next line if you want to follow only stable versions
+    -- version = "*"
+  },
+  {
     'luckasRanarison/nvim-devdocs',
     lazy = true,
     dependencies = {
@@ -66,7 +72,21 @@ require('lazy').setup({
     'gpanders/editorconfig.nvim',
     event = 'BufRead',
   },
-
+  {
+    'rachartier/tiny-glimmer.nvim',
+    event = 'VeryLazy',
+    opts = {
+      default_animation = 'fade',
+      animations = {
+        fade = {
+          max_duration = 700,
+          min_duration = 500,
+          easing = 'outQuad',
+          chars_for_max_duration = 10,
+        },
+      },
+    },
+  },
   {
     'folke/noice.nvim',
     event = 'VimEnter',
@@ -105,53 +125,23 @@ require('lazy').setup({
     },
   },
 
-  -- {
-  --   'github/copilot.vim',
-  --   event = 'InsertEnter',
-  -- },
-
   {
     'zbirenbaum/copilot.lua',
-    cmd = 'Copilot',
     event = 'VimEnter',
     config = function()
-      vim.defer_fn(function()
-        require('copilot').setup({
-          suggestion = {
-            enabled = false,
-            -- enabled = true,
-            -- auto_trigger = true,
-            -- debounce = 75,
-            -- keymap = {
-            --   accept = '<Tab>',
-            --   accept_word = false,
-            --   accept_line = false,
-            --   next = '<C-]>',
-            --   prev = '<C-[>',
-            --   dismiss = '<C-e>',
-            -- },
-          },
-          panel = { enabled = false },
-        })
-      end, 100)
+      require('copilot').setup({
+        suggestion = {
+          enabled = false,
+        },
+        panel = { enabled = false },
+        logger = {
+          file_log_level = vim.log.levels.DEBUG,
+        },
+      })
     end,
   },
   {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    branch = 'canary',
-    dependencies = {
-      { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
-      { 'nvim-lua/plenary.nvim' }, -- for curl, log wrapper
-    },
-    opts = {
-      -- See Configuration section for rest
-    },
-  },
-
-  {
     'zbirenbaum/copilot-cmp',
-    commit = 'c2cdb3c0f5078b0619055af192295830a7987790',
-    -- after = { 'copilot.lua' },
     config = function()
       require('copilot_cmp').setup()
     end,

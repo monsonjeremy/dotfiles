@@ -32,14 +32,6 @@ vim.api.nvim_create_autocmd('VimEnter', {
   once = true,
 })
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = 'JeremyCustom',
-  pattern = '*',
-  callback = function()
-    require('vim.highlight').on_yank({ timeout = 300 })
-  end,
-})
-
 vim.cmd([[
   function! RangeSearch(direction)
     call inputsave()

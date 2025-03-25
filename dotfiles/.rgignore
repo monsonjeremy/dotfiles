@@ -2,3 +2,4 @@
 *-lock.json
 .git/
 .yarn/
+.million/

@@ -71,7 +71,6 @@ kitty + complete setup zsh | source /dev/stdin
 
 source ~/perl5/perlbrew/etc/bashrc
 
-. $(brew --prefix asdf)/libexec/asdf.sh
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
@@ -99,3 +98,5 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="/opt/homebrew/opt/jpeg/bin:$PATH"
+export PATH="$HOME/.elixir-install/installs/otp/27.1.2/erts-15.1.2/bin:$PATH"
+export PATH="$HOME/.elixir-install/installs/elixir/1.17.3-otp-27/bin:$PATH"
