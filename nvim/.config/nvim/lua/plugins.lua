@@ -131,19 +131,13 @@ require('lazy').setup({
     config = function()
       require('copilot').setup({
         suggestion = {
-          enabled = false,
+          enabled = true,
         },
         panel = { enabled = false },
         logger = {
           file_log_level = vim.log.levels.DEBUG,
         },
       })
-    end,
-  },
-  {
-    'zbirenbaum/copilot-cmp',
-    config = function()
-      require('copilot_cmp').setup()
     end,
   },
 
@@ -261,21 +255,10 @@ require('lazy').setup({
   },
   {
     'neovim/nvim-lspconfig',
+    dependencies = { 'saghen/blink.cmp' },
     config = function()
       require('lsp')
     end,
-    -- after = {
-    --   'cmp',
-    --   'cmp-nvim-lsp',
-    --   'nvim-lsp-installer',
-    --   'lspsaga.nvim',
-    --   -- 'lsp_signature.nvim',
-    --   'neodev.nvim',
-    --   'lsp_extensions.nvim',
-    --   'nvim-lspfuzzy',
-    --   'trouble.nvim',
-    --   'lspkind-nvim',
-    -- },
   },
 
   {
@@ -397,7 +380,7 @@ require('lazy').setup({
   {
     'chrisgrieser/nvim-various-textobjs',
     config = function()
-      require('various-textobjs').setup({ useDefaultKeymaps = true })
+      require('various-textobjs').setup({ keymaps = { useDefaults = true } })
     end,
   },
 
@@ -445,54 +428,38 @@ require('lazy').setup({
 
   {
     'windwp/nvim-autopairs',
-    -- after = 'cmp',
     event = 'BufRead',
     config = function()
       require('plugins.autopairs')
     end,
   },
 
-  { 'L3MON4D3/LuaSnip', event = 'InsertCharPre' },
-  -- {
-  --   name = 'rendition-nvim',
-  --   dir = '~/Desktop/rendition-nvim',
-  --   config = function()
-  --     require('rendition').setup()
-  --   end,
-  --   dev = true,
-  -- },
+  -- Source replacement
   {
-    'hrsh7th/nvim-cmp',
-    name = 'cmp',
-    config = function()
-      require('plugins.compe')
-    end,
-    -- wants = {
-    --   'LuaSnip',
-    --   'cmp_luasnip',
-    --   'cmp-nvim-lsp',
-    --   'cmp-buffer',
-    --   'cmp-path',
-    --   'cmp-treesitter',
-    --   'cmp-spell',
-    --   -- 'cmp-rg',
-    -- },
+    'saghen/blink.cmp',
+    version = '1.*',
     dependencies = {
-      { 'saadparwaiz1/cmp_luasnip', event = 'InsertCharPre' },
-      { 'hrsh7th/cmp-buffer', event = 'InsertCharPre' },
-      { 'hrsh7th/cmp-path', event = 'InsertCharPre' },
-      { 'f3fora/cmp-spell', event = 'InsertCharPre' },
-      { 'ray-x/cmp-treesitter', event = 'InsertCharPre' },
-      -- { 'lukas-reineke/cmp-rg', event = 'InsertCharPre' },
+      'fang2hou/blink-copilot',
+      { 'L3MON4D3/LuaSnip', version = 'v2.*' },
+    },
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      sources = {
+        default = { 'copilot' },
+        providers = {
+          copilot = {
+            name = 'copilot',
+            module = 'blink-copilot',
+            score_offset = 100,
+            async = true,
+          },
+        },
+      },
+      snippets = { preset = 'luasnip' },
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
     },
   },
-
-  {
-    'hrsh7th/cmp-nvim-lsp',
-    event = 'BufRead',
-    -- after = 'cmp'
-  },
-
   {
     'akinsho/nvim-bufferline.lua',
     branch = 'main',

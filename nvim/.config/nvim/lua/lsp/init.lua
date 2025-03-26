@@ -7,9 +7,18 @@ end
 
 local lsp = vim.lsp
 
+local lsp_capabilities = require('blink.cmp').get_lsp_capabilities() -- Angepasst für blink.cmp
+
+local function default_setup(server)
+  require('lspconfig')[server].setup({
+    capabilities = lsp_capabilities,
+  })
+end
+
 mason.setup({
   log_level = vim.log.levels.DEBUG,
 })
+
 masonLSP.setup({
   ensure_installed = {
     'bashls',
@@ -31,6 +40,7 @@ masonLSP.setup({
     'cssmodules_ls',
     'tailwindcss',
   },
+  handlers = { default_setup },
 })
 
 local function set_sign(type, icon)

@@ -34,7 +34,7 @@ catppuccin.setup({
       enabled = true,
       colored_indent_levels = false,
     },
-    cmp = true,
+    blink_cmp = true,
     dashboard = true,
     gitsigns = true,
     lsp_saga = true,
