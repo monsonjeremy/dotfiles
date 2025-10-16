@@ -131,7 +131,7 @@ require('lazy').setup({
     config = function()
       require('copilot').setup({
         suggestion = {
-          enabled = true,
+          enabled = false,
         },
         panel = { enabled = false },
         logger = {
@@ -162,10 +162,10 @@ require('lazy').setup({
   -- { 'ray-x/lsp_signature.nvim', event = 'BufRead' },
   { 'folke/neodev.nvim' },
   {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
     build = ':MasonUpdate', -- :MasonUpdate updates registry contents
   },
-  'williamboman/mason-lspconfig.nvim',
+  'mason-org/mason-lspconfig.nvim',
   {
     'pmizio/typescript-tools.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
@@ -173,7 +173,7 @@ require('lazy').setup({
     config = function()
       require('typescript-tools').setup({
         on_attach = function(client)
-          if require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc')(vim.fn.getcwd()) then
+          if vim.lsp.config.util.root_pattern('deno.json', 'deno.jsonc')(vim.fn.getcwd()) then
             client.stop()
             return
           end
@@ -440,13 +440,20 @@ require('lazy').setup({
     version = '1.*',
     dependencies = {
       'fang2hou/blink-copilot',
-      { 'L3MON4D3/LuaSnip', version = 'v2.*' },
+      {
+        'L3MON4D3/LuaSnip',
+        version = 'v2.*',
+        config = function()
+          --- I had to add this option compared to the old syntax
+          require('luasnip.loaders.from_vscode').load()
+        end,
+      },
     },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
       sources = {
-        default = { 'copilot' },
+        default = { 'copilot', 'lsp', 'buffer', 'snippets', 'path' },
         providers = {
           copilot = {
             name = 'copilot',
@@ -455,6 +462,40 @@ require('lazy').setup({
             async = true,
           },
         },
+      },
+      completion = {
+        ghost_text = { enabled = true, show_with_menu = true },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 100,
+        },
+      },
+      keymap = {
+        ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        ['<C-e>'] = { 'hide', 'fallback' },
+        ['<CR>'] = {
+          function(cmp)
+            if cmp.snippet_active() then
+              return cmp.accept()
+            else
+              return cmp.select_and_accept()
+            end
+          end,
+          'snippet_forward',
+          'fallback',
+        },
+        ['<Tab>'] = { 'select_next', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
+
+        ['<Up>'] = { 'select_prev', 'fallback' },
+        ['<Down>'] = { 'select_next', 'fallback' },
+        ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
+        ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
+
+        ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+        ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+
+        ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
       },
       snippets = { preset = 'luasnip' },
       fuzzy = { implementation = 'prefer_rust_with_warning' },

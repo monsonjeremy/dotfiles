@@ -1,5 +1,6 @@
 *.lock
 *-lock.json
 .git/
+.next/
 .yarn/
 .million/
