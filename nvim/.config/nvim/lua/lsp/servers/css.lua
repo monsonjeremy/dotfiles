@@ -1,7 +1,7 @@
 local on_attach = require('lsp.on_attach')
 local lspconfig = require('lspconfig')
 
-lspconfig.cssls.setup({
+vim.lsp.config('cssls', {
   on_attach = function(client)
     client.server_capabilities.document_formatting = false
     on_attach(client)

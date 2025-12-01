@@ -2,7 +2,7 @@ local on_attach = require('lsp.on_attach')
 local lspconfig = require('lspconfig')
 local opts = { silent = true }
 
-lspconfig.tsserver.setup({
+vim.lsp.config('tsserver', {
   init_options = require('nvim-lsp-ts-utils').init_options,
   on_attach = function(client)
     if client.config.flags then

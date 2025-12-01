@@ -7,14 +7,6 @@ end
 
 local lsp = vim.lsp
 
-local lsp_capabilities = require('blink.cmp').get_lsp_capabilities() -- Angepasst für blink.cmp
-
-local function default_setup(server)
-  require('lspconfig')[server].setup({
-    capabilities = lsp_capabilities,
-  })
-end
-
 mason.setup({
   log_level = vim.log.levels.DEBUG,
 })
@@ -40,7 +32,6 @@ masonLSP.setup({
     'cssmodules_ls',
     'tailwindcss',
   },
-  handlers = { default_setup },
 })
 
 local function set_sign(type, icon)
@@ -63,6 +54,29 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_pub
   signs = {
     severity = { min = vim.diagnostic.severity.WARN },
   },
+})
+
+-- Disable code action lightbulb icon in status column
+-- Remove lightbulb signs whenever they appear
+vim.api.nvim_create_autocmd({ 'LspAttach' }, {
+  callback = function(args)
+    local bufnr = args.buf
+    -- Remove lightbulb signs on cursor hold
+    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+      buffer = bufnr,
+      callback = function()
+        local signs = vim.fn.sign_getplaced(bufnr, { group = '*' })
+        if signs[1] and signs[1].signs then
+          for _, sign in ipairs(signs[1].signs) do
+            -- Check for lightbulb sign by name
+            if sign.name and (sign.name:match('LightBulb') or sign.name:match('CodeAction')) then
+              vim.fn.sign_unplace(sign.group or '*', { id = sign.id, buffer = bufnr })
+            end
+          end
+        end
+      end,
+    })
+  end,
 })
 
 require('lsp.servers')

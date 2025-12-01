@@ -105,24 +105,12 @@ require('lazy').setup({
             ['vim.lsp.util.stylize_markdown'] = true,
             ['cmp.entry.get_documentation'] = true,
           },
-          progress = {
-            view = 'notify',
-          },
         },
         views = {
           notify = { merge = true, replace = true, title = 'LSP' },
         },
       })
     end,
-    dependencies = {
-      -- 'MunifTanjim/nui.nvim',
-      {
-        'rcarriga/nvim-notify',
-        config = function()
-          require('plugins.notify')
-        end,
-      },
-    },
   },
 
   {
@@ -140,7 +128,6 @@ require('lazy').setup({
       })
     end,
   },
-
   -- LSP
   {
     'nvimdev/lspsaga.nvim',
@@ -173,7 +160,7 @@ require('lazy').setup({
     config = function()
       require('typescript-tools').setup({
         on_attach = function(client)
-          if vim.lsp.config.util.root_pattern('deno.json', 'deno.jsonc')(vim.fn.getcwd()) then
+          if require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc')(vim.fn.getcwd()) then
             client.stop()
             return
           end
@@ -354,6 +341,19 @@ require('lazy').setup({
     config = function()
       require('plugins.telescope')
     end,
+  },
+  {
+    'folke/snacks.nvim',
+    opts = {
+      picker = {},
+      explorer = {},
+      health = {},
+      statuscolumn = {},
+      notifier = {},
+      notify = {},
+      git = {},
+    },
+    keys = {},
   },
 
   {

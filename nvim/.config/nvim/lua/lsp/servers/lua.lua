@@ -2,7 +2,7 @@ local lspconfig = require('lspconfig')
 
 require('neodev').setup({})
 
-lspconfig.lua_ls.setup({
+vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
       diagnostics = {
