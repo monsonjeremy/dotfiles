@@ -12,7 +12,7 @@ bufferline.setup({
     max_name_length = 18,
     max_prefix_length = 15,
     tab_size = 20,
-    offsets = { { filetype = 'NvimTree', text = 'Files' } },
+    offsets = { { filetype = 'neo-tree', text = 'Files' } },
     enforce_regular_tabs = true,
     view = 'multiwindow',
     show_buffer_close_icons = true,

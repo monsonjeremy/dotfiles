@@ -1,0 +1,7 @@
+[tools]
+node = "lts"
+python = "latest"
+ruby = "latest"
+go = "latest"
+elixir = "latest"
+erlang = "latest"

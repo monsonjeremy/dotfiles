@@ -1,0 +1,30 @@
+# Zsh Completions (must be first to add to fpath)
+zsh-users/zsh-completions
+~/dotfiles/zsh/run_compinit.zsh
+
+# Oh My Zsh Libs
+# lib/completion.zsh sets up completion configuration (styles)
+ohmyzsh/ohmyzsh path:lib/completion.zsh
+ohmyzsh/ohmyzsh path:lib/git.zsh
+ohmyzsh/ohmyzsh path:lib/clipboard.zsh
+ohmyzsh/ohmyzsh path:lib/directories.zsh
+ohmyzsh/ohmyzsh path:lib/history.zsh
+ohmyzsh/ohmyzsh path:lib/key-bindings.zsh
+ohmyzsh/ohmyzsh path:lib/theme-and-appearance.zsh
+
+# Initialize Completion (must be done after libs, before plugins that use compdef)
+# ~/dotfiles/zsh/run_compinit.zsh
+
+# Oh My Zsh Plugins
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/sudo
+ohmyzsh/ohmyzsh path:plugins/extract
+ohmyzsh/ohmyzsh path:plugins/z
+ohmyzsh/ohmyzsh path:plugins/fzf
+
+# Additional Plugins
+zsh-users/zsh-history-substring-search
+
+# Syntax Highlighting and Autosuggestions (must be last)
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting

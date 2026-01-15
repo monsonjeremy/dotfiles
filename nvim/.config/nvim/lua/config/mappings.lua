@@ -1,4 +1,5 @@
 local map = require('helpers').map
+local Snacks = require('snacks')
 
 local g = vim.g
 g.mapleader = ' '
@@ -91,23 +92,36 @@ map('n', '-', [[<PageUp>]], opts)
 map('n', '<Leader>tt', [[:ToggleTerm<CR>]], opts)
 
 -- Telescope
-map('n', '<C-p>', [[:Telescope find_files hidden=true<CR>]], opts)
-map('n', '<leader>p', [[:Telescope buffers <CR>]], opts)
-map('n', '<leader>ff', [[:Telescope live_grep<CR>]], opts)
+vim.keymap.set('n', '<leader>h', function()
+  Snacks.picker.smart()
+end, { desc = 'Picker', noremap = true, silent = true })
+
+vim.keymap.set('n', '<C-p>', function()
+  Snacks.picker.files({ hidden = true })
+end, { desc = 'Find Files', noremap = true, silent = true })
+
+vim.keymap.set('n', '<C-e>', function()
+  Snacks.picker.explorer()
+end, { desc = 'Explorer', noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>p', function()
+  Snacks.picker.buffers()
+end, { desc = 'Buffers', noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>ff', function()
+  Snacks.picker.grep({ regex = false, hidden = true })
+end, { desc = 'Grep', noremap = true, silent = true })
 
 map('n', '<S-t>', [[<Cmd>tabnew<CR>]], opts)
 map('n', '<S-x>', [[<Cmd>bdelete<CR>]], opts)
 map('n', '<TAB>', [[<Cmd>BufferLineCycleNext<CR>]], opts)
 map('n', '<S-TAB>', [[<Cmd>BufferLineCyclePrev<CR>]], opts)
 
-map('n', '<Leader>sp', [[:lua require('spectre').open()<CR>]], opts)
-map('n', '<Leader>so', [[:lua require('spectre').show_options()<CR>]], opts)
-map('n', '<Leader>spf', [[:lua require('spectre').open_file_search()<CR>]], opts)
-map('v', '<Leader>sp', [[:lua require('spectre').open_visual()<CR>]], opts)
+map('n', '<Leader>sr', [[:GrugFar<CR>]], opts)
 
-map('n', '<Leader>n', [[:NvimTreeToggle<CR>]], opts)
-map('n', '<Leader>r', [[:NvimTreeRefresh<CR>]], opts)
-map('n', '<Leader>f', [[:NvimTreeFindFile<CR>]], opts)
+map('n', '<Leader>n', [[:Neotree toggle<CR>]], opts)
+-- map('n', '<Leader>r', [[:Neotree reveal<CR>]], opts)
+map('n', '<Leader>f', [[:Neotree reveal<CR>]], opts)
 
 map('n', '<Leader>np', [[:NoNeckPain<CR>]], opts)
 
@@ -121,23 +135,9 @@ map('n', '<C-j>', [[:call WinMove('j')<CR>]], opts)
 map('n', '<C-k>', [[:call WinMove('k')<CR>]], opts)
 map('n', '<C-l>', [[:call WinMove('l')<CR>]], opts)
 
-map('n', '/', '<cmd>lua require("searchbox").incsearch()<CR>', opts)
-map('n', '?', '<cmd>lua require("searchbox").incsearch({ reverse = true })<CR>', opts)
 
-map(
-  'v',
-  '/',
-  [[:<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0 | exec '/'.g:srchstr | endif<CR>]],
-  opts
-)
-map(
-  'v',
-  '?',
-  [[:<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0 | exec '?'.g:srchstr | endif<CR>]],
-  opts
-)
 
-vim.keymap.set({ 'n', 'x' }, '<leader>sr', function()
+vim.keymap.set({ 'n', 'x' }, '<leader>sR', function()
   require('ssr').open()
 end)
 

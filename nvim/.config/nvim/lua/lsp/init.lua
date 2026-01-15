@@ -10,6 +10,7 @@ local lsp = vim.lsp
 mason.setup({
   log_level = vim.log.levels.DEBUG,
 })
+
 masonLSP.setup({
   ensure_installed = {
     'bashls',
@@ -18,7 +19,7 @@ masonLSP.setup({
     'jsonls',
     'lua_ls',
     'rust_analyzer',
-    -- 'typescript-language-server',
+    'tsserver',
     'vimls',
     'graphql',
     'terraformls',
@@ -53,6 +54,29 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_pub
   signs = {
     severity = { min = vim.diagnostic.severity.WARN },
   },
+})
+
+-- Disable code action lightbulb icon in status column
+-- Remove lightbulb signs whenever they appear
+vim.api.nvim_create_autocmd({ 'LspAttach' }, {
+  callback = function(args)
+    local bufnr = args.buf
+    -- Remove lightbulb signs on cursor hold
+    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+      buffer = bufnr,
+      callback = function()
+        local signs = vim.fn.sign_getplaced(bufnr, { group = '*' })
+        if signs[1] and signs[1].signs then
+          for _, sign in ipairs(signs[1].signs) do
+            -- Check for lightbulb sign by name
+            if sign.name and (sign.name:match('LightBulb') or sign.name:match('CodeAction')) then
+              vim.fn.sign_unplace(sign.group or '*', { id = sign.id, buffer = bufnr })
+            end
+          end
+        end
+      end,
+    })
+  end,
 })
 
 require('lsp.servers')

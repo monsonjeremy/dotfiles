@@ -4,7 +4,7 @@ if not present then
 end
 
 catppuccin.setup({
-  flavour = 'macchiato',
+  flavour = 'mocha',
   background = { -- :h background
     light = 'latte',
     dark = 'mocha',
@@ -34,12 +34,12 @@ catppuccin.setup({
       enabled = true,
       colored_indent_levels = false,
     },
-    cmp = true,
+    blink_cmp = true,
     dashboard = true,
     gitsigns = true,
     lsp_saga = true,
     noice = true,
-    nvimtree = true,
+    neotree = true,
     telescope = true,
     treesitter = true,
     treesitter_context = true,

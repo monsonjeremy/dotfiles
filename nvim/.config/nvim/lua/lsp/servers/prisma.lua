@@ -1,7 +1,7 @@
 local on_attach = require('lsp.on_attach')
 local lspconfig = require('lspconfig')
 
-lspconfig.prismals.setup({
+vim.lsp.config('prismals', {
   on_attach = function(client)
     client.server_capabilities.document_formatting = true
     on_attach(client)

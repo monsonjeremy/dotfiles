@@ -51,14 +51,6 @@ local on_attach = function(client)
   if client.supports_method('textDocument/formatting') then
     buf_map('n', '<leader>fo', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
     buf_map('v', '<leader>fo', '<cmd><C-U>lua vim.lsp.buf.format()<CR>', opts)
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        lsp_formatting(bufnr)
-      end,
-    })
   end
 end
 
