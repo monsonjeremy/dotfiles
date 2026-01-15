@@ -117,14 +117,11 @@ map('n', '<S-x>', [[<Cmd>bdelete<CR>]], opts)
 map('n', '<TAB>', [[<Cmd>BufferLineCycleNext<CR>]], opts)
 map('n', '<S-TAB>', [[<Cmd>BufferLineCyclePrev<CR>]], opts)
 
-map('n', '<Leader>sp', [[:lua require('spectre').open()<CR>]], opts)
-map('n', '<Leader>so', [[:lua require('spectre').show_options()<CR>]], opts)
-map('n', '<Leader>spf', [[:lua require('spectre').open_file_search()<CR>]], opts)
-map('v', '<Leader>sp', [[:lua require('spectre').open_visual()<CR>]], opts)
+map('n', '<Leader>sr', [[:GrugFar<CR>]], opts)
 
-map('n', '<Leader>n', [[:NvimTreeToggle<CR>]], opts)
-map('n', '<Leader>r', [[:NvimTreeRefresh<CR>]], opts)
-map('n', '<Leader>f', [[:NvimTreeFindFile<CR>]], opts)
+map('n', '<Leader>n', [[:Neotree toggle<CR>]], opts)
+-- map('n', '<Leader>r', [[:Neotree reveal<CR>]], opts)
+map('n', '<Leader>f', [[:Neotree reveal<CR>]], opts)
 
 map('n', '<Leader>np', [[:NoNeckPain<CR>]], opts)
 
@@ -138,23 +135,9 @@ map('n', '<C-j>', [[:call WinMove('j')<CR>]], opts)
 map('n', '<C-k>', [[:call WinMove('k')<CR>]], opts)
 map('n', '<C-l>', [[:call WinMove('l')<CR>]], opts)
 
-map('n', '/', '<cmd>lua require("searchbox").incsearch()<CR>', opts)
-map('n', '?', '<cmd>lua require("searchbox").incsearch({ reverse = true })<CR>', opts)
 
-map(
-  'v',
-  '/',
-  [[:<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0 | exec '/'.g:srchstr | endif<CR>]],
-  opts
-)
-map(
-  'v',
-  '?',
-  [[:<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0 | exec '?'.g:srchstr | endif<CR>]],
-  opts
-)
 
-vim.keymap.set({ 'n', 'x' }, '<leader>sr', function()
+vim.keymap.set({ 'n', 'x' }, '<leader>sR', function()
   require('ssr').open()
 end)
 

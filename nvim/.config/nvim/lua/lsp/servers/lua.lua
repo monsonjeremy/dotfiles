@@ -1,6 +1,6 @@
 local lspconfig = require('lspconfig')
 
-require('neodev').setup({})
+
 
 vim.lsp.config('lua_ls', {
   settings = {

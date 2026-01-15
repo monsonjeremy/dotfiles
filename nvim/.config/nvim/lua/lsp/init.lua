@@ -19,7 +19,7 @@ masonLSP.setup({
     'jsonls',
     'lua_ls',
     'rust_analyzer',
-    -- 'typescript-language-server',
+    'tsserver',
     'vimls',
     'graphql',
     'terraformls',

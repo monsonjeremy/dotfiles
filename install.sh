@@ -1,73 +1,48 @@
 #!/bin/bash
 
-export DOTFILES=$HOME/dotfiles
-export STOW_FOLDERS="dotfiles,nvim,kitty,tmux,starship,zsh"
+set -e
 
-defaults write -g KeyRepeat -int 2
-defaults write -g InitialKeyRepeat -int 10
+echo "🚀 Starting Dotfiles Installation..."
 
-echo "$(tput setaf 2)Checking for Homebrew installation.$(tput sgr 0)"
-
-export BREW_USR="/usr/local/bin/brew"
-export BREW_OPT="/opt/homebrew/bin/brew"
-
-if [ -f "$BREW_OPT" ] || [ -f "$BREW_USR" ]; then
-  echo "$(tput setaf 2)Homebrew is installed.$(tput sgr 0)"
+# 1. Homebrew
+if ! command -v brew &> /dev/null; then
+    echo "🍺 Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 else
-  echo "$(tput setaf 3)Installing Homebrew. Homebrew requires osx command lines tools, please download xcode first$(tput sgr 0)"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>/Users/jmonson/.zprofile
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+    echo "✅ Homebrew already installed"
 fi
 
-if command -v brew >/dev/null 2>&1; then
-  brew bundle
+# 2. Bundle
+echo "📦 Installing Brewfile dependencies..."
+brew bundle --file="$HOME/dotfiles/Brewfile" || true
+
+# 3. Stow
+echo "🔗 Stowing dotfiles..."
+./stow.sh
+
+# 4. Mise (Version Management)
+echo "🛠️  Setting up mise..."
+if ! command -v mise &> /dev/null; then
+    echo "❌ mise not found! It should have been installed by Brewfile."
+    exit 1
 fi
 
-\curl -L https://install.perlbrew.pl | bash
+# Trust the config
+mise trust "$HOME/dotfiles/mise.toml" || true
 
-brew install stow
-sh ./stow.sh
+# Install tools defined in mise.toml
+mise install
 
-echo "$(tput setaf 2)Setting up asdf.$(tput sgr 0)"
-asdf plugin add python
-asdf install python 3.9.5
-asdf global python 3.9.5
-pip install neovim
-pip install vim-vint
-
-sudo gem install neovim
-
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-eval "$(fnm env --use-on-cd)"
-fnm install 18
-fnm default 18
-fnm use 18
-npm i -g eslint_d \
-  neovim \
-  npm \
-  prettier \
-  prettier_d_slim \
-  typescript \
-  neovim \
-  @microsoft/inshellisense
-
-luarocks install luacheck
-cargo install stylua
-
-if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-  ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+# 5. Shell Setup
+if [ "$SHELL" != "$(which zsh)" ]; then
+    echo "🐚 Changing shell to zsh..."
+    chsh -s "$(which zsh)"
 fi
 
-rustup component add rustfmt
+# 6. Neovim Setup
+echo "📝 Setting up Neovim..."
+# Install dependencies that might be needed by LSPs if not covered by mise
+# (Most should be in mise now)
 
-nvim --headless -c 'autocmd User LazyComplete quitall' -c 'Lazy sync'
-
-echo "$(tput setaf 2)Switching shell to zsh. You may need to logout.$(tput sgr 0)"
-
-sudo sh -c "echo $(which zsh) >> /etc/shells"
-chsh -s $(which zsh)
-
-exit 0
+echo "🎉 Installation Complete! Restart your terminal."

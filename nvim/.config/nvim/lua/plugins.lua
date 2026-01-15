@@ -1,25 +1,7 @@
 require('lazy').setup({
   {
-    'VonHeikemen/searchbox.nvim',
-    dependencies = {
-      { 'MunifTanjim/nui.nvim' },
-    },
-  },
-  {
-    'danymat/neogen',
-    config = true,
-    -- Uncomment next line if you want to follow only stable versions
-    -- version = "*"
-  },
-  {
-    'luckasRanarison/nvim-devdocs',
-    lazy = true,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-treesitter/nvim-treesitter',
-    },
-    opts = {},
+    'enochchau/nvim-pretty-ts-errors',
+    build = 'npm install',
   },
   {
     'nvim-lualine/lualine.nvim',
@@ -34,24 +16,6 @@ require('lazy').setup({
     end,
   },
   {
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    opts = {},
-    event = 'BufRead',
-    config = function()
-      require('plugins.indentline')
-    end,
-  },
-  {
-    'mistricky/codesnap.nvim',
-    build = 'make',
-    config = function()
-      require('codesnap').setup({
-        has_breadcrumbs = true,
-      })
-    end,
-  },
-  {
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
@@ -61,10 +25,17 @@ require('lazy').setup({
     end,
   },
   {
-    'nvim-tree/nvim-web-devicons',
-    event = 'BufRead',
-    config = function()
-      require('plugins.nvim-web-devicons')
+    'echasnovski/mini.icons',
+    opts = {},
+    lazy = true,
+    specs = {
+      { 'nvim-tree/nvim-web-devicons', enabled = false, optional = true },
+    },
+    init = function()
+      package.preload['nvim-web-devicons'] = function()
+        require('mini.icons').mock_nvim_web_devicons()
+        return package.loaded['nvim-web-devicons']
+      end
     end,
   },
 
@@ -147,7 +118,19 @@ require('lazy').setup({
     dependencies = { { 'nvim-tree/nvim-web-devicons' } },
   },
   -- { 'ray-x/lsp_signature.nvim', event = 'BufRead' },
-  { 'folke/neodev.nvim' },
+  -- { 'ray-x/lsp_signature.nvim', event = 'BufRead' },
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua', -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
+  { 'Bilal2453/luvit-meta', lazy = true }, -- optional `vim.uv` typings
   {
     'mason-org/mason.nvim',
     build = ':MasonUpdate', -- :MasonUpdate updates registry contents
@@ -173,17 +156,7 @@ require('lazy').setup({
     end,
   },
   { 'nvim-lua/lsp_extensions.nvim', event = 'BufRead' },
-  {
-    'ojroques/nvim-lspfuzzy',
-    dependencies = {
-      { 'junegunn/fzf', event = 'BufRead' },
-      { 'junegunn/fzf.vim', event = 'BufRead' },
-    },
-    event = 'BufRead',
-    config = function()
-      require('lspfuzzy').setup({})
-    end,
-  },
+
   {
     'folke/trouble.nvim',
     event = 'BufRead',
@@ -249,34 +222,25 @@ require('lazy').setup({
   },
 
   {
-    'nvimtools/none-ls.nvim',
-    dependencies = {
-      'gbprod/none-ls-luacheck.nvim',
-    },
-  },
-
-  {
-    'jose-elias-alvarez/nvim-lsp-ts-utils',
-    -- after = 'nvim-lspconfig',
-    -- module = 'nvim-lsp-ts-utils',
-  },
-
-  {
-    'simrat39/rust-tools.nvim',
-    ft = 'rs',
+    'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
     config = function()
-      require('rust-tools').setup()
+      require('plugins.conform')
+    end,
+  },
+  {
+    'mfussenegger/nvim-lint',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      require('plugins.lint')
     end,
   },
 
-  -- Terminal
   {
-    'akinsho/nvim-toggleterm.lua',
-    branch = 'main',
-    cmd = 'ToggleTerm',
-    config = function()
-      require('plugins.toggleterm')
-    end,
+    'mrcjkb/rustaceanvim',
+    version = '^5', -- Recommended
+    lazy = false, -- This plugin is already lazy
   },
 
   -- Navigation / Helpers
@@ -289,13 +253,7 @@ require('lazy').setup({
   },
 
   { 'nanotee/zoxide.vim' },
-  {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end,
-    event = 'BufRead',
-  },
+
   {
     'echasnovski/mini.nvim',
     version = '*',
@@ -303,12 +261,34 @@ require('lazy').setup({
     config = function()
       require('mini.surround').setup({})
       require('mini.ai').setup({})
-      require('mini.cursorword').setup({})
     end,
   },
   { 'tpope/vim-repeat', keys = { '.', mode = 'n' } },
   { 'chaoren/vim-wordmotion', event = 'BufRead' },
-  { 'tweekmonster/startuptime.vim', cmd = 'StartupTime' },
+
+  {
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    opts = {},
+    keys = {
+      {
+        's',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').jump()
+        end,
+        desc = 'Flash',
+      },
+      {
+        'S',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').treesitter()
+        end,
+        desc = 'Flash Treesitter',
+      },
+    },
+  },
   {
     'fedepujol/move.nvim',
     cmd = { 'MoveLine', 'MoveBlock' },
@@ -316,32 +296,18 @@ require('lazy').setup({
       require('move').setup()
     end,
   },
-  {
-    'glepnir/dashboard-nvim',
-    event = 'VimEnter',
-    config = function()
-      require('plugins.dashboard')
-    end,
-    dependencies = { { 'nvim-tree/nvim-web-devicons' } },
-  },
 
   {
-    'windwp/nvim-spectre',
-    -- module = 'spectre',
+    'MagicDuck/grug-far.nvim',
     config = function()
-      require('plugins.nvim-spectre')
+      require('grug-far').setup({
+        keymaps = {
+          replace = { n = '<leader>r' },
+        },
+      })
     end,
   },
 
-  {
-    'nvim-telescope/telescope.nvim',
-    cmd = 'Telescope',
-    -- after = { 'plenary.nvim', 'telescope-ui-select.nvim' },
-    dependencies = { 'nvim-telescope/telescope-ui-select.nvim' },
-    config = function()
-      require('plugins.telescope')
-    end,
-  },
   {
     'folke/snacks.nvim',
     opts = {
@@ -351,20 +317,54 @@ require('lazy').setup({
       statuscolumn = {},
       notifier = {},
       notify = {},
-      git = {},
+      lazygit = {},
+      indent = {},
+      words = {},
+      terminal = {},
     },
-    keys = {},
-  },
-
-  {
-    'aaronhallaert/advanced-git-search.nvim',
-    config = function()
-      require('telescope').load_extension('advanced_git_search')
-    end,
-    dependencies = {
-      'nvim-telescope/telescope.nvim',
-      -- to show diff splits and open commits in browser
-      'tpope/vim-fugitive',
+    keys = {
+      {
+        '<leader>gg',
+        function()
+          Snacks.lazygit()
+        end,
+        desc = 'Lazygit',
+      },
+      {
+        '<c-/>',
+        function()
+          Snacks.terminal()
+        end,
+        desc = 'Toggle Terminal',
+      },
+      {
+        '<leader>ff',
+        function()
+          Snacks.picker.files()
+        end,
+        desc = 'Find Files',
+      },
+      {
+        '<leader>fg',
+        function()
+          Snacks.picker.grep()
+        end,
+        desc = 'Grep',
+      },
+      {
+        '<leader>fb',
+        function()
+          Snacks.picker.buffers()
+        end,
+        desc = 'Buffers',
+      },
+      {
+        '<leader>fh',
+        function()
+          Snacks.picker.help()
+        end,
+        desc = 'Help Tags',
+      },
     },
   },
 
@@ -520,11 +520,19 @@ require('lazy').setup({
   },
 
   {
-    'kyazdani42/nvim-tree.lua',
-    cmd = { 'NvimTreeToggle', 'NvimTreeFindFile' },
-    -- after = 'nvim-web-devicons',
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+    },
+    cmd = 'Neotree',
+    keys = {
+      { '<leader>e', ':Neotree toggle<CR>', desc = 'Toggle Neo-tree' },
+    },
     config = function()
-      require('plugins.nvim-tree')
+      require('neo-tree').setup(require('plugins.neo-tree'))
     end,
   },
 
