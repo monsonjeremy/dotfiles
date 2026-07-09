@@ -1,0 +1,6 @@
+require('config.keymaps.core')
+require('config.keymaps.git')
+require('config.keymaps.search')
+require('config.keymaps.editing')
+require('config.keymaps.navigation')
+require('config.keymaps.terminal')

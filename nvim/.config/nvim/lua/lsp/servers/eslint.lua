@@ -48,7 +48,7 @@ vim.lsp.config('eslint', {
   end,
   settings = {
     workingDirectory = {
-      mode = 'location',
+      mode = 'auto',
     },
     experimental = { useFlatConfig = false },
   },

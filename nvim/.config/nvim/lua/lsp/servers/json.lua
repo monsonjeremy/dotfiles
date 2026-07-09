@@ -3,7 +3,7 @@ local lspconfig = require('lspconfig')
 
 vim.lsp.config('jsonls', {
   on_attach = function(client)
-    client.server_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
     on_attach(client)
   end,
 })

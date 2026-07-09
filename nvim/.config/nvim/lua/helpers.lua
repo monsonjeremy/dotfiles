@@ -25,13 +25,41 @@ function M.apply_globals(globals)
 end
 
 -- Map keys
-function M.map(mode, key, fn, opts)
-  vim.api.nvim_set_keymap(mode, key, fn, opts or {})
+function M.map(mode, key, fn, opts, desc)
+  local options = {}
+
+  if type(opts) == 'table' then
+    options = vim.deepcopy(opts)
+  elseif type(opts) == 'string' then
+    desc = opts
+  end
+
+  if type(desc) == 'string' and desc ~= '' then
+    options.desc = desc
+  end
+
+  vim.keymap.set(mode, key, fn, options)
 end
 
 -- Buffer local keymap
-function M.buf_map(...)
-  vim.api.nvim_buf_set_keymap(vim.api.nvim_get_current_buf(), ...)
+function M.buf_map(mode, key, fn, opts, desc)
+  local options = {}
+
+  if type(opts) == 'table' then
+    options = vim.deepcopy(opts)
+  elseif type(opts) == 'string' then
+    desc = opts
+  end
+
+  if type(desc) == 'string' and desc ~= '' then
+    options.desc = desc
+  end
+
+  if options.buffer == nil then
+    options.buffer = vim.api.nvim_get_current_buf()
+  end
+
+  vim.keymap.set(mode, key, fn, options)
 end
 
 -- Buffer local option

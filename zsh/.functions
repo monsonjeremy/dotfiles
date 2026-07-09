@@ -1,7 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # ls after cd
-function cd { builtin cd "$@" && ls };
+function cd {
+    builtin cd "$@" || return
+    [[ -o interactive ]] && ls
+}
 
 # Create a new directory and enter it
 function mkd() {
@@ -61,9 +64,8 @@ function fs() {
     fi
 }
 
-# Use Git’s colored diff when available
-hash git &>/dev/null
-if [ $? -eq 0 ]; then
+# Use Git's colored diff when available
+if command -v git >/dev/null 2>&1; then
     function diff() {
         git diff --no-index --color-words "$@"
     }
@@ -128,7 +130,7 @@ function getcertnames() {
 
 # Normalize `open` across Linux, macOS, and Windows.
 # This is needed to make the `o` function (see below) cross-platform.
-if [ ! $(uname -s) = "Darwin" ]; then
+if [[ "$(uname -s)" != "Darwin" ]]; then
     if grep -q Microsoft /proc/version; then
         # Ubuntu on Windows using the Linux subsystem
         alias open="explorer.exe"
@@ -194,7 +196,7 @@ fgb() {
 # Passing an argument to `ftm` will switch to that session if it exists or create it otherwise
 ftm() {
     [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
-    if [ $1 ]; then
+    if [[ -n "${1:-}" ]]; then
         tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1")
         return
     fi
@@ -205,7 +207,7 @@ ftm() {
 # Running `tm` will let you fuzzy-find a session mame to delete
 # Passing an argument to `ftm` will delete that session if it exists
 ftmk() {
-    if [ $1 ]; then
+    if [[ -n "${1:-}" ]]; then
         tmux kill-session -t "$1"
         return
     fi

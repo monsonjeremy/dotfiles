@@ -1,7 +1,7 @@
-local present1, lspconfig = pcall(require, 'lspconfig')
-local present2, mason = pcall(require, 'mason')
-local present3, masonLSP = pcall(require, 'mason-lspconfig')
-if not (present1 or present2 or present3) then
+local present_lspconfig = pcall(require, 'lspconfig')
+local present_mason, mason = pcall(require, 'mason')
+local present_mason_lsp, masonLSP = pcall(require, 'mason-lspconfig')
+if not (present_lspconfig and present_mason and present_mason_lsp) then
   return
 end
 
@@ -19,18 +19,25 @@ masonLSP.setup({
     'jsonls',
     'lua_ls',
     'rust_analyzer',
-    'tsserver',
+    -- 'ts_ls', -- disabled: using typescript-tools.nvim instead
     'vimls',
     'graphql',
     'terraformls',
     'tflint',
     'prismals',
-    'elixirls',
+    'expert',
     'dockerls',
     'stylelint_lsp',
     'eslint',
     'cssmodules_ls',
     'tailwindcss',
+  },
+  automatic_enable = {
+    exclude = {
+      'elixirls',
+      'nextls',
+      'lexical',
+    },
   },
 })
 
@@ -41,15 +48,17 @@ local function set_sign(type, icon)
 end
 
 set_sign('Hint', '')
-set_sign('Information', '')
+set_sign('Info', '')
 set_sign('Warning', '')
 set_sign('Error', '⊗')
 
 lsp.set_log_level('warn')
-lsp.inlay_hint.enable()
+if lsp.inlay_hint and lsp.inlay_hint.enable then
+  pcall(lsp.inlay_hint.enable)
+end
 
-lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
-  underline = { severity_limit = 'Warning', severity = { min = vim.diagnostic.severity.WARN } },
+vim.diagnostic.config({
+  underline = { severity = { min = vim.diagnostic.severity.WARN } },
   virtual_text = { prefix = '●', spacing = 2, severity = { min = vim.diagnostic.severity.WARN } },
   signs = {
     severity = { min = vim.diagnostic.severity.WARN },

@@ -1,0 +1,60 @@
+name: Dotfiles CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zsh shellcheck shfmt lua5.4 luarocks
+          sudo luarocks install luacheck
+
+      - name: Bash Syntax
+        run: |
+          bash -n install.sh
+          bash -n globals.sh
+          bash -n bin/dotfiles-doctor
+          bash -n bin/tmux-sessionizer
+
+      - name: Zsh Syntax
+        run: |
+          zsh -n zsh/.zshenv
+          zsh -n zsh/.zshrc
+          zsh -n zsh/.functions
+          zsh -n zsh/run_compinit.zsh
+          zsh -n stow.sh
+          zsh -n cleanenv.sh
+
+      - name: Shell Formatting
+        run: shfmt -d install.sh globals.sh bin/dotfiles-doctor bin/tmux-sessionizer
+
+      - name: Shellcheck
+        run: shellcheck install.sh globals.sh bin/dotfiles-doctor bin/tmux-sessionizer
+
+      - name: Luacheck
+        run: luacheck .
+
+      - name: Stylua Check
+        uses: JohnnyMorganz/stylua-action@v4
+        with:
+          version: latest
+          args: --check -g '*.lua' ./nvim/.config/nvim
+
+      - name: Neovim Headless Boot
+        run: |
+          XDG_CONFIG_HOME="$PWD/nvim/.config" \
+          XDG_CACHE_HOME="$RUNNER_TEMP/nvim-cache" \
+          XDG_STATE_HOME="$RUNNER_TEMP/nvim-state" \
+          nvim --headless '+lua require("lsp")' '+qa'

@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+script_dir="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)"
+repo_dir="$(CDPATH='' cd -- "$script_dir/.." && pwd)"
+
+errors=0
+warnings=0
+passes=0
+
+pass() {
+  printf '[PASS] %s\n' "$1"
+  passes=$((passes + 1))
+}
+
+warn() {
+  printf '[WARN] %s\n' "$1"
+  warnings=$((warnings + 1))
+}
+
+fail() {
+  printf '[FAIL] %s\n' "$1"
+  errors=$((errors + 1))
+}
+
+check_symlink() {
+  local path="$1"
+  local expected_suffix="$2"
+
+  if [ -L "$path" ]; then
+    local target
+    target="$(readlink "$path")"
+    case "$target" in
+    *"$expected_suffix") pass "$path is symlinked to $target" ;;
+    *) warn "$path points to $target (expected suffix: $expected_suffix)" ;;
+    esac
+    return
+  fi
+
+  if [ -f "$path" ]; then
+    warn "$path exists but is not a symlink (stow may not be managing it)"
+    return
+  fi
+
+  fail "$path is missing"
+}
+
+check_command() {
+  local cmd="$1"
+  if command -v "$cmd" >/dev/null 2>&1; then
+    pass "command available: $cmd"
+  else
+    fail "command missing: $cmd"
+  fi
+}
+
+echo "Dotfiles doctor"
+echo "Repo: $repo_dir"
+echo
+
+check_command zsh
+check_command stow
+check_command git
+check_command nvim
+
+if command -v stylua >/dev/null 2>&1; then
+  pass "command available: stylua"
+else
+  warn "command missing: stylua (required by make check)"
+fi
+
+if command -v mise >/dev/null 2>&1; then
+  pass "command available: mise"
+else
+  warn "command missing: mise (install.sh will fail after Homebrew step without it)"
+fi
+
+if command -v luacheck >/dev/null 2>&1 && luacheck --version >/dev/null 2>&1; then
+  pass "command available: luacheck"
+else
+  warn "luacheck missing or broken (make check lint target will fail)"
+fi
+
+check_symlink "$HOME/.zshenv" "dotfiles/zsh/.zshenv"
+check_symlink "$HOME/.zshrc" "dotfiles/zsh/.zshrc"
+
+if zsh -n "$repo_dir/zsh/.zshenv" "$repo_dir/zsh/.zshrc" "$repo_dir/stow.sh" "$repo_dir/cleanenv.sh"; then
+  pass "zsh startup and bootstrap scripts parse cleanly"
+else
+  fail "zsh parse check failed for one or more startup/bootstrap scripts"
+fi
+
+antidote_found=0
+for candidate in \
+  /opt/homebrew/opt/antidote/share/antidote/antidote.zsh \
+  /usr/local/opt/antidote/share/antidote/antidote.zsh; do
+  if [ -f "$candidate" ]; then
+    pass "antidote source found: $candidate"
+    antidote_found=1
+    break
+  fi
+done
+
+if [ "$antidote_found" -eq 0 ]; then
+  warn "antidote source not found in Homebrew prefixes"
+fi
+
+if command -v infocmp >/dev/null 2>&1; then
+  if infocmp tmux-256color >/dev/null 2>&1; then
+    pass "terminfo entry available: tmux-256color"
+  else
+    warn "terminfo entry missing: tmux-256color (tmux colors may degrade)"
+  fi
+else
+  warn "infocmp not found (cannot validate terminfo entries)"
+fi
+
+if grep -q 'set -g default-terminal "tmux-256color"' "$repo_dir/tmux/.tmux.conf"; then
+  pass "tmux default-terminal is configured to tmux-256color"
+else
+  warn "tmux default-terminal is not set to tmux-256color in tmux/.tmux.conf"
+fi
+
+if [ -f "$HOME/.zshenv.local" ]; then
+  pass "local override found: ~/.zshenv.local"
+else
+  warn "local override missing: ~/.zshenv.local (optional)"
+fi
+
+if [ -f "$HOME/.zshrc.local" ]; then
+  pass "local override found: ~/.zshrc.local"
+else
+  warn "local override missing: ~/.zshrc.local (optional)"
+fi
+
+echo
+echo "Summary: $passes passed, $warnings warnings, $errors failures"
+
+if [ "$errors" -gt 0 ]; then
+  exit 1
+fi

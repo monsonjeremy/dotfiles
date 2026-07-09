@@ -38,6 +38,7 @@ brew 'zsh'
 brew 'zsh-autosuggestions'
 brew 'shellcheck'
 brew 'shfmt'
+brew 'luacheck'
 brew 'hadolint'
 brew 'fsouza/prettierd/prettierd'
 

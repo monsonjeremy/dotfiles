@@ -1,3 +1,4 @@
 require('config.options')
-require('config.functions')
-require('config.mappings')
+require('config.commands')
+require('config.autocmds')
+require('config.keymaps')

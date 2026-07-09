@@ -3,7 +3,7 @@ local lspconfig = require('lspconfig')
 
 vim.lsp.config('prismals', {
   on_attach = function(client)
-    client.server_capabilities.document_formatting = true
+    client.server_capabilities.documentFormattingProvider = true
     on_attach(client)
   end,
 })

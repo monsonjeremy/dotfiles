@@ -1,7 +1,5 @@
-[user]
-	name = monsonjeremy
-	signingkey = 0061DDBE2D4934F4
-	email = monson.jeremy@gmail.com
+[include]
+	path = ~/.gitconfig.local
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -112,11 +110,6 @@
 	added = yellow
 	changed = green
 	untracked = cyan
-
-[commit]
-
-	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
 
 [diff]
 

@@ -1,0 +1,7 @@
+WRN 2026-02-19T10:44:11.743 ?.7684     server_start:199: Failed to start server: operation not permitted: /var/folders/z3/b2v7c43j0f92yqsgylkdzpvw0000gp/T/nvim.jeremy.monson/hLGguS/nvim.7684.0
+WRN 2026-02-24T14:16:09.108 ?.91826    server_start:199: Failed to start server: operation not permitted: /var/folders/z3/b2v7c43j0f92yqsgylkdzpvw0000gp/T/nvim.jeremy.monson/vO0QSa/nvim.91826.0
+WRN 2026-02-25T12:43:03.299 ?.30957    server_start:199: Failed to start server: operation not permitted: /var/folders/z3/b2v7c43j0f92yqsgylkdzpvw0000gp/T/nvim.jeremy.monson/sALlKh/nvim.30957.0
+WRN 2026-02-25T12:43:06.889 ?.30982    server_start:199: Failed to start server: operation not permitted: /var/folders/z3/b2v7c43j0f92yqsgylkdzpvw0000gp/T/nvim.jeremy.monson/jWriSn/nvim.30982.0
+WRN 2026-02-25T12:43:42.762 ?.31186    server_start:199: Failed to start server: operation not permitted: /var/folders/z3/b2v7c43j0f92yqsgylkdzpvw0000gp/T/nvim.jeremy.monson/avibWR/nvim.31186.0
+WRN 2026-02-26T09:53:51.338 ?.99079    server_start:199: Failed to start server: operation not permitted: /var/folders/z3/b2v7c43j0f92yqsgylkdzpvw0000gp/T/nvim.jeremy.monson/OdW0XR/nvim.99079.0
+WRN 2026-02-26T11:33:18.994 ?.75822    server_start:199: Failed to start server: operation not permitted: /var/folders/z3/b2v7c43j0f92yqsgylkdzpvw0000gp/T/nvim.jeremy.monson/5ytluF/nvim.75822.0

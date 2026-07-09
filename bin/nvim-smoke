@@ -1,0 +1,181 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+script_dir="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)"
+repo_dir="$(CDPATH='' cd -- "$script_dir/.." && pwd)"
+
+if ! command -v nvim >/dev/null 2>&1; then
+  echo "[FAIL] command missing: nvim"
+  exit 1
+fi
+
+cache_dir="$(mktemp -d /tmp/nvim-smoke-cache.XXXXXX)"
+state_dir="$(mktemp -d /tmp/nvim-smoke-state.XXXXXX)"
+probe_file="$(mktemp /tmp/nvim-smoke-probe.XXXXXX)"
+
+cleanup() {
+  rm -rf "$cache_dir" "$state_dir" "$probe_file"
+}
+trap cleanup EXIT
+
+cat >"$probe_file" <<'LUA'
+local failures = 0
+local repo_dir = vim.env.REPO_DIR
+
+local function pass(message)
+  print('[PASS] ' .. message)
+end
+
+local function fail(message, detail)
+  if detail and detail ~= '' then
+    print(('[FAIL] %s (%s)'):format(message, detail))
+  else
+    print('[FAIL] ' .. message)
+  end
+  failures = failures + 1
+end
+
+local function check(condition, message, detail)
+  if condition then
+    pass(message)
+  else
+    fail(message, detail)
+  end
+end
+
+local function read_file(path)
+  local file = io.open(path, 'r')
+  if not file then
+    return nil
+  end
+  local content = file:read('*a')
+  file:close()
+  return content
+end
+
+check(vim.fn.exists(':Browse') == 2, ':Browse command is available')
+check(vim.fn.exists(':LazySync') == 2, ':LazySync command is available')
+
+local ff = vim.fn.maparg('<leader>ff', 'n', false, true)
+check(ff.callback ~= nil, '<leader>ff has a callback')
+check(
+  ff.desc == 'Grep with no regex and show hidden files',
+  '<leader>ff description matches expected grep behavior',
+  ff.desc or ''
+)
+
+local format_map = vim.fn.maparg('<leader>f', 'n', false, true)
+check(
+  format_map.desc == 'Format file or range (in visual mode)',
+  '<leader>f description matches',
+  format_map.desc or ''
+)
+
+local lint_map = vim.fn.maparg('<leader>l', 'n', false, true)
+check(
+  lint_map.desc == 'Trigger linting for current file',
+  '<leader>l description matches',
+  lint_map.desc or ''
+)
+
+check(
+  vim.fn.exists(':PluginUseTrackerReport') ~= 2,
+  'Plugin use tracker command is disabled in headless mode'
+)
+
+check(type(repo_dir) == 'string' and repo_dir ~= '', 'REPO_DIR is available to smoke checks')
+
+local on_attach_source = repo_dir and read_file(repo_dir .. '/nvim/.config/nvim/lua/lsp/on_attach.lua') or nil
+check(on_attach_source ~= nil, 'LSP on_attach source is readable in smoke checks')
+if on_attach_source then
+  check(
+    not on_attach_source:find('CursorHoldI', 1, true),
+    'Local LSP on_attach does not register CursorHoldI insert-mode docs'
+  )
+  check(
+    not on_attach_source:find('vim.lsp.buf.signature_help', 1, true),
+    'Local LSP on_attach does not auto-run signature help'
+  )
+end
+
+local ok_noice, noice_opts = pcall(function()
+  local captured_opts
+  local original_loaded = package.loaded.noice
+  local original_preload = package.preload.noice
+
+  package.loaded.noice = nil
+  package.preload.noice = function()
+    return {
+      setup = function(opts)
+        captured_opts = opts
+      end,
+    }
+  end
+
+  local ok, result = pcall(function()
+    local specs = dofile(repo_dir .. '/nvim/.config/nvim/lua/plugins/ui.lua')
+    for _, spec in ipairs(specs) do
+      if spec[1] == 'folke/noice.nvim' then
+        assert(type(spec.config) == 'function', 'Noice spec is missing a config function')
+        spec.config()
+        return captured_opts
+      end
+    end
+    error('Noice plugin spec not found in ui.lua')
+  end)
+
+  package.preload.noice = original_preload
+  package.loaded.noice = original_loaded
+
+  if not ok then
+    error(result)
+  end
+  assert(captured_opts ~= nil, 'Noice setup options were not captured')
+  return result
+end)
+check(ok_noice, 'Noice config is inspectable in smoke checks')
+if ok_noice and noice_opts.lsp and noice_opts.lsp.override and noice_opts.lsp.signature then
+  check(
+    noice_opts.lsp.override['cmp.entry.get_documentation'] == false,
+    'Noice does not override cmp documentation in insert mode',
+    tostring(noice_opts.lsp.override['cmp.entry.get_documentation'])
+  )
+  check(
+    noice_opts.lsp.signature.auto_open.enabled == false,
+    'Noice auto signature help is disabled',
+    tostring(noice_opts.lsp.signature.auto_open.enabled)
+  )
+else
+  fail('Noice config includes LSP documentation settings')
+end
+
+if failures > 0 then
+  print(('[FAIL] nvim smoke failed with %d issue(s)'):format(failures))
+  vim.cmd('cquit ' .. failures)
+end
+
+print('[PASS] nvim smoke checks passed')
+vim.cmd('qa')
+LUA
+
+echo "Neovim smoke checks"
+echo "Repo: $repo_dir"
+echo
+
+set +e
+output="$(
+  REPO_DIR="$repo_dir" \
+  XDG_CONFIG_HOME="$repo_dir/nvim/.config" \
+  XDG_CACHE_HOME="$cache_dir" \
+  XDG_STATE_HOME="$state_dir" \
+  nvim --headless -c "luafile $probe_file" 2>&1
+)"
+status=$?
+set -e
+
+printf '%s\n' "$output"
+
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi

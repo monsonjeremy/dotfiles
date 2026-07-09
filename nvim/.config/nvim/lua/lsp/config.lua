@@ -1,6 +1,11 @@
 local on_attach = require('lsp.on_attach')
 
-local lsp_capabilities = require('blink.cmp').get_lsp_capabilities() -- Angepasst für blink.cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+if status_ok then
+  capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+end
+local lsp_capabilities = capabilities
 
 -- config that activates keymaps and enables snippet support
 local function base_config()

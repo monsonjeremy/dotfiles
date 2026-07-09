@@ -1,3 +1,3 @@
-require('lazynvim')
-require('plugins')
+vim.g.mapleader = ' '
+require('config.lazy')
 require('config')

@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
 npm install -g \
   @namics/stylelint-bem@latest \
   eslint_d@latest \
